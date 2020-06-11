@@ -1,30 +1,11 @@
-# local-money
+# Local Money
+Service de création et de money locale projet d'etude avec l'école @Hetic !
 
-## Project setup
-```
-yarn install
-```
+### Commande
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+> ***Récupérer le repo*** `git clone https://github.com/lucrampro/local-money.git`
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+>  ***Lancer le projet*** `npm start` ou `npm run serve`
 
-### Run your tests
-```
-yarn run test
-```
+> ***Compilé le projet pour une mise en production*** `npm run build`
 
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-# local-money
