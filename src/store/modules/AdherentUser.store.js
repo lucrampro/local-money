@@ -1,6 +1,4 @@
-/* Module1.store.js */
 const initialState = () => ({
-  cheik: 'ok',
 });
 
 export default {
