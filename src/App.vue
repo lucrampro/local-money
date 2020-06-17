@@ -11,7 +11,10 @@
 <script>
 export default {
   created() {
-    console.log(this.$ApiRequest._get());
+    this.$Api.get()
+      .then((data) => {
+        console.log(data);
+      });
   },
 };
 </script>
