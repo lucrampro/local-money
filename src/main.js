@@ -5,6 +5,8 @@ import store from './store';
 import '@/assets/css/tailwind.css';
 import './registerServiceWorker';
 
+console.log(process.env);
+
 Vue.config.productionTip = false;
 
 new Vue({
