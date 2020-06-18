@@ -7,7 +7,7 @@ class ApiRequest extends EventTarget {
 
   _Api() {
     const init = {
-      headers: new Headers(),
+      // headers: new Headers(),
       mode: 'cors',
       cache: 'default',
       'Content-Type': 'application/json',
@@ -18,32 +18,60 @@ class ApiRequest extends EventTarget {
           ...init,
           method: 'GET',
         })
-          .then((res) => resolve(res.json()))
-          .catch((res) => resolve(res.json()));
+          .then((res) => res.json())
+          .then((data) => {
+            if (data._meta.code === 200) {
+              resolve(data);
+            } else {
+              reject(data);
+            }
+          })
+          .catch((res) => reject(res));
       }),
       post: (path) => new Promise((resolve, reject) => {
         fetch(path, {
           ...init,
           method: 'POST',
         })
-          .then((res) => resolve(res.json()))
-          .catch((res) => resolve(res.json()));
+          .then((res) => res.json())
+          .then((data) => {
+            if (data._meta.code === 200) {
+              resolve(data);
+            } else {
+              reject(data);
+            }
+          })
+          .catch((res) => reject(res));
       }),
       put: (path) => new Promise((resolve, reject) => {
         fetch(path, {
           ...init,
           method: 'PUT',
         })
-          .then((res) => resolve(res.json()))
-          .catch((res) => resolve(res.json()));
+          .then((res) => res.json())
+          .then((data) => {
+            if (data._meta.code === 200) {
+              resolve(data);
+            } else {
+              reject(data);
+            }
+          })
+          .catch((res) => reject(res));
       }),
       del: (path) => new Promise((resolve, reject) => {
         fetch(path, {
           ...init,
           method: 'DELET',
         })
-          .then((res) => resolve(res.json()))
-          .catch((res) => resolve(res.json()));
+          .then((res) => res.json())
+          .then((data) => {
+            if (data._meta.code === 200) {
+              resolve(data);
+            } else {
+              reject(data);
+            }
+          })
+          .catch((res) => reject(res));
       }),
     };
   }
