@@ -3,5 +3,5 @@
 	url = https://github.com/nekocheik/NeyMo_backOffice
 
 [submodule "NeyMo_frontOffice"]
-	path = NeyMo_backOffice
+	path = NeyMo_frontOffice
 	url = https://github.com/nekocheik/NeyMo_frontOffice
