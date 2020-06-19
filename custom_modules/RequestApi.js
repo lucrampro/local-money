@@ -1,7 +1,7 @@
 class ApiRequest extends EventTarget {
   constructor() {
     super();
-    this.uri = process.env.VUE_APP_BACK_END_URI;
+    // this.uri = process.env.VUE_APP_BACK_END_URI;
     this.request = this._Api();
   }
 
