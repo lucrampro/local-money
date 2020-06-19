@@ -1,6 +1,5 @@
 .DS_Store
-/back_office/node_modules
-/front_office/node_modules
+node_modules
 /dist
 
 # local env files
