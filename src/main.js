@@ -40,7 +40,7 @@ Vue.component('m-input', Modules.MInputText);
 Vue.component('m-radio', Modules.MRadio);
 // Layouts
 console.warn(Layouts, 'Layouts');
-Vue.component('LRegitster', Layouts.LRegister);
+Vue.component('l-regitster', Layouts.LRegister);
 
 // global
 Vue.component('ValidationProvider', ValidationProvider);

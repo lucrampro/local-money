@@ -1,5 +1,5 @@
 <template>
-  <LRegitster>
+  <l-regitster>
     <template v-slot:header>
       <div class="flex flex-row-reverse">
         <a-button @click.native="$router.push({ name: 'register' })" >Se connecter</a-button>
@@ -13,7 +13,7 @@
         <a-button v-show="formValid" @click.native="toNextPage()" >Suviant</a-button>
       </div>
     </template>
-  </LRegitster>
+  </l-regitster>
 </template>
 
 <script>

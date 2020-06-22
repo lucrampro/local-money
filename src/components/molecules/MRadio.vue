@@ -39,7 +39,7 @@ export default {
     },
   },
   watch: {
-    model(oldVal, newVal) {
+    model(newVal) {
       this.$emit('input', newVal);
     },
   },
