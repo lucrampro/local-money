@@ -2,7 +2,7 @@
 export default [
   {
     path: 'step-one',
-    component: () => import('../../component/pages/inscription/StepOne.vue'),
+    component: () => import('../../components/pages/inscription/StepOne.vue'),
     meta: {
       nextPath: 'step-two',
       previousPath: '/',
@@ -10,7 +10,7 @@ export default [
   },
   {
     path: 'step-two',
-    component: () => import('../../component/pages/inscription/StepTwo.vue'),
+    component: () => import('../../components/pages/inscription/StepTwo.vue'),
     meta: {
       nextPath: 'step-three',
       previousPath: 'step-one',
@@ -18,7 +18,7 @@ export default [
   },
   {
     path: 'step-three',
-    component: () => import('../../component/pages/inscription/StepThree.vue'),
+    component: () => import('../../components/pages/inscription/StepThree.vue'),
     meta: {
       nextPath: 'step-four',
       previousPath: 'step-two',

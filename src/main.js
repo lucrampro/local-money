@@ -12,9 +12,9 @@ import store from './store';
 import '@/assets/css/tailwind.css';
 import './registerServiceWorker';
 import requestApi from './RequestApi';
-import Atoms from './component/atoms';
-import Modules from './component/molecules';
-import Layouts from './component/layouts';
+import Atoms from './components/atoms';
+import Modules from './components/molecules';
+import Layouts from './components/layouts';
 import i18n from './i18n';
 
 Vue.config.productionTip = false;
