@@ -2,7 +2,7 @@
   <ValidationObserver ref="observer">
     <div class="mt-10">
       <ValidationProvider name="age" rules="required|min:10" v-slot="{ errors }">
-        <m-input :errors="errors" type="tel" v-model="birthDay" mask="##/##/##" maxlength="10" exemple="30/09/1998">Age</m-input>
+        <m-input :errors="errors" type="" v-model="birthDay" mask="##/##/##" maxlength="10" exemple="30/09/1998">Age</m-input>
       </ValidationProvider>
       <ValidationProvider name="Nom" rules="required|min:3" v-slot="{ errors }">
         <m-input :errors="errors" type="tel" v-model="phoneNumber" mask="## ## ## ## ##" maxlength="14" exemple="06 21 48 37 99">Téléphone</m-input>

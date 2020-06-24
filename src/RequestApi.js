@@ -1,7 +1,7 @@
 class ApiRequest extends EventTarget {
   constructor() {
     super();
-    // this.uri = process.env.VUE_APP_BACK_END_URI;
+    this.uri = process.env.VUE_APP_BACK_END_URI;
     this.request = this._Api();
   }
 
@@ -13,63 +13,27 @@ class ApiRequest extends EventTarget {
       'Content-Type': 'application/json',
     };
     return {
+      /**
+       * done a call api with methode get
+       * @param  {string} path path of request api
+       * @return {Promise}
+       */
       get: (path) => new Promise((resolve, reject) => {
         fetch(path, {
           ...init,
           method: 'GET',
         })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data._meta.code === 200) {
-              resolve(data);
-            } else {
-              reject(data);
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
             }
+            return reject(res.data);
           })
-          .catch((res) => reject(res));
-      }),
-      post: (path) => new Promise((resolve, reject) => {
-        fetch(path, {
-          ...init,
-          method: 'POST',
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data._meta.code === 200) {
-              resolve(data);
-            } else {
-              reject(data);
+          .then((res) => {
+            if (res.status === 200) {
+              resolve(res);
             }
-          })
-          .catch((res) => reject(res));
-      }),
-      put: (path) => new Promise((resolve, reject) => {
-        fetch(path, {
-          ...init,
-          method: 'PUT',
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data._meta.code === 200) {
-              resolve(data);
-            } else {
-              reject(data);
-            }
-          })
-          .catch((res) => reject(res));
-      }),
-      del: (path) => new Promise((resolve, reject) => {
-        fetch(path, {
-          ...init,
-          method: 'DELET',
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data._meta.code === 200) {
-              resolve(data);
-            } else {
-              reject(data);
-            }
+            return reject(res);
           })
           .catch((res) => reject(res));
       }),
@@ -80,10 +44,6 @@ class ApiRequest extends EventTarget {
     return this.request.get(this.uri + (path || ''), data || {}, this.conf);
   }
 
-  post(path, data) {
-    return this.request.post(this.uri + (path || ''), data || {}, this.conf);
-  }
-
   put(path, data) {
     return this.request.put(this.uri + (path || ''), data || {}, this.conf);
   }
@@ -91,13 +51,15 @@ class ApiRequest extends EventTarget {
   del(path, data) {
     return this.request.delete(this.uri + (path || ''), data || {}, this.conf);
   }
+
+  register
 }
 
 export default {
   // The install method is all that needs to exist on the plugin object.
   // It takes the global Vue object as well as user-defined options.
   install(Vue) {
-    const apiRequest = new ApiRequest();
+    const apiRequest = new ApiRequest(Vue);
     Vue.prototype.$Api = apiRequest;
   },
 };

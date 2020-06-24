@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{label}}
     <span class="flex" v-for="(item, index) in inputs" :key="index">
         <label class="inline-flex items-center mt-3">
         <input  v-model="model" :id="index" :value="item.value" type="radio" class="w-5 h-5 text-gray-600 form-radio" checked><span class="ml-2 text-gray-700">{{item.name}}</span>
@@ -18,6 +19,10 @@ export default {
   },
   props: {
     exemple: String,
+    label: {
+      type: String,
+      default: '',
+    },
     rules: {
       type: String,
       default: '',

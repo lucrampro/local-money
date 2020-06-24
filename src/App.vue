@@ -7,7 +7,11 @@
 <script>
 export default {
   created() {
-    this.$Api.request.get('https://gorest.co.in/public-api/users?_format=json&acdcess-token=wj7f8PZOMg6beM3GF92bm12CXXo4weZ44fKQ')
+    fetch('http://localhost/api/me')
+      .then((res) => {
+        console.log(res);
+      });
+    this.$Api.get('/me')
       .then((data) => {
         console.log(data);
       })
