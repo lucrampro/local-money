@@ -26,6 +26,27 @@ extend('email', email);
 extend('required', required);
 extend('min', min);
 
+extend('majority', {
+  message: () => 'vous n\'avez pas l\'âge requis',
+  validate: (value) => {
+    console.log(value);
+
+    const currentDate = new Date();
+    let fielDate = value;
+    const year = fielDate.match(/^(\d+)-/i)[1];
+    const month = fielDate.match(/-(\d+)-/i)[1];
+    const day = fielDate.match(/-(\d+)$/i)[1];
+    fielDate = new Date(year, month, day);
+
+    const diff = currentDate.getTime() - fielDate.getTime();
+    const age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25)) + 1;
+    if (age > 18) {
+      return true;
+    }
+    console.log(age, year);
+    return false;
+  },
+});
 // Register it globally
 
 // Atoms
