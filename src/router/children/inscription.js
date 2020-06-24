@@ -2,7 +2,7 @@
 export default [
   {
     path: 'step-one',
-    component: () => import('../../components/pages/inscription/StepOne.vue'),
+    component: () => import('../../components/pages/inscription/TypeDeCompte.vue'),
     meta: {
       nextPath: 'step-two',
       previousPath: '/',

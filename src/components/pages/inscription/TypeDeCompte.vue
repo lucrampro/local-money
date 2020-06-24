@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'StepOne',
+  name: 'TypeDeCompte',
   data() {
     return {
       value: null,
