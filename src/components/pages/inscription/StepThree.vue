@@ -1,16 +1,8 @@
 <template>
   <ValidationObserver ref="observer">
     <div class="mt-10">
-      <ValidationProvider name="age" rules="required|min:10|majority" v-slot="{ errors }">
-        <m-input :errors="errors" type="date" v-model="birthDay" maxlength="8" exemple="30/09/1998">Age</m-input>
-      </ValidationProvider>
-      <ValidationProvider name="Nom" rules="required|min:3" v-slot="{ errors }">
-        <m-input :errors="errors" type="tel" v-model="phoneNumber" mask="## ## ## ## ##" maxlength="14" exemple="06 21 48 37 99">Téléphone</m-input>
-      </ValidationProvider>
-      <ValidationProvider name="mail" rules="email|required" v-slot="{ errors }">
-        <m-input :errors="errors" v-model="mail" type="mail" exemple="marie.jane@mail.com">
-          Email
-        </m-input>
+      <ValidationProvider v-for="items in validationProvider" :key="items.name" :name="item.name" :rules="item.rules" v-slot="{ errors }">
+        <m-input :errors="errors" :type="items.type" v-model="items.model" :maxlength="items.length" :mask='items.mask' :exemple="items.exemple">Age</m-input>
       </ValidationProvider>
     </div>
   </ValidationObserver>
@@ -23,6 +15,44 @@ export default {
       birthDay: '',
       phoneNumber: '',
       mail: '',
+      validationProvider: [
+        {
+          name: 'age',
+          rules: 'required|min:10|majority',
+          slot: errors,
+          error: errors,
+          type:'date',
+          model: birthDay,
+          mask: '',
+          length: '8',
+          exemple: '30/09/1998',
+          text: 'Age',
+        },
+        {
+          name: 'Nom',
+          rules: 'required|min:3',
+          slot: errors,
+          error: errors,
+          type:'tel',
+          model: phoneNumber,
+          mask: '## ## ## ## ##',
+          length: '',
+          exemple: '06 21 48 37 99',
+          text: 'Téléphone',
+        },
+        {
+          name: 'mail',
+          rules: 'email|required',
+          slot: errors,
+          error: errors,
+          type:'mail',
+          model: '',
+          mask: '',
+          length: '14',
+          exemple: 'marie.jane@mail.com',
+          text: 'Email',
+        },
+      ],
     };
   },
   mounted() {
