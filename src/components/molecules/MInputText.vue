@@ -19,10 +19,7 @@ export default {
     mask: {
       default: false,
     },
-    name: {
-      type: String,
-      required: true,
-    },
+
     rules: {
       type: String,
       default: '',
@@ -32,6 +29,7 @@ export default {
     },
     name: {
       type: String,
+      required: true,
       default: '',
     },
     maxlength: {
