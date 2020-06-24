@@ -8,7 +8,7 @@
         <m-input :errors="errors" type="tel" v-model="phoneNumber" mask="## ## ## ## ##" maxlength="14" exemple="06 21 48 37 99">Téléphone</m-input>
       </ValidationProvider>
       <ValidationProvider name="mail" rules="email|required" v-slot="{ errors }">
-        <m-input :errors="errors" v-model="mail" exemple="marie.jane@mail.com">
+        <m-input :errors="errors" v-model="mail" type="mail" exemple="marie.jane@mail.com">
           Email
         </m-input>
       </ValidationProvider>
