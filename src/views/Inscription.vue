@@ -9,8 +9,8 @@
       <router-view @updateFormValid="(val) => {formValid = val}" />
     <template v-slot:bottom>
       <div class="flex flex-row justify-between">
-        <span  @click.native="toPreviousPage()">
-          <a-button >Precedent</a-button>
+        <span>
+          <a-button  @click.native="toPreviousPage()" >Precedent</a-button>
         </span>
         <a-submit-button v-show="formValid" text="Suviant"> </a-submit-button>
       </div>

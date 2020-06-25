@@ -10,12 +10,12 @@
       <template v-slot:default>
       <div class="mt-10">
         <ValidationProvider name="mail" rules="email|required" v-slot="{ errors }">
-          <m-input :errors="errors" v-model="mail" exemple="marie.jane@mail.com">
+          <m-input :errors="errors" name="mail" v-model="mail" exemple="marie.jane@mail.com">
             Email
           </m-input>
         </ValidationProvider>
         <ValidationProvider name="mot de passe" rules="required|min:6" v-slot="{ errors }">
-          <m-input type="password" v-model="password" :errors="errors" exemple="*********" class="mt-4">
+          <m-input type="password" name="password" v-model="password" :errors="errors" exemple="*********" class="mt-4">
             Mot de passe
           </m-input>
         </ValidationProvider>
@@ -28,7 +28,7 @@
       </div>
       <template v-slot:bottom>
         <div class="flex flex-row-reverse">
-          <a-submit-button text="Valider" v-if="valid" />
+          <a-button v-if="valid">Valider</a-button>
         </div>
       </template>
   </l-regitster>

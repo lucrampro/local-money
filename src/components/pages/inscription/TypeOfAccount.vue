@@ -1,8 +1,8 @@
 <template>
   <ValidationObserver ref="observer">
     <div>
-      <ValidationProvider name="Nom" rules="required" v-slot="{ errors }">
-        <m-radio v-model="value" :label="label" :inputs="mokeData" />
+      <ValidationProvider name="type d'inscription" rules="required" v-slot="{ errors }">
+        <m-radio v-model="value" name="sing-up-type" :label="label" :inputs="mokeData" />
         {{errors[0]}}
       </ValidationProvider>
     </div>
