@@ -10,14 +10,14 @@ export default [
   },
   {
     path: 'names',
-    component: () => import('../../components/pages/inscription/InfoName.vue'),
+    component: () => import('../../components/pages/inscription/InfoNames.vue'),
     meta: {
-      nextPath: 'contact-information',
+      nextPath: 'contact-info',
       previousPath: 'acount-type',
     }
   },
   {
-    path: 'contact-information',
+    path: 'contact-info',
     component: () => import('../../components/pages/inscription/ContactInformation.vue'),
     meta: {
       nextPath: '',
