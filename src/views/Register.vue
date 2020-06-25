@@ -28,7 +28,7 @@
       </div>
       <template v-slot:bottom>
         <div class="flex flex-row-reverse">
-          <a-button v-if="valid">Valider</a-button>
+          <a-submit-button text="Valider" v-if="valid" />
         </div>
       </template>
   </l-regitster>

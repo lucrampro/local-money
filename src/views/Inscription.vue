@@ -1,6 +1,5 @@
-<template>
-<form @submit.prevent="toNextPage()">
-  <l-regitster>
+// <template>
+  <l-regitster @formSubmit="toNextPage()">
     <template v-slot:header>
       <div class="flex flex-row-reverse">
         <a-button @click.native="$router.push({ name: 'register' })" >Se connecter</a-button>
@@ -10,12 +9,13 @@
       <router-view @updateFormValid="(val) => {formValid = val}" />
     <template v-slot:bottom>
       <div class="flex flex-row justify-between">
-        <a-button @click.native="toPreviousPage()">Precedent</a-button>
-        <a-button type="submit" v-show="formValid" >Suviant</a-button>
+        <span @click="toPreviousPage()">
+          <a-button >Precedent</a-button>
+        </span>
+        <a-submit-button v-show="formValid" text="Suviant"> </a-submit-button>
       </div>
     </template>
   </l-regitster>
-</form>
 </template>
 
 <script>
@@ -23,6 +23,7 @@ export default {
   name: 'inscription',
   data() {
     return {
+      submitted: false,
       formValid: false,
     };
   },
