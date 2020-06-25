@@ -54,6 +54,7 @@ console.warn(Atoms, 'Atoms');
 Vue.component('a-button', Atoms.AButton);
 Vue.component('a-radio', Atoms.ARadio);
 Vue.component('a-link', Atoms.Alink);
+Vue.component('a-submit-button', Atoms.ASubmitButton);
 
 // Molecules
 console.warn(Modules, 'Modules');

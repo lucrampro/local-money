@@ -19,7 +19,6 @@ export default {
     mask: {
       default: false,
     },
-
     rules: {
       type: String,
       default: '',
