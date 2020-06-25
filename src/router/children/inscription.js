@@ -1,27 +1,27 @@
 /* eslint-disable */
 export default [
   {
-    path: 'type-de-compte',
-    component: () => import('../../components/pages/inscription/TypeDeCompte.vue'),
+    path: 'acount-type',
+    component: () => import('../../components/pages/inscription/AccountType.vue'),
     meta: {
-      nextPath: 'nom-prenom',
+      nextPath: 'names',
       previousPath: '/',
     }
   },
   {
-    path: 'nom-prenom',
+    path: 'names',
     component: () => import('../../components/pages/inscription/InfoName.vue'),
     meta: {
-      nextPath: 'information-contact',
-      previousPath: 'type-de-compte',
+      nextPath: 'contact-information',
+      previousPath: 'acount-type',
     }
   },
   {
-    path: 'information-contact',
-    component: () => import('../../components/pages/inscription/InformationContact.vue'),
+    path: 'contact-information',
+    component: () => import('../../components/pages/inscription/ContactInformation.vue'),
     meta: {
       nextPath: '',
-      previousPath: 'nom-prenom',
+      previousPath: 'names',
     }
   },
 ];
