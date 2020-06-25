@@ -7,6 +7,7 @@
         </div>
         <p class="pt-4 text-4xl font-semibold">Connectez-vous</p>
       </template>
+      <template v-slot:default>
       <div class="mt-10">
         <ValidationProvider name="mail" rules="email|required" v-slot="{ errors }">
           <m-input :errors="errors" v-model="mail" exemple="marie.jane@mail.com">
@@ -19,6 +20,7 @@
           </m-input>
         </ValidationProvider>
       </div>
+      </template>
       <div>
         <a-link class="block mx-auto mt-10 text-center">
           Mot de passe oublié ?

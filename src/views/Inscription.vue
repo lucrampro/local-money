@@ -1,4 +1,5 @@
 <template>
+<form @submit="toNextPage()">
   <l-regitster>
     <template v-slot:header>
       <div class="flex flex-row-reverse">
@@ -14,6 +15,7 @@
       </div>
     </template>
   </l-regitster>
+</form>
 </template>
 
 <script>
