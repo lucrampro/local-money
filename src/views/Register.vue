@@ -1,6 +1,6 @@
 <template>
 <ValidationObserver v-slot="{ valid }">
-  <l-regitster>
+  <l-regitster @formSubmit="toTakeConnexionInformation">
       <template v-slot:header>
         <div class="flex flex-row-reverse">
           <a-button @click.native="$router.push({ path: 'inscription/acount-type' })">S’inscrire</a-button>
@@ -28,7 +28,7 @@
       </div>
       <template v-slot:bottom>
         <div class="flex flex-row-reverse">
-          <a-submit-button text="Valider" v-if="valid" />
+          <a-submit-button text="Valider" v-if="valid"/>
         </div>
       </template>
   </l-regitster>
@@ -42,6 +42,11 @@ export default {
       mail: '',
       password: '',
     };
+  },
+  methods: {
+    toTakeConnexionInformation() {
+      console.log(`je suis ${this.mail} et mon mdp est ${this.password}`);
+    },
   },
 };
 </script>

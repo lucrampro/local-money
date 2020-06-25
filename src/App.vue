@@ -8,16 +8,16 @@
 export default {
   created() {
     fetch('http://localhost/api/me')
-      .then((res) => {
-        console.log(res);
+      .then((response) => {
+        console.log(response);
       });
-    this.$Api.get('/me')
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((data) => {
-        console.warn(data);
-      });
+    // this.$Api.get('/me')
+    //   .then((data) => {
+    //     console.log(data);
+    //   })
+    //   .catch((data) => {
+    //     console.warn(data);
+    //   });
   },
 };
 </script>
