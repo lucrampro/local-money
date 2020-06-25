@@ -44,8 +44,9 @@ export default {
     };
   },
   methods: {
-    toTakeConnexionInformation() {
+    submitForm() {
       console.log(`je suis ${this.mail} et mon mdp est ${this.password}`);
+      // fonction send data to the back
     },
   },
 };
