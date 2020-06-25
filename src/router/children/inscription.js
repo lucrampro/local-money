@@ -1,27 +1,37 @@
 /* eslint-disable */
 export default [
   {
+<<<<<<< HEAD
     path: 'TypeOfAccount',
     component: () => import('../../components/pages/inscription/TypeOfAccount.vue'),
+=======
+    path: 'acount-type',
+    component: () => import('../../components/pages/inscription/AccountType.vue'),
+>>>>>>> refacto/folder-name-inscription
     meta: {
-      nextPath: 'nom-prenom',
+      nextPath: 'names',
       previousPath: '/',
     }
   },
   {
+<<<<<<< HEAD
     path: 'NomPrenom',
     component: () => import('../../components/pages/inscription/InformationName.vue'),
+=======
+    path: 'names',
+    component: () => import('../../components/pages/inscription/InfoName.vue'),
+>>>>>>> refacto/folder-name-inscription
     meta: {
-      nextPath: 'information-contact',
-      previousPath: 'type-de-compte',
+      nextPath: 'contact-information',
+      previousPath: 'acount-type',
     }
   },
   {
-    path: 'information-contact',
-    component: () => import('../../components/pages/inscription/InformationContact.vue'),
+    path: 'contact-information',
+    component: () => import('../../components/pages/inscription/ContactInformation.vue'),
     meta: {
       nextPath: '',
-      previousPath: 'nom-prenom',
+      previousPath: 'names',
     }
   },
 ];
