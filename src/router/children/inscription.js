@@ -1,24 +1,24 @@
 /* eslint-disable */
 export default [
   {
-    path: 'step-one',
+    path: 'TypeDeCompte',
     component: () => import('../../components/pages/inscription/TypeDeCompte.vue'),
     meta: {
-      nextPath: 'step-two',
+      nextPath: 'NomPrenom',
       previousPath: '/',
     }
   },
   {
-    path: 'step-two',
-    component: () => import('../../components/pages/inscription/StepTwo.vue'),
+    path: 'NomPrenom',
+    component: () => import('../../components/pages/inscription/InfoName.vue'),
     meta: {
-      nextPath: 'step-three',
+      nextPath: 'InformationContact',
       previousPath: 'step-one',
     }
   },
   {
-    path: 'step-three',
-    component: () => import('../../components/pages/inscription/StepThree.vue'),
+    path: 'InformationContact',
+    component: () => import('../../components/pages/inscription/InformationContact.vue'),
     meta: {
       nextPath: 'step-four',
       previousPath: 'step-two',
