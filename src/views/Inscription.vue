@@ -10,8 +10,8 @@
       <router-view @updateFormValid="(val) => {formValid = val}" />
     <template v-slot:bottom>
       <div class="flex flex-row justify-between">
-        <a-button @click.native="toPreviousPage()" >Précédent</a-button>
-        <a-button v-show="formValid" @click.native="toNextPage()" >Suviant</a-button>
+        <a-button @click.native="toPreviousPage()">Precedent</a-button>
+        <a-button type="submit" v-show="formValid" >Suviant</a-button>
       </div>
     </template>
   </l-regitster>
@@ -28,8 +28,10 @@ export default {
   },
   methods: {
     toNextPage() {
-      this.$router.push({ path: this.nextPath });
-      this.formValid = false;
+      if (this.formValid) {
+        this.$router.push({ path: this.nextPath });
+        this.formValid = false;
+      }
     },
     toPreviousPage() {
       this.$router.push({ path: this.previousPath });
