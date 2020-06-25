@@ -10,8 +10,12 @@
 </template>
 
 <script>
+
+import FormInscriptionPages from './insrcriptionMixin';
+
 export default {
   name: 'TypeOfAccount',
+
   data() {
     return {
       value: null,
@@ -31,6 +35,7 @@ export default {
   mounted() {
     this.$watch(() => this.$refs.observer.flags.valid, (val) => { this.$emit('updateFormValid', val); });
   },
+  mixins: [FormInscriptionPages],
   watch: {
     value(newVal) {
       this.$emit('updateForm', { 'insrciption-type': newVal });

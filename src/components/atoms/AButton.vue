@@ -14,7 +14,7 @@ export default {
     },
     type: {
       type: String,
-      default: '',
+      default: 'button',
     },
   },
 };

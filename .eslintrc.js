@@ -18,6 +18,7 @@ module.exports = {
     "import/named" : "off",
     "import/prefer-default-export" : "off",
     "max-len" : "off",
+    "ricted-syntax" :"off",
     // "no-unused-vars" : "off",
 
     

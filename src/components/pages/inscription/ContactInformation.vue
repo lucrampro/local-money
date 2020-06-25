@@ -2,13 +2,13 @@
   <ValidationObserver ref="observer">
     <div class="mt-10">
       <ValidationProvider name="age" rules="required|min:10|majority" v-slot="{ errors }">
-        <m-input :errors="errors" type="date" v-model="birthDay" maxlength="8" exemple="30/09/1998">Age</m-input>
+        <m-input :errors="errors" name="date_of_birth" type="date" v-model="birthDay" maxlength="8" exemple="30/09/1998">Age</m-input>
       </ValidationProvider>
-      <ValidationProvider name="Nom" rules="required|min:3" v-slot="{ errors }">
-        <m-input :errors="errors" type="tel" v-model="phoneNumber" mask="## ## ## ## ##" maxlength="14" exemple="06 21 48 37 99">Téléphone</m-input>
+      <ValidationProvider name="numéro de téléphone" rules="required|min:3" v-slot="{ errors }">
+        <m-input :errors="errors" name="tel" type="tel" v-model="phoneNumber" mask="## ## ## ## ##" maxlength="14" exemple="06 21 48 37 99">Téléphone</m-input>
       </ValidationProvider>
       <ValidationProvider name="mail" rules="email|required" v-slot="{ errors }">
-        <m-input :errors="errors" v-model="mail" type="mail" exemple="marie.jane@mail.com">
+        <m-input :errors="errors" name="mail" v-model="mail" type="mail" exemple="marie.jane@mail.com">
           Email
         </m-input>
       </ValidationProvider>
@@ -16,6 +16,9 @@
   </ValidationObserver>
 </template>
 <script>
+
+import FormInscriptionPages from './insrcriptionMixin';
+
 export default {
   name: 'InformationContact',
   data() {
@@ -25,9 +28,7 @@ export default {
       mail: '',
     };
   },
-  mounted() {
-    this.$watch(() => this.$refs.observer.flags.valid, (val) => { this.$emit('updateFormValid', val); });
-  },
+  mixins: [FormInscriptionPages],
   watch: {
     model(newVal) {
       this.$emit('input', newVal);
