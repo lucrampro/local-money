@@ -1,5 +1,5 @@
 <template>
-<form @submit="toNextPage()">
+<form @submit.prevent="toNextPage()">
   <l-regitster>
     <template v-slot:header>
       <div class="flex flex-row-reverse">
