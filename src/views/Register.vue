@@ -3,7 +3,7 @@
   <l-regitster>
       <template v-slot:header>
         <div class="flex flex-row-reverse">
-          <a-button @click.native="$router.push({ path: 'inscription/TypeDeCompte' })">S’inscrire</a-button>
+          <a-button @click.native="$router.push({ path: 'inscription/TypeOfAccount' })">S’inscrire</a-button>
         </div>
         <p class="pt-4 text-4xl font-semibold">Connectez-vous</p>
       </template>

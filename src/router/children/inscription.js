@@ -1,8 +1,8 @@
 /* eslint-disable */
 export default [
   {
-    path: 'TypeDeCompte',
-    component: () => import('../../components/pages/inscription/TypeDeCompte.vue'),
+    path: 'TypeOfAccount',
+    component: () => import('../../components/pages/inscription/TypeOfAccount.vue'),
     meta: {
       nextPath: 'NomPrenom',
       previousPath: '/',
@@ -10,7 +10,7 @@ export default [
   },
   {
     path: 'NomPrenom',
-    component: () => import('../../components/pages/inscription/InfoName.vue'),
+    component: () => import('../../components/pages/inscription/InformationName.vue'),
     meta: {
       nextPath: 'InformationContact',
       previousPath: 'step-one',

@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'TypeDeCompte',
+  name: 'TypeOfAccount',
   data() {
     return {
       value: null,

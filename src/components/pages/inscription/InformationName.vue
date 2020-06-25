@@ -12,7 +12,7 @@
 </template>
 <script>
 export default {
-  name: 'InfoName',
+  name: 'InformationName',
   data() {
     return {
       firstName: '',
