@@ -4,7 +4,7 @@ export default [
     path: 'TypeOfAccount',
     component: () => import('../../components/pages/inscription/TypeOfAccount.vue'),
     meta: {
-      nextPath: 'NomPrenom',
+      nextPath: 'nom-prenom',
       previousPath: '/',
     }
   },
@@ -12,16 +12,16 @@ export default [
     path: 'NomPrenom',
     component: () => import('../../components/pages/inscription/InformationName.vue'),
     meta: {
-      nextPath: 'InformationContact',
-      previousPath: 'step-one',
+      nextPath: 'information-contact',
+      previousPath: 'type-de-compte',
     }
   },
   {
-    path: 'InformationContact',
+    path: 'information-contact',
     component: () => import('../../components/pages/inscription/InformationContact.vue'),
     meta: {
-      nextPath: 'step-four',
-      previousPath: 'step-two',
+      nextPath: '',
+      previousPath: 'nom-prenom',
     }
   },
 ];
