@@ -29,8 +29,17 @@ export default {
     this.$watch(() => this.$refs.observer.flags.valid, (val) => { this.$emit('updateFormValid', val); });
   },
   watch: {
-    model(oldVal, newVal) {
+    model(newVal) {
       this.$emit('input', newVal);
+    },
+    birthDay(newVal) {
+      this.$emit('updateForm', { birthDay: newVal });
+    },
+    phoneNumber(newVal) {
+      this.$emit('updateForm', { phoneNumber: newVal });
+    },
+    mail(newVal) {
+      this.$emit('updateForm', { mail: newVal });
     },
   },
   computed: {

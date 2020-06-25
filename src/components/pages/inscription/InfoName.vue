@@ -26,6 +26,12 @@ export default {
     model(oldVal, newVal) {
       this.$emit('input', newVal);
     },
+    firstName(newVal) {
+      this.$emit('updateForm', { firstName: newVal });
+    },
+    lastName(newVal) {
+      this.$emit('updateForm', { lastName: newVal });
+    },
   },
   computed: {
     ObserverValid() {

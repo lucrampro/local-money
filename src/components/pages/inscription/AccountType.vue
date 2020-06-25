@@ -32,7 +32,10 @@ export default {
     this.$watch(() => this.$refs.observer.flags.valid, (val) => { this.$emit('updateFormValid', val); });
   },
   watch: {
-    model(oldVal, newVal) {
+    value(newVal) {
+      this.$emit('updateForm', { 'insrciption-type': newVal });
+    },
+    model(newVal) {
       this.$emit('input', newVal);
     },
   },

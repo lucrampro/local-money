@@ -6,12 +6,10 @@
       </div>
       <p class="pt-4 text-4xl font-semibold">Inscrivez-vous</p>
     </template>
-      <router-view @updateFormValid="(val) => {formValid = val}" />
+      <router-view @updateForm="( formData ) => { updateForm(formData) }" @updateFormValid="(val) => {formValid = val}" />
     <template v-slot:bottom>
       <div class="flex flex-row justify-between">
-        <span  @click.native="toPreviousPage()">
-          <a-button >Precedent</a-button>
-        </span>
+        <a-button  @click.native="toPreviousPage()" >Precedent</a-button>
         <a-submit-button v-show="formValid" text="Suviant"> </a-submit-button>
       </div>
     </template>
@@ -23,6 +21,8 @@ export default {
   name: 'inscription',
   data() {
     return {
+      formDatas: {
+      },
       submitted: false,
       formValid: false,
     };
@@ -36,6 +36,13 @@ export default {
     },
     toPreviousPage() {
       this.$router.push({ path: this.previousPath });
+    },
+    updateForm(curentFormData) {
+      console.log(curentFormData);
+      this.formDatas = {
+        ...this.formDatas,
+        ...curentFormData,
+      };
     },
   },
   computed: {

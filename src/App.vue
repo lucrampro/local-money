@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: 'app',
   created() {
     fetch('http://localhost/api/me')
       .then((response) => {
