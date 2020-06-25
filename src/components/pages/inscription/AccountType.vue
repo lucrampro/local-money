@@ -2,7 +2,7 @@
   <ValidationObserver ref="observer">
     <div>
       <ValidationProvider name="Nom" rules="required" v-slot="{ errors }">
-        <m-radio v-model="value" :label="label" :inputs="mokeData" />
+        <m-radio v-model="insrciptionType" :label="label" :inputs="mokeData" />
         {{errors[0]}}
       </ValidationProvider>
     </div>
@@ -15,30 +15,26 @@ import FormInscriptionPages from './insrcriptionMixin';
 
 export default {
   name: 'TypeOfAccount',
-
   data() {
     return {
-      value: null,
+      insrciptionType: null,
       label: 'type d\'inscription',
       mokeData: [
         {
           name: 'Entreprise',
-          value: 0,
+          value: 1,
         },
         {
           name: 'Particulier',
-          value: 1,
+          value: 2,
         },
       ],
     };
   },
-  mounted() {
-    this.$watch(() => this.$refs.observer.flags.valid, (val) => { this.$emit('updateFormValid', val); });
-  },
   mixins: [FormInscriptionPages],
   watch: {
-    value(newVal) {
-      this.$emit('updateForm', { 'insrciption-type': newVal });
+    insrciptionType(newVal) {
+      this.$emit('updateForm', { insrciptionType: newVal });
     },
     model(newVal) {
       this.$emit('input', newVal);

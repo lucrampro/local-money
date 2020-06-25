@@ -7,6 +7,7 @@ const FormInscriptionPages = {
       
       console.log( this[playloadKey] , initFormData[`${playloadKey}`])
     }
+    console.log(initFormData)
     /* eslint-enable */
   },
   mounted() {
