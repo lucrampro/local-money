@@ -1,5 +1,6 @@
 const initialState = () => ({
   userToken: '',
+  userId: null,
 });
 
 export default {
@@ -12,14 +13,26 @@ export default {
   },
 
   actions: {
-    addToken(context, token) {
-      context.commit('ADD_TOKEN', token);
+    setToken(context, token) {
+      context.commit('SET_TOKEN', token);
+    },
+    setUserId(context, userId) {
+      context.commit('SET_USER_ID', Number(userId));
+    },
+    setUserFirstName(context, UserFirstName) {
+      context.commit('SET_USER_FIRSTNAME', UserFirstName);
     },
   },
 
   mutations: {
-    ADD_TOKEN(state, token) {
+    SET_TOKEN(state, token) {
       state.userToken = token;
+    },
+    SET_USER_ID(state, UserId) {
+      state.userId = UserId;
+    },
+    SET_USER_FIRSTNAME(state, UserFirstName) {
+      state.UserFirstName = UserFirstName;
     },
   },
 
