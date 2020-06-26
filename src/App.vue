@@ -8,22 +8,12 @@
 export default {
   name: 'app',
   created() {
-    // fetch('http://localhost/api/me')
-    //   .then((response) => {
-    //     console.log(response);
-    //   });
-    this.$Api.post('/login_check', {
-      username: 'admin@neymo.com',
-      password: '123456',
-    })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((data) => {
-        console.warn(data);
-      });
+    this.$Api.addEventListener('session-user-login', (event) => {
+      this.$store.dispatch('addToken', event.detail);
+    });
   },
 };
+
 </script>
 
 <style>

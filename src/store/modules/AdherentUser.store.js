@@ -1,4 +1,5 @@
 const initialState = () => ({
+  userToken: '',
 });
 
 export default {
@@ -6,10 +7,20 @@ export default {
   state: initialState(),
 
   // Getter functions
-  getters: {},
+  getters: {
+    userToken: (state) => state.userToken,
+  },
 
-  actions: {},
+  actions: {
+    addToken(context, token) {
+      context.commit('ADD_TOKEN', token);
+    },
+  },
 
-  mutations: {},
+  mutations: {
+    ADD_TOKEN(state, token) {
+      state.userToken = token;
+    },
+  },
 
 };

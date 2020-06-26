@@ -55,6 +55,14 @@ class ApiRequest extends EventTarget {
     };
   }
 
+  login(playload) {
+    return this.post('/login_check', playload)
+      .then((res) => {
+        this.dispatchEvent(new CustomEvent('session-user-login', { detail: res }));
+        return res;
+      });
+  }
+
   get(path, playload) {
     return this.request.get(this.uri + (path || ''), playload || {});
   }
