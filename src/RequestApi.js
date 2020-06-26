@@ -7,14 +7,22 @@ class ApiRequest extends EventTarget {
 
   _Api() {
     const init = {
-      // headers: new Headers(),
+      headers: new Headers(),
       mode: 'cors',
       cache: 'default',
       'Content-Type': 'application/json',
     };
     return {
+      /**
+       * done a call api with methode get
+       * @param  {string} path path of request api
+       * @return {Promise}
+       */
       get: (path) => new Promise((resolve, reject) => {
-        fetch(path, { ...init, method: 'GET' })
+        fetch(path, {
+          ...init,
+          method: 'GET',
+        })
           .then((res) => {
             resolve(res.json());
           })
@@ -24,12 +32,19 @@ class ApiRequest extends EventTarget {
       }),
 
       /**
-       * done a call api with methode get
+       * done a call api with methode post
        * @param  {string} path path of request api
        * @return {Promise}
        */
       post: (path, playload) => new Promise((resolve, reject) => {
-        fetch(path, { ...init, body: JSON.stringify(playload), method: 'post' })
+        fetch(path, {
+          headers: new Headers({
+            'Content-Type': 'application/json',
+          }),
+          ...init,
+          body: JSON.stringify(playload),
+          method: 'post',
+        })
           .then((res) => {
             resolve(res.json());
           })
