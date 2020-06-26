@@ -7,7 +7,6 @@ class ApiRequest extends EventTarget {
 
   _Api() {
     const init = {
-      headers: new Headers(),
       mode: 'cors',
       cache: 'default',
       'Content-Type': 'application/json',
@@ -22,13 +21,14 @@ class ApiRequest extends EventTarget {
         fetch(path, {
           ...init,
           method: 'GET',
-        })
-          .then((res) => {
-            resolve(res.json());
-          })
-          .catch((res) => {
-            reject(res);
+        }).then((res) => {
+          if (res.ok) {
+            return resolve(res.json());
+          }
+          return res.json().then((res2) => {
+            reject(res2);
           });
+        }).catch((res) => reject(res.json()));
       }),
 
       /**
@@ -38,20 +38,20 @@ class ApiRequest extends EventTarget {
        */
       post: (path, playload) => new Promise((resolve, reject) => {
         fetch(path, {
-          headers: new Headers({
-            'Content-Type': 'application/json',
-          }),
+          headers: new Headers({ 'Content-Type': 'application/json' }),
           ...init,
           body: JSON.stringify(playload),
           method: 'post',
-        })
-          .then((res) => {
-            resolve(res.json());
-          })
-          .catch((res) => {
-            reject(res.json());
+        }).then((res) => {
+          if (res.ok) {
+            return resolve(res.json());
+          }
+          return res.json().then((res2) => {
+            reject(res2);
           });
+        }).catch((res) => reject(res.json()));
       }),
+      ///
     };
   }
 

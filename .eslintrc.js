@@ -19,6 +19,7 @@ module.exports = {
     "import/prefer-default-export" : "off",
     "max-len" : "off",
     "ricted-syntax" :"off",
+    "no-new":"off",
     // "no-unused-vars" : "off",
 
     

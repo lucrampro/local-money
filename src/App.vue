@@ -12,13 +12,6 @@ export default {
     //   .then((response) => {
     //     console.log(response);
     //   });
-    fetch('http://localhost/api/login_check', {
-      method: 'post',
-      body: JSON.stringify({
-        username: 'admin@neymo.com',
-        password: '123456',
-      }),
-    });
     this.$Api.post('/login_check', {
       username: 'admin@neymo.com',
       password: '123456',
