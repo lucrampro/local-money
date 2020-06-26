@@ -12,7 +12,10 @@ export default {
     //   .then((response) => {
     //     console.log(response);
     //   });
-    this.$Api.get('/me')
+    this.$Api.post('/login_check', {
+      username: 'dfsdf',
+      password: 'fdsffsddssd',
+    })
       .then((data) => {
         console.log(data);
       })

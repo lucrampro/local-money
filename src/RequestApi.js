@@ -19,7 +19,7 @@ class ApiRequest extends EventTarget {
             resolve(res.json());
           })
           .catch((res) => {
-            reject(res.json());
+            reject(res);
           });
       }),
 
@@ -28,8 +28,8 @@ class ApiRequest extends EventTarget {
        * @param  {string} path path of request api
        * @return {Promise}
        */
-      post: (path) => new Promise((resolve, reject) => {
-        fetch(path, { ...init, method: 'POST' })
+      post: (path, playload) => new Promise((resolve, reject) => {
+        fetch(path, { ...init, body: JSON.stringify(playload), method: 'post' })
           .then((res) => {
             resolve(res.json());
           })
@@ -40,19 +40,21 @@ class ApiRequest extends EventTarget {
     };
   }
 
-  get(path, data) {
-    return this.request.get(this.uri + (path || ''), data || {}, this.conf);
+  get(path, playload) {
+    return this.request.get(this.uri + (path || ''), playload || {});
   }
 
-  put(path, data) {
-    return this.request.put(this.uri + (path || ''), data || {}, this.conf);
+  post(path, playload) {
+    return this.request.post(this.uri + (path || ''), playload || {});
   }
 
-  del(path, data) {
-    return this.request.delete(this.uri + (path || ''), data || {}, this.conf);
+  put(path, playload) {
+    return this.request.put(this.uri + (path || ''), playload || {});
   }
 
-  register
+  del(path, playload) {
+    return this.request.delete(this.uri + (path || ''), playload || {});
+  }
 }
 
 export default {
