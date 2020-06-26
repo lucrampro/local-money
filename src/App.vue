@@ -8,17 +8,17 @@
 export default {
   name: 'app',
   created() {
-    fetch('http://localhost/api/me')
-      .then((response) => {
-        console.log(response);
-      });
-    // this.$Api.get('/me')
-    //   .then((data) => {
-    //     console.log(data);
-    //   })
-    //   .catch((data) => {
-    //     console.warn(data);
+    // fetch('http://localhost/api/me')
+    //   .then((response) => {
+    //     console.log(response);
     //   });
+    this.$Api.get('/me')
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((data) => {
+        console.warn(data);
+      });
   },
 };
 </script>

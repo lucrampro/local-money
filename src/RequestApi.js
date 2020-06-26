@@ -13,48 +13,29 @@ class ApiRequest extends EventTarget {
       'Content-Type': 'application/json',
     };
     return {
+      get: (path) => new Promise((resolve, reject) => {
+        fetch(path, { ...init, method: 'GET' })
+          .then((res) => {
+            resolve(res.json());
+          })
+          .catch((res) => {
+            reject(res.json());
+          });
+      }),
+
       /**
        * done a call api with methode get
        * @param  {string} path path of request api
        * @return {Promise}
        */
-      get: (path) => new Promise((resolve, reject) => {
-        fetch(path, {
-          ...init,
-          method: 'GET',
-        })
-          .then((res) => {
-            if (res.ok) {
-              return res.json();
-            }
-            return reject(res.data);
-          })
-          .then((res) => {
-            if (res.status === 200) {
-              resolve(res);
-            }
-            return reject(res);
-          })
-          .catch((res) => reject(res));
-      }),
       post: (path) => new Promise((resolve, reject) => {
-        fetch(path, {
-          ...init,
-          method: 'GET',
-        })
+        fetch(path, { ...init, method: 'POST' })
           .then((res) => {
-            if (res.ok) {
-              return res.json();
-            }
-            return reject(res.data);
+            resolve(res.json());
           })
-          .then((res) => {
-            if (res.status === 200) {
-              resolve(res);
-            }
-            return reject(res);
-          })
-          .catch((res) => reject(res));
+          .catch((res) => {
+            reject(res.json());
+          });
       }),
     };
   }
