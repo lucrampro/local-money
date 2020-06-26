@@ -37,6 +37,25 @@ class ApiRequest extends EventTarget {
           })
           .catch((res) => reject(res));
       }),
+      post: (path) => new Promise((resolve, reject) => {
+        fetch(path, {
+          ...init,
+          method: 'GET',
+        })
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            }
+            return reject(res.data);
+          })
+          .then((res) => {
+            if (res.status === 200) {
+              resolve(res);
+            }
+            return reject(res);
+          })
+          .catch((res) => reject(res));
+      }),
     };
   }
 

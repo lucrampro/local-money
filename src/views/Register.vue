@@ -1,6 +1,6 @@
 <template>
 <ValidationObserver v-slot="{ valid }">
-  <l-regitster @formSubmit="toTakeConnexionInformation">
+  <l-regitster @formSubmit="submitForm()">
       <template v-slot:header>
         <div class="flex flex-row-reverse">
           <a-button @click.native="$router.push({ path: 'inscription/acount-type' })">S’inscrire</a-button>
@@ -28,7 +28,7 @@
       </div>
       <template v-slot:bottom>
         <div class="flex flex-row-reverse">
-          <a-button v-if="valid">Valider</a-button>
+          <a-button type="submit" v-if="valid">Valider</a-button>
         </div>
       </template>
   </l-regitster>
