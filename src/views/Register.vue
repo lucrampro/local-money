@@ -1,11 +1,9 @@
 <template>
 <ValidationObserver v-slot="{ valid }">
-  <l-regitster @formSubmit="submitForm()">
+  <l-regitster @formSubmit="submitForm">
       <template v-slot:header>
-        <div class="flex flex-row-reverse">
-          <a-button @click.native="$router.push({ path: 'inscription/acount-type' })">S’inscrire</a-button>
-        </div>
-        <p class="pt-4 text-4xl font-semibold">Connectez-vous</p>
+        <p class="pt-4 text-2xl font-semibold">Bienvenue sur NeyMo</p>
+        <p>Connectez vous pour continuer </p>
       </template>
       <template v-slot:default>
       <div class="mt-10">
@@ -20,12 +18,15 @@
           </m-input>
         </ValidationProvider>
       </div>
-      </template>
       <div>
         <a-link class="block mx-auto mt-10 text-center">
           Mot de passe oublié ?
         </a-link>
       </div>
+        <div class="flex flex-row-reverse">
+          <a-button @click.native="$router.push({ path: 'inscription/acount-type' })">S’inscrire</a-button>
+        </div>
+      </template>
       <template v-slot:bottom>
         <div class="flex flex-row-reverse">
           <a-button type="submit" v-if="valid">Valider</a-button>

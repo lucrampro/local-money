@@ -8,10 +8,6 @@
 export default {
   name: 'app',
   created() {
-    // fetch('http://localhost/api/me')
-    //   .then((response) => {
-    //     console.log(response);
-    //   });
     this.$Api.post('/login_check', {
       username: 'admin@neymo.com',
       password: '123456',
