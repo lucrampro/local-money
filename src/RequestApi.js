@@ -86,7 +86,6 @@ class ApiRequest extends EventTarget {
   getUserInfo(token) {
     return this.get('/me', { Headers: { Authorization: `Bearer ${token || this.token}` } })
       .then((res) => {
-        console.log('ici');
         this.dispatchEvent(new CustomEvent('session-user-information', { detail: res }));
         return res;
       })

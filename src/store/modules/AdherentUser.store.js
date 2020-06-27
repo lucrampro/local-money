@@ -1,6 +1,7 @@
 const initialState = () => ({
   userToken: '',
   userId: null,
+  userFirstName: '',
 });
 
 export default {
@@ -10,6 +11,8 @@ export default {
   // Getter functions
   getters: {
     userToken: (state) => state.userToken,
+    userId: (state) => state.userId,
+    userFirstName: (state) => state.userFirstName,
   },
 
   actions: {
@@ -19,8 +22,8 @@ export default {
     setUserId(context, userId) {
       context.commit('SET_USER_ID', Number(userId));
     },
-    setUserFirstName(context, UserFirstName) {
-      context.commit('SET_USER_FIRSTNAME', UserFirstName);
+    setUserFirstName(context, userFirstName) {
+      context.commit('SET_USER_FIRSTNAME', userFirstName);
     },
   },
 
@@ -31,8 +34,8 @@ export default {
     SET_USER_ID(state, UserId) {
       state.userId = UserId;
     },
-    SET_USER_FIRSTNAME(state, UserFirstName) {
-      state.UserFirstName = UserFirstName;
+    SET_USER_FIRSTNAME(state, userFirstName) {
+      state.userFirstName = userFirstName;
     },
   },
 
