@@ -39,13 +39,18 @@
 export default {
   data() {
     return {
-      mail: '',
-      password: '',
+      mail: 'gilles94@laposte.net',
+      password: '123456',
     };
   },
   methods: {
     submitForm() {
-      console.log(`je suis ${this.mail} et mon mdp est ${this.password}`);
+      this.$Api.login({
+        username: this.mail,
+        password: this.password,
+      }).then((res) => {
+        console.log(res, 'ixi');
+      });
       // fonction send data to the back
     },
   },
