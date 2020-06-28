@@ -1,19 +1,16 @@
 <template>
   <div  class="register__inscription">
-    <header class="header" >
+    <div class="wrapper--connexion" >
       <slot name="header"></slot>
-    </header>
     <form v-on:submit.prevent="submit()" >
       <div class="main">
         <slot></slot>
       </div>
-      <div class="bottom">
         <slot name="bottom"></slot>
-      </div>
     </form>
+    </div>
   </div>
 </template>
-
 <script>
 export default {
   name: 'LRegister',
@@ -27,15 +24,14 @@ export default {
 
 <style lang="scss" scoped>
 .register__inscription {
-  min-height: 80vh;
-}
-header {
-  height: 20vh;
-}
-.main {
-  min-height: 50vh;
-}
-.bottom {
-  height: 14vh;
+  height: 100vh;
+  background: url('../../assets/img/background-register.png');
+  padding-top: 25vh;
+  .wrapper--connexion{
+    height: 100%;
+    background: #F5F5F5;
+    border-radius: 35px 35px 0px 0px;
+    padding: 30px 32px;
+  }
 }
 </style>
