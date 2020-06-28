@@ -1,3 +1,7 @@
+/**
+ * the plugin with all généric api call,
+ * this is also same than axios, for do a call to the api
+ */
 class ApiRequest extends EventTarget {
   constructor() {
     super();
@@ -6,6 +10,9 @@ class ApiRequest extends EventTarget {
     this.token = '';
   }
 
+  /**
+   * methods for call endpoints
+   */
   _Api() {
     const init = {
       mode: 'cors',
@@ -16,6 +23,7 @@ class ApiRequest extends EventTarget {
       /**
        * done a call api with methode get
        * @param  {string} path path of request api
+       * @param  { Object } playload data send to the api header, ...ect
        * @return {Promise}
        */
       get: (path, playload) => new Promise((resolve, reject) => {
@@ -37,6 +45,7 @@ class ApiRequest extends EventTarget {
       /**
        * done a call api with methode post
        * @param  {string} path path of request api
+       * @param  { Object } playload data send to the api header, ...ect
        * @return {Promise}
        */
       post: (path, playload) => new Promise((resolve, reject) => {
@@ -59,6 +68,10 @@ class ApiRequest extends EventTarget {
     };
   }
 
+  /**
+   * allow to set the token in the requestApi
+   * @param  {String} token new token
+   */
   setToken(token) {
     if (typeof token === 'string' && token.length) {
       this.token = token;
