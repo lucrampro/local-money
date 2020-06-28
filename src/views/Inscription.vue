@@ -1,19 +1,24 @@
 // <template>
   <l-regitster @formSubmit="toNextPage()">
     <template v-slot:header>
-      <div class="flex flex-row-reverse">
-        <a-button @click.native="$router.push({ name: 'register' })" >Se connecter</a-button>
+      <div class="flex">
+        <span>
+          <a-button v-if="previousPath" background="white" color="#189B73"  @click.native="toPreviousPage()" >></a-button>
+        </span>
+        <div>
+          <p class="pt-4 text-2xl font-semibold">{{title}}</p>
+          <p class="pt-1 pb-16 text-sm font-light font-semibold text-gray-600">{{subText}}</p>
+        </div>
       </div>
-      <p class="pt-4 text-4xl font-semibold">Inscrivez-vous</p>
     </template>
       <router-view :initFormData="{...formDatas}" @updateForm="( formData ) => { updateForm(formData) }" @updateFormValid="(val) => {formValid = val}" />
     <template v-slot:bottom>
       <div class="flex flex-row justify-between">
         <span>
-          <a-button  @click.native="toPreviousPage()" >Precedent</a-button>
         </span>
         <a-submit-button v-show="formValid" text="Suviant"> </a-submit-button>
       </div>
+      <a-button background="white" color="#189B73" class="w-full" @click.native="$router.push({ name: 'register' })" >Se connecter</a-button>
     </template>
   </l-regitster>
 </template>
@@ -49,6 +54,12 @@ export default {
   computed: {
     nextPath() {
       return this.$route.meta.nextPath;
+    },
+    subText() {
+      return this.$route.meta.subText;
+    },
+    title() {
+      return this.$route.meta.title;
     },
     previousPath() {
       return this.$route.meta.previousPath;

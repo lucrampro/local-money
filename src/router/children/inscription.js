@@ -5,7 +5,8 @@ export default [
     component: () => import('../../components/pages/inscription/AccountType.vue'),
     meta: {
       nextPath: 'names',
-      previousPath: '/',
+      subText: 'Quel type de compte souhaitez vous creer ?',
+      title: 'Bienvenue sur NeyMo !',
     }
   },
   {
