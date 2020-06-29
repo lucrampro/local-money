@@ -38,12 +38,11 @@ extend('majority', {
     const day = fielDate.match(/-(\d+)$/i)[1];
     fielDate = new Date(year, month, day);
 
-    const diff = currentDate.getTime() - fielDate.getTime();
-    const age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25)) + 1;
+    const age = currentDate.getFullYear() - fielDate.getFullYear();
+
     if (age > 18) {
       return true;
     }
-    console.log(age, year);
     return false;
   },
 });
