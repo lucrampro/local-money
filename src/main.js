@@ -39,10 +39,7 @@ extend('majority', {
     fielDate = new Date(year, month, day);
 
     const age = currentDate.getFullYear() - fielDate.getFullYear();
-
-    if (age > 18) {
-      return true;
-    }
+    return age > 18;
   },
 });
 // Register it globally
