@@ -1,61 +1,104 @@
 <template>
-  <l-overlay :isActive="true">
-    <ul v-if="mode === 'menu-list'">
-      <li v-for="(item, index) in menuList" :key="'part_of_menu_' + index" >{{item.text}}</li>
-    </ul>
+  <l-overlay :isActive="isActive">
+    <div class="container">
+      <span @click="$emit('updataState', false)" class="close__button">X</span>
+      <ul class="menu__nav" v-if="mode === 'menu-list'">
+        <li v-for="(item, index) in menuList" :key="'part_of_menu_' + index" @click="item.functionBind">{{item.text}}</li>
+      </ul>
+    </div>
   </l-overlay>
 </template>
 
 <script>
 export default {
   name: 'MMenu',
+  props: {
+    isActive: {
+      default: false,
+    },
+    currentPageName: {
+      type: String,
+    },
+  },
   data() {
     return {
       mode: 'menu-list',
       menuList: [
         {
           text: 'Acceuil',
-          functionBind: this.switchPage(''),
+          functionBind: () => { this.switchPage('Home'); },
         },
         {
           text: 'Communauté',
-          functionBind: this.switchPage(''),
+          functionBind: () => { this.switchPage('Community'); },
         },
         {
           text: 'Transaction',
-          functionBind: this.switchPage(''),
+          functionBind: () => { this.switchPage('Transaction'); },
         },
         {
           text: 'Commerce',
-          functionBind: this.switchPage(''),
+          functionBind: () => { this.switchPage('Commerce'); },
         },
         {
           text: 'Mon Profile',
-          functionBind: this.switchPage(''),
+          functionBind: () => { this.switchPage(''); },
         },
         {
           text: 'Changer de profile',
-          functionBind: this.switchPage(''),
+          functionBind: () => { this.switchPage(''); },
         },
         {
           text: 'Donner de mes nouvelles',
-          functionBind: this.switchPage(''),
+          functionBind: () => { this.switchPage(''); },
         },
         {
           text: 'Mes Favoris',
-          functionBind: this.switchPage(''),
+          functionBind: () => { this.switchPage(''); },
         },
         {
           text: 'Déconnexion',
-          functionBind: this.switchPage(''),
+          functionBind: () => { this.switchPage(''); },
         },
       ],
     };
   },
+
   methods: {
     switchPage(pageName) {
-      return pageName;
+      if (this.currentPageName !== pageName) {
+        this.$router.push({ name: pageName });
+      }
     },
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.container{
+  position: relative;
+  height: 100vh;
+  width: 300px;
+  float: right;
+  background: white;
+  display: flex;
+}
+.close__button {
+  position: absolute;
+  font-size: 32px;
+  right: 20px;
+  top: 20px;
+}
+
+.menu__nav {
+  height: 100%;
+  max-height: 550px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  li {
+    display: table;
+    margin: auto;
+  }
+}
+</style>

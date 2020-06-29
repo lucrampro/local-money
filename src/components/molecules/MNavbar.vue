@@ -1,6 +1,8 @@
 <template>
   <div class="navbar">
-    <a-navbar-picto v-for="(pageIcon, index) in navPages" :key="'icone_nave_' + index"
+    <a-navbar-picto
+    v-for="(pageIcon, index) in navPages"
+    :key="'icone_nave_' + index"
     @click.native="switchPage(pageIcon.pageNameBind)"
     :isSelected="currentPageName === pageIcon.pageNameBind"
     :imgs="{
