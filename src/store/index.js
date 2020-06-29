@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import createLogger from 'vuex/dist/logger';
+import createPersistedState from 'vuex-persistedstate';
 
 // import the auto exporter
 import modules from './modules';
@@ -18,5 +19,5 @@ export default new Vuex.Store({
     },
   },
   strict: debug,
-  plugins: debug ? [createLogger()] : [],
+  plugins: debug ? [createLogger(), createPersistedState()] : [createPersistedState()],
 });

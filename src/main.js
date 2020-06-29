@@ -64,7 +64,6 @@ Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
 
 Vue.use(requestApi);
-
 new Vue({
   requestApi,
   router,
