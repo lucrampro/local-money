@@ -1,5 +1,6 @@
 <template>
   <div class="my-account">
+    <l-overlay :isActive="false" />
     <router-view />
     <m-navbar :navPages="navStates" :currentPageName="this.$router.currentRoute.name"/>
   </div>

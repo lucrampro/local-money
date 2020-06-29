@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Inscription from '@/views/Inscription.vue';
 import Register from '@/views/Register.vue';
 import MyAccount from '@/views/MyAccount.vue';
+import store from '@/store';
 import inscriptionChildrens from './children/inscription';
 import myAccountChildrens from './children/myAccount';
 
@@ -19,18 +20,31 @@ const routes = [
     path: '/',
     name: 'register',
     component: Register,
+    meta: {
+      requireAuth: false,
+    },
   },
   {
     path: '/inscription/',
     name: 'inscription',
     component: Inscription,
     children: inscriptionChildrens,
+    meta: {
+      requireAuth: false,
+    },
   },
 ];
 
 const router = new VueRouter({
   mode: 'history',
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireAuth) {
+    return store.getters.userToken ? next() : next({ name: 'Register' });
+  }
+  return !store.getters.userToken ? next() : next({ name: 'Home' });
 });
 
 export default router;
