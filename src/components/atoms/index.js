@@ -6,7 +6,6 @@ const modules = {};
 
 requireModule.keys().forEach((filename) => {
   // create the module name from fileName
-  // remove the store.js extension and capitalize
   const moduleName = filename
     .replace(/(\.\/|\.vue)/g, '');
   modules[moduleName] = requireModule(filename).default || requireModule(filename);

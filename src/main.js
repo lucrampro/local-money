@@ -50,11 +50,13 @@ Vue.component('a-button', Atoms.AButton);
 Vue.component('a-radio', Atoms.ARadio);
 Vue.component('a-link', Atoms.Alink);
 Vue.component('a-submit-button', Atoms.ASubmitButton);
+Vue.component('a-navbar-picto', Atoms.ANavbarPicto);
 
 // Molecules
 console.warn(Modules, 'Modules');
 Vue.component('m-input', Modules.MInputText);
 Vue.component('m-radio', Modules.MRadio);
+Vue.component('m-navbar', Modules.MNavbar);
 // Layouts
 console.warn(Layouts, 'Layouts');
 Vue.component('l-regitster', Layouts.LRegister);
