@@ -23,9 +23,10 @@ export default {
     },
   },
   methods: {
-    switchPage(pageName) {
-      console.log(pageName);
-      this.$router.push({ name: pageName });
+    switchPage(nextPageName) {
+      if (this.currentPageName !== nextPageName) {
+        this.$router.push({ name: nextPageName });
+      }
     },
   },
 };

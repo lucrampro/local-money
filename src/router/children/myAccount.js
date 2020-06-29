@@ -17,7 +17,7 @@ export default [
     },
     {
       path: 'community',
-      component: () => import('../../components/pages/my-account/Transaction.vue'),
+      component: () => import('../../components/pages/my-account/Community.vue'),
       name: 'Community',
     },
   ];

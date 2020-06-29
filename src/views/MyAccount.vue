@@ -1,7 +1,6 @@
 <template>
   <div class="my-account">
     <router-view />
-    fdsfdsf
     <m-navbar :navPages="navStates" :currentPageName="this.$router.currentRoute.name"/>
   </div>
 </template>
