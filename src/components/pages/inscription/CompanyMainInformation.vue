@@ -34,12 +34,5 @@ export default {
       this.$emit('updateForm', { lastName: newVal });
     },
   },
-  computed: {
-    ObserverValid() {
-      return this.$refs.observer.flags.valid;
-    },
-  },
 };
 </script>
-
-<style lang="stylus" scoped></style>

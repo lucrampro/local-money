@@ -4,7 +4,16 @@ module.exports = {
       locale: 'fr',
       fallbackLocale: 'fr',
       localeDir: 'local',
-      enableInSFC: true
-    }
-  }
+      enableInSFC: true,
+    },
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        data: `
+          @import "@/assets/gloabal.scss";
+        `,
+      },
+    },
+  },
 };

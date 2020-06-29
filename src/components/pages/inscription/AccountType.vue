@@ -1,48 +1,31 @@
 <template>
-  <ValidationObserver ref="observer">
-    <div>
-      <ValidationProvider name="Nom" rules="required" v-slot="{ errors }">
-        <m-radio v-model="insrciptionType" :label="label" :inputs="mokeData" />
-        {{errors[0]}}
-      </ValidationProvider>
+  <div>
+    <div class="container__button">
+      <a-button type="submit" @click.native="$emit('updateForm', { type: 'company' }); toNextPage();" class="w-full company">Entreprise</a-button>
     </div>
-  </ValidationObserver>
+    <div class="container__button">
+      <a-button type="submit" @click.native="$emit('updateForm', { type: 'particular' }); toNextPage()" class="w-full particular" background="#DE6B48">Particulier</a-button>
+    </div>
+  </div>
 </template>
 
 <script>
 
-import FormInscriptionPages from './insrcriptionMixin';
-
 export default {
   name: 'TypeOfAccount',
-  data() {
-    return {
-      insrciptionType: null,
-      label: 'type d\'inscription',
-      mokeData: [
-        {
-          name: 'Entreprise',
-          value: 1,
-        },
-        {
-          name: 'Particulier',
-          value: 2,
-        },
-      ],
-    };
+  props: {
+    toNextPage: {
+      type: Function,
+    },
   },
-  mixins: [FormInscriptionPages],
-  watch: {
-    insrciptionType(newVal) {
-      this.$emit('updateForm', { insrciptionType: newVal });
-    },
-    model(newVal) {
-      this.$emit('input', newVal);
-    },
+  mounted() {
+    this.$emit('updateFormValid', true);
   },
 };
 </script>
 
-<style lang="stylus" scoped>
-
+<style lang="scss" scoped>
+.container__button {
+  padding: 10px 0px;
+}
 </style>

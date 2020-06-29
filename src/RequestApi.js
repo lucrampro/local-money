@@ -93,6 +93,20 @@ class ApiRequest extends EventTarget {
   }
 
   /**
+   * allow to get a token of user and set on the store
+   * @param  {Object} loginInformaion information waiting , mail and passworld
+   */
+  register(registerPlayload) {
+    return this.post('/register', registerPlayload)
+      .then(() => {
+        this.login({
+          username: registerPlayload.email,
+          password: registerPlayload.password,
+        }).then((resLogin) => resLogin);
+      }).catch((res) => res);
+  }
+
+  /**
    * allow to call the endpoint for get information of custumer and set to the store
    * @param  {String} token token of custumer
    */

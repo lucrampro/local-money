@@ -1,4 +1,4 @@
-// <template>
+<template>
   <l-regitster @formSubmit="toNextPage()">
     <template v-slot:header>
       <div class="flex">
@@ -11,14 +11,10 @@
         </div>
       </div>
     </template>
-      <router-view :initFormData="{...formDatas}" @updateForm="( formData ) => { updateForm(formData) }" @updateFormValid="(val) => {formValid = val}" />
+      <router-view :toNextPage="toNextPage" :initFormData="{...formDatas}" @updateForm="( formData ) => { updateForm(formData) }" @updateFormValid="(val) => {formValid = val}" />
     <template v-slot:bottom>
-      <div class="flex flex-row justify-between">
-        <span>
-        </span>
-        <a-submit-button v-show="formValid" text="Suviant"> </a-submit-button>
-      </div>
-      <a-button background="white" color="#189B73" class="w-full" @click.native="$router.push({ name: 'register' })" >Se connecter</a-button>
+      <a-button v-if="currentNamePage !== 'AcountType'" type="submit" class="w-full" >Suviant</a-button>
+      <a-button  v-if="currentNamePage === 'AcountType'" background="white" color="#189B73" class="w-full" @click.native="$router.push({ name: 'register' })" >Se connecter</a-button>
     </template>
   </l-regitster>
 </template>
@@ -29,6 +25,7 @@ export default {
   data() {
     return {
       formDatas: {
+        governanceId: 10,
       },
       submitted: false,
       formValid: false,
@@ -37,8 +34,15 @@ export default {
   methods: {
     toNextPage() {
       if (this.formValid) {
-        this.$router.push({ path: this.nextPath });
-        this.formValid = false;
+        if (!this.pageSubmited) {
+          this.$router.push({ path: `${this.formDatas.type}-${this.nextPath}` });
+          this.formValid = false;
+        } else {
+          this.$Api.register(this.formDatas)
+            .then((res) => {
+              console.log(res);
+            });
+        }
       }
     },
     toPreviousPage() {
@@ -52,11 +56,17 @@ export default {
     },
   },
   computed: {
+    pageSubmited() {
+      return this.$route.meta.submit;
+    },
     nextPath() {
       return this.$route.meta.nextPath;
     },
     subText() {
       return this.$route.meta.subText;
+    },
+    currentNamePage() {
+      return this.$route.name;
     },
     title() {
       return this.$route.meta.title;

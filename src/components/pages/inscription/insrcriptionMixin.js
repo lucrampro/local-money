@@ -22,6 +22,11 @@ const FormInscriptionPages = {
       default: {},
     },
   },
+  watch: {
+    model(newVal) {
+      this.$emit('input', newVal);
+    },
+  },
 };
 
 export default FormInscriptionPages;

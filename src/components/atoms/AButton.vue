@@ -1,5 +1,5 @@
 <template>
-  <button :style="buttonStyle" :type="type" class="px-8 py-2 text-lg text-white border-0 focus:outline-none">
+  <button :style="buttonStyle" :type="type">
     <slot></slot>
   </button>
 </template>
@@ -37,10 +37,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 button {
-  background: #189B73;
+  padding: 12px 20px;
+  border: 30px;
+  color: white;
+  background: $primary-color;
+  display: table;
   border-radius: 15px;
-  width: 100%;
-  height: 44px;
+  &:focus {
+   outline : none,
+  }
 }
+
 </style>

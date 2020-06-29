@@ -42,8 +42,4 @@ export default {
 </script>
 
 <style lang="scss">
-
-$primary-color: #189B73;
-$secondary-color: #DE6B48;
-
 </style>

@@ -19,7 +19,7 @@
         </ValidationProvider>
       </div>
         <div class="flex justify-center my-2 mt-8">
-          <a-button type="submit">Se connecter</a-button>
+          <a-button  class="w-full" type="submit">Se connecter</a-button>
         </div>
       <div>
         <a-link class="block mx-auto my-2 mb-10 text-center">
@@ -27,7 +27,7 @@
         </a-link>
       </div>
         <div class="flex justify-center my-2">
-          <a-button color="#189B73" background="#fefefe" @click.native="$router.push({ path: 'inscription/acount-type' })">S’inscrire</a-button>
+          <a-button color="#189B73" background="#fefefe"  class="w-full" @click.native="$router.push({ path: 'inscription/acount-type' })">S’inscrire</a-button>
         </div>
       </template>
   </l-regitster>
@@ -38,7 +38,7 @@
 export default {
   data() {
     return {
-      mail: 'gilles94@laposte.net',
+      mail: 'particular@neymo.com',
       password: '123456',
     };
   },
@@ -47,8 +47,8 @@ export default {
       this.$Api.login({
         username: this.mail,
         password: this.password,
-      }).then((res) => {
-        console.log(res, 'ixi');
+      }).then(() => {
+        this.$router.push({ name: 'Home' });
       });
       // fonction send data to the back
     },
