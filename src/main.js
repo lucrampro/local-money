@@ -57,6 +57,8 @@ console.warn(Modules, 'Modules');
 Vue.component('m-input', Modules.MInputText);
 Vue.component('m-radio', Modules.MRadio);
 Vue.component('m-navbar', Modules.MNavbar);
+Vue.component('m-menu', Modules.MMenu);
+
 // Layouts
 console.warn(Layouts, 'Layouts');
 Vue.component('l-regitster', Layouts.LRegister);
