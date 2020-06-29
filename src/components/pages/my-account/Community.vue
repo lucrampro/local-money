@@ -1,5 +1,5 @@
 <template>
   <div>
-    Commerce
+    Community
   </div>
 </template>

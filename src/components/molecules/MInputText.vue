@@ -56,7 +56,6 @@ export default {
     placeholder() {
       return this.$slots.default && this.$slots.default[0] && this.$slots.default[0].text;
     },
-
   },
 };
 </script>

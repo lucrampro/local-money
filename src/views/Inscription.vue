@@ -32,15 +32,20 @@ export default {
     };
   },
   methods: {
+    formatForm(playloadForm) {
+      playloadForm = JSON.parse(JSON.stringify(playloadForm));
+      playloadForm.birthdate = playloadForm.birthdate.replace(/-/g, '/');
+      return playloadForm;
+    },
     toNextPage() {
       if (this.formValid) {
         if (!this.pageSubmited) {
           this.$router.push({ path: `${this.formDatas.type}-${this.nextPath}` });
           this.formValid = false;
         } else {
-          this.$Api.register(this.formDatas)
-            .then((res) => {
-              console.log(res);
+          this.$Api.register(this.formatForm(this.formDatas))
+            .then(() => {
+              this.$router.push({ name: 'Home' });
             });
         }
       }

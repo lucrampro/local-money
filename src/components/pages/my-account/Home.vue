@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <m-navbar/>
+    Home
   </div>
 </template>
 

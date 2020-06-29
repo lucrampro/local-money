@@ -98,11 +98,9 @@ class ApiRequest extends EventTarget {
    */
   register(registerPlayload) {
     return this.post('/register', registerPlayload)
-      .then(() => {
-        this.login({
-          username: registerPlayload.email,
-          password: registerPlayload.password,
-        }).then((resLogin) => resLogin);
+      .then((res) => {
+        this.dispatchEvent(new CustomEvent('user-registred', { detail: registerPlayload }));
+        return res;
       }).catch((res) => res);
   }
 

@@ -1,32 +1,19 @@
 <template>
-  <img :src="currentImg" alt="">
+  <img :class="{ 'picto__is--selected' : isSelected }" class="picto" :src="currentImg" alt="">
 </template>
 
 <script>
 export default {
   name: 'NavbarPicto',
-  methods: {
-    /**
-     * @param {props, string} src
-     * @returns {string} path of imgs..
-     */
-    getImgUrl(src) {
-      const path = require(`../../assets/img/${src}`); //eslint-disable-line
-      return path;
-    },
-  },
   computed: {
     currentImg() {
-      return this.getImgUrl(this.$props.isSelected ? this.$props.imgs.selected : this.$props.imgs.default);
+      return this.$props.isSelected ? this.$props.imgs.selected : this.$props.imgs.default;
     },
   },
   props: {
     imgs: {
       required: true,
-      default: {
-        default: 'navbar/commerce-orange.png',
-        selected: 'navbar/commerce-white.png',
-      },
+      type: Object,
     },
     isSelected: {
       type: Boolean,
@@ -36,6 +23,11 @@ export default {
 };
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.picto {
+  height: 40px;
+  &.picto__is--selected {
+    background: $secondary-color;
+  }
+}
 </style>

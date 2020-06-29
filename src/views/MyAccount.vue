@@ -1,16 +1,52 @@
 <template>
-<div class="my-account">
-  <router-view/>
-</div>
+  <div class="my-account">
+    <router-view />
+    fdsfdsf
+    <m-navbar :navPages="navStates" :currentPageName="this.$router.currentRoute.name"/>
+  </div>
 </template>
 
 <script>
+import commerceDefault from '@/assets/img/navbar/commerce-orange.png';
+import commerceSelected from '@/assets/img/navbar/commerce-white.png';
+import communityDefault from '@/assets/img/navbar/community-orange.png';
+import communitySelected from '@/assets/img/navbar/community-white.png';
+import homeDefault from '@/assets/img/navbar/home-orange.png';
+import homeSelected from '@/assets/img/navbar/home-white.png';
+import transactionDefault from '@/assets/img/navbar/transaction-orange.png';
+import transactionSelected from '@/assets/img/navbar/transaction-white.png';
+
 export default {
   name: 'MyAccount',
+  data() {
+    return {
+      navStates: [
+        {
+          pageNameBind: 'Home',
+          defaultImage: homeDefault,
+          selectedImage: homeSelected,
+        },
+        {
+          pageNameBind: 'Commerce',
+          defaultImage: commerceDefault,
+          selectedImage: commerceSelected,
+        },
+        {
+          pageNameBind: 'Community',
+          defaultImage: communityDefault,
+          selectedImage: communitySelected,
+        },
+        {
+          pageNameBind: 'Transaction',
+          defaultImage: transactionDefault,
+          selectedImage: transactionSelected,
+        },
+      ],
+    };
+  },
+
 };
 </script>
 
 <style lang="scss" scoped>
-.my-account {
-}
 </style>

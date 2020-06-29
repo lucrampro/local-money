@@ -36,6 +36,13 @@ export default {
       newTokens[this.userFirstName] = this.userToken;
       sessionStorage.setItem('Users', JSON.stringify(newTokens));
     });
+
+    this.$Api.addEventListener('user-registred', (event) => {
+      this.$Api.login({
+        username: event.detail.email,
+        password: event.detail.password,
+      }).then((resLogin) => resLogin);
+    });
   },
 };
 

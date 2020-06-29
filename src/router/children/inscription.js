@@ -46,33 +46,33 @@ export default [
 
   //company routs
 
-  // {
-  //   path: 'company-first-information',
-  //   component: () => import('../../components/pages/inscription/ParticularMainInformation.vue'),
-  //   meta: {
-  //     submit : false,
-  //     nextPath: 'contact-info',
-  //     previousPath: 'acount-type',
-  //   }
-  // },
-  // {
-  //   path: 'company-verification-information',
-  //   component: () => import('../../components/pages/inscription/ParticularMainInformation.vue'),
-  //   meta: {
-  //     submit : false,
-  //     nextPath: 'company-contact-info',
-  //     previousPath: 'acount-type',
-  //   }
-  // },
-  // {
-  //   path: 'company-verification-information',
-  //   component: () => import('../../components/pages/inscription/ParticularMainInformation.vue'),
-  //   meta: {
-  //     nextPath: '',
-  //     submit : true,
-  //     previousPath: 'acount-type',
-  //   }
-  // },
+  {
+    path: 'company-first-information',
+    component: () => import('../../components/pages/inscription/ParticularMainInformation.vue'),
+    meta: {
+      submit : false,
+      nextPath: 'contact-info',
+      previousPath: 'acount-type',
+    }
+  },
+  {
+    path: 'company-verification-information',
+    component: () => import('../../components/pages/inscription/ParticularMainInformation.vue'),
+    meta: {
+      submit : false,
+      nextPath: 'company-contact-info',
+      previousPath: 'acount-type',
+    }
+  },
+  {
+    path: 'company-verification-information',
+    component: () => import('../../components/pages/inscription/ParticularMainInformation.vue'),
+    meta: {
+      nextPath: '',
+      submit : true,
+      previousPath: 'acount-type',
+    }
+  },
 ];
 
 /* eslint-enable */
