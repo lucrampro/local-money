@@ -22,6 +22,9 @@ export default {
     setUserId(context, userId) {
       context.commit('SET_USER_ID', Number(userId));
     },
+    reset({ commit }) {
+      commit('RESET');
+    },
     setUserFirstName(context, userFirstName) {
       context.commit('SET_USER_FIRSTNAME', userFirstName);
     },
@@ -30,6 +33,12 @@ export default {
   mutations: {
     SET_TOKEN(state, token) {
       state.userToken = token;
+    },
+    RESET(state) {
+      const newState = initialState();
+      Object.keys(newState).forEach((key) => {
+        state[key] = newState[key];
+      });
     },
     SET_USER_ID(state, UserId) {
       state.userId = UserId;

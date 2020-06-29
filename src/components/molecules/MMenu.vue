@@ -58,12 +58,11 @@ export default {
         },
         {
           text: 'Déconnexion',
-          functionBind: () => { this.switchPage(''); },
+          functionBind: () => { this.$store.dispatch('reset'); this.switchPage('Register'); },
         },
       ],
     };
   },
-
   methods: {
     switchPage(pageName) {
       if (this.currentPageName !== pageName) {
