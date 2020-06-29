@@ -60,6 +60,7 @@ Vue.component('m-navbar', Modules.MNavbar);
 // Layouts
 console.warn(Layouts, 'Layouts');
 Vue.component('l-regitster', Layouts.LRegister);
+Vue.component('l-overlay', Layouts.LOverlay);
 
 // global
 Vue.component('ValidationProvider', ValidationProvider);
