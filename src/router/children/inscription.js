@@ -1,6 +1,4 @@
 /* eslint-disable */
-
-
 export default [
 
   {
@@ -44,8 +42,9 @@ export default [
       previousPath: 'particular-contact-info',
     }
   },
+// DONT DELETE THIS
 
-  /////// company routs
+  //company routs
 
   // {
   //   path: 'company-first-information',
