@@ -15,11 +15,10 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 
 .overlay {
-  background: black;
-  opacity: 0.7;
+  background: rgba(0, 0, 0, 0.479);
   width: 100vw;
   height: 100vh;
   position: absolute;
