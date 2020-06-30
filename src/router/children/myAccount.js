@@ -18,8 +18,8 @@ export default [
     },
     {
       path: 'transaction',
-      component: () => import('../../components/pages/my-account/Transaction.vue'),
-      name: 'Transaction',
+      component: () => import('../../components/pages/my-account/MyTransaction.vue'),
+      name: 'MyTransaction',
       meta: {
         requireAuth: true,
       },
