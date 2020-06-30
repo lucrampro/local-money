@@ -31,7 +31,7 @@ export default {
     background-color: #31a481;
     color: #fefefe;
     border-radius: 45px;
-    height: 260px;
+    min-height: 260px;
     margin-top: 10px;
     padding: 25px 25px;
     header {
@@ -41,8 +41,7 @@ export default {
       text-transform: uppercase;
     }
     footer {
-      position: absolute;
-      bottom: 20px;
+      margin-top: 20px;
       display: flex;
       align-items: center;
       min-width: 100px;

@@ -28,7 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper--bloc {
-  border-radius: 28px;
+  border-radius: 35px;
   padding: 40px 25px;
   margin: 10px 0px;
 
