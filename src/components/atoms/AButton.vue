@@ -12,6 +12,7 @@ export default {
       return {
         color: this.$props.color,
         background: this.$props.background,
+        width: this.$props.width,
       };
     },
   },
@@ -32,6 +33,10 @@ export default {
       type: String,
       default: '#189b73',
     },
+    width: {
+      type: String,
+      default: '',
+    },
   },
 };
 </script>
@@ -45,6 +50,7 @@ button {
   background: $primary-color;
   display: table;
   border-radius: 15px;
+  margin: 5px 0px;
   &:focus {
    outline : none,
   }

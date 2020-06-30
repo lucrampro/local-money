@@ -46,7 +46,7 @@ export default {
           selectedImage: communitySelected,
         },
         {
-          pageNameBind: 'Transaction',
+          pageNameBind: 'MyTransaction',
           defaultImage: transactionDefault,
           selectedImage: transactionSelected,
         },

@@ -52,6 +52,7 @@ Vue.component('a-radio', Atoms.ARadio);
 Vue.component('a-link', Atoms.Alink);
 Vue.component('a-submit-button', Atoms.ASubmitButton);
 Vue.component('a-navbar-picto', Atoms.ANavbarPicto);
+Vue.component('a-picto', Atoms.APicto);
 
 // Molecules
 console.warn(Modules, 'Modules');
@@ -62,6 +63,7 @@ Vue.component('m-menu', Modules.MMenu);
 Vue.component('m-transaction', Modules.MTransaction);
 Vue.component('m-card-transaction', Modules.MCardTransaction);
 Vue.component('m-card-post', Modules.MCardPost);
+Vue.component('m-my-money', Modules.MMyMoney);
 
 // Layouts
 console.warn(Layouts, 'Layouts');

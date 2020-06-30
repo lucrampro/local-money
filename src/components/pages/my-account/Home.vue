@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <HeaderInformation/>
+    <m-my-money></m-my-money>
   </div>
 </template>
 
@@ -14,7 +15,13 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
+
+::v-deep .picto {
+  margin-right: 10px ;
+}
+
 .home {
   padding: 60px 10px;
 }
