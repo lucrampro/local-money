@@ -53,6 +53,7 @@ Vue.component('a-link', Atoms.Alink);
 Vue.component('a-submit-button', Atoms.ASubmitButton);
 Vue.component('a-navbar-picto', Atoms.ANavbarPicto);
 Vue.component('a-picto', Atoms.APicto);
+Vue.component('a-switch-button', Atoms.ASwitchButtoon);
 
 // Molecules
 console.warn(Modules, 'Modules');
