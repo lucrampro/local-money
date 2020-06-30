@@ -1,7 +1,7 @@
 <template>
-  <section class="button">
+  <section class="buttonSwitch">
     <span
-      class="button__text button__text--right"
+      class="buttonSwitch__text buttonSwitch__text--right"
       :class="{'isActive' : $props.leftText.value === model}"
     >
       <label :for="$props.leftText.value">{{$props.leftText.text}}</label>
@@ -14,7 +14,7 @@
       />
     </span>
     <span
-      class="button__text button__text--left"
+      class="buttonSwitch__text buttonSwitch__text--left"
       :class="{'isActive' : $props.rightText.value === model}"
     >
       <label :for="$props.rightText.value">{{$props.rightText.text}}</label>
@@ -62,8 +62,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.button {
-  padding: 20px;
+.buttonSwitch {
+  padding: 15px 50px;
   display: table;
   position: relative;
   box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.07);
@@ -77,6 +77,7 @@ export default {
       z-index: 10;
       position: relative;
       background: white;
+      cursor: pointer;
     }
 
     &.isActive {
