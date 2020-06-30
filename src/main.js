@@ -59,7 +59,12 @@ Vue.component('m-input', Modules.MInputText);
 Vue.component('m-radio', Modules.MRadio);
 Vue.component('m-navbar', Modules.MNavbar);
 Vue.component('m-menu', Modules.MMenu);
+<<<<<<< HEAD
 Vue.component('m-transaction', Modules.MTransaction);
+=======
+Vue.component('m-card-post', Modules.MCardPost);
+
+>>>>>>> bb42cce54b2b1e7370b542dedf3a254de9378c01
 // Layouts
 console.warn(Layouts, 'Layouts');
 Vue.component('l-regitster', Layouts.LRegister);
