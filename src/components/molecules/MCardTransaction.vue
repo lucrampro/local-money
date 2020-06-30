@@ -1,6 +1,6 @@
 <template>
   <div  class="transaction">
-    <img class="transaction__picto" src="../../assets/img/navbar/commerce-orange.png" alt />
+    <a-picto  class="transaction__picto" type="default"/>
     <div class="transaction__name" ><slot name="transaction_name"></slot></div>
     <div class="transaction__date"><slot name="transaction_date"></slot></div>
     <div class="transaction__sum"><slot name="transaction_sum"></slot></div>
@@ -8,11 +8,9 @@
 </template>
 
 <script>
-import ApictoTransaction from '@/components/atoms/APictoTransaction.vue';
 
 export default {
   name: 'MCardTransaction',
-  components: [{ 'a-picto-transaction': ApictoTransaction }],
 };
 </script>
 
@@ -30,7 +28,7 @@ export default {
 
   &__picto {
     margin: auto;
-    grid-area: 2 / 1 / 4 / 2;
+    grid-area: 1 / 1 / 5 / 2
   }
 
   &__name {

@@ -52,6 +52,7 @@ Vue.component('a-radio', Atoms.ARadio);
 Vue.component('a-link', Atoms.Alink);
 Vue.component('a-submit-button', Atoms.ASubmitButton);
 Vue.component('a-navbar-picto', Atoms.ANavbarPicto);
+Vue.component('a-picto', Atoms.APicto);
 
 // Molecules
 console.warn(Modules, 'Modules');
