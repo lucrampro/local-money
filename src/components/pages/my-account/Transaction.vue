@@ -1,5 +1,5 @@
 <template>
-  <l-wrapper-bloc background="black">
+  <l-wrapper-block background="black">
     <m-transaction>
       <template name="transaction_name">fdsafadsadsa</template>
       <template name="transaction_date">dsfdsfds</template>
