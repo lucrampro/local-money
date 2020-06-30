@@ -6,7 +6,9 @@
       <div>____</div>
       <div>____</div>
     </div>
-    <router-view />
+    <div class="my_account">
+      <router-view />
+    </div>
     <m-navbar :navPages="navStates" :currentPageName="this.$router.currentRoute.name"/>
   </div>
 </template>
@@ -61,6 +63,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.my_account {
+  padding: 0 20px;
+}
+
 .burger__menu {
   position: absolute;
   right: 10px;
