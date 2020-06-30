@@ -58,6 +58,7 @@ Vue.component('m-input', Modules.MInputText);
 Vue.component('m-radio', Modules.MRadio);
 Vue.component('m-navbar', Modules.MNavbar);
 Vue.component('m-menu', Modules.MMenu);
+Vue.component('m-card-post', Modules.MCardPost);
 
 // Layouts
 console.warn(Layouts, 'Layouts');
