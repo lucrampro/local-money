@@ -8,8 +8,8 @@ export default [
     meta: {
       submit : false,
       nextPath: 'first-information',
-      subText: 'Quel type de compte souhaitez vous creer ?',
-      title: 'Bienvenue sur NeyMo !',
+      title: 'Quel type de compte souhaitez vous creer ?',
+      subText: 'Bienvenue sur NeyMo !',
     },
   },
   
@@ -34,8 +34,8 @@ export default [
       nextPath: 'verification-information',
       submit : false,
       previousPath: 'particular-first-information',
-      subText: 'Inscription',
-      title: 'Ces information nous sont utiles afin de vous identifier',
+      title: 'Inscription',
+      subText: 'Ces information nous sont utiles afin de vous identifier',
     }
   },
 
@@ -46,6 +46,8 @@ export default [
       nextPath: '',
       submit : true,
       previousPath: 'particular-contact-info',
+      title:  'Inscription',
+      subText: 'Des information qui pour nous confirmer vôtre identitée',
     }
   },
 
@@ -75,8 +77,8 @@ export default [
       nextPath: 'verification-information',
       submit : false,
       previousPath: 'company-first-information',
-      subText: 'Inscription',
-      title: 'Ces information nous sont utiles afin de vous identifier',
+      title: 'Inscription',
+      subText: 'Ces information nous sont utiles afin de vous identifier',
     }
   },
 
@@ -87,6 +89,8 @@ export default [
       nextPath: '',
       submit : true,
       previousPath: 'company-contact-info',
+      title: 'Inscription',
+      subText: 'Ces information nous sont utiles afin de vous identifier',
     }
   },
   
