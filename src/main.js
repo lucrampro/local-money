@@ -59,11 +59,8 @@ Vue.component('m-input', Modules.MInputText);
 Vue.component('m-radio', Modules.MRadio);
 Vue.component('m-navbar', Modules.MNavbar);
 Vue.component('m-menu', Modules.MMenu);
-<<<<<<< HEAD
 Vue.component('m-transaction', Modules.MTransaction);
-=======
 Vue.component('m-card-transaction', Modules.MCardTransaction);
->>>>>>> 5bf7e98d3eaa08574f65e656134de1c2ba02c249
 Vue.component('m-card-post', Modules.MCardPost);
 
 // Layouts
