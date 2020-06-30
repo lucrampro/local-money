@@ -1,7 +1,10 @@
 <template>
-  <l-wrapperBloc background="black">
-    <m-transaction />
-  </l-wrapperBloc>
+  <l-wrapper-bloc background="black">
+    <m-transaction>
+      <template name="transaction_name">fdsafadsadsa</template>
+      <template name="transaction_date">dsfdsfds</template>
+    </m-transaction>
+  </l-wrapper-block>
 </template>
 
 <script>

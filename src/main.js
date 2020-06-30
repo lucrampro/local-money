@@ -64,7 +64,7 @@ Vue.component('m-transaction', Modules.MTransaction);
 console.warn(Layouts, 'Layouts');
 Vue.component('l-regitster', Layouts.LRegister);
 Vue.component('l-overlay', Layouts.LOverlay);
-Vue.component('l-wrapper-bloc', Layouts.LWrapperBloc);
+Vue.component('l-wrapper-block', Layouts.LWrapperBlock);
 
 // global
 Vue.component('ValidationProvider', ValidationProvider);

@@ -5,6 +5,7 @@ const handlerColorPlugin = () => ({
   '$primary-color': '#189B73',
   '$primary-color-100': '#31A481',
   '$secondary-color': '#DE6B48',
+  'gray-background': '#F5F5F5',
   find(color) {
     return this[color] ? this[color] : color;
   },

@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'WrapperBloc',
+  name: 'WrapperBlock',
   props: {
 
   },
