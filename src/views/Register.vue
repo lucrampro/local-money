@@ -27,7 +27,7 @@
         </a-link>
       </div>
         <div class="flex justify-center my-2">
-          <a-button color="#189B73" background="#fefefe"  class="w-full" @click.native="$router.push({ path: 'inscription/acount-type' })">S’inscrire</a-button>
+          <a-button color="#189B73" background="#fefefe"  class="w-full" @click.native="$router.push({ path: 'inscription/account-type' })">S’inscrire</a-button>
         </div>
       </template>
   </l-regitster>

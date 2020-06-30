@@ -9,7 +9,7 @@
 </template>
 <script>
 
-import FormInscriptionPages from './insrcriptionMixin';
+import FormInscriptionPages from './inscriptionMixin';
 
 export default {
   name: 'InformationContact',

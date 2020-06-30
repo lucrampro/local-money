@@ -13,8 +13,8 @@
     </template>
       <router-view :toNextPage="toNextPage" :initFormData="{...formDatas}" @updateForm="( formData ) => { updateForm(formData) }" @updateFormValid="(val) => {formValid = val}" />
     <template v-slot:bottom>
-      <a-button v-if="currentNamePage !== 'AcountType'" type="submit" class="w-full" >Suviant</a-button>
-      <a-button  v-if="currentNamePage === 'AcountType'" background="white" color="#189B73" class="w-full" @click.native="$router.push({ name: 'Register' })" >Se connecter</a-button>
+      <a-button v-if="currentNamePage !== 'AccountType'" type="submit" class="w-full" >Suviant</a-button>
+      <a-button  v-if="currentNamePage === 'AccountType'" background="white" color="#189B73" class="w-full" @click.native="$router.push({ name: 'Register' })" >Se connecter</a-button>
     </template>
   </l-regitster>
 </template>

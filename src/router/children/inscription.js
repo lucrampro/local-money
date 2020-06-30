@@ -2,9 +2,9 @@
 export default [
 
   {
-    path: 'acount-type',
+    path: 'account-type',
     component: () => import('../../components/pages/inscription/AccountType.vue'),
-    name: 'AcountType',
+    name: 'AccountType',
     meta: {
       submit : false,
       nextPath: 'first-information',
@@ -19,7 +19,7 @@ export default [
     meta: {
       submit : false,
       nextPath: 'contact-info',
-      previousPath: 'acount-type',
+      previousPath: 'account-type',
       title: 'Inscription',
       subText: 'Nous avons besoin de quelques informations',
     }
@@ -60,7 +60,7 @@ export default [
     meta: {
       submit : false,
       nextPath: 'contact-info',
-      previousPath: 'acount-type',
+      previousPath: 'account-type',
       title: 'Inscription',
       subText: 'Nous avons besoin de quelques informations',
     }
