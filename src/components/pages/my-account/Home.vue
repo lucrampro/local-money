@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    Home
+    <l-wrapper-bloc> toto <br>toto <br>toto <br>toto <br>toto <br> </l-wrapper-bloc>
   </div>
 </template>
 

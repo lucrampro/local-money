@@ -63,6 +63,7 @@ Vue.component('m-menu', Modules.MMenu);
 console.warn(Layouts, 'Layouts');
 Vue.component('l-regitster', Layouts.LRegister);
 Vue.component('l-overlay', Layouts.LOverlay);
+Vue.component('l-wrapper-bloc', Layouts.LWrapperBloc);
 
 // global
 Vue.component('ValidationProvider', ValidationProvider);
