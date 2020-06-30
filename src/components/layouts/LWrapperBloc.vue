@@ -1,5 +1,8 @@
 <template>
   <div class="wrapper--bloc">
+    <p>
+      <slot name="title"></slot>
+    </p>
     <slot></slot>
   </div>
 </template>
@@ -10,10 +13,15 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .wrapper--bloc {
   border-radius: 28px;
-  padding: 10px 10px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.10);
+  padding: 40px 25px;
+  margin: 10px 0px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.10);
+  p {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
 }
 </style>
