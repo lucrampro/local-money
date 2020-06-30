@@ -13,11 +13,11 @@ export default {
       switchButton: {
         leftText: {
           text: 'Envoyer',
-          value: 'ConvertMoney',
+          value: 'SendMoney',
         },
         rightText: {
           text: 'Convertir',
-          value: 'SendMoney',
+          value: 'ConvertMoney',
         },
       },
     };
@@ -30,5 +30,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+
+::v-deep .buttonSwitch {
+  margin: 0 auto;
+}
 
 </style>
