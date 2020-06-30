@@ -1,15 +1,15 @@
 <template>
-  <div class="my-account">
+  <div class="myAccount">
     <m-menu :currentPageName="this.$router.currentRoute.name" @updataState="(newState) => {navMenuState = newState}" :isActive="navMenuState" />
     <div @click="navMenuState = true" class="burger__menu">
       <div>____</div>
       <div>____</div>
       <div>____</div>
     </div>
-    <div class="my_account">
+    <div class="myAccountContenu">
       <router-view />
     </div>
-    <m-navbar :navPages="navStates" :currentPageName="this.$router.currentRoute.name"/>
+    <m-navbarre :navPages="navStates" :currentPageName="this.$router.currentRoute.name"/>
   </div>
 </template>
 
@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.my_account {
+.myAccountContenu {
   padding: 0 20px;
 }
 

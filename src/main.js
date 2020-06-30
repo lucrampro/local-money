@@ -59,7 +59,7 @@ Vue.component('a-switch-button', Atoms.ASwitchButtoon);
 console.warn(Modules, 'Modules');
 Vue.component('m-input', Modules.MInputText);
 Vue.component('m-radio', Modules.MRadio);
-Vue.component('m-navbar', Modules.MNavbar);
+Vue.component('m-navbarre', Modules.MNavbarre);
 Vue.component('m-menu', Modules.MMenu);
 Vue.component('m-transaction', Modules.MTransaction);
 Vue.component('m-card-transaction', Modules.MCardTransaction);

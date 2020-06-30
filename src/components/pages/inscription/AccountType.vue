@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="container__button">
+    <div class="containerButton">
       <a-button type="submit" @click.native="$emit('updateForm', { type: 'company' }); toNextPage();" class="w-full company">Entreprise</a-button>
     </div>
-    <div class="container__button">
+    <div class="containerButton">
       <a-button type="submit" @click.native="$emit('updateForm', { type: 'particular' }); toNextPage()" class="w-full particular" background="#DE6B48">Particulier</a-button>
     </div>
   </div>
@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container__button {
+.containerButton {
   padding: 10px 0px;
 }
 </style>

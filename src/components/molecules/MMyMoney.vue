@@ -1,10 +1,10 @@
 <template>
-  <div class="my-money">
+  <div class="myMoney">
     <l-wrapper-block>
       <template v-slot:title >
       <p>Le solde de votre compte</p>
       </template>
-      <p class="my-solde">1200MLC</p>
+      <p class="mySolde">1200MLC</p>
       <a-button  width="100%" >Fair un envoi</a-button>
       <a-button  width="100%" background="#D16228"> Convertir</a-button>
     </l-wrapper-block>
@@ -18,11 +18,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .my-money {
+  .myMoney {
     p{
       font-weight: bold;
     }
-    .my-solde{
+    .mySolde{
       font-size: 50px;
     }
   }

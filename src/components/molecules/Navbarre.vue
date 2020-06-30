@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar">
+  <div class="navBarre">
     <a-navbar-picto
     v-for="(pageIcon, index) in navPages"
     :key="'icone_nave_' + index"
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'Navbar',
+  name: 'Navbarre',
   props: {
     navPages: {
       required: true,
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.navbar {
+.navBarre {
   height: 100px;
   width: 100%;
   background-color: #f5f5f5;

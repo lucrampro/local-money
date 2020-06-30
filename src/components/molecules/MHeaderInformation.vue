@@ -1,11 +1,11 @@
 <template>
-  <div class="header-information">
-    <div class="wrapper--profile-photo">
-      <div class="profile-photo">
+  <div class="headerInformation">
+    <div class="wrapperProfilePhoto">
+      <div class="profilePhoto">
         <p>{{ $props.name[0] }}</p>
       </div>
     </div>
-    <div class="welcome-message">
+    <div class="welcomeMessage">
       <h1>Bonjour <span class="name">{{ $props.name }}</span></h1>
       <p>Bienvenue sur votre espace 😁 !</p>
     </div>
@@ -25,10 +25,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .header-information {
+  .headerInformation {
     display: flex;
     align-items: center;
-    .wrapper--profile-photo {
+    .wrapperProfilePhoto {
       margin-right: 10px;
       height: 70px;
       width: 70px;
@@ -37,7 +37,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      .profile-photo {
+      .profilePhoto {
         background-color: #D16228;
         border-radius: 50%;
         height: 90%;
@@ -52,7 +52,7 @@ export default {
         }
       }
     }
-    .welcome-message {
+    .welcomeMessage {
       h1 {
         font-size: 32px;
         .name {

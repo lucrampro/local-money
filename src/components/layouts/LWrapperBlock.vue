@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper--bloc" :style="{ 'box-shadow' : $props.boxShadow ,'background-color' : currentBackgroundColor  }">
+  <div class="wrapperBlock" :style="{ 'box-shadow' : $props.boxShadow ,'background-color' : currentBackgroundColor  }">
     <p>
       <slot class="title" name="title"></slot>
     </p>
@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrapper--bloc {
+.wrapperBlock {
   border-radius: 35px;
   padding: 40px 25px;
   margin: 10px 0px;

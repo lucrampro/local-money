@@ -6,7 +6,7 @@
       v-for="(allTransactionsDay, allTransactionIndex) in allTransactions"
       :key="'all_transaction_day_'+allTransactionIndex"
     >
-      <p class="transaction__day">{{allTransactionsDay.date}}</p>
+      <p class="transactionDay">{{allTransactionsDay.date}}</p>
       <m-card-transaction v-for="(transaction, transactionIndex) in allTransactionsDay.transactionsGroup" :key="`transaction_${allTransactions}_${transactionIndex}`">
         <template v-slot:transaction_name>{{transaction.nomDeLaTransaction}}</template>
         <template v-slot:transaction_date>{{transaction.typeDeTransaction}}</template>
@@ -84,7 +84,7 @@ export default {
   margin: 16px 0px;
 }
 
-.transaction__day {
+.transactionDay {
   font-weight: 800;
 }
 </style>

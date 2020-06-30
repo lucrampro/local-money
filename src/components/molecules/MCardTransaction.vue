@@ -1,9 +1,9 @@
 <template>
   <div  class="transaction">
-    <a-picto  class="transaction__picto" type="default"/>
-    <p class="transaction__name" >  {{$props.name}}</p>
-    <p class="transaction__date">  {{$props.date}}</p>
-    <p class="transaction__sum">  {{$props.sum}}</p>
+    <a-picto  class="transactionElement--picto" type="default"/>
+    <p class="transactionElement--name" >  {{$props.name}}</p>
+    <p class="transactionElement--date">  {{$props.date}}</p>
+    <p class="transactionElement--sum">  {{$props.sum}}</p>
   </div>
 </template>
 
@@ -40,24 +40,25 @@ export default {
   max-width: 100%;
   border-radius: 20px;
   margin: 5px 0px;
+  .transactionElement {
+    &--picto {
+      margin: auto;
+      grid-area: 1 / 1 / 5 / 2
+    }
 
-  &__picto {
-    margin: auto;
-    grid-area: 1 / 1 / 5 / 2
-  }
+    &--name {
+      font-weight: bold;
+      grid-area: 1 / 2 / 3 / 5;
+    }
 
-  &__name {
-    font-weight: bold;
-    grid-area: 1 / 2 / 3 / 5;
-  }
+    &--date {
+      grid-area: 3 / 2 / 5 / 5;
+    }
 
-  &__date {
-    grid-area: 3 / 2 / 5 / 5;
-  }
-
-  &__sum {
-    font-weight: bold;
-    grid-area: 2 / 5 / 4 / 6;
+    &--sum {
+      font-weight: bold;
+      grid-area: 2 / 5 / 4 / 6;
+    }
   }
 }
 </style>

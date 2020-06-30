@@ -34,7 +34,9 @@ export default {
   methods: {
     formatForm(playloadForm) {
       playloadForm = JSON.parse(JSON.stringify(playloadForm));
-      playloadForm.birthdate = playloadForm.birthdate.replace(/-/g, '/');
+      if (playloadForm.birthdate) {
+        playloadForm.birthdate = playloadForm.birthdate.replace(/-/g, '/');
+      }
       return playloadForm;
     },
     toNextPage() {

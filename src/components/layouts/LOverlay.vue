@@ -1,6 +1,6 @@
 <template>
   <div v-show="isActive" class="overlay">
-    <div class="overlay__content">
+    <div class="overlayContent">
       <slot></slot>
     </div>
   </div>
@@ -23,7 +23,7 @@ export default {
   height: 100vh;
   position: absolute;
   z-index: 100;
-  .overlay {
+  .overlayContent {
     z-index: 101;
   }
 }

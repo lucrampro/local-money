@@ -22,7 +22,7 @@
           <a-button  class="w-full" type="submit">Se connecter</a-button>
         </div>
       <div>
-        <a-link class="block mx-auto my-2 mb-10 text-center">
+        <a-link class="block mx-auto my-2 mb-4 text-center">
           Mot de passe oublié ?
         </a-link>
       </div>

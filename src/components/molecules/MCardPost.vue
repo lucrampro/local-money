@@ -1,5 +1,5 @@
 <template>
-  <div class="card--post">
+  <div class="cardPost">
     <header>
       <slot name="header"></slot>
     </header>
@@ -26,12 +26,11 @@ export default {
 </script>
 
 <style lang="scss">
-  .card--post {
+  .cardPost {
     position: relative;
     background-color: #31a481;
     color: #fefefe;
     border-radius: 45px;
-    min-height: 260px;
     margin-top: 10px;
     padding: 25px 25px;
     header {

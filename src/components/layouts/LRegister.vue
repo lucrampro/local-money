@@ -1,9 +1,11 @@
 <template>
-  <div class="register__inscription">
+  <div class="registerInscription">
 
-    <div class="wrapper--connexion">
+    <div class="wrapperConnexion">
       <!-- SLOT HEADER -->
-      <slot name="header"></slot>
+      <div class="header">
+        <slot name="header"></slot>
+      </div>
       <form v-on:submit.prevent="submit()">
         <!-- SLOT DEFAULT -->
         <div class="main">
@@ -28,17 +30,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.register__inscription {
+.registerInscription {
   min-height: 100vh;
   background: url("../../assets/img/background-register.png");
   padding-top: 25vh;
+  background-size: contain;
+  background-position-y: -13%;
+  background-repeat: no-repeat;
+
+  .header {
+    max-height: 96px;
+  }
   .main {
     min-height: 40vh;
   }
-  .wrapper--connexion {
+  .wrapperConnexion {
     min-height: 75vh;
     height: 100%;
-    background: #f5f5f5;
+    background: #F9F9F9;
     border-radius: 35px 35px 0px 0px;
     padding: 30px 32px;
   }

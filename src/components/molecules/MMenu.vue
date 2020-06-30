@@ -1,8 +1,8 @@
 <template>
   <l-overlay :isActive="isActive">
     <div class="container">
-      <span @click="$emit('updataState', false)" class="close__button">X</span>
-      <ul class="menu__nav" v-if="mode === 'menu-list'">
+      <span @click="$emit('updataState', false)" class="closeButton">X</span>
+      <ul class="menuNav" v-if="mode === 'menu-list'">
         <li v-for="(item, index) in menuList" :key="'part_of_menu_' + index" @click="item.functionBind">{{item.text}}</li>
       </ul>
     </div>
@@ -86,14 +86,14 @@ export default {
   background: white;
   display: flex;
 }
-.close__button {
+.closeButton {
   position: absolute;
   font-size: 32px;
   right: 20px;
   top: 20px;
 }
 
-.menu__nav {
+.menuNav {
   height: 100%;
   max-height: 550px;
   display: flex;
