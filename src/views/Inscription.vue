@@ -1,20 +1,20 @@
 <template>
   <l-regitster @formSubmit="toNextPage()">
     <template v-slot:header>
-      <div class="flex">
+      <div class="flex h-auto">
         <span>
           <a-button v-if="previousPath" background="white" color="#189B73"  @click.native="toPreviousPage()" >></a-button>
         </span>
-        <div>
-          <p class="pt-4 text-2xl font-semibold">{{title}}</p>
-          <p class="pt-1 pb-16 text-sm font-light font-semibold text-gray-600">{{subText}}</p>
+        <div class="pl-4">
+          <p class="text-xl font-semibold sm:text-xl">{{title}}</p>
+          <p class="pt-1 text-sm font-light font-semibold text-gray-600 ">{{subText}}</p>
         </div>
       </div>
     </template>
       <router-view :toNextPage="toNextPage" :initFormData="{...formDatas}" @updateForm="( formData ) => { updateForm(formData) }" @updateFormValid="(val) => {formValid = val}" />
     <template v-slot:bottom>
       <a-button v-if="currentNamePage !== 'AcountType'" type="submit" class="w-full" >Suviant</a-button>
-      <a-button  v-if="currentNamePage === 'AcountType'" background="white" color="#189B73" class="w-full" @click.native="$router.push({ name: 'register' })" >Se connecter</a-button>
+      <a-button  v-if="currentNamePage === 'AcountType'" background="white" color="#189B73" class="w-full" @click.native="$router.push({ name: 'Register' })" >Se connecter</a-button>
     </template>
   </l-regitster>
 </template>

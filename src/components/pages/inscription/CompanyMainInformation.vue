@@ -1,11 +1,17 @@
 <template>
   <ValidationObserver ref="observer">
     <div class="mt-10">
-      <ValidationProvider name="Nom" rules="required|min:3" v-slot="{ errors }">
-        <m-input :errors="errors" name="first_name" v-model="firstName" exemple="Uzumaki">Nom</m-input>
+      <ValidationProvider name="Nom de votre entreprise" rules="required|min:3" v-slot="{ errors }">
+        <m-input :errors="errors" name="company_name" v-model="name" exemple="Boulangerie">Nom de votre entreprise</m-input>
       </ValidationProvider>
-      <ValidationProvider name="prenom" rules="required|min:3" v-slot="{ errors }">
-        <m-input v-model="lastName" name="last_name" :errors="errors" exemple="naruto" class="mt-4">Prenom</m-input>
+      <ValidationProvider name="Ville" rules="required|min:3" v-slot="{ errors }">
+        <m-input :errors="errors" name="city" type="tel" v-model="city" maxlength="30" exemple="Paris">Ville</m-input>
+      </ValidationProvider>
+      <ValidationProvider name="code postal" rules="required|min:3" v-slot="{ errors }">
+        <m-input :errors="errors" name="zipCode" type="tel" v-model="zipCode" maxlength="5" exemple="75000">Code postal</m-input>
+      </ValidationProvider>
+      <ValidationProvider name="address" rules="required|min:6" v-slot="{ errors }">
+        <m-input :errors="errors" name="first_name" v-model="address" exemple="27 Bis Rue du Progrès">Address</m-input>
       </ValidationProvider>
     </div>
   </ValidationObserver>
@@ -18,20 +24,25 @@ export default {
   name: 'InformationName',
   data() {
     return {
-      firstName: '',
-      lastName: '',
+      name: '',
+      city: '',
+      address: '',
+      zipCode: '',
     };
   },
   mixins: [FormInscriptionPages],
   watch: {
-    model(oldVal, newVal) {
-      this.$emit('input', newVal);
+    city(newVal) {
+      this.$emit('updateForm', { city: newVal });
     },
-    firstName(newVal) {
-      this.$emit('updateForm', { firstName: newVal });
+    address(newVal) {
+      this.$emit('updateForm', { address: newVal });
     },
-    lastName(newVal) {
-      this.$emit('updateForm', { lastName: newVal });
+    zipCode(newVal) {
+      this.$emit('updateForm', { zipCode: newVal });
+    },
+    name(newVal) {
+      this.$emit('updateForm', { name: newVal });
     },
   },
 };
