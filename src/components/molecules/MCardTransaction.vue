@@ -11,7 +11,7 @@
 import ApictoTransaction from '@/components/atoms/APictoTransaction.vue';
 
 export default {
-  name: 'MTransaction',
+  name: 'MCardTransaction',
   components: [{ 'a-picto-transaction': ApictoTransaction }],
 };
 </script>
