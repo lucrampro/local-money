@@ -12,6 +12,7 @@ import store from './store';
 import '@/assets/css/tailwind.css';
 import './registerServiceWorker';
 import requestApi from './RequestApi';
+import styleGuild from './handlerColorPlugin';
 import Atoms from './components/atoms';
 import Modules from './components/molecules';
 import Layouts from './components/layouts';
@@ -58,7 +59,7 @@ Vue.component('m-input', Modules.MInputText);
 Vue.component('m-radio', Modules.MRadio);
 Vue.component('m-navbar', Modules.MNavbar);
 Vue.component('m-menu', Modules.MMenu);
-
+Vue.component('m-transaction', Modules.MTransaction);
 // Layouts
 console.warn(Layouts, 'Layouts');
 Vue.component('l-regitster', Layouts.LRegister);
@@ -70,7 +71,9 @@ Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
 
 Vue.use(requestApi);
+Vue.use(styleGuild);
 new Vue({
+  styleGuild,
   requestApi,
   router,
   store,
