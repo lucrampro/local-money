@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper--bloc">
     <p>
-      <slot name="title"></slot>
+      <slot class="title" name="title"></slot>
     </p>
     <slot></slot>
   </div>
@@ -22,7 +22,7 @@ export default {
   padding: 40px 25px;
   margin: 10px 0px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.10);
-  p {
+  .title {
     font-weight: bold;
     margin-bottom: 20px;
   }

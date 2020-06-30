@@ -26,12 +26,15 @@ export default {
   background: $gray-background;
   padding: 10px;
   max-width: 100%;
+  border-radius: 20px;
 
   &__picto {
-     grid-area: 2 / 1 / 4 / 2;
+    margin: auto;
+    grid-area: 2 / 1 / 4 / 2;
   }
 
   &__name {
+    font-weight: bold;
     grid-area: 1 / 2 / 3 / 5;
   }
 
@@ -40,6 +43,7 @@ export default {
   }
 
   &__sum {
+    font-weight: bold;
     grid-area: 2 / 5 / 4 / 6;
   }
 }
