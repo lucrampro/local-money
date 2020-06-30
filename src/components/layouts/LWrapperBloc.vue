@@ -10,6 +10,9 @@
 <script>
 export default {
   name: 'WrapperBloc',
+  props: {
+
+  },
 };
 </script>
 
