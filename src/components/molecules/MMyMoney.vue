@@ -5,7 +5,7 @@
       <p>Le solde de votre compte</p>
       </template>
       <p class="my-solde">1200MLC</p>
-      <a-button width="100%" >Fair un envois</a-button>
+      <a-button  width="100%" >Fair un envoi</a-button>
       <a-button  width="100%" background="#D16228"> Convertir</a-button>
     </l-wrapper-block>
   </div>
