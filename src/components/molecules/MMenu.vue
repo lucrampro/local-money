@@ -33,8 +33,12 @@ export default {
           functionBind: () => { this.switchPage('Community'); },
         },
         {
-          text: 'Transaction',
-          functionBind: () => { this.switchPage('Transaction'); },
+          text: 'Faire une Transaction',
+          functionBind: () => { this.switchPage('SendMoney'); },
+        },
+        {
+          text: 'Mes transaction',
+          functionBind: () => { this.switchPage('MyTransaction'); },
         },
         {
           text: 'Commerce',

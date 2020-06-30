@@ -1,3 +1,5 @@
+import transactionChildrens from './transaction';
+
 /* eslint-disable */
 export default [
     {
@@ -17,9 +19,18 @@ export default [
       },
     },
     {
-      path: 'transaction',
+      path: 'mes-transaction',
       component: () => import('../../components/pages/my-account/MyTransaction.vue'),
       name: 'MyTransaction',
+      meta: {
+        requireAuth: true,
+      },
+    },
+    {
+      path: 'transaction',
+      component: () => import('../../components/pages/my-account/Transaction.vue'),
+      name: 'Transaction',
+      children : transactionChildrens,
       meta: {
         requireAuth: true,
       },
