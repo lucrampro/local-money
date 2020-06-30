@@ -1,9 +1,9 @@
 <template>
   <div  class="transaction">
     <a-picto  class="transaction__picto" type="default"/>
-    <div class="transaction__name" ><slot name="transaction_name"></slot></div>
-    <div class="transaction__date"><slot name="transaction_date"></slot></div>
-    <div class="transaction__sum"><slot name="transaction_sum"></slot></div>
+    <p class="transaction__name" >  {{$props.name}}</p>
+    <p class="transaction__date">  {{$props.date}}</p>
+    <p class="transaction__sum">  {{$props.sum}}</p>
   </div>
 </template>
 
@@ -11,6 +11,20 @@
 
 export default {
   name: 'MCardTransaction',
+  props: {
+    name: {
+      type: String,
+      default: 'Cheik',
+    },
+    date: {
+      type: String,
+      default: 'Ven 22',
+    },
+    sum: {
+      type: String,
+      default: '6MCl',
+    },
+  },
 };
 </script>
 
@@ -25,6 +39,7 @@ export default {
   padding: 10px;
   max-width: 100%;
   border-radius: 20px;
+  margin: 5px 0px;
 
   &__picto {
     margin: auto;
