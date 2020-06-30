@@ -1,10 +1,7 @@
 <template>
   <div class="home">
     <HeaderInformation/>
-    <m-card-post>
-      <template v-slot:header> <a-picto/> BOULANGERIE MARCEL </template>
-      <template v-slot:main> Pour tous les gourmands et gourmandes, aujourd'hui il y a des chouquettes fourrées à la crème chantilly vanillée, profitez en c'est la recette spéciale d'Albert </template>
-    </m-card-post>
+    <m-my-money></m-my-money>
   </div>
 </template>
 

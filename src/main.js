@@ -61,8 +61,10 @@ Vue.component('m-input', Modules.MInputText);
 Vue.component('m-radio', Modules.MRadio);
 Vue.component('m-navbar', Modules.MNavbar);
 Vue.component('m-menu', Modules.MMenu);
+Vue.component('m-transaction', Modules.MTransaction);
 Vue.component('m-card-transaction', Modules.MCardTransaction);
 Vue.component('m-card-post', Modules.MCardPost);
+Vue.component('m-my-money', Modules.MMyMoney);
 
 // Layouts
 console.warn(Layouts, 'Layouts');
