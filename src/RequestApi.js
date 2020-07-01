@@ -175,7 +175,10 @@ class ApiRequest extends EventDispatcher {
       .catch((res) => res);
   }
 
-
+  /**
+   * get the last transaction
+   * @param {string} 
+   */
   getMyTransaction() {
     return this.get('/transactions', {
       Headers: { Authorization: `Bearer ${this.token}` },
@@ -184,6 +187,16 @@ class ApiRequest extends EventDispatcher {
       return response;
     })
       .catch(((response) => response));
+  }
+
+  getCompanyPost() {
+    return this.get('/posts', {
+      Headers: { Authorization:`Bearer ${this.token}` },
+    }).then((response) => {
+      this.dispatchEvent(new CustomEvent('session-user-companypost', { detail: response}));
+      return response
+    })
+      .catch((response) => response);
   }
 
   get(path, playload) {
