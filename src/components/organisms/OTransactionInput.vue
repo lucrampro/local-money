@@ -1,6 +1,6 @@
 <template>
   <div class="OTransactionInut">
-    <m-input :name="name" :errors="errors" v-model="value" type="tel">MCL</m-input>
+    <m-input :name="name" :errors="errors" v-model="model" type="tel">MCL</m-input>
   </div>
 </template>
 
@@ -9,8 +9,13 @@ export default {
   name: 'OTransactionInut',
   data() {
     return {
-      value: '0',
+      model: this.$attrs.value || '',
     };
+  },
+  watch: {
+    model(newVal) {
+      this.$emit('input', newVal);
+    },
   },
   props: ['name', 'errors'],
 };
