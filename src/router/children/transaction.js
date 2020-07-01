@@ -6,6 +6,7 @@ export default [
     name: 'SendMoney',
     meta: {
       requireAuth: true,
+      nextName: 'ChoiceBankCard',
     },
   },
   {
@@ -14,8 +15,21 @@ export default [
     name: 'ConvertMoney',
     meta: {
       requireAuth: true,
+      nextName: 'ChoiceBankCard',
     },
   },
+
+  {
+    path: 'choisissez-votre-carte',
+    component: () => import('@/components/pages/my-account/transaction/ChoiceBankCard.vue'),
+    name: 'ChoiceBankCard',
+    meta: {
+      requireAuth: true,
+      nextName: 'SendMoney',
+      previousName: 'SendMoney',
+    },
+  },
+
 ];
 
 /* eslint-enable */

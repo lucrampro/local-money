@@ -69,6 +69,9 @@ export default {
     nextPath() {
       return this.$route.meta.nextPath;
     },
+    previousPath() {
+      return this.$route.meta.previousPath;
+    },
     subText() {
       return this.$route.meta.subText;
     },
@@ -77,9 +80,6 @@ export default {
     },
     title() {
       return this.$route.meta.title;
-    },
-    previousPath() {
-      return this.$route.meta.previousPath;
     },
   },
 };
