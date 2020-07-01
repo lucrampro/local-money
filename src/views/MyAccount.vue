@@ -83,7 +83,7 @@ export default {
 
 <style lang="scss" scoped>
 .myAccountContenu {
-  padding: 0 20px;
+  /* padding: 0 20px; */
 }
 
 .burger__menu {
