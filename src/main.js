@@ -73,6 +73,7 @@ console.warn(Layouts, 'Layouts');
 Vue.component('l-regitster', Layouts.LRegister);
 Vue.component('l-overlay', Layouts.LOverlay);
 Vue.component('l-wrapper-block', Layouts.LWrapperBlock);
+Vue.component('l-transaction-form', Layouts.LTransactionForm);
 
 // Organisme
 Vue.component('o-transaction-input', Organisme.OTransactionInput);
