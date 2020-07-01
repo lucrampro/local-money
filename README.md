@@ -5,7 +5,7 @@ Service de création et de money locale projet d'etude avec l'école @Hetic !
  
 ### Commande
 
-Link to of site : [neymo](https://neymo.benjaminadida.fr/)
+Link to of the site : [neymo](https://neymo.benjaminadida.fr/)
 
 >  ***Récupérer le repo***  `git clone https://github.com/lucrampro/local-money.git`
 
