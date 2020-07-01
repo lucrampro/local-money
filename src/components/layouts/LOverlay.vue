@@ -1,7 +1,8 @@
 <template>
   <div v-show="isActive" class="overlay">
     <div class="overlayContent">
-      <slot></slot>
+      <div @click="$emit('clickOutSide', true)" class="overlayBackground" ></div>
+      <slot class="containt"></slot>
     </div>
   </div>
 </template>
@@ -17,14 +18,27 @@ export default {
 </script>
 <style lang="scss">
 
-.overlay {
+.overlayBackground {
   background: rgba(0, 0, 0, 0.479);
+  position: absolute;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+}
+.overlay {
   width: 100vw;
   height: 100vh;
   position: absolute;
   z-index: 100;
   .overlayContent {
+    position: absolute;
+    margin: auto;
+    display: block;
     z-index: 101;
+    .containt {
+      z-index: 0;
+    }
   }
 }
 </style>
