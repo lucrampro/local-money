@@ -20,7 +20,7 @@
 </template>
 <script>
 
-import FormInscriptionPages from './inscriptionMixin';
+import FormMixin from '@/mixins/formMixin';
 
 export default {
   name: 'InformationContact',
@@ -32,7 +32,7 @@ export default {
       password: '',
     };
   },
-  mixins: [FormInscriptionPages],
+  mixins: [FormMixin],
   watch: {
     model(newVal) {
       this.$emit('input', newVal);
