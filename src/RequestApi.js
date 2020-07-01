@@ -117,6 +117,19 @@ class ApiRequest extends EventTarget {
       .catch((res) => res);
   }
 
+  /**
+   * allow to get the solde of adhérent
+   * @param  {String} type type is particular or company
+   */
+  details(type) {
+    return this.get(`/${type}/account`, { Headers: { Authorization: `Bearer ${this.token}` } })
+      .then((res) => {
+        this.dispatchEvent(new CustomEvent('session-user-details', { detail: res }));
+        return res;
+      })
+      .catch((res) => res);
+  }
+
   get(path, playload) {
     return this.request.get(this.uri + (path || ''), playload || {});
   }

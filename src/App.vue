@@ -13,9 +13,17 @@ export default {
     ...mapGetters([
       'userToken',
       'userFirstName',
+      'compteType',
+      'userId',
+      'solde',
+      'transferId',
     ]),
   },
   created() {
+    if (this.userToken) {
+      this.$Api.setToken(this.userToken);
+    }
+
     // listen whene a user come to log for set a token in the store, add after set other infomation
     this.$Api.addEventListener('session-user-login', (event) => {
       this.$store.dispatch('setToken', event.detail.token);
@@ -29,12 +37,20 @@ export default {
       // get information of user if have a token
       this.$store.dispatch('setUserId', event.detail.id);
       this.$store.dispatch('setUserFirstName', event.detail.first_name);
+      this.$store.dispatch('setCompteType', event.detail.type);
 
       // save the user on Storage when this connected
       const oldTokens = JSON.parse(sessionStorage.getItem('token') || '{}');
       const newTokens = oldTokens;
       newTokens[this.userFirstName] = this.userToken;
       sessionStorage.setItem('Users', JSON.stringify(newTokens));
+    });
+
+    // set infomation of user
+    this.$Api.addEventListener('session-user-details', (event) => {
+      console.log(event);
+      this.$store.dispatch('setSolde', event.detail['available_ cash']);
+      this.$store.dispatch('setTransferId', event.detail.account_id);
     });
 
     this.$Api.addEventListener('user-registred', (event) => {

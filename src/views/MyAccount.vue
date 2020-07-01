@@ -23,6 +23,7 @@ import homeDefault from '@/assets/img/navbar/home-orange.png';
 import homeSelected from '@/assets/img/navbar/home-white.png';
 import transactionDefault from '@/assets/img/navbar/transaction-orange.png';
 import transactionSelected from '@/assets/img/navbar/transaction-white.png';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'MyAccount',
@@ -52,6 +53,14 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    ...mapGetters([
+      'compteType',
+    ]),
+  },
+  mounted() {
+    this.$Api.details(this.compteType);
   },
   watch: {
     $route() {
