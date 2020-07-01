@@ -60,7 +60,8 @@ export default {
     });
 
     this.$Api.addEventListener('session-user-transaction', (event) => {
-      console.log('je suis l\'event', event.detail);
+      console.log(event);
+      this.$store.dispatch('setTransferId', event.detail);
     });
   },
 };
