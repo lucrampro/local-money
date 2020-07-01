@@ -1,27 +1,71 @@
 <template>
-  <div id="app" class="px-6 py-10">
+  <div id="app">
     <router-view/>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
+  name: 'app',
+  computed: {
+    ...mapGetters([
+      'userToken',
+      'userFirstName',
+      'compteType',
+      'userId',
+      'solde',
+      'transferId',
+    ]),
+  },
   created() {
-    fetch('http://localhost/api/me')
-      .then((res) => {
-        console.log(res);
-      });
-    this.$Api.get('/me')
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((data) => {
-        console.warn(data);
-      });
+    if (this.userToken) {
+      this.$Api.setToken(this.userToken);
+    }
+
+    // listen whene a user come to log for set a token in the store, add after set other infomation
+    this.$Api.addEventListener('session-user-login', (event) => {
+      this.$store.dispatch('setToken', event.detail.token);
+      // get information of user if have a token
+      this.$Api.setToken(event.detail.token);
+      this.$Api.getUserInfo();
+    });
+
+    // set infomation of user
+    this.$Api.addEventListener('session-user-information', (event) => {
+      // get information of user if have a token
+      this.$store.dispatch('setUserId', event.detail.id);
+      this.$store.dispatch('setUserFirstName', event.detail.first_name);
+      this.$store.dispatch('setCompteType', event.detail.type);
+
+      // save the user on Storage when this connected
+      const oldTokens = JSON.parse(sessionStorage.getItem('token') || '{}');
+      const newTokens = oldTokens;
+      newTokens[this.userFirstName] = this.userToken;
+      sessionStorage.setItem('Users', JSON.stringify(newTokens));
+    });
+
+    // set infomation of user
+    this.$Api.addEventListener('session-user-details', (event) => {
+      console.log(event);
+      this.$store.dispatch('setSolde', event.detail['available_ cash']);
+      this.$store.dispatch('setTransferId', event.detail.account_id);
+    });
+
+    this.$Api.addEventListener('user-registred', (event) => {
+      this.$Api.login({
+        username: event.detail.email,
+        password: event.detail.password,
+      }).then((resLogin) => resLogin);
+    });
   },
 };
+
 </script>
 
-<style>
-
+<style lang="scss">
+#app {
+  min-height: 100vh;
+}
 </style>

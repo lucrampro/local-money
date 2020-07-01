@@ -1,5 +1,5 @@
 <template>
-  <a class="mr-5 underline cursor-pointer hover:text-gray-900">
+  <a class="Alink">
     <slot name="default"></slot>
   </a>
 </template>
@@ -17,4 +17,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.Alink {
+  text-decoration: underline;
+  color: rgb(58, 58, 58);
+}
 </style>

@@ -6,12 +6,16 @@ module.exports = {
   separator: ':',
   theme: {
     screens: {
+      se: { min: '390px' },
       sm: '640px',
       md: '768px',
       lg: '1024px',
       xl: '1280px',
     },
     colors: {
+      primary: '#189B73',
+      secondary: '#DE6B48',
+
       transparent: 'transparent',
       current: 'currentColor',
 

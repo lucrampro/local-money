@@ -1,21 +1,22 @@
 <template>
-<form @submit.prevent="toNextPage()">
-  <l-regitster>
+  <l-regitster @formSubmit="toNextPage()">
     <template v-slot:header>
-      <div class="flex flex-row-reverse">
-        <a-button @click.native="$router.push({ name: 'register' })" >Se connecter</a-button>
+      <div class="flex h-auto">
+        <span>
+          <a-button v-if="previousPath" background="white" color="#189B73"  @click.native="toPreviousPage()" >></a-button>
+        </span>
+        <div class="pl-4">
+          <p class="text-xl font-semibold sm:text-xl">{{title}}</p>
+          <p class="pt-1 text-sm font-light font-semibold text-gray-600 ">{{subText}}</p>
+        </div>
       </div>
-      <p class="pt-4 text-4xl font-semibold">Inscrivez-vous</p>
     </template>
-      <router-view @updateFormValid="(val) => {formValid = val}" />
+      <router-view :toNextPage="toNextPage" :initFormData="{...formDatas}" @updateForm="( formData ) => { updateForm(formData) }" @updateFormValid="(val) => {formValid = val}" />
     <template v-slot:bottom>
-      <div class="flex flex-row justify-between">
-        <a-button @click.native="toPreviousPage()">Precedent</a-button>
-        <a-button type="submit" v-show="formValid" >Suviant</a-button>
-      </div>
+      <a-button v-if="currentNamePage !== 'AccountType'" type="submit" class="w-full" >Suviant</a-button>
+      <a-button  v-if="currentNamePage === 'AccountType'" background="white" color="#189B73" class="w-full" @click.native="$router.push({ name: 'Register' })" >Se connecter</a-button>
     </template>
   </l-regitster>
-</form>
 </template>
 
 <script>
@@ -23,23 +24,59 @@ export default {
   name: 'inscription',
   data() {
     return {
+      formDatas: {
+        governanceId: 10,
+      },
+      submitted: false,
       formValid: false,
     };
   },
   methods: {
+    formatForm(playloadForm) {
+      playloadForm = JSON.parse(JSON.stringify(playloadForm));
+      if (playloadForm.birthdate) {
+        playloadForm.birthdate = playloadForm.birthdate.replace(/-/g, '/');
+      }
+      return playloadForm;
+    },
     toNextPage() {
       if (this.formValid) {
-        this.$router.push({ path: this.nextPath });
-        this.formValid = false;
+        if (!this.pageSubmited) {
+          this.$router.push({ path: `${this.formDatas.type}-${this.nextPath}` });
+          this.formValid = false;
+        } else {
+          this.$Api.register(this.formatForm(this.formDatas))
+            .then(() => {
+              this.$router.push({ name: 'Home' });
+            });
+        }
       }
     },
     toPreviousPage() {
       this.$router.push({ path: this.previousPath });
     },
+    updateForm(curentFormData) {
+      this.formDatas = {
+        ...this.formDatas,
+        ...curentFormData,
+      };
+    },
   },
   computed: {
+    pageSubmited() {
+      return this.$route.meta.submit;
+    },
     nextPath() {
       return this.$route.meta.nextPath;
+    },
+    subText() {
+      return this.$route.meta.subText;
+    },
+    currentNamePage() {
+      return this.$route.name;
+    },
+    title() {
+      return this.$route.meta.title;
     },
     previousPath() {
       return this.$route.meta.previousPath;

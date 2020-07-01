@@ -1,34 +1,55 @@
 <template>
-  <div class="register__inscription">
-    <header class="header" >
-      <slot name="header"></slot>
-    </header>
-    <div class="main">
-      <slot></slot>
+  <div class="registerInscription">
+
+    <div class="wrapperConnexion">
+      <!-- SLOT HEADER -->
+      <div class="header">
+        <slot name="header"></slot>
+      </div>
+      <form v-on:submit.prevent="submit()">
+        <!-- SLOT DEFAULT -->
+        <div class="main">
+          <slot></slot>
+        </div>
+        <!-- SLOT BOTTOM -->
+        <slot name="bottom"></slot>
+      </form>
     </div>
-    <div class="bottom">
-      <slot name="bottom"></slot>
-    </div>
+
   </div>
 </template>
-
 <script>
 export default {
   name: 'LRegister',
+  methods: {
+    submit() {
+      this.$emit('formSubmit');
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.register__inscription {
-  min-height: 80vh;
-}
-header {
-  height: 20vh;
-}
-.main {
-  min-height: 50vh;
-}
-.bottom {
-  height: 14vh;
+.registerInscription {
+  min-height: 100vh;
+  background: url("../../assets/img/background-register.png");
+  padding-top: 25vh;
+  background-size: contain;
+  background-position-y: -13%;
+  background-repeat: no-repeat;
+
+  .header {
+    max-height: 96px;
+  }
+  .main {
+    min-height: 40vh;
+  }
+  .wrapperConnexion {
+    min-height: 75vh;
+    height: 100%;
+    background: #F9F9F9;
+    border-radius: 35px 35px 0px 0px;
+    padding: 30px 32px;
+  }
 }
 </style>

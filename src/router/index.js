@@ -2,26 +2,49 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Inscription from '@/views/Inscription.vue';
 import Register from '@/views/Register.vue';
-import inscriptionChildren from './children/inscription';
+import MyAccount from '@/views/MyAccount.vue';
+import store from '@/store';
+import inscriptionChildrens from './children/inscription';
+import myAccountChildrens from './children/myAccount';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '/mon-compte',
+    name: 'MyAccount',
+    component: MyAccount,
+    children: myAccountChildrens,
+  },
+  {
     path: '/',
-    name: 'register',
+    name: 'Register',
     component: Register,
+    meta: {
+      requireAuth: false,
+    },
   },
   {
     path: '/inscription/',
     name: 'inscription',
     component: Inscription,
-    children: inscriptionChildren,
+    children: inscriptionChildrens,
+    meta: {
+      requireAuth: false,
+    },
   },
 ];
 
 const router = new VueRouter({
+  mode: 'history',
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireAuth) {
+    return store.getters.userToken ? next() : next({ name: 'Register' });
+  }
+  return !store.getters.userToken ? next() : next({ name: 'Home' });
 });
 
 export default router;

@@ -12,6 +12,7 @@ import store from './store';
 import '@/assets/css/tailwind.css';
 import './registerServiceWorker';
 import requestApi from './RequestApi';
+import styleGuild from './handlerColorPlugin';
 import Atoms from './components/atoms';
 import Modules from './components/molecules';
 import Layouts from './components/layouts';
@@ -38,13 +39,8 @@ extend('majority', {
     const day = fielDate.match(/-(\d+)$/i)[1];
     fielDate = new Date(year, month, day);
 
-    const diff = currentDate.getTime() - fielDate.getTime();
-    const age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25)) + 1;
-    if (age > 18) {
-      return true;
-    }
-    console.log(age, year);
-    return false;
+    const age = currentDate.getFullYear() - fielDate.getFullYear();
+    return age > 18;
   },
 });
 // Register it globally
@@ -54,22 +50,36 @@ console.warn(Atoms, 'Atoms');
 Vue.component('a-button', Atoms.AButton);
 Vue.component('a-radio', Atoms.ARadio);
 Vue.component('a-link', Atoms.Alink);
+Vue.component('a-submit-button', Atoms.ASubmitButton);
+Vue.component('a-navbar-picto', Atoms.ANavbarPicto);
+Vue.component('a-picto', Atoms.APicto);
+Vue.component('a-switch-button', Atoms.ASwitchButtoon);
 
 // Molecules
 console.warn(Modules, 'Modules');
 Vue.component('m-input', Modules.MInputText);
 Vue.component('m-radio', Modules.MRadio);
+Vue.component('m-navbarre', Modules.MNavbarre);
+Vue.component('m-menu', Modules.MMenu);
+Vue.component('m-transaction', Modules.MTransaction);
+Vue.component('m-card-transaction', Modules.MCardTransaction);
+Vue.component('m-card-post', Modules.MCardPost);
+Vue.component('m-my-money', Modules.MMyMoney);
+
 // Layouts
 console.warn(Layouts, 'Layouts');
 Vue.component('l-regitster', Layouts.LRegister);
+Vue.component('l-overlay', Layouts.LOverlay);
+Vue.component('l-wrapper-block', Layouts.LWrapperBlock);
 
 // global
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
 
 Vue.use(requestApi);
-
+Vue.use(styleGuild);
 new Vue({
+  styleGuild,
   requestApi,
   router,
   store,

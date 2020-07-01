@@ -1,5 +1,5 @@
 <template>
-  <button class="px-8 py-2 text-lg text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-orange-600">
+  <button :style="buttonStyle" :type="type">
     <slot></slot>
   </button>
 </template>
@@ -7,8 +7,53 @@
 <script>
 export default {
   name: 'AButton',
+  computed: {
+    buttonStyle() {
+      return {
+        color: this.$props.color,
+        background: this.$props.background,
+        width: this.$props.width,
+      };
+    },
+  },
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    type: {
+      type: String,
+      default: 'button',
+    },
+    color: {
+      type: String,
+      default: '#fefefe',
+    },
+    background: {
+      type: String,
+      default: '#189b73',
+    },
+    width: {
+      type: String,
+      default: '',
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+
+button {
+  padding: 12px 20px;
+  border: 30px;
+  color: white;
+  background: $primary-color;
+  display: table;
+  border-radius: 15px;
+  margin: 5px 0px;
+  &:focus {
+   outline : none,
+  }
+}
+
 </style>
