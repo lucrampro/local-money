@@ -130,6 +130,16 @@ class ApiRequest extends EventTarget {
       .catch((res) => res);
   }
 
+  getMyTransaction() {
+    return this.get('/transactions', {
+      Headers: { Authorization: `Bearer ${this.token}` },
+    }).then((response) => {
+      this.dispatchEvent(new CustomEvent('session-user-transaction', { detail: response }));
+      return response;
+    })
+      .catch(((response) => response));
+  }
+
   get(path, playload) {
     return this.request.get(this.uri + (path || ''), playload || {});
   }

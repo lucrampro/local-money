@@ -59,6 +59,10 @@ export default {
         password: event.detail.password,
       }).then((resLogin) => resLogin);
     });
+
+    this.$Api.addEventListener('session-user-transaction', (event) => {
+      console.log('je suis l\'event', event.detail);
+    });
   },
 };
 
