@@ -3,7 +3,7 @@ export default [
   {
     path: '/mes-contacts',
     component: () => import('@/components/pages/my-account/MyProfile/myContact.vue'),
-    name: 'myContact',
+    name: 'MyContact',
     meta: {
       requireAuth: true,
     },
