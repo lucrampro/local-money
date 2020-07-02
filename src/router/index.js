@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Inscription from '@/views/Inscription.vue';
 import Register from '@/views/Register.vue';
 import MyAccount from '@/views/MyAccount.vue';
+import Confirm from '@/views/ConfirmPage.vue';
 import store from '@/store';
 import inscriptionChildrens from './children/inscription';
 import myAccountChildrens from './children/myAccount';
@@ -32,6 +33,11 @@ const routes = [
     meta: {
       requireAuth: false,
     },
+  },
+  {
+    path: 'confirmation',
+    component: Confirm,
+    name: 'Confirmation',
   },
 ];
 
