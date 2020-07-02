@@ -57,12 +57,27 @@ export default {
   computed: {
     ...mapGetters([
       'compteType',
+      'userToken',
     ]),
   },
   methods: {
     getDetail() {
       if (this.compteType) {
-        this.$Api.details(this.compteType);
+        this.$Api.details(this.compteType)
+          .then(() => {
+            console.log('ok');
+          })
+          .catch(() => {
+            this.$store.dispatch('reset'); this.$router.push('Register');
+          });
+      } else {
+        this.$Api.getUserInfo(this.userToken)
+          .then(() => {
+            this.getDetail();
+          })
+          .catch(() => {
+            this.$store.dispatch('reset'); this.$router.push('Register');
+          });
       }
     },
   },
