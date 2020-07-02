@@ -37,21 +37,25 @@ export default {
       navStates: [
         {
           functionBind: () => { this.switchPage('Home'); },
+          pageNameBind: 'Home',
           defaultImage: homeDefault,
           selectedImage: homeSelected,
         },
         {
           functionBind: () => { this.switchPage('Commerce'); },
+          pageNameBind: 'Commerce',
           defaultImage: commerceDefault,
           selectedImage: commerceSelected,
         },
         {
           functionBind: () => { this.switchPage('Community'); },
+          pageNameBind: 'Community',
           defaultImage: communityDefault,
           selectedImage: communitySelected,
         },
         {
           functionBind: () => { this.switchPage('MyTransaction'); },
+          pageNameBind: 'MyTransaction',
           defaultImage: transactionDefault,
           selectedImage: transactionSelected,
         },
