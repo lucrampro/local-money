@@ -70,15 +70,16 @@ export default {
           .catch(() => {
             this.$store.dispatch('reset'); this.$router.push('Register');
           });
-      } else {
-        this.$Api.getUserInfo(this.userToken)
-          .then(() => {
-            this.getDetail();
-          })
-          .catch(() => {
-            this.$store.dispatch('reset'); this.$router.push('Register');
-          });
       }
+      // else {
+      //   this.$Api.getUserInfo(this.userToken)
+      //     .then(() => {
+      //       this.getDetail();
+      //     })
+      //     .catch(() => {
+      //       this.$store.dispatch('reset'); this.$router.push('Register');
+      //     });
+      // }
     },
   },
   mounted() {

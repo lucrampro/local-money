@@ -4,8 +4,8 @@
     <!-- HERE IS PLACE FOR INPUT TO COMPANY SEND POST  -->
      <l-wrapper-block>
       <m-card-post v-for="(items, index) in companyPost" :key="index">
-        <template v-slot:header > {{ items.company }} </template>
-        <template v-slot:main > {{ items.post }} </template>
+        <template v-slot:header > {{ items.title }} </template>
+        <template v-slot:main > {{ items.content }} </template>
       </m-card-post>
 
     </l-wrapper-block>
@@ -47,7 +47,7 @@ export default {
     ActualityFilter,
   },
   mounted() {
-    // this.setCompanyArray(); DON'T DELETE COMMENT PLEASE !!!
+    this.setCompanyArray();
   },
   methods: {
     setCompanyArray() {
