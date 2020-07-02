@@ -18,7 +18,6 @@ Link to of the site : [neymo](https://neymo.benjaminadida.fr/)
 Neymo est une application bancaire de monnaie local, qui sera utilisé sur mobile.
 cette application sera souvent utilisée dans des conditions non optimum, avec des faibles connexions par exemple ou des coupures d'internet.
 alors afin d'avoir une application la moins lourde possible, nous faison attentions à toute les dépendence installer afin d'avoir le build le plus légé possible.
-Nous visons une application a moins 600 ko.
 
 ### Technologie
 
