@@ -55,6 +55,16 @@ export default [
       },
     },
 
+
+    {
+      path: 'confirmation',
+      component: () => import('../../components/pages/my-account/ConfirmPage.vue'),
+      name: 'Confirmation',
+      meta: {
+        requireAuth: true,
+      },
+    },
+
   ];
   
 /* eslint-enable */

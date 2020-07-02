@@ -101,7 +101,10 @@ export default {
     },
     submitForm() {
       this.formDatas.emiterAccountId = this.transferId;
-      this.$Api.transferMoney(this.formDatas);
+      this.$Api.transferMoney(this.formDatas).then(() => {
+        this.$store.dispatch('setConfirmPageMessage', 'Votre message a bien été posté !');
+        this.$router.push({ name: 'Confirmation' });
+      });
     },
   },
   computed: {
