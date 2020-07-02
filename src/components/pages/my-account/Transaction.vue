@@ -21,7 +21,7 @@
       :leftText="switchButton.leftText"
       :rightText="switchButton.rightText"
     />
-    <l-transaction-form @formSubmit="submit()" boxShadow="none" backgroundColor="$gray-background">
+    <l-form-myacount @formSubmit="submit()" boxShadow="none" backgroundColor="$gray-background">
       <template>
         <a-button v-if="canGoToPreviousPage" @click.native="goToPreviousPage()" background="white" color="$primary-color">></a-button>
         <router-view
@@ -35,7 +35,7 @@
           <a-button type="submit" width="100%">Suivant</a-button>
         </div>
       </template>
-    </l-transaction-form>
+    </l-form-myacount>
   </div>
 </template>
 <script>
@@ -100,7 +100,7 @@ export default {
     },
     submitForm() {
       this.formDatas.emiterAccountId = this.transferId;
-      this.$Api.transferMoney(this.formDatas).then(() => {
+      this.$Api.putTransferMoney(this.formDatas).then(() => {
         this.$store.dispatch('setConfirmPageMessage', 'Votre message a bien été posté !');
         this.$router.push({ name: 'Confirmation' });
       });

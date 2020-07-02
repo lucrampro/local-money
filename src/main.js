@@ -75,7 +75,7 @@ console.warn(Layouts, 'Layouts');
 Vue.component('l-regitster', Layouts.LRegister);
 Vue.component('l-overlay', Layouts.LOverlay);
 Vue.component('l-wrapper-block', Layouts.LWrapperBlock);
-Vue.component('l-transaction-form', Layouts.LTransactionForm);
+Vue.component('l-form-myacount', Layouts.LFormMyAcount);
 Vue.component('l-header-myCompte', Layouts.LHeaderMyCompte);
 
 // Organisme

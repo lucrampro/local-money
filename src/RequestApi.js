@@ -113,6 +113,23 @@ class ApiRequest extends EventDispatcher {
         }).catch((res) => reject(res.json()));
       }),
       ///
+      delete: (path, payload) => new Promise((resolve, reject) => {
+        payload.Headers = payload.Headers ?  payload.Headers : {}
+        payload.Headers['Content-Type'] = payload.Headers['Content-Type'] ? payload.Headers['Content-Type'] : 'application/json';
+        fetch(path, {
+          ...init,
+          headers: new Headers(payload.Headers),
+          body: JSON.stringify(payload.body,),
+          method: 'delete',
+        }).then((res) => {
+          if (res.ok) {
+            return resolve(res.json());
+          }
+          return res.json().then((res2) => {
+            reject(res2);
+          });
+        }).catch((res) => reject(res.json()));
+      }),
     };
   }
 
@@ -173,23 +190,11 @@ class ApiRequest extends EventDispatcher {
       .catch((res) => res);
   }
 
-  putPost(playload) {
-    return new Promise((resolve, reject) => {
-      return this.post('/posts/create', {
-        Headers: { Authorization:`Bearer ${this.token}` },
-        body : playload,
-      }).then((response) => {
-        return resolve(response)
-      })
-        .catch((response) => reject(response));
-    })
-  }
-
   /**
    * allow to get the solde of adhérent
    * @param  {String} type type is particular or company
    */
-  details(type = this.userType) {
+  getDetails(type = this.userType) {
     return new Promise((resolve, reject) => {
       return this.get(`/${type}/account`, { Headers: { Authorization: `Bearer ${this.token}` , 'Content-Type': 'application/x-www-form-urlencoded'} })
         .then((res) => {
@@ -208,7 +213,7 @@ class ApiRequest extends EventDispatcher {
     return this.get('/transactions', {
       Headers: { Authorization: `Bearer ${this.token}` },
     }).then((response) => {
-      this.details(this.userType)
+      this.getDetails(this.userType)
       this.dispatchEvent(new CustomEvent('session-user-transactions', { detail: response}));
       return response;
     })
@@ -235,7 +240,7 @@ class ApiRequest extends EventDispatcher {
       .catch((response) => response);
   }
   
-  transferMoney(transactionInformation) {
+  putTransferMoney(transactionInformation) {
     return new Promise((resolve, reject) => {
       return this.post('/transfer-money', {
         Headers: { Authorization:`Bearer ${this.token}` },
@@ -260,6 +265,90 @@ class ApiRequest extends EventDispatcher {
         .catch((response) => reject(response));
     })
   }
+
+  putLike(idPost) {
+    return new Promise((resolve, reject) => {
+      return this.get(`/post/${idPost}/like`, {
+        Headers: { Authorization:`Bearer ${this.token}` },
+      }).then((response) => {
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
+  }
+
+  putDislike(idPost) {
+    return new Promise((resolve, reject) => {
+      return this.get(`/post/${idPost}/dislike`, {
+        Headers: { Authorization:`Bearer ${this.token}` },
+      }).then((response) => {
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
+  }
+
+  getContacts() {
+    return new Promise((resolve, reject) => {
+      return this.get(`/contacts`, {
+        Headers: { Authorization:`Bearer ${this.token}` },
+      }).then((response) => {
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
+  }
+  
+  putContact() {
+    return new Promise((resolve, reject) => {
+      return this.post(`/contacts/create`, {
+        Headers: { Authorization:`Bearer ${this.token}` },
+      }).then((response) => {
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
+  }
+
+  removeContact(contactId) {
+    return new Promise((resolve, reject) => {
+      return this.delete(`/contacts/${contactId}/delete`, {
+        Headers: { Authorization:`Bearer ${this.token}` },
+      }).then((response) => {
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
+  }
+
+  getFavorites(contactId) {
+    return new Promise((resolve, reject) => {
+      return this.get(`/favorites`, {
+        Headers: { Authorization:`Bearer ${this.token}` },
+      }).then((response) => {
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
+  }
+
+  /**
+   * @param  {Object} payload 
+   * @param {string} payload.accountId - exemple "170"
+   */
+  addFavorites( payload ) {
+    return new Promise((resolve, reject) => {
+      return this.post(`/favorites/create`, {
+        Headers: { Authorization:`Bearer ${this.token}` },
+      }).then((response) => {
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
+  }
+
+
+  
 
   
   get(path, payload) {

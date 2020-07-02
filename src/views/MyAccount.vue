@@ -78,7 +78,7 @@ export default {
 
     getDetail() {
       if (this.compteType) {
-        this.$Api.details(this.compteType)
+        this.$Api.getDetails(this.compteType)
           .then(() => {
             console.log('ok');
           })

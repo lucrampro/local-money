@@ -45,7 +45,7 @@ export default {
           this.$router.push({ path: `${this.formDatas.type}-${this.nextPath}` });
           this.formValid = false;
         } else {
-          this.$Api.register(this.formatForm(this.formDatas))
+          this.$Api.postRegister(this.formatForm(this.formDatas))
             .then(() => {
               this.$router.push({ name: 'Home' });
             });

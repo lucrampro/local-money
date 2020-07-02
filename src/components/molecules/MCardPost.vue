@@ -1,15 +1,15 @@
 <template>
   <div class="cardPost">
-    <header>
+    <div class="cardPost__header">
       <slot name="header"></slot>
-    </header>
-    <main>
+    </div>
+    <div class="cardPost__main">
       <slot name="main"></slot>
-    </main>
-    <footer>
-        <div class="like"></div>
+    </div>
+    <div class="cardPost__footer">
+        <div class="cardPost__main__like"></div>
         <p>{{ $props.numberLikes }}</p>
-    </footer>
+    </div>
   </div>
 </template>
 
@@ -33,20 +33,20 @@ export default {
     border-radius: 45px;
     margin-top: 10px;
     padding: 25px 25px;
-    header {
+    &__header {
       font-weight: bold;
       margin-bottom: 15px;
       display: flex;
       text-transform: uppercase;
     }
-    footer {
+    &__footer {
       margin-top: 20px;
       display: flex;
       align-items: center;
       min-width: 100px;
       font-weight: bold;
       font-size: 22px;
-      .like {
+      &__like {
         height: 40px;
         width: 40px;
         background-color: #fefefe;
