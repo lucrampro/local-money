@@ -59,6 +59,7 @@ Vue.component('a-switch-button', Atoms.ASwitchButtoon);
 // Molecules
 console.warn(Modules, 'Modules');
 Vue.component('m-input', Modules.MInputText);
+Vue.component('m-textarea', Modules.MTextarea);
 Vue.component('m-radio', Modules.MRadio);
 Vue.component('m-navbarre', Modules.MNavbarre);
 Vue.component('m-menu', Modules.MMenu);

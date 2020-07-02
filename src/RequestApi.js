@@ -94,11 +94,12 @@ class ApiRequest extends EventDispatcher {
        * @return {Promise}
        */
       post: (path, playload) => new Promise((resolve, reject) => {
+        playload.Headers = playload.Headers ?  playload.Headers : {}
+        playload.Headers['Content-Type'] = playload.Headers['Content-Type'] ? playload.Headers['Content-Type'] : 'application/json';
         fetch(path, {
           ...init,
-          ...playload.body,
-          headers: new Headers({ 'Content-Type': 'application/json', ...playload.Headers }),
-          body: JSON.stringify(playload),
+          headers: new Headers(playload.Headers),
+          body: JSON.stringify(playload.body,),
           method: 'post',
         }).then((res) => {
           if (res.ok) {
@@ -130,7 +131,7 @@ class ApiRequest extends EventDispatcher {
    * @param  {Object} loginInformaion information waiting , mail and passworld
    */
   login(loginInformaion) {
-    return this.post('/login_check', loginInformaion)
+    return this.post('/login_check', {body : loginInformaion })
       .then((res) => {
         this.dispatchEvent(new CustomEvent('session-user-login', { detail: res }));
         return res;
@@ -142,7 +143,7 @@ class ApiRequest extends EventDispatcher {
    * @param  {Object} loginInformaion information waiting , mail and passworld
    */
   register(registerPlayload) {
-    return this.post('/register', registerPlayload)
+    return this.post('/register', )
       .then((res) => {
         this.dispatchEvent(new CustomEvent('user-registred', { detail: registerPlayload }));
         return res;
@@ -167,7 +168,7 @@ class ApiRequest extends EventDispatcher {
    * @param  {String} type type is particular or company
    */
   details(type) {
-    return this.get(`/${type}/account`, { Headers: { Authorization: `Bearer ${this.token}` } })
+    return this.get(`/${type}/account`, { Headers: { Authorization: `Bearer ${this.token}` , 'Content-Type': 'application/x-www-form-urlencoded'} })
       .then((res) => {
         this.dispatchEvent(new CustomEvent('session-user-details', { detail: res }));
         return res;
@@ -194,6 +195,17 @@ class ApiRequest extends EventDispatcher {
       Headers: { Authorization:`Bearer ${this.token}` },
     }).then((response) => {
       this.dispatchEvent(new CustomEvent('session-user-companypost', { detail: response}));
+      return response
+    })
+      .catch((response) => response);
+  }
+  
+  transferMoney(transactionInformation) {
+    return this.post('/transfer-money', {
+      Headers: { Authorization:`Bearer ${this.token}` },
+      body : transactionInformation,
+    }).then((response) => {
+      this.getMyTransaction()
       return response
     })
       .catch((response) => response);

@@ -7,7 +7,7 @@
           <div class="messageConfirmation">
             <p>Êtes-vous sûr de vouloir {{transferedMoney}} MLC, à {{beneficiaryAccountId}} ( {nom du bénéficier} ) ?</p>
           </div>
-          <template v-slot:bottom>
+          <template  v-slot:bottom>
             <a-button @click.native="submitForm()" width="100%">OUI</a-button>
             <a-button @click.native="closePopPin()" background="white" color="$primary-color" width="100%">NON</a-button>
           </template>
@@ -23,7 +23,7 @@
     />
     <l-transaction-form @formSubmit="submit()" boxShadow="none" backgroundColor="$gray-background">
       <template>
-        <a-button @click.native="goToPreviousPage()" background="white" color="$primary-color">></a-button>
+        <a-button v-if="canGoToPreviousPage" @click.native="goToPreviousPage()" background="white" color="$primary-color">></a-button>
         <router-view
           :initFormData="{...formDatas}"
           @updateForm="( formData ) => { updateForm(formData) }"
@@ -39,6 +39,9 @@
   </div>
 </template>
 <script>
+
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
@@ -97,15 +100,22 @@ export default {
       this.popins[this.mode].state = false;
     },
     submitForm() {
-      console.log('submit form');
+      this.formDatas.emiterAccountId = this.transferId;
+      this.$Api.transferMoney(this.formDatas);
     },
   },
   computed: {
+    ...mapGetters([
+      'transferId',
+    ]),
     transferedMoney() {
       return this.formDatas && this.formDatas.transferedMoney;
     },
     beneficiaryAccountId() {
       return this.formDatas && this.formDatas.beneficiaryAccountId;
+    },
+    canGoToPreviousPage() {
+      return this.$route.name !== 'ConvertMoney' && this.$route.name !== 'SendMoney';
     },
     nextName() {
       return this.$route.meta.nextName;
