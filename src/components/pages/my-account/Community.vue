@@ -1,6 +1,6 @@
 <template>
   <div class="community">
-    <actuality-filter/>
+    <actuality-filter> <template> Mon fils d'actualité </template> </actuality-filter>
     <!-- HERE IS PLACE FOR INPUT TO COMPANY SEND POST  -->
      <l-wrapper-block>
       <m-card-post v-for="(items, index) in companyPost" :key="index">
