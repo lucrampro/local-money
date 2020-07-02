@@ -45,11 +45,11 @@ export default {
           functionBind: () => { this.switchPage('Commerce'); },
         },
         {
-          text: 'Mon Profile',
+          text: 'Mon profil',
           functionBind: () => { this.switchPage('MyContact'); },
         },
         {
-          text: 'Changer de profile',
+          text: 'Changer de profil',
           functionBind: () => { this.switchPage(''); },
         },
         {

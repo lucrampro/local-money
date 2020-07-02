@@ -62,7 +62,7 @@ console.warn(Modules, 'Modules');
 Vue.component('m-input', Modules.MInputText);
 Vue.component('m-textarea', Modules.MTextarea);
 Vue.component('m-radio', Modules.MRadio);
-Vue.component('m-navbarre', Modules.MNavbarre);
+Vue.component('m-navbar', Modules.MnavBar);
 Vue.component('m-menu', Modules.MMenu);
 Vue.component('m-transaction', Modules.MTransaction);
 Vue.component('m-card-transaction', Modules.MCardTransaction);

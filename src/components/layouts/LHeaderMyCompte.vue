@@ -31,7 +31,7 @@ export default {
   }
 }
 
-::v-deep .wrapperProfilePicture {
+::v-deep .wrapperprofilPicture {
   transform: scale(0.7);
 }
 </style>

@@ -5,7 +5,7 @@
     <div class="myAccountContenu">
       <router-view />
     </div>
-    <m-navbarre :navPages="navStates" :currentPageName="this.$router.currentRoute.name"/>
+    <m-navbar :navPages="navStates" :currentPageName="this.$router.currentRoute.name"/>
   </div>
 </template>
 
