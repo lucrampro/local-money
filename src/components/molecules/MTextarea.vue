@@ -1,7 +1,7 @@
 <template>
   <div class="mTextarea">
     <label :for="name" class="px-1 text-sm text-gray-600">{{placeholder}}</label>
-    <textarea :id="name" ref="input" :name="name" :maxlength="maxlength" :rules="rules" :placeholder="exemple" v-model="model" />
+    <textarea :id="name" ref="input" :name="name" :maxlength="maxlength" :placeholder="exemple" v-model="model" />
     <span class="errorMessage">{{errors[0]}}</span>
   </div>
 </template>

@@ -173,6 +173,18 @@ class ApiRequest extends EventDispatcher {
       .catch((res) => res);
   }
 
+  putPost(playload) {
+    return new Promise((resolve, reject) => {
+      return this.post('/posts/create', {
+        Headers: { Authorization:`Bearer ${this.token}` },
+        body : playload,
+      }).then((response) => {
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
+  }
+
   /**
    * allow to get the solde of adhérent
    * @param  {String} type type is particular or company

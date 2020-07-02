@@ -1,8 +1,10 @@
 <template>
  <div class="actuality-filter">
-   <p>Mon fils d'actualité</p>
+   <p>
+     <slot></slot>
+   </p>
    <div class="wrapper-filter">
-    <filter-post v-for="(items, index) in filterArray" :key="index"> {{ items.text }} </filter-post>
+    <filter-post v-for="(items, index) in $props.filters" :key="index"> {{ items.text }} </filter-post>
    </div>
 </div>
 </template>
@@ -24,6 +26,16 @@ export default {
   },
   components: {
     FilterPost,
+  },
+  props: {
+    filters: {
+      default: [
+        { text: 'Tous' },
+        { text: 'Les nouveaux adhérents' },
+        { text: 'Mes commerçants préférés' },
+        { text: 'Les actualité de la région' },
+      ],
+    },
   },
 };
 </script>
