@@ -1,11 +1,7 @@
 <template>
   <div class="myAccount">
+    <l-header-myCompte :name="userFirstName" />
     <m-menu :currentPageName="this.$router.currentRoute.name" @updataState="(newState) => {navMenuState = newState}" :isActive="navMenuState" />
-    <div @click="navMenuState = true" class="burger__menu">
-      <div>____</div>
-      <div>____</div>
-      <div>____</div>
-    </div>
     <div class="myAccountContenu">
       <router-view />
     </div>
@@ -23,6 +19,8 @@ import homeDefault from '@/assets/img/navbar/home-orange.png';
 import homeSelected from '@/assets/img/navbar/home-white.png';
 import transactionDefault from '@/assets/img/navbar/transaction-orange.png';
 import transactionSelected from '@/assets/img/navbar/transaction-white.png';
+import menuVertical from '@/assets/img/navbar/carbon_overflow-menu-vertical.png';
+
 import { mapGetters } from 'vuex';
 
 export default {
@@ -30,26 +28,36 @@ export default {
   data() {
     return {
       navMenuState: false,
+
       navStates: [
         {
+          functionBind: () => { this.switchPage('Home'); },
           pageNameBind: 'Home',
           defaultImage: homeDefault,
           selectedImage: homeSelected,
         },
         {
+          functionBind: () => { this.switchPage('Commerce'); },
           pageNameBind: 'Commerce',
           defaultImage: commerceDefault,
           selectedImage: commerceSelected,
         },
         {
+          functionBind: () => { this.switchPage('Community'); },
           pageNameBind: 'Community',
           defaultImage: communityDefault,
           selectedImage: communitySelected,
         },
         {
+          functionBind: () => { this.switchPage('MyTransaction'); },
           pageNameBind: 'MyTransaction',
           defaultImage: transactionDefault,
           selectedImage: transactionSelected,
+        },
+        {
+          functionBind: () => { this.navMenuState = true; },
+          defaultImage: menuVertical,
+          selectedImage: menuVertical,
         },
       ],
     };
@@ -57,12 +65,46 @@ export default {
   computed: {
     ...mapGetters([
       'compteType',
+      'userToken',
+      'userFirstName',
     ]),
   },
+  methods: {
+    switchPage(pageName) {
+      if (this.currentPageName !== pageName) {
+        this.$router.push({ name: pageName });
+      }
+    },
+
+    getDetail() {
+      if (this.compteType) {
+        this.$Api.details(this.compteType)
+          .then(() => {
+            console.log('ok');
+          })
+          .catch(() => {
+            this.$store.dispatch('reset'); this.$router.push('Register');
+          });
+      }
+      // else {
+      //   this.$Api.getUserInfo(this.userToken)
+      //     .then(() => {
+      //       this.getDetail();
+      //     })
+      //     .catch(() => {
+      //       this.$store.dispatch('reset'); this.$router.push('Register');
+      //     });
+      // }
+    },
+  },
   mounted() {
-    this.$Api.details(this.compteType);
+    this.getDetail();
+    this.$Api.putPost({ title: 'wesh', content: 'toto' });
   },
   watch: {
+    compteType() {
+      this.getDetail();
+    },
     $route() {
       this.navMenuState = false;
     },
@@ -73,7 +115,12 @@ export default {
 
 <style lang="scss" scoped>
 .myAccountContenu {
-  padding: 0 20px;
+  /* padding: 0 20px; */
+}
+
+.myAccount {
+  padding: 0px 10px;
+  padding-bottom: 60px;
 }
 
 .burger__menu {

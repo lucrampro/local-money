@@ -46,7 +46,7 @@ export default {
         },
         {
           text: 'Mon Profile',
-          functionBind: () => { this.switchPage(''); },
+          functionBind: () => { this.switchPage('MyContact'); },
         },
         {
           text: 'Changer de profile',
@@ -54,7 +54,7 @@ export default {
         },
         {
           text: 'Donner de mes nouvelles',
-          functionBind: () => { this.switchPage(''); },
+          functionBind: () => { this.switchPage('SendPost'); },
         },
         {
           text: 'Mes Favoris',

@@ -1,11 +1,11 @@
-const FormInscriptionPages = {
+const FormMixin = {
   created() {
     const { initFormData } = this;
     /* eslint-disable */
-    for (const playloadKey in initFormData) {
-      this[playloadKey] = initFormData[`${playloadKey}`]
+    for (const payloadKey in initFormData) {
+      this[payloadKey] = initFormData[`${payloadKey}`]
       
-      console.log( this[playloadKey] , initFormData[`${playloadKey}`])
+      console.log( this[payloadKey] , initFormData[`${payloadKey}`])
     }
     console.log(initFormData)
     /* eslint-enable */
@@ -29,4 +29,4 @@ const FormInscriptionPages = {
   },
 };
 
-export default FormInscriptionPages;
+export default FormMixin;

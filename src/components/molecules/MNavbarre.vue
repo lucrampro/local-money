@@ -3,7 +3,7 @@
     <a-navbar-picto
     v-for="(pageIcon, index) in navPages"
     :key="'icone_nave_' + index"
-    @click.native="switchPage(pageIcon.pageNameBind)"
+    @click.native="pageIcon.functionBind()"
     :isSelected="currentPageName === pageIcon.pageNameBind"
     :imgs="{
       default: pageIcon.defaultImage,
@@ -24,13 +24,6 @@ export default {
       type: String,
     },
   },
-  methods: {
-    switchPage(nextPageName) {
-      if (this.currentPageName !== nextPageName) {
-        this.$router.push({ name: nextPageName });
-      }
-    },
-  },
 };
 </script>
 
@@ -41,6 +34,7 @@ export default {
   background-color: #f5f5f5;
   position: fixed;
   bottom: 0;
+  left: 0;
   display: flex;
   justify-content: space-around;
   align-items: center;

@@ -9,7 +9,7 @@
 </template>
 <script>
 
-import FormInscriptionPages from './inscriptionMixin';
+import FormMixin from '@/mixins/formMixin';
 
 export default {
   name: 'InformationContact',
@@ -18,7 +18,7 @@ export default {
       siret: '',
     };
   },
-  mixins: [FormInscriptionPages],
+  mixins: [FormMixin],
   watch: {
     siret(newVal) {
       this.$emit('updateForm', { siret: newVal });

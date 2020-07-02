@@ -18,7 +18,7 @@
 </template>
 <script>
 
-import FormInscriptionPages from './inscriptionMixin';
+import FormMixin from '@/mixins/formMixin';
 
 export default {
   name: 'InformationName',
@@ -30,7 +30,7 @@ export default {
       zipCode: '',
     };
   },
-  mixins: [FormInscriptionPages],
+  mixins: [FormMixin],
   watch: {
     city(newVal) {
       this.$emit('updateForm', { city: newVal });

@@ -1,0 +1,46 @@
+<template>
+    <div
+      class="LTransactionForm"
+      :style="{ 'box-shadow' : $props.boxShadow ,'background-color' : currentBackgroundColor  }"
+    >
+      <div class="header">
+        <slot class="title" name="header"></slot>
+      </div>
+      <form action v-on:submit.prevent="submit()">
+        <slot></slot>
+        <slot name="bottom"></slot>
+      </form>
+    </div>
+</template>
+
+<script>
+export default {
+  name: 'LTransactionForm',
+  props: {
+    backgroundColor: {
+      default: 'white',
+    },
+    boxShadow: {
+      default: '0px 0px 20px rgba(0, 0, 0, 0.10)',
+    },
+  },
+  computed: {
+    currentBackgroundColor() {
+      return this.$styleGuild.find(this.$props.backgroundColor);
+    },
+  },
+  methods: {
+    submit() {
+      this.$emit('formSubmit');
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.LTransactionForm {
+  border-radius: 35px;
+  padding: 40px 25px;
+  margin: 10px 0px;
+}
+</style>

@@ -1,10 +1,6 @@
 <template>
   <div class="headerInformation">
-    <div class="wrapperProfilePhoto">
-      <div class="profilePhoto">
-        <p>{{ $props.name[0] }}</p>
-      </div>
-    </div>
+    <a-user-picture size="20px">{{ $props.name[0] }}</a-user-picture>
     <div class="welcomeMessage">
       <h1>Bonjour <span class="name">{{ $props.name }}</span></h1>
       <p>Bienvenue sur votre espace 😁 !</p>
@@ -13,6 +9,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'HeaderInformation',
   props: {
@@ -28,7 +25,7 @@ export default {
   .headerInformation {
     display: flex;
     align-items: center;
-    .wrapperProfilePhoto {
+    .wrapperProfilePicture {
       margin-right: 10px;
       height: 70px;
       width: 70px;
@@ -37,7 +34,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      .profilePhoto {
+      .profilePicture {
         background-color: #D16228;
         border-radius: 50%;
         height: 90%;

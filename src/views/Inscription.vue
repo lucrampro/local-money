@@ -32,12 +32,12 @@ export default {
     };
   },
   methods: {
-    formatForm(playloadForm) {
-      playloadForm = JSON.parse(JSON.stringify(playloadForm));
-      if (playloadForm.birthdate) {
-        playloadForm.birthdate = playloadForm.birthdate.replace(/-/g, '/');
+    formatForm(payloadForm) {
+      payloadForm = JSON.parse(JSON.stringify(payloadForm));
+      if (payloadForm.birthdate) {
+        payloadForm.birthdate = payloadForm.birthdate.replace(/-/g, '/');
       }
-      return playloadForm;
+      return payloadForm;
     },
     toNextPage() {
       if (this.formValid) {
@@ -69,6 +69,9 @@ export default {
     nextPath() {
       return this.$route.meta.nextPath;
     },
+    previousPath() {
+      return this.$route.meta.previousPath;
+    },
     subText() {
       return this.$route.meta.subText;
     },
@@ -77,9 +80,6 @@ export default {
     },
     title() {
       return this.$route.meta.title;
-    },
-    previousPath() {
-      return this.$route.meta.previousPath;
     },
   },
 };
