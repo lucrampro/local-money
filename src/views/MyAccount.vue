@@ -1,5 +1,6 @@
 <template>
   <div class="myAccount">
+    <l-header-myCompte :name="userFirstName" />
     <m-menu :currentPageName="this.$router.currentRoute.name" @updataState="(newState) => {navMenuState = newState}" :isActive="navMenuState" />
     <div @click="navMenuState = true" class="burger__menu">
       <div>____</div>
@@ -23,6 +24,8 @@ import homeDefault from '@/assets/img/navbar/home-orange.png';
 import homeSelected from '@/assets/img/navbar/home-white.png';
 import transactionDefault from '@/assets/img/navbar/transaction-orange.png';
 import transactionSelected from '@/assets/img/navbar/transaction-white.png';
+import menuVertical from '@/assets/img/navbar/carbon_overflow-menu-vertical.png';
+
 import { mapGetters } from 'vuex';
 
 export default {
@@ -30,26 +33,32 @@ export default {
   data() {
     return {
       navMenuState: false,
+
       navStates: [
         {
-          pageNameBind: 'Home',
+          functionBind: () => { this.switchPage('Home'); },
           defaultImage: homeDefault,
           selectedImage: homeSelected,
         },
         {
-          pageNameBind: 'Commerce',
+          functionBind: () => { this.switchPage('Commerce'); },
           defaultImage: commerceDefault,
           selectedImage: commerceSelected,
         },
         {
-          pageNameBind: 'Community',
+          functionBind: () => { this.switchPage('Community'); },
           defaultImage: communityDefault,
           selectedImage: communitySelected,
         },
         {
-          pageNameBind: 'MyTransaction',
+          functionBind: () => { this.switchPage('MyTransaction'); },
           defaultImage: transactionDefault,
           selectedImage: transactionSelected,
+        },
+        {
+          functionBind: () => { this.navMenuState = true; },
+          defaultImage: menuVertical,
+          selectedImage: menuVertical,
         },
       ],
     };
@@ -58,9 +67,16 @@ export default {
     ...mapGetters([
       'compteType',
       'userToken',
+      'userFirstName',
     ]),
   },
   methods: {
+    switchPage(pageName) {
+      if (this.currentPageName !== pageName) {
+        this.$router.push({ name: pageName });
+      }
+    },
+
     getDetail() {
       if (this.compteType) {
         this.$Api.details(this.compteType)
@@ -84,6 +100,7 @@ export default {
   },
   mounted() {
     this.getDetail();
+    this.$Api.putPost({ title: 'wesh', content: 'toto' });
   },
   watch: {
     compteType() {
@@ -100,6 +117,11 @@ export default {
 <style lang="scss" scoped>
 .myAccountContenu {
   /* padding: 0 20px; */
+}
+
+.myAccount {
+  padding: 0px 10px;
+  padding-bottom: 60px;
 }
 
 .burger__menu {

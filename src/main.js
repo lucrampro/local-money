@@ -55,6 +55,7 @@ Vue.component('a-submit-button', Atoms.ASubmitButton);
 Vue.component('a-navbar-picto', Atoms.ANavbarPicto);
 Vue.component('a-picto', Atoms.APicto);
 Vue.component('a-switch-button', Atoms.ASwitchButtoon);
+Vue.component('a-user-picture', Atoms.AUserPicture);
 
 // Molecules
 console.warn(Modules, 'Modules');
@@ -75,6 +76,7 @@ Vue.component('l-regitster', Layouts.LRegister);
 Vue.component('l-overlay', Layouts.LOverlay);
 Vue.component('l-wrapper-block', Layouts.LWrapperBlock);
 Vue.component('l-transaction-form', Layouts.LTransactionForm);
+Vue.component('l-header-myCompte', Layouts.LHeaderMyCompte);
 
 // Organisme
 Vue.component('o-transaction-input', Organisme.OTransactionInput);
