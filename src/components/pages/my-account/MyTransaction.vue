@@ -2,7 +2,7 @@
   <l-wrapper-block background="black">
     <template v-slot:title>Mes commerçants préférés</template>
     <template v-slot:default>
-      <div v-for="(transactionDay, index ) in lastTransaction" :key="index">
+      <div v-for="(transactionDay, index ) in transactions" :key="index">
         <p>{{ transactionDay.date }}</p>
         <m-card-transaction v-for="(transaction, index) in transactionDay.transaction" :key="index"
         :name="`utilisateur ${transaction.id}`" :date="transactionDay.date" :sum="transaction.transfered_money" ></m-card-transaction>
@@ -17,15 +17,15 @@ import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
-      lastTransaction: [],
     };
   },
   mounted() {
-    this.$Api.getMyTransaction().then((response) => { this.lastTransaction = response; });
-    setTimeout(() => { console.log('maybe is ok', this.lastTransaction); }, 3000);
+    this.$Api.getMyTransaction()
+      .then((response) => response);
   },
   computed: {
     ...mapGetters([
+      'transactions',
       'userToken',
       'userFirstName',
       'compteType',

@@ -4,7 +4,7 @@
       <template v-slot:title >
       <p>Le solde de votre compte</p>
       </template>
-      <p class="mySolde">1200MLC</p>
+      <p class="mySolde">{{solde}} MLC</p>
       <a-button  width="100%" >Fair un envoi</a-button>
       <a-button  width="100%" background="#D16228"> Convertir</a-button>
     </l-wrapper-block>
@@ -12,8 +12,16 @@
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'MyMoney',
+  computed: {
+    ...mapGetters([
+      'solde',
+    ]),
+  },
 };
 </script>
 
