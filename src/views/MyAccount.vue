@@ -2,11 +2,6 @@
   <div class="myAccount">
     <l-header-myCompte :name="userFirstName" />
     <m-menu :currentPageName="this.$router.currentRoute.name" @updataState="(newState) => {navMenuState = newState}" :isActive="navMenuState" />
-    <div @click="navMenuState = true" class="burger__menu">
-      <div>____</div>
-      <div>____</div>
-      <div>____</div>
-    </div>
     <div class="myAccountContenu">
       <router-view />
     </div>

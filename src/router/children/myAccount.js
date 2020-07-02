@@ -54,17 +54,14 @@ export default [
         requireAuth: true,
       },
     },
-
-
     {
-      path: 'confirmation',
-      component: () => import('../../components/pages/my-account/ConfirmPage.vue'),
-      name: 'Confirmation',
+      path: 'mon-profil',
+      component: () => import('../../components/pages/my-account/MyProfile.vue'),
+      name: 'MyProfile',
       meta: {
         requireAuth: true,
       },
     },
-
   ];
   
 /* eslint-enable */
