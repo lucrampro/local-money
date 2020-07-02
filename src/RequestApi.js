@@ -225,6 +225,16 @@ class ApiRequest extends EventDispatcher {
     })
       .catch((response) => response);
   }
+
+  getCompanyList() {
+    return this.get('/companies', {
+      Headers: { Authorization:`Bearer ${this.token}` },
+    }).then((response) => {
+      this.dispatchEvent(new CustomEvent('companies-list', { detail: response}));
+      return response
+    })
+      .catch((response) => response);
+  }
   
   transferMoney(transactionInformation) {
     return new Promise((resolve, reject) => {

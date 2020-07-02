@@ -1,6 +1,15 @@
 <template>
   <div>
-    <ActualityFilter :filters="filtersArray"/>
+    <ActualityFilter :filters="filtersArray">
+      <template> Les entreprises du réseaux  </template>
+    </ActualityFilter>
+    <l-wrapper-block>
+      <m-card-post>
+        <template v-slot:header> toto </template>
+        <template v-slot:main> toto </template>
+        <template> </template>
+      </m-card-post>
+    </l-wrapper-block>
   </div>
 </template>
 
@@ -20,7 +29,11 @@ export default {
         { text: 'Commerçants' },
         { text: 'Favoris' },
       ],
+      companyList: [],
     };
+  },
+  mounted() {
+    this.$Api.getCompanyList().then((response) => { this.companyList = response; });
   },
 };
 </script>
