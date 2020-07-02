@@ -70,14 +70,14 @@ class ApiRequest extends EventDispatcher {
       /**
        * done a call api with methode get
        * @param  {string} path path of request api
-       * @param  { Object } playload data send to the api header, ...ect
+       * @param  { Object } payload data send to the api header, ...ect
        * @return {Promise}
        */
-      get: (path, playload) => new Promise((resolve, reject) => {
+      get: (path, payload) => new Promise((resolve, reject) => {
         fetch(path, {
           ...init,
-          ...playload.body,
-          headers: new Headers({ ...playload.Headers }),
+          ...payload.body,
+          headers: new Headers({ ...payload.Headers }),
           method: 'GET',
         }).then((res) => {
           if (res.ok) {
@@ -92,16 +92,16 @@ class ApiRequest extends EventDispatcher {
       /**
        * done a call api with methode post
        * @param  {string} path path of request api
-       * @param  { Object } playload data send to the api header, ...ect
+       * @param  { Object } payload data send to the api header, ...ect
        * @return {Promise}
        */
-      post: (path, playload) => new Promise((resolve, reject) => {
-        playload.Headers = playload.Headers ?  playload.Headers : {}
-        playload.Headers['Content-Type'] = playload.Headers['Content-Type'] ? playload.Headers['Content-Type'] : 'application/json';
+      post: (path, payload) => new Promise((resolve, reject) => {
+        payload.Headers = payload.Headers ?  payload.Headers : {}
+        payload.Headers['Content-Type'] = payload.Headers['Content-Type'] ? payload.Headers['Content-Type'] : 'application/json';
         fetch(path, {
           ...init,
-          headers: new Headers(playload.Headers),
-          body: JSON.stringify(playload.body,),
+          headers: new Headers(payload.Headers),
+          body: JSON.stringify(payload.body,),
           method: 'post',
         }).then((res) => {
           if (res.ok) {
@@ -152,10 +152,10 @@ class ApiRequest extends EventDispatcher {
    * allow to get a token of user and set on the store
    * @param  {Object} loginInformaion information waiting , mail and passworld
    */
-  register(registerPlayload) {
-    return this.post('/register', {body : registerPlayload})
+  register(registerPayload) {
+    return this.post('/register', {body : registerPayload})
       .then((res) => {
-        this.dispatchEvent(new CustomEvent('user-registred', { detail: registerPlayload }));
+        this.dispatchEvent(new CustomEvent('user-registred', { detail: registerPayload }));
         return res;
       }).catch((res) => res);
   }
@@ -228,11 +228,11 @@ class ApiRequest extends EventDispatcher {
     })
   }
 
-  putPost(playload) {
+  putPost(payload) {
     return new Promise((resolve, reject) => {
       return this.post('/posts/create', {
         Headers: { Authorization:`Bearer ${this.token}` },
-        body : playload,
+        body : payload,
       }).then((response) => {
         return resolve(response)
       })
@@ -241,20 +241,20 @@ class ApiRequest extends EventDispatcher {
   }
 
   
-  get(path, playload) {
-    return this.request.get(this.uri + (path || ''), playload || {});
+  get(path, payload) {
+    return this.request.get(this.uri + (path || ''), payload || {});
   }
 
-  post(path, playload) {
-    return this.request.post(this.uri + (path || ''), playload || {});
+  post(path, payload) {
+    return this.request.post(this.uri + (path || ''), payload || {});
   }
 
-  put(path, playload) {
-    return this.request.put(this.uri + (path || ''), playload || {});
+  put(path, payload) {
+    return this.request.put(this.uri + (path || ''), payload || {});
   }
 
-  del(path, playload) {
-    return this.request.delete(this.uri + (path || ''), playload || {});
+  del(path, payload) {
+    return this.request.delete(this.uri + (path || ''), payload || {});
   }
 }
 
