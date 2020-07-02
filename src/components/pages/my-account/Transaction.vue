@@ -48,7 +48,7 @@ export default {
       formDatas: {},
       formValid: false,
       previousName: [],
-      test: 'dfds',
+      mode: this.$route.name,
       popins: {
         SendMoney: {
           state: false,
@@ -57,7 +57,6 @@ export default {
           state: false,
         },
       },
-      mode: this.$route.name,
       switchButton: {
         leftText: {
           text: 'Envoyer',
