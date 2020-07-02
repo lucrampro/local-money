@@ -13,7 +13,7 @@ Link to of the site : [neymo](https://neymo.benjaminadida.fr/)
 
 >  ***Compilé le projet***  `npm run build`
 
-# Problèmatique
+### Problèmatique
 
 Neymo est une application bancaire de monnaie local, qui sera utilisé sur mobile.
 cette application sera souvent utilisée dans des conditions non optimum, avec des faibles connexions par exemple ou des coupures d'internet.
