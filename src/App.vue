@@ -23,6 +23,8 @@ export default {
   created() {
     if (this.userToken) {
       this.$Api.setToken(this.userToken);
+    } if (this.compteType) {
+      this.$Api.setUserType(this.compteType);
     }
 
     // listen whene a user come to log for set a token in the store, add after set other infomation

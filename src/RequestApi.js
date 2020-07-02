@@ -178,6 +178,7 @@ class ApiRequest extends EventDispatcher {
    * @param  {String} type type is particular or company
    */
   details(type = this.userType) {
+    console.log(type , this.userType)
     return new Promise((resolve, reject) => {
       return this.get(`/${type}/account`, { Headers: { Authorization: `Bearer ${this.token}` , 'Content-Type': 'application/x-www-form-urlencoded'} })
         .then((res) => {
@@ -196,7 +197,7 @@ class ApiRequest extends EventDispatcher {
     return this.get('/transactions', {
       Headers: { Authorization: `Bearer ${this.token}` },
     }).then((response) => {
-      this.details()
+      this.details(this.userType)
       this.dispatchEvent(new CustomEvent('session-user-transactions', { detail: response}));
       return response;
     })
