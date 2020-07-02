@@ -1,28 +1,32 @@
 <template>
-  <div>
-    <l-wrapper-block boxShadow="none" backgroundColor="$gray-background">
-      <p>Mon solde : {{solde}} MCL</p>
-      <p>Je souhaite faire un envoie d’une valeur de</p>
-      <o-transaction-input />
-      <div class="buttonWrapper">
-        <a-button width="100%">Suivant</a-button>
-      </div>
-    </l-wrapper-block>
-  </div>
+  <ValidationObserver ref="observer">
+    <div>
+        <p>Mon solde : {{solde}} MCL</p>
+        <p>Je souhaite acquérir :</p>
+        <o-transaction-input v-model="transferedMoney" :errors="{}" name="sum_to_send" />
+    </div>
+  </ValidationObserver>
 </template>
 <script>
 import { mapGetters } from 'vuex';
+import formMixin from '@/mixins/formMixin';
 
 export default {
+  data() {
+    return {
+      transferedMoney: '',
+    };
+  },
+  watch: {
+    transferedMoney(newVal) {
+      this.$emit('updateForm', { transferedMoney: newVal });
+    },
+  },
   computed: {
     ...mapGetters(['solde']),
   },
+  mixins: [formMixin],
 };
 </script>
 <style lang="scss" scoped>
-
-.buttonWrapper {
-  padding-top: 90px;
-  padding-bottom: 20px;
-}
 </style>
