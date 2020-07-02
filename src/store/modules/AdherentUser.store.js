@@ -5,7 +5,7 @@ const initialState = () => ({
   userFirstName: '',
   solde: null,
   transferId: null,
-  transaction: [],
+  transactions: [],
 });
 
 export default {
@@ -20,7 +20,7 @@ export default {
     compteType: (state) => state.compteType,
     solde: (state) => state.solde,
     transferId: (state) => state.transferId,
-    transactions: (state) => state.transferId,
+    transactions: (state) => state.transactions,
   },
 
   actions: {
@@ -42,8 +42,8 @@ export default {
     setTransferId(context, transferId) {
       context.commit('SET_TRANSFERID', transferId);
     },
-    setTransactions(context, transaction) {
-      context.commit('SET_TRANSACTIONS', transaction);
+    setTransactions(context, transactions) {
+      context.commit('SET_TRANSACTIONS', transactions);
     },
     reset({ commit }) {
       commit('RESET');
@@ -71,8 +71,8 @@ export default {
     SET_TRANSFERID(state, transferId) {
       state.transferId = transferId;
     },
-    SET_TRANSACTIONS(state, transaction) {
-      state.transaction = transaction;
+    SET_TRANSACTIONS(state, transactions) {
+      state.transactions = transactions;
     },
     RESET(state) {
       const newState = initialState();

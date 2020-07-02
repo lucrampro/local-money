@@ -46,7 +46,7 @@ export default {
         },
         {
           text: 'Mon Profile',
-          functionBind: () => { this.switchPage(''); },
+          functionBind: () => { this.switchPage('MyContact'); },
         },
         {
           text: 'Changer de profile',

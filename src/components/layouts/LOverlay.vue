@@ -29,8 +29,10 @@ export default {
 .overlay {
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   z-index: 100;
+  left: 0px;
+  top: 0px;
   .overlayContent {
     position: absolute;
     margin: auto;

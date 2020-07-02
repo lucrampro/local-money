@@ -47,7 +47,7 @@ export default [
       submit : true,
       previousPath: 'particular-contact-info',
       title:  'Inscription',
-      subText: 'Des information qui pour nous confirmer vôtre identitée',
+      subText: '',
     }
   },
 

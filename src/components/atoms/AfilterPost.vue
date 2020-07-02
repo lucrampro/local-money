@@ -1,8 +1,8 @@
 <template>
   <div class="filter">
-    <p>
+    <button>
       <slot></slot>
-    </p>
+    </button>
   </div>
 </template>
 
@@ -25,5 +25,8 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 5px 10px;
+  button {
+    outline: none;
+  }
 }
 </style>

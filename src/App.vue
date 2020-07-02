@@ -11,6 +11,7 @@ export default {
   name: 'app',
   computed: {
     ...mapGetters([
+      'transactions',
       'userToken',
       'userFirstName',
       'compteType',
@@ -22,6 +23,8 @@ export default {
   created() {
     if (this.userToken) {
       this.$Api.setToken(this.userToken);
+    } if (this.compteType) {
+      this.$Api.setUserType(this.compteType);
     }
 
     // listen whene a user come to log for set a token in the store, add after set other infomation
@@ -38,6 +41,8 @@ export default {
       this.$store.dispatch('setUserId', event.detail.id);
       this.$store.dispatch('setUserFirstName', event.detail.first_name);
       this.$store.dispatch('setCompteType', event.detail.type);
+
+      this.$Api.setUserType(event.detail.type);
 
       // save the user on Storage when this connected
       const oldTokens = JSON.parse(sessionStorage.getItem('token') || '{}');
@@ -59,9 +64,8 @@ export default {
       }).then((resLogin) => resLogin);
     });
 
-    this.$Api.addEventListener('session-user-transaction', (event) => {
-      console.log(event);
-      this.$store.dispatch('setTransferId', event.detail);
+    this.$Api.addEventListener('session-user-transactions', (event) => {
+      this.$store.dispatch('setTransactions', event.detail);
     });
   },
 };
