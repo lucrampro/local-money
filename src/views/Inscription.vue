@@ -32,12 +32,12 @@ export default {
     };
   },
   methods: {
-    formatForm(playloadForm) {
-      playloadForm = JSON.parse(JSON.stringify(playloadForm));
-      if (playloadForm.birthdate) {
-        playloadForm.birthdate = playloadForm.birthdate.replace(/-/g, '/');
+    formatForm(payloadForm) {
+      payloadForm = JSON.parse(JSON.stringify(payloadForm));
+      if (payloadForm.birthdate) {
+        payloadForm.birthdate = payloadForm.birthdate.replace(/-/g, '/');
       }
-      return playloadForm;
+      return payloadForm;
     },
     toNextPage() {
       if (this.formValid) {
