@@ -46,7 +46,7 @@ export default {
         },
         {
           text: 'Mon Profile',
-          functionBind: () => { this.switchPage(''); },
+          functionBind: () => { this.switchPage('MyProfile'); },
         },
         {
           text: 'Changer de profile',
