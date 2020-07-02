@@ -2,7 +2,52 @@
  * the plugin with all généric api call,
  * this is also same than axios, for do a call to the api
  */
-class ApiRequest extends EventTarget {
+/* eslint-disable */
+
+class EventDispatcher {
+
+  constructor() {
+      this._listeners = [];
+  }
+
+  hasEventListener(type, listener) {
+      return this._listeners.some(item => item.type === type && item.listener === listener);
+  }
+
+  addEventListener(type, listener) {
+      if (!this.hasEventListener(type, listener)) {
+          this._listeners.push({type, listener, options: {once: false}});
+      }
+      // console.log(`${this}-listeners:`,this._listeners);
+      return this
+  }
+
+  removeEventListener(type, listener) {
+      let index = this._listeners.findIndex(item => item.type === type && item.listener === listener);
+      if (index >= 0) this._listeners.splice(index, 1);
+//        console.log(`${this}-listeners:`, this._listeners);
+      return this;
+  }
+
+  removeEventListeners() {
+      this._listeners = [];
+      return this;
+  }
+
+  dispatchEvent(evt) {
+      this._listeners
+          .filter(item => item.type === evt.type)
+          .forEach(item => {
+              const {type, listener, options: {once}} = item;
+              listener.call(this, evt);
+              if (once === true) this.removeEventListener(type, listener)
+          });
+      // console.log(`${this}-listeners:`,this._listeners);
+      return this
+  }
+}
+
+class ApiRequest extends EventDispatcher {
   constructor() {
     super();
     this.uri = process.env.VUE_APP_BACK_END_URI;
@@ -49,11 +94,12 @@ class ApiRequest extends EventTarget {
        * @return {Promise}
        */
       post: (path, playload) => new Promise((resolve, reject) => {
+        playload.Headers = playload.Headers ?  playload.Headers : {}
+        playload.Headers['Content-Type'] = playload.Headers['Content-Type'] ? playload.Headers['Content-Type'] : 'application/json';
         fetch(path, {
           ...init,
-          ...playload.body,
-          headers: new Headers({ 'Content-Type': 'application/json', ...playload.Headers }),
-          body: JSON.stringify(playload),
+          headers: new Headers(playload.Headers),
+          body: JSON.stringify(playload.body,),
           method: 'post',
         }).then((res) => {
           if (res.ok) {
@@ -85,7 +131,7 @@ class ApiRequest extends EventTarget {
    * @param  {Object} loginInformaion information waiting , mail and passworld
    */
   login(loginInformaion) {
-    return this.post('/login_check', loginInformaion)
+    return this.post('/login_check', {body : loginInformaion })
       .then((res) => {
         this.dispatchEvent(new CustomEvent('session-user-login', { detail: res }));
         return res;
@@ -97,7 +143,7 @@ class ApiRequest extends EventTarget {
    * @param  {Object} loginInformaion information waiting , mail and passworld
    */
   register(registerPlayload) {
-    return this.post('/register', registerPlayload)
+    return this.post('/register', )
       .then((res) => {
         this.dispatchEvent(new CustomEvent('user-registred', { detail: registerPlayload }));
         return res;
@@ -122,12 +168,47 @@ class ApiRequest extends EventTarget {
    * @param  {String} type type is particular or company
    */
   details(type) {
-    return this.get(`/${type}/account`, { Headers: { Authorization: `Bearer ${this.token}` } })
+    return this.get(`/${type}/account`, { Headers: { Authorization: `Bearer ${this.token}` , 'Content-Type': 'application/x-www-form-urlencoded'} })
       .then((res) => {
         this.dispatchEvent(new CustomEvent('session-user-details', { detail: res }));
         return res;
       })
       .catch((res) => res);
+  }
+
+  /**
+   * get the last transaction
+   * @param {string} 
+   */
+  getMyTransaction() {
+    return this.get('/transactions', {
+      Headers: { Authorization: `Bearer ${this.token}` },
+    }).then((response) => {
+      this.dispatchEvent(new CustomEvent('session-user-transaction', { detail: response }));
+      return response;
+    })
+      .catch(((response) => response));
+  }
+
+  getCompanyPost() {
+    return this.get('/posts', {
+      Headers: { Authorization:`Bearer ${this.token}` },
+    }).then((response) => {
+      this.dispatchEvent(new CustomEvent('session-user-companypost', { detail: response}));
+      return response
+    })
+      .catch((response) => response);
+  }
+  
+  transferMoney(transactionInformation) {
+    return this.post('/transfer-money', {
+      Headers: { Authorization:`Bearer ${this.token}` },
+      body : transactionInformation,
+    }).then((response) => {
+      this.getMyTransaction()
+      return response
+    })
+      .catch((response) => response);
   }
 
   get(path, playload) {

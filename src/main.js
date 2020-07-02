@@ -15,6 +15,7 @@ import requestApi from './RequestApi';
 import styleGuild from './handlerColorPlugin';
 import Atoms from './components/atoms';
 import Modules from './components/molecules';
+import Organisme from './components/organisms';
 import Layouts from './components/layouts';
 import i18n from './i18n';
 
@@ -58,6 +59,7 @@ Vue.component('a-switch-button', Atoms.ASwitchButtoon);
 // Molecules
 console.warn(Modules, 'Modules');
 Vue.component('m-input', Modules.MInputText);
+Vue.component('m-textarea', Modules.MTextarea);
 Vue.component('m-radio', Modules.MRadio);
 Vue.component('m-navbarre', Modules.MNavbarre);
 Vue.component('m-menu', Modules.MMenu);
@@ -65,12 +67,17 @@ Vue.component('m-transaction', Modules.MTransaction);
 Vue.component('m-card-transaction', Modules.MCardTransaction);
 Vue.component('m-card-post', Modules.MCardPost);
 Vue.component('m-my-money', Modules.MMyMoney);
+Vue.component('o-transaction-input', Modules.MTransactionInput);
 
 // Layouts
 console.warn(Layouts, 'Layouts');
 Vue.component('l-regitster', Layouts.LRegister);
 Vue.component('l-overlay', Layouts.LOverlay);
 Vue.component('l-wrapper-block', Layouts.LWrapperBlock);
+Vue.component('l-transaction-form', Layouts.LTransactionForm);
+
+// Organisme
+Vue.component('o-transaction-input', Organisme.OTransactionInput);
 
 // global
 Vue.component('ValidationProvider', ValidationProvider);

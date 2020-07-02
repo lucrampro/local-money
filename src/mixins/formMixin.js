@@ -1,4 +1,4 @@
-const FormInscriptionPages = {
+const FormMixin = {
   created() {
     const { initFormData } = this;
     /* eslint-disable */
@@ -29,4 +29,4 @@ const FormInscriptionPages = {
   },
 };
 
-export default FormInscriptionPages;
+export default FormMixin;

@@ -1,14 +1,62 @@
 <template>
-<div>
-  <a-switch-button name="switch__page__transaction" v-model="mode" :leftText="switchButton.leftText" :rightText="switchButton.rightText" />
-  <router-view/>
-</div>
+  <div>
 
+    <l-overlay @clickOutSide="closePopPin()" :isActive="popinsOpen">
+      <div class="validationMessageContainer">
+        <l-wrapper-block backgroundColor="#F5F5F5">
+          <div class="messageConfirmation">
+            <p>Êtes-vous sûr de vouloir {{transferedMoney}} MLC, à {{beneficiaryAccountId}} ( {nom du bénéficier} ) ?</p>
+          </div>
+          <template  v-slot:bottom>
+            <a-button @click.native="submitForm()" width="100%">OUI</a-button>
+            <a-button @click.native="closePopPin()" background="white" color="$primary-color" width="100%">NON</a-button>
+          </template>
+        </l-wrapper-block>
+      </div>
+    </l-overlay>
+
+    <a-switch-button
+      name="switch__page__transaction"
+      v-model="mode"
+      :leftText="switchButton.leftText"
+      :rightText="switchButton.rightText"
+    />
+    <l-transaction-form @formSubmit="submit()" boxShadow="none" backgroundColor="$gray-background">
+      <template>
+        <a-button v-if="canGoToPreviousPage" @click.native="goToPreviousPage()" background="white" color="$primary-color">></a-button>
+        <router-view
+          :initFormData="{...formDatas}"
+          @updateForm="( formData ) => { updateForm(formData) }"
+          @updateFormValid="(val) => {formValid = val}"
+        />
+      </template>
+      <template v-slot:bottom>
+        <div class="buttonWrapper">
+          <a-button type="submit" width="100%">Suivant</a-button>
+        </div>
+      </template>
+    </l-transaction-form>
+  </div>
 </template>
 <script>
+
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
+      formDatas: {},
+      formValid: false,
+      previousName: [],
+      test: 'dfds',
+      popins: {
+        SendMoney: {
+          state: false,
+        },
+        ConvertMoney: {
+          state: false,
+        },
+      },
       mode: this.$route.name,
       switchButton: {
         leftText: {
@@ -24,15 +72,96 @@ export default {
   },
   watch: {
     mode(newPageName) {
-      this.$router.push({ name: newPageName });
+      if (newPageName === 'ConvertMoney' || newPageName === 'SendMoney') {
+        this.$router.push({ name: newPageName });
+      }
+    },
+  },
+  methods: {
+    updateForm(curentFormData) {
+      this.formDatas = {
+        ...this.formDatas,
+        ...curentFormData,
+      };
+    },
+    goToPreviousPage() {
+      this.$router.go(-1);
+    },
+    submit() {
+      if (this.formValid) {
+        if (this.nextName) {
+          this.$router.push({ name: this.nextName });
+        } else {
+          this.popins[this.mode].state = true;
+        }
+      }
+    },
+    closePopPin() {
+      this.popins[this.mode].state = false;
+    },
+    submitForm() {
+      this.formDatas.emiterAccountId = this.transferId;
+      this.$Api.transferMoney(this.formDatas);
+    },
+  },
+  computed: {
+    ...mapGetters([
+      'transferId',
+    ]),
+    transferedMoney() {
+      return this.formDatas && this.formDatas.transferedMoney;
+    },
+    beneficiaryAccountId() {
+      return this.formDatas && this.formDatas.beneficiaryAccountId;
+    },
+    canGoToPreviousPage() {
+      return this.$route.name !== 'ConvertMoney' && this.$route.name !== 'SendMoney';
+    },
+    nextName() {
+      return this.$route.meta.nextName;
+    },
+    popinsOpen() {
+      return this.popins.SendMoney.state || this.popins.ConvertMoney.state;
+    },
+    currentPopPin() {
+      return this.popins[this.mode];
     },
   },
 };
 </script>
 <style lang="scss" scoped>
+::v-deep .overlayContent {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  right: 0;
+  top: 0px;
+  bottom: 0px;
+}
+.validationMessageContainer {
+  min-width: 300px;
+  margin: auto;
+  height: 100%;
+  max-height: 373px;
+  z-index: 0;
+  .messageConfirmation {
+    margin: auto;
+    height: 62%;
+  }
+}
+
+::v-deep .wrapperBlock {
+  height: 100%;
+  max-width: 95vw;
+}
 
 ::v-deep .buttonSwitch {
   margin: 0 auto;
 }
 
+.buttonWrapper {
+  padding-top: 90px;
+  padding-bottom: 20px;
+}
 </style>

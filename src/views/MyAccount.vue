@@ -59,10 +59,20 @@ export default {
       'compteType',
     ]),
   },
+  methods: {
+    getDetail() {
+      if (this.compteType) {
+        this.$Api.details(this.compteType);
+      }
+    },
+  },
   mounted() {
-    this.$Api.details(this.compteType);
+    this.getDetail();
   },
   watch: {
+    compteType() {
+      this.getDetail();
+    },
     $route() {
       this.navMenuState = false;
     },
@@ -73,7 +83,7 @@ export default {
 
 <style lang="scss" scoped>
 .myAccountContenu {
-  padding: 0 20px;
+  /* padding: 0 20px; */
 }
 
 .burger__menu {

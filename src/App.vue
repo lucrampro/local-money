@@ -48,8 +48,7 @@ export default {
 
     // set infomation of user
     this.$Api.addEventListener('session-user-details', (event) => {
-      console.log(event);
-      this.$store.dispatch('setSolde', event.detail['available_ cash']);
+      this.$store.dispatch('setSolde', event.detail.available_cash);
       this.$store.dispatch('setTransferId', event.detail.account_id);
     });
 
@@ -58,6 +57,11 @@ export default {
         username: event.detail.email,
         password: event.detail.password,
       }).then((resLogin) => resLogin);
+    });
+
+    this.$Api.addEventListener('session-user-transaction', (event) => {
+      console.log(event);
+      this.$store.dispatch('setTransferId', event.detail);
     });
   },
 };

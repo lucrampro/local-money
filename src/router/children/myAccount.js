@@ -26,6 +26,7 @@ export default [
         requireAuth: true,
       },
     },
+    
     {
       path: 'transaction',
       component: () => import('../../components/pages/my-account/Transaction.vue'),
@@ -35,6 +36,7 @@ export default [
         requireAuth: true,
       },
     },
+
     {
       path: 'community',
       component: () => import('../../components/pages/my-account/Community.vue'),
@@ -43,6 +45,16 @@ export default [
         requireAuth: true,
       },
     },
+
+    {
+      path: 'je-donne-de-mes-nouvelles',
+      component: () => import('../../components/pages/my-account/SendPost.vue'),
+      name: 'SendPost',
+      meta: {
+        requireAuth: true,
+      },
+    },
+
   ];
   
 /* eslint-enable */

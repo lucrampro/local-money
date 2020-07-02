@@ -10,9 +10,9 @@ export default {
   computed: {
     buttonStyle() {
       return {
-        color: this.$props.color,
-        background: this.$props.background,
-        width: this.$props.width,
+        color: this.$styleGuild.find(this.$props.color),
+        background: this.$styleGuild.find(this.$props.background),
+        width: this.$styleGuild.find(this.$props.width),
       };
     },
   },

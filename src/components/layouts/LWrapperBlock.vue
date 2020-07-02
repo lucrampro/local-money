@@ -4,6 +4,7 @@
       <slot class="title" name="title"></slot>
     </p>
     <slot></slot>
+    <slot name="bottom"></slot>
   </div>
 </template>
 
