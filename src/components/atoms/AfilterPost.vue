@@ -1,8 +1,8 @@
 <template>
   <div class="filter">
-    <p>
+    <button>
       <slot></slot>
-    </p>
+    </button>
   </div>
 </template>
 
