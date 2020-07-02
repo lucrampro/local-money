@@ -1,5 +1,15 @@
 <template>
   <div>
-    Commerce
+
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+
+    };
+  },
+};
+</script>
