@@ -153,7 +153,7 @@ class ApiRequest extends EventDispatcher {
    * @param  {Object} loginInformaion information waiting , mail and passworld
    */
   register(registerPlayload) {
-    return this.post('/register', )
+    return this.post('/register', {body : registerPlayload})
       .then((res) => {
         this.dispatchEvent(new CustomEvent('user-registred', { detail: registerPlayload }));
         return res;
@@ -228,6 +228,19 @@ class ApiRequest extends EventDispatcher {
     })
   }
 
+  putPost(playload) {
+    return new Promise((resolve, reject) => {
+      return this.post('/posts/create', {
+        Headers: { Authorization:`Bearer ${this.token}` },
+        body : playload,
+      }).then((response) => {
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
+  }
+
+  
   get(path, playload) {
     return this.request.get(this.uri + (path || ''), playload || {});
   }

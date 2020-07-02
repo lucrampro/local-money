@@ -1,11 +1,11 @@
 <template>
   <div class="home">
-    <HeaderInformation/>
+    <HeaderInformation :name="userFirstName"/>
     <m-my-money></m-my-money>
     <l-wrapper-block>
-      <template v-slot:title > Mes dernieres transaction</template>
+      <template v-slot:title > Mes dernières transactions</template>
       <m-card-transaction v-for="(transaction, index) in lastTrasacton" :key="index" :name="`utilisateur ${transaction.id}`" :date="transaction.date" :sum="transaction.transfered_money" />
-      <template v-slot:bottom ><a-link class="link" @click.native="$router.push({name : 'MyTransaction'})">Voir touts mes transaction</a-link> </template>
+      <template v-slot:bottom ><a-link class="link" @click.native="$router.push({name : 'MyTransaction'})">Voir touts mes transactions</a-link> </template>
     </l-wrapper-block>
     <l-wrapper-block>
       <template v-slot:title >Mes commerçants préférés</template>
@@ -38,6 +38,7 @@ export default {
   computed: {
     ...mapGetters([
       'transactions',
+      'userFirstName',
     ]),
     lastTrasacton() {
       const lastTransaction = [];
@@ -62,9 +63,6 @@ export default {
   margin-right: 10px ;
 }
 
-.home {
-  padding: 60px 10px;
-}
 .link {
   margin: 3 auto;
   display: block;
