@@ -48,11 +48,12 @@ class EventDispatcher {
 }
 
 class ApiRequest extends EventDispatcher {
-  constructor() {
+  constructor(VUE) {
     super();
     this.uri = process.env.VUE_APP_BACK_END_URI;
     this.request = this._Api();
     this.token = '';
+    this.Vue = VUE
   }
 
   /**
@@ -168,12 +169,14 @@ class ApiRequest extends EventDispatcher {
    * @param  {String} type type is particular or company
    */
   details(type) {
-    return this.get(`/${type}/account`, { Headers: { Authorization: `Bearer ${this.token}` , 'Content-Type': 'application/x-www-form-urlencoded'} })
-      .then((res) => {
-        this.dispatchEvent(new CustomEvent('session-user-details', { detail: res }));
-        return res;
-      })
-      .catch((res) => res);
+    return new Promise((resolve, reject) => {
+      return this.get(`/${type}/account`, { Headers: { Authorization: `Bearer ${this.token}` , 'Content-Type': 'application/x-www-form-urlencoded'} })
+        .then((res) => {
+          this.dispatchEvent(new CustomEvent('session-user-details', { detail: res }));
+          return resolve(res);
+        })
+        .catch((res) => reject(res));
+    })
   }
 
   /**
