@@ -4,9 +4,9 @@
       <template> Les entreprises du réseaux  </template>
     </ActualityFilter>
     <l-wrapper-block>
-      <m-card-post>
-        <template v-slot:header> toto </template>
-        <template v-slot:main> toto </template>
+      <m-card-post v-for="(company, index) in companyList" :key="index"  >
+        <template v-slot:header> {{ company.company_name }} </template>
+        <template v-slot:main> Deescription: {{ company.category }} de {{ company.first_name }}</template>
         <template> </template>
       </m-card-post>
     </l-wrapper-block>
@@ -33,7 +33,12 @@ export default {
     };
   },
   mounted() {
-    this.$Api.getCompanyList().then((response) => { this.companyList = response; });
+    this.getCompanyList();
+  },
+  methods: {
+    getCompanyList() {
+      this.$Api.getCompanyList().then((response) => { this.companyList = response; });
+    },
   },
 };
 </script>
