@@ -58,7 +58,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .community {
-    padding-top: 50px;
-  }
 </style>
