@@ -53,6 +53,7 @@ class ApiRequest extends EventDispatcher {
     this.uri = process.env.VUE_APP_BACK_END_URI;
     this.request = this._Api();
     this.token = '';
+    this.userType = '';
     this.Vue = VUE
   }
 
@@ -127,6 +128,14 @@ class ApiRequest extends EventDispatcher {
     }
   }
 
+  setUserType (type) {
+    if (typeof type === 'string' && type.length) {
+      this.userType = type;
+    } else {
+      console.error('the type is not be on the good format');
+    }
+  }
+
   /**
    * allow to get a token of user and set on the store
    * @param  {Object} loginInformaion information waiting , mail and passworld
@@ -168,7 +177,7 @@ class ApiRequest extends EventDispatcher {
    * allow to get the solde of adhérent
    * @param  {String} type type is particular or company
    */
-  details(type) {
+  details(type = this.userType) {
     return new Promise((resolve, reject) => {
       return this.get(`/${type}/account`, { Headers: { Authorization: `Bearer ${this.token}` , 'Content-Type': 'application/x-www-form-urlencoded'} })
         .then((res) => {
@@ -187,7 +196,7 @@ class ApiRequest extends EventDispatcher {
     return this.get('/transactions', {
       Headers: { Authorization: `Bearer ${this.token}` },
     }).then((response) => {
-      this.dispatchEvent(new CustomEvent('session-user-transaction', { detail: response }));
+      this.details()
       return response;
     })
       .catch(((response) => response));
@@ -204,14 +213,17 @@ class ApiRequest extends EventDispatcher {
   }
   
   transferMoney(transactionInformation) {
-    return this.post('/transfer-money', {
-      Headers: { Authorization:`Bearer ${this.token}` },
-      body : transactionInformation,
-    }).then((response) => {
-      this.getMyTransaction()
-      return response
+    return new Promise((resolve, reject) => {
+      return this.post('/transfer-money', {
+        Headers: { Authorization:`Bearer ${this.token}` },
+        body : transactionInformation,
+      }).then((response) => {
+        this.getMyTransaction()
+        this.getUserInfo()
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
     })
-      .catch((response) => response);
   }
 
   get(path, playload) {
