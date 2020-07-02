@@ -197,6 +197,7 @@ class ApiRequest extends EventDispatcher {
       Headers: { Authorization: `Bearer ${this.token}` },
     }).then((response) => {
       this.details()
+      this.dispatchEvent(new CustomEvent('session-user-transactions', { detail: response}));
       return response;
     })
       .catch(((response) => response));

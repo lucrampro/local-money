@@ -62,7 +62,7 @@ export default {
       }).then((resLogin) => resLogin);
     });
 
-    this.$Api.addEventListener('session-user-transaction', (event) => {
+    this.$Api.addEventListener('session-user-transactions', (event) => {
       this.$store.dispatch('setTransactions', event.detail);
     });
   },
