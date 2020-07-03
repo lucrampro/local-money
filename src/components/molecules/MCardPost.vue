@@ -7,7 +7,7 @@
       <slot name="main"></slot>
     </div>
     <div class="cardPost__footer">
-        <Alike @click.native="onLikeClic" :isLiked="like"/>
+        <a-like @click.native="onLikeClic" :isLiked="like"/>
         <p>{{likes}}</p>
     </div>
   </div>
@@ -26,7 +26,7 @@ export default {
     };
   },
   components: {
-    Alike,
+    'a-like': Alike,
   },
   methods: {
     onLikeClic() {
@@ -34,7 +34,6 @@ export default {
       if (this.like === true) {
         this.likes += 1;
         this.$Api.putLike(this.idPost);
-        console.log('je suis id post', this.idPost);
       } else {
         this.likes -= 1;
         this.$Api.putDislike(this.idPost);
