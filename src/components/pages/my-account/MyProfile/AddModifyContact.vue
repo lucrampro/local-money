@@ -1,7 +1,7 @@
 <template>
   <l-form-myacount backgroundColor="$gray-background">
     <a-button @click.native="$router.go(-1)" background="white" color="$primary-color">></a-button>
-    <p>Avoir des contacts vous permet d’effectuer des transactions monétaires plus rapidement</p>
+    <p v-if="type === 'ajouter'">Avoir des contacts vous permet d’effectuer des transactions monétaires plus rapidement</p>
     <ValidationObserver>
       <ValidationProvider name="nom du bénéficiaire" rules="required|min:3" v-slot="{ errors }">
         <m-input v-model="name" :errors="errors" name="name" exemple="Marcel Duchamp">Nom du bénéficiaire</m-input>
@@ -12,7 +12,7 @@
     </ValidationObserver>
     <div>
       <a-button width="100%">Enregistrer</a-button>
-      <a-button width="100%" background="$secondary-color">Supprimer</a-button>
+      <a-button v-if="type === 'modifier'" width="100%" background="$secondary-color">Supprimer</a-button>
     </div>
   </l-form-myacount>
 </template>
@@ -21,8 +21,8 @@
 export default {
   data() {
     return {
-      name: '',
-      accountId: '',
+      name: this.$route.query.name || '',
+      accountId: this.$route.query.id || '',
     };
   },
   computed: {

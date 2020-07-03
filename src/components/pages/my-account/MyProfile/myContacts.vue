@@ -2,9 +2,9 @@
   <div>
     <l-wrapper-block backgroundColor="$gray-background">
       <div class="wrapperButton">
-        <a-button @click.native="$router.push({ name : 'AddModifyContact'})" width="100%" >Ajouter nouveau un contact</a-button>
+        <a-button @click.native="$router.push({ name : 'AddModifyContact', params: { type: 'ajouter' } })" width="100%" >Ajouter nouveau un contact</a-button>
       </div>
-      <m-contact-block contactName="cheik" />
+      <m-contact-block contactName="cheik"  @click.native="$router.push({ name : 'AddModifyContact', params: { type: 'modifier' },  query: { id: '34324', name: 'cheik' } })" />
     </l-wrapper-block>
   </div>
 </template>
