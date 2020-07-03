@@ -23,16 +23,16 @@ export default {
   computed: {
     ...mapGetters([
       'userFirstName',
+      'userId',
     ]),
   },
   mounted() {
-
   },
   methods: {
     getCompanyPost() {
       this.$Api.putPost(
         {
-          title: this.userFirstName,
+          title: 'title',
           content: this.companyPost,
         },
       );

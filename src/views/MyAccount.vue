@@ -115,7 +115,6 @@ export default {
   },
   mounted() {
     this.getDetail();
-    this.$Api.putPost({ title: 'wesh', content: 'toto' });
   },
   watch: {
     compteType() {
