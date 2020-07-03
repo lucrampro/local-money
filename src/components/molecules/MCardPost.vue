@@ -34,6 +34,7 @@ export default {
       if (this.like === true) {
         this.likes += 1;
         this.$Api.putLike(this.idPost);
+        console.log('je suis id post', this.idPost);
       } else {
         this.likes -= 1;
         this.$Api.putDislike(this.idPost);
@@ -44,7 +45,10 @@ export default {
     Numberlikes: {
       default: 6,
     },
-    idOfPost: {},
+    idOfPost: {
+      Type: String,
+      default: '',
+    },
     isLiked: {
       type: Boolean,
     },
