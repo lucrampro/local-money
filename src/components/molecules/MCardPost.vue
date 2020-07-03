@@ -7,19 +7,39 @@
       <slot name="main"></slot>
     </div>
     <div class="cardPost__footer">
-        <div class="cardPost__main__like"></div>
-        <p>{{ $props.numberLikes }}</p>
+        <Alike @click.native="onLikeClic" :isLiked="like"/>
+        <p>{{likes}}</p>
     </div>
   </div>
 </template>
 
 <script>
+import Alike from '../atoms/ALike.vue';
+
 export default {
   name: 'CardPost',
+  data() {
+    return {
+      like: false,
+      likes: this.$props.Numberlikes,
+    };
+  },
+  components: {
+    Alike,
+  },
+  methods: {
+    onLikeClic() {
+      this.like = !this.like;
+      if (this.like === true) {
+        this.likes += 1;
+      } else {
+        this.likes -= 1;
+      }
+    },
+  },
   props: {
-    numberLikes: {
-      type: Number,
-      default: 12,
+    Numberlikes: {
+      default: 6,
     },
   },
 };
@@ -46,7 +66,7 @@ export default {
       min-width: 100px;
       font-weight: bold;
       font-size: 22px;
-      &__like {
+      .cardPost__main__like {
         height: 40px;
         width: 40px;
         background-color: #fefefe;
