@@ -5,7 +5,7 @@
       <div class="validationMessageContainer">
         <l-wrapper-block backgroundColor="#F5F5F5">
           <div class="messageConfirmation">
-            <p>Êtes-vous sûr de vouloir {{transferedMoney}} MLC, à {{beneficiaryAccountId}} ( {nom du bénéficier} ) ?</p>
+            <p>Êtes-vous sûr de vouloir {{transferedMoney}} MLC, à {{beneficiaryAccountId}} ( {nom du bénéficiaire} ) ?</p>
           </div>
           <template  v-slot:bottom>
             <a-button @click.native="submitForm()" width="100%">OUI</a-button>
@@ -21,7 +21,7 @@
       :leftText="switchButton.leftText"
       :rightText="switchButton.rightText"
     />
-    <l-transaction-form @formSubmit="submit()" boxShadow="none" backgroundColor="$gray-background">
+    <l-form-myacount @formSubmit="submit()" boxShadow="none" backgroundColor="$gray-background">
       <template>
         <a-button v-if="canGoToPreviousPage" @click.native="goToPreviousPage()" background="white" color="$primary-color">></a-button>
         <router-view
@@ -35,7 +35,7 @@
           <a-button type="submit" width="100%">Suivant</a-button>
         </div>
       </template>
-    </l-transaction-form>
+    </l-form-myacount>
   </div>
 </template>
 <script>
@@ -48,7 +48,7 @@ export default {
       formDatas: {},
       formValid: false,
       previousName: [],
-      test: 'dfds',
+      mode: this.$route.name,
       popins: {
         SendMoney: {
           state: false,
@@ -57,7 +57,6 @@ export default {
           state: false,
         },
       },
-      mode: this.$route.name,
       switchButton: {
         leftText: {
           text: 'Envoyer',
@@ -101,7 +100,7 @@ export default {
     },
     submitForm() {
       this.formDatas.emiterAccountId = this.transferId;
-      this.$Api.transferMoney(this.formDatas).then(() => {
+      this.$Api.putTransferMoney(this.formDatas).then(() => {
         this.$store.dispatch('setConfirmPageMessage', 'Votre message a bien été posté !');
         this.$router.push({ name: 'Confirmation' });
       });

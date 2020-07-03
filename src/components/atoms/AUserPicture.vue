@@ -1,13 +1,13 @@
 <template>
-  <div class="wrapperProfilePicture">
-    <div class="profilePicture">
+  <div class="wrapperprofilPicture">
+    <div class="profilPicture">
       <p><slot></slot></p>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.wrapperProfilePicture {
+.wrapperprofilPicture {
   margin-right: 10px;
   height: 70px;
   width: 70px;
@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  .profilePicture {
+  .profilPicture {
     background-color: #d16228;
     border-radius: 50%;
     height: 90%;

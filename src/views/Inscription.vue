@@ -32,12 +32,12 @@ export default {
     };
   },
   methods: {
-    formatForm(playloadForm) {
-      playloadForm = JSON.parse(JSON.stringify(playloadForm));
-      if (playloadForm.birthdate) {
-        playloadForm.birthdate = playloadForm.birthdate.replace(/-/g, '/');
+    formatForm(payloadForm) {
+      payloadForm = JSON.parse(JSON.stringify(payloadForm));
+      if (payloadForm.birthdate) {
+        payloadForm.birthdate = payloadForm.birthdate.replace(/-/g, '/');
       }
-      return playloadForm;
+      return payloadForm;
     },
     toNextPage() {
       if (this.formValid) {
@@ -45,7 +45,7 @@ export default {
           this.$router.push({ path: `${this.formDatas.type}-${this.nextPath}` });
           this.formValid = false;
         } else {
-          this.$Api.register(this.formatForm(this.formDatas))
+          this.$Api.postRegister(this.formatForm(this.formDatas))
             .then(() => {
               this.$router.push({ name: 'Home' });
             });

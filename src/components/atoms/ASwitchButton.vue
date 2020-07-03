@@ -31,6 +31,7 @@
 
 <script>
 export default {
+  name: 'buttonSwitch',
   data() {
     return {
       model: this.$attrs.value || '',
@@ -63,11 +64,13 @@ export default {
 
 <style lang="scss" scoped>
 .buttonSwitch {
-  padding: 15px 50px;
-  display: table;
+  padding: 15px 0px;
+  display: flex;
   position: relative;
   box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.07);
   border-radius: 15px;
+  width: 100%;
+  justify-content: space-evenly;
   &__text {
     position: relative;
     margin: 20px;
@@ -78,6 +81,7 @@ export default {
       position: relative;
       background: white;
       cursor: pointer;
+      display: block;
     }
 
     &.isActive {

@@ -1,4 +1,5 @@
 import transactionChildrens from './transaction';
+import profileChildrens from './myProfile';
 
 /* eslint-disable */
 export default [
@@ -54,17 +55,15 @@ export default [
         requireAuth: true,
       },
     },
-
-
     {
-      path: 'confirmation',
-      component: () => import('../../components/pages/my-account/ConfirmPage.vue'),
-      name: 'Confirmation',
+      path: 'mon-profil',
+      component: () => import('../../components/pages/my-account/MyProfile.vue'),
+      name: 'MyProfile',
+      children : profileChildrens,
       meta: {
         requireAuth: true,
       },
     },
-
   ];
   
 /* eslint-enable */

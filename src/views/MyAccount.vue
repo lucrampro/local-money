@@ -2,15 +2,10 @@
   <div class="myAccount">
     <l-header-myCompte :name="userFirstName" />
     <m-menu :currentPageName="this.$router.currentRoute.name" @updataState="(newState) => {navMenuState = newState}" :isActive="navMenuState" />
-    <div @click="navMenuState = true" class="burger__menu">
-      <div>____</div>
-      <div>____</div>
-      <div>____</div>
-    </div>
     <div class="myAccountContenu">
       <router-view />
     </div>
-    <m-navbarre :navPages="navStates" :currentPageName="this.$router.currentRoute.name"/>
+    <m-navbar :navPages="navStates" :currentPageName="this.$router.currentRoute.name"/>
   </div>
 </template>
 
@@ -37,21 +32,25 @@ export default {
       navStates: [
         {
           functionBind: () => { this.switchPage('Home'); },
+          pageNameBind: 'Home',
           defaultImage: homeDefault,
           selectedImage: homeSelected,
         },
         {
           functionBind: () => { this.switchPage('Commerce'); },
+          pageNameBind: 'Commerce',
           defaultImage: commerceDefault,
           selectedImage: commerceSelected,
         },
         {
           functionBind: () => { this.switchPage('Community'); },
+          pageNameBind: 'Community',
           defaultImage: communityDefault,
           selectedImage: communitySelected,
         },
         {
           functionBind: () => { this.switchPage('MyTransaction'); },
+          pageNameBind: 'MyTransaction',
           defaultImage: transactionDefault,
           selectedImage: transactionSelected,
         },
@@ -79,7 +78,7 @@ export default {
 
     getDetail() {
       if (this.compteType) {
-        this.$Api.details(this.compteType)
+        this.$Api.getDetails(this.compteType)
           .then(() => {
             console.log('ok');
           })

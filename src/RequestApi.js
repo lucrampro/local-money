@@ -70,14 +70,14 @@ class ApiRequest extends EventDispatcher {
       /**
        * done a call api with methode get
        * @param  {string} path path of request api
-       * @param  { Object } playload data send to the api header, ...ect
+       * @param  { Object } payload data send to the api header, ...ect
        * @return {Promise}
        */
-      get: (path, playload) => new Promise((resolve, reject) => {
+      get: (path, payload) => new Promise((resolve, reject) => {
         fetch(path, {
           ...init,
-          ...playload.body,
-          headers: new Headers({ ...playload.Headers }),
+          ...payload.body,
+          headers: new Headers({ ...payload.Headers }),
           method: 'GET',
         }).then((res) => {
           if (res.ok) {
@@ -92,16 +92,16 @@ class ApiRequest extends EventDispatcher {
       /**
        * done a call api with methode post
        * @param  {string} path path of request api
-       * @param  { Object } playload data send to the api header, ...ect
+       * @param  { Object } payload data send to the api header, ...ect
        * @return {Promise}
        */
-      post: (path, playload) => new Promise((resolve, reject) => {
-        playload.Headers = playload.Headers ?  playload.Headers : {}
-        playload.Headers['Content-Type'] = playload.Headers['Content-Type'] ? playload.Headers['Content-Type'] : 'application/json';
+      post: (path, payload) => new Promise((resolve, reject) => {
+        payload.Headers = payload.Headers ?  payload.Headers : {}
+        payload.Headers['Content-Type'] = payload.Headers['Content-Type'] ? payload.Headers['Content-Type'] : 'application/json';
         fetch(path, {
           ...init,
-          headers: new Headers(playload.Headers),
-          body: JSON.stringify(playload.body,),
+          headers: new Headers(payload.Headers),
+          body: JSON.stringify(payload.body,),
           method: 'post',
         }).then((res) => {
           if (res.ok) {
@@ -113,6 +113,23 @@ class ApiRequest extends EventDispatcher {
         }).catch((res) => reject(res.json()));
       }),
       ///
+      delete: (path, payload) => new Promise((resolve, reject) => {
+        payload.Headers = payload.Headers ?  payload.Headers : {}
+        payload.Headers['Content-Type'] = payload.Headers['Content-Type'] ? payload.Headers['Content-Type'] : 'application/json';
+        fetch(path, {
+          ...init,
+          headers: new Headers(payload.Headers),
+          body: JSON.stringify(payload.body,),
+          method: 'delete',
+        }).then((res) => {
+          if (res.ok) {
+            return resolve(res.json());
+          }
+          return res.json().then((res2) => {
+            reject(res2);
+          });
+        }).catch((res) => reject(res.json()));
+      }),
     };
   }
 
@@ -152,10 +169,10 @@ class ApiRequest extends EventDispatcher {
    * allow to get a token of user and set on the store
    * @param  {Object} loginInformaion information waiting , mail and passworld
    */
-  register(registerPlayload) {
-    return this.post('/register', {body : registerPlayload})
+  register(registerPayload) {
+    return this.post('/register', {body : registerPayload})
       .then((res) => {
-        this.dispatchEvent(new CustomEvent('user-registred', { detail: registerPlayload }));
+        this.dispatchEvent(new CustomEvent('user-registred', { detail: registerPayload }));
         return res;
       }).catch((res) => res);
   }
@@ -173,24 +190,11 @@ class ApiRequest extends EventDispatcher {
       .catch((res) => res);
   }
 
-  putPost(playload) {
-    return new Promise((resolve, reject) => {
-      return this.post('/posts/create', {
-        Headers: { Authorization:`Bearer ${this.token}` },
-        body : playload,
-      }).then((response) => {
-        return resolve(response)
-      })
-        .catch((response) => reject(response));
-    })
-  }
-
   /**
    * allow to get the solde of adhérent
    * @param  {String} type type is particular or company
    */
-  details(type = this.userType) {
-    console.log(type , this.userType)
+  getDetails(type = this.userType) {
     return new Promise((resolve, reject) => {
       return this.get(`/${type}/account`, { Headers: { Authorization: `Bearer ${this.token}` , 'Content-Type': 'application/x-www-form-urlencoded'} })
         .then((res) => {
@@ -209,7 +213,7 @@ class ApiRequest extends EventDispatcher {
     return this.get('/transactions', {
       Headers: { Authorization: `Bearer ${this.token}` },
     }).then((response) => {
-      this.details(this.userType)
+      this.getDetails(this.userType)
       this.dispatchEvent(new CustomEvent('session-user-transactions', { detail: response}));
       return response;
     })
@@ -236,7 +240,7 @@ class ApiRequest extends EventDispatcher {
       .catch((response) => response);
   }
   
-  transferMoney(transactionInformation) {
+  putTransferMoney(transactionInformation) {
     return new Promise((resolve, reject) => {
       return this.post('/transfer-money', {
         Headers: { Authorization:`Bearer ${this.token}` },
@@ -250,11 +254,11 @@ class ApiRequest extends EventDispatcher {
     })
   }
 
-  putPost(playload) {
+  putPost(payload) {
     return new Promise((resolve, reject) => {
       return this.post('/posts/create', {
         Headers: { Authorization:`Bearer ${this.token}` },
-        body : playload,
+        body : payload,
       }).then((response) => {
         return resolve(response)
       })
@@ -262,21 +266,105 @@ class ApiRequest extends EventDispatcher {
     })
   }
 
+  putLike(idPost) {
+    return new Promise((resolve, reject) => {
+      return this.get(`/post/${idPost}/like`, {
+        Headers: { Authorization:`Bearer ${this.token}` },
+      }).then((response) => {
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
+  }
+
+  putDislike(idPost) {
+    return new Promise((resolve, reject) => {
+      return this.get(`/post/${idPost}/dislike`, {
+        Headers: { Authorization:`Bearer ${this.token}` },
+      }).then((response) => {
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
+  }
+
+  getContacts() {
+    return new Promise((resolve, reject) => {
+      return this.get(`/contacts`, {
+        Headers: { Authorization:`Bearer ${this.token}` },
+      }).then((response) => {
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
+  }
   
-  get(path, playload) {
-    return this.request.get(this.uri + (path || ''), playload || {});
+  putContact() {
+    return new Promise((resolve, reject) => {
+      return this.post(`/contacts/create`, {
+        Headers: { Authorization:`Bearer ${this.token}` },
+      }).then((response) => {
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
   }
 
-  post(path, playload) {
-    return this.request.post(this.uri + (path || ''), playload || {});
+  removeContact(contactId) {
+    return new Promise((resolve, reject) => {
+      return this.delete(`/contacts/${contactId}/delete`, {
+        Headers: { Authorization:`Bearer ${this.token}` },
+      }).then((response) => {
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
   }
 
-  put(path, playload) {
-    return this.request.put(this.uri + (path || ''), playload || {});
+  getFavorites(contactId) {
+    return new Promise((resolve, reject) => {
+      return this.get(`/favorites`, {
+        Headers: { Authorization:`Bearer ${this.token}` },
+      }).then((response) => {
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
   }
 
-  del(path, playload) {
-    return this.request.delete(this.uri + (path || ''), playload || {});
+  /**
+   * @param  {Object} payload 
+   * @param {string} payload.accountId - exemple "170"
+   */
+  addFavorites( payload ) {
+    return new Promise((resolve, reject) => {
+      return this.post(`/favorites/create`, {
+        Headers: { Authorization:`Bearer ${this.token}` },
+      }).then((response) => {
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
+  }
+
+
+  
+
+  
+  get(path, payload) {
+    return this.request.get(this.uri + (path || ''), payload || {});
+  }
+
+  post(path, payload) {
+    return this.request.post(this.uri + (path || ''), payload || {});
+  }
+
+  put(path, payload) {
+    return this.request.put(this.uri + (path || ''), payload || {});
+  }
+
+  del(path, payload) {
+    return this.request.delete(this.uri + (path || ''), payload || {});
   }
 }
 

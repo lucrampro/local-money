@@ -5,7 +5,7 @@
     <l-wrapper-block>
       <template v-slot:title > Mes dernières transactions</template>
       <m-card-transaction v-for="(transaction, index) in lastTrasacton" :key="index" :name="`utilisateur ${transaction.id}`" :date="transaction.date" :sum="transaction.transfered_money" />
-      <template v-slot:bottom ><a-link class="link" @click.native="$router.push({name : 'MyTransaction'})">Voir touts mes transactions</a-link> </template>
+      <template v-slot:bottom ><a-link class="link" @click.native="$router.push({name : 'MyTransaction'})">Voir toutes mes transactions</a-link> </template>
     </l-wrapper-block>
     <l-wrapper-block>
       <template v-slot:title >Mes commerçants préférés</template>
