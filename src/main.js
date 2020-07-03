@@ -14,6 +14,7 @@ import './registerServiceWorker';
 import requestApi from './RequestApi';
 import styleGuild from './handlerColorPlugin';
 import Atoms from './components/atoms';
+import Icones from './components/atoms/Icones';
 import Modules from './components/molecules';
 import Organisme from './components/organisms';
 import Layouts from './components/layouts';
@@ -56,6 +57,12 @@ Vue.component('a-navbar-picto', Atoms.ANavbarPicto);
 Vue.component('a-picto', Atoms.APicto);
 Vue.component('a-switch-button', Atoms.ASwitchButton);
 Vue.component('a-user-picture', Atoms.AUserPicture);
+
+// Atoms Icons
+Vue.component('a-icone-home', Icones.AIconeHome);
+Vue.component('a-icone-community', Icones.AIconeCommunity);
+Vue.component('a-icone-transaction', Icones.AIconeTransaction);
+Vue.component('a-icone-commerce', Icones.AIconeCommerce);
 
 // Molecules
 console.warn(Modules, 'Modules');

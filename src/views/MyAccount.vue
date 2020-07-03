@@ -4,25 +4,15 @@
       <template v-slot:mainText >Bonjour <span class="name">{{ userFirstName }}</span> </template>
       <template v-slot:subtText >Bienvenue sur votre espace 😁 !</template>
     </l-header-myCompte>
-    <m-menu :currentPageName="this.$router.currentRoute.name" @updataState="(newState) => {navMenuState = newState}" :isActive="navMenuState" />
+    <!-- <m-menu :currentPageName="this.$router.currentRoute.name" @updataState="(newState) => {navMenuState = newState}" :isActive="navMenuState" /> -->
     <div class="myAccountContenu">
       <router-view />
     </div>
-    <m-navbar :navPages="navStates" :currentPageName="this.$router.currentRoute.name"/>
+    <m-navbar :state="true" :navPages="navMain" :navPagesSecondary="navSecondary" :currentPageName="this.$router.currentRoute.name"/>
   </div>
 </template>
 
 <script>
-
-import commerceDefault from '@/assets/img/navbar/commerce-orange.png';
-import commerceSelected from '@/assets/img/navbar/commerce-white.png';
-import communityDefault from '@/assets/img/navbar/community-orange.png';
-import communitySelected from '@/assets/img/navbar/community-white.png';
-import homeDefault from '@/assets/img/navbar/home-orange.png';
-import homeSelected from '@/assets/img/navbar/home-white.png';
-import transactionDefault from '@/assets/img/navbar/transaction-orange.png';
-import transactionSelected from '@/assets/img/navbar/transaction-white.png';
-import menuVertical from '@/assets/img/navbar/carbon_overflow-menu-vertical.png';
 
 import { mapGetters } from 'vuex';
 
@@ -31,36 +21,59 @@ export default {
   data() {
     return {
       navMenuState: false,
-
-      navStates: [
+      navMain: [
         {
           functionBind: () => { this.switchPage('Home'); },
           pageNameBind: 'Home',
-          defaultImage: homeDefault,
-          selectedImage: homeSelected,
+          pageName: 'Accueil',
+          componentId: 'a-icone-home',
         },
         {
           functionBind: () => { this.switchPage('Commerce'); },
           pageNameBind: 'Commerce',
-          defaultImage: commerceDefault,
-          selectedImage: commerceSelected,
+          pageName: 'Mes commerçant',
+          componentId: 'a-icone-commerce',
         },
         {
           functionBind: () => { this.switchPage('Community'); },
           pageNameBind: 'Community',
-          defaultImage: communityDefault,
-          selectedImage: communitySelected,
+          pageName: 'Communauté',
+          componentId: 'a-icone-community',
         },
         {
           functionBind: () => { this.switchPage('MyTransaction'); },
           pageNameBind: 'MyTransaction',
-          defaultImage: transactionDefault,
-          selectedImage: transactionSelected,
+          pageName: 'Mes transaction',
+          componentId: 'a-icone-transaction',
+        },
+      ],
+      center: {
+        functionBind: () => { this.navMenuState = true; },
+      },
+      navSecondary: [
+        {
+          functionBind: () => { this.switchPage('SendMoney'); },
+          pageNameBind: 'Payer',
         },
         {
-          functionBind: () => { this.navMenuState = true; },
-          defaultImage: menuVertical,
-          selectedImage: menuVertical,
+          functionBind: () => { this.switchPage('ConvertMoney'); },
+          pageNameBind: 'Convertire mon argent',
+        },
+        {
+          functionBind: () => { this.switchPage('sendPost'); },
+          pageNameBind: 'donner de mes nouvelles',
+        },
+        {
+          functionBind: () => { this.switchPage('Commerce'); },
+          pageNameBind: 'Mes favoris',
+        },
+        {
+          functionBind: () => { this.switchPage('Community'); },
+          pageNameBind: 'Community',
+        },
+        {
+          functionBind: () => { this.switchPage('MyTransaction'); },
+          pageNameBind: 'MyTransaction',
         },
       ],
     };

@@ -1,10 +1,10 @@
 <template>
   <div>
     <ActualityFilter :filters="filtersArray">
-    <template> Les entreprises du réseaux  </template>
+      <template> Les entreprises du réseaux  </template>
     </ActualityFilter>
     <l-wrapper-block>
-      <m-card-post v-for="(company, index) in companyList" :key="index"  >
+      <m-card-post v-for="(company, index) in companiesList" :key="index"  >
         <template v-slot:header> {{ company.company_name }} </template>
         <template v-slot:main> Deescription: {{ company.category }} de {{ company.first_name }}</template>
         <template> </template>
@@ -14,12 +14,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import ActualityFilter from '../../molecules/MActualityFilter.vue';
 
 export default {
   name: 'Commerce',
   components: {
     ActualityFilter,
+  },
+  computed: {
+    ...mapGetters([
+      'companiesList',
+    ]),
   },
   data() {
     return {
@@ -29,16 +35,10 @@ export default {
         { text: 'Commerçants' },
         { text: 'Favoris' },
       ],
-      companyList: [],
     };
   },
   mounted() {
-    this.getCompanyList();
-  },
-  methods: {
-    getCompanyList() {
-      this.$Api.getCompanyList().then((response) => { this.companyList = response; });
-    },
+    this.$Api.getCompanyList().then(() => { });
   },
 };
 </script>

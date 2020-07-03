@@ -18,6 +18,7 @@ export default {
       'userId',
       'solde',
       'transferId',
+      'companiesList',
     ]),
   },
   created() {
@@ -66,6 +67,10 @@ export default {
 
     this.$Api.addEventListener('session-user-transactions', (event) => {
       this.$store.dispatch('setTransactions', event.detail);
+    });
+
+    this.$Api.addEventListener('companies-list', (event) => {
+      this.$store.dispatch('setCompaniesList', event.detail);
     });
   },
 };
