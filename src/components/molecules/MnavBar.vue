@@ -1,6 +1,6 @@
 <template>
   <div class="navBar" :class="{'open' : isOpen}">
-    <a-icone-more class="buttonMore" :class="{'rotate' : isOpen}" />
+    <a-icone-more @click.native="$emit('updateState')" class="buttonMore" :class="{'rotate' : isOpen}" />
     <div class="navBar__visiblePart">
       <a-navbar-picto
         v-for="(pageIcon, index) in navPages"
@@ -11,14 +11,15 @@
         :componentId="pageIcon.componentId"
       />
     </div>
-    <ul class="navBar__hiddenPart">
-      <li
-        v-for="(pageIcon, index) in navPages"
+    <div class="navBar__hiddenPart">
+      <a
+        v-for="(pageIcon, index) in navPagesSecondary"
         :key="'icone_nave_hidden_' + index"
-        @click.native="pageIcon.functionBind()"
+        @click="pageIcon.functionBind()"
         :isSelected="currentPageName === pageIcon.pageNameBind"
-      >{{ pageIcon.pageNameBind}}</li>
-    </ul>
+      >{{ pageIcon.pageNameBind}}
+      </a>
+    </div>
   </div>
 </template>
 
@@ -51,14 +52,20 @@ export default {
   bottom: 0;
   left: 0;
   transform: translateY(441px);
-  transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+  transition: transform cubic-bezier(.33,.63,.83,.69) 0.6s;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+
+  &.open {
+    transform: translateY(0px);
+  }
+
   .buttonMore {
     position: absolute;
     top: -25px;
     left: 0px;
     right: 0px;
     margin: 0 auto;
+    transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
     &.rotate {
       transform: rotate(45deg);
     }
@@ -88,6 +95,11 @@ export default {
     * {
       pointer-events: none;
     }
+  }
+  .navBar__hiddenPart {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 }
 </style>

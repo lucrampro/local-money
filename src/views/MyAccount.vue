@@ -1,48 +1,62 @@
 <template>
   <div class="myAccount">
     <l-header-myCompte :name="userFirstName">
-      <template v-slot:mainText >Bonjour <span class="name">{{ userFirstName }}</span> </template>
-      <template v-slot:subtText >Bienvenue sur votre espace 😁 !</template>
+      <template v-slot:mainText>
+        Bonjour
+        <span class="name">{{ userFirstName }}</span>
+      </template>
+      <template v-slot:subtText>Bienvenue sur votre espace 😁 !</template>
     </l-header-myCompte>
-    <!-- <m-menu :currentPageName="this.$router.currentRoute.name" @updataState="(newState) => {navMenuState = newState}" :isActive="navMenuState" /> -->
     <div class="myAccountContenu">
       <router-view />
     </div>
-    <m-navbar :state="true" :IsOpen="menuIsOpen" :navPages="navMain" :navPagesSecondary="navSecondary" :currentPageName="this.$router.currentRoute.name"/>
+    <m-navbar
+      :isOpen="menuIsOpen"
+      @updateState="menuIsOpen = !menuIsOpen"
+      :navPages="navMain"
+      :navPagesSecondary="navSecondary"
+      :currentPageName="this.$router.currentRoute.name"
+    />
   </div>
 </template>
 
 <script>
-
 import { mapGetters } from 'vuex';
 
 export default {
   name: 'MyAccount',
   data() {
     return {
-      navMenuState: false,
       menuIsOpen: true,
       navMain: [
         {
-          functionBind: () => { this.switchPage('Home'); },
+          functionBind: () => {
+            this.switchPage('Home');
+          },
           pageNameBind: 'Home',
           pageName: 'Accueil',
           componentId: 'a-icone-home',
         },
         {
-          functionBind: () => { this.switchPage('Commerce'); },
+          functionBind: () => {
+            this.switchPage('Commerce');
+          },
           pageNameBind: 'Commerce',
           pageName: 'Mes commerçant',
           componentId: 'a-icone-commerce',
         },
         {
-          functionBind: () => { this.switchPage('Community'); },
+          functionBind: () => {
+            this.switchPage('Community');
+          },
           pageNameBind: 'Community',
           pageName: 'Communauté',
           componentId: 'a-icone-community',
         },
         {
-          functionBind: () => { this.switchPage('MyTransaction'); },
+          functionBind: () => {
+            this.switchPage('MyTransaction');
+          },
           pageNameBind: 'MyTransaction',
           pageName: 'Mes transaction',
           componentId: 'a-icone-transaction',
@@ -50,54 +64,71 @@ export default {
       ],
       navSecondary: [
         {
-          functionBind: () => { this.switchPage('SendMoney'); },
+          functionBind: () => {
+            this.switchPage('SendMoney');
+          },
           pageNameBind: 'Payer',
         },
         {
-          functionBind: () => { this.switchPage('ConvertMoney'); },
+          functionBind: () => {
+            this.switchPage('ConvertMoney');
+          },
           pageNameBind: 'Convertire mon argent',
         },
         {
-          functionBind: () => { this.switchPage('sendPost'); },
+          functionBind: () => {
+            this.switchPage('sendPost');
+          },
           pageNameBind: 'donner de mes nouvelles',
         },
         {
-          functionBind: () => { this.switchPage('Commerce'); },
+          functionBind: () => {
+            this.switchPage('Commerce');
+          },
           pageNameBind: 'Mes favoris',
         },
         {
-          functionBind: () => { this.switchPage('Community'); },
+          functionBind: () => {
+            this.switchPage('Community');
+          },
           pageNameBind: 'Community',
         },
         {
-          functionBind: () => { this.switchPage('MyTransaction'); },
-          pageNameBind: 'MyTransaction',
+          functionBind: () => {
+            this.switchPage('MyTransaction');
+          },
+          pageNameBind: 'Mes favoris',
+        },
+        {
+          functionBind: () => {
+            this.switchPage('MyTransaction');
+          },
+          pageNameBind: 'Déconnexion',
         },
       ],
     };
   },
   computed: {
-    ...mapGetters([
-      'compteType',
-      'userToken',
-      'userFirstName',
-    ]),
+    ...mapGetters(['compteType', 'userToken', 'userFirstName']),
   },
   methods: {
     switchPage(pageName) {
       if (this.currentPageName !== pageName) {
         this.$router.push({ name: pageName });
+        this.menuIsOpen = false;
       }
     },
 
     getDetail() {
       if (this.compteType) {
-        this.$Api.getDetails(this.compteType)
+        this.$Api
+          .getDetails(this.compteType)
           .then(() => {
             console.log('ok');
           })
           .catch(() => {
-            this.$store.dispatch('reset'); this.$router.push('Register');
+            this.$store.dispatch('reset');
+            this.$router.push('Register');
           });
       }
       // else {
@@ -122,7 +153,6 @@ export default {
       this.navMenuState = false;
     },
   },
-
 };
 </script>
 
