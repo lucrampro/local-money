@@ -16,6 +16,15 @@ export default [
       requireAuth: true,
     },
   },
+  {
+    path: 'mes-informations',
+    component: () => import('@/components/pages/my-account/MyProfile/MyInformations.vue'),
+    name: 'MyInformations',
+    meta: {
+      requireAuth: true,
+    },
+  },
+  
 ];
 
 /* eslint-enable */

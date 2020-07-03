@@ -1,6 +1,9 @@
 <template>
   <div class="myAccount">
-    <l-header-myCompte :name="userFirstName" />
+    <l-header-myCompte :name="userFirstName">
+      <template v-slot:mainText >Bonjour <span class="name">{{ userFirstName }}</span> </template>
+      <template v-slot:subtText >Bienvenue sur votre espace 😁 !</template>
+    </l-header-myCompte>
     <m-menu :currentPageName="this.$router.currentRoute.name" @updataState="(newState) => {navMenuState = newState}" :isActive="navMenuState" />
     <div class="myAccountContenu">
       <router-view />

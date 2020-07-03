@@ -2,8 +2,8 @@
   <div class="headerInformation">
     <a-user-picture size="20px">{{ $props.name[0] }}</a-user-picture>
     <div class="welcomeMessage">
-      <h1>Bonjour <span class="name">{{ $props.name }}</span></h1>
-      <p>Bienvenue sur votre espace 😁 !</p>
+      <h1><slot name="mainText"></slot></h1>
+      <p><slot name="subText"></slot></p>
     </div>
   </div>
 </template>
