@@ -1,7 +1,7 @@
 <template>
   <div>
     <ActualityFilter :filters="filtersArray">
-      <template> Les entreprises du réseaux  </template>
+    <template> Les entreprises du réseaux  </template>
     </ActualityFilter>
     <l-wrapper-block>
       <m-card-post v-for="(company, index) in companyList" :key="index"  >
