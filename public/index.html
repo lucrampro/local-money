@@ -16,7 +16,7 @@
     />
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
-  <script>
+  <script defer >
     let deferredPrompt;
 
     window.addEventListener("beforeinstallprompt", function(event) {
@@ -54,7 +54,8 @@
       showInstallPromotion();
     });
 
-    buttonInstall.addEventListener('click', (e) => {
+    document.querySelector('.installButton').addEventListener('click', (e) => {
+      console.log('pwa')
       // Hide the app provided install promotion
       hideMyInstallPromotion();
       // Show the install prompt
@@ -94,6 +95,7 @@
 
   </script>
   <body>
+    <button class="installButton">installer</button>
     <noscript>
       <strong
         >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
