@@ -1,5 +1,6 @@
 <template>
-  <div class="navBar">
+  <div class="navBar" :class="{'open' : isOpen}">
+    <a-icone-more class="buttonMore" :class="{'rotate' : isOpen}" />
     <div class="navBar__visiblePart">
       <a-navbar-picto
         v-for="(pageIcon, index) in navPages"
@@ -16,9 +17,7 @@
         :key="'icone_nave_hidden_' + index"
         @click.native="pageIcon.functionBind()"
         :isSelected="currentPageName === pageIcon.pageNameBind"
-      >
-       {{ pageIcon.pageNameBind}}
-      </li>
+      >{{ pageIcon.pageNameBind}}</li>
     </ul>
   </div>
 </template>
@@ -31,6 +30,10 @@ export default {
       required: true,
       type: Array,
     },
+    isOpen: {
+      default: false,
+      type: Boolean,
+    },
     navPagesSecondary: {},
     currentPageName: {
       type: String,
@@ -41,13 +44,25 @@ export default {
 
 <style lang='scss' scoped>
 .navBar {
-  height: 60vh;
-  min-height: 520px;
+  height: 520px;
   width: 100%;
   background-color: #f5f5f5;
   position: fixed;
   bottom: 0;
   left: 0;
+  transform: translateY(441px);
+  transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+  .buttonMore {
+    position: absolute;
+    top: -25px;
+    left: 0px;
+    right: 0px;
+    margin: 0 auto;
+    &.rotate {
+      transform: rotate(45deg);
+    }
+  }
   &__visiblePart {
     padding-top: 22px;
     padding-bottom: 22px;

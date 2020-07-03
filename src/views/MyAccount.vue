@@ -8,7 +8,7 @@
     <div class="myAccountContenu">
       <router-view />
     </div>
-    <m-navbar :state="true" :navPages="navMain" :navPagesSecondary="navSecondary" :currentPageName="this.$router.currentRoute.name"/>
+    <m-navbar :state="true" :IsOpen="menuIsOpen" :navPages="navMain" :navPagesSecondary="navSecondary" :currentPageName="this.$router.currentRoute.name"/>
   </div>
 </template>
 
@@ -21,6 +21,7 @@ export default {
   data() {
     return {
       navMenuState: false,
+      menuIsOpen: true,
       navMain: [
         {
           functionBind: () => { this.switchPage('Home'); },
@@ -47,9 +48,6 @@ export default {
           componentId: 'a-icone-transaction',
         },
       ],
-      center: {
-        functionBind: () => { this.navMenuState = true; },
-      },
       navSecondary: [
         {
           functionBind: () => { this.switchPage('SendMoney'); },

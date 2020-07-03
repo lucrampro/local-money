@@ -63,6 +63,7 @@ Vue.component('a-icone-home', Icones.AIconeHome);
 Vue.component('a-icone-community', Icones.AIconeCommunity);
 Vue.component('a-icone-transaction', Icones.AIconeTransaction);
 Vue.component('a-icone-commerce', Icones.AIconeCommerce);
+Vue.component('a-icone-more', Icones.AIconeMore);
 
 // Molecules
 console.warn(Modules, 'Modules');
