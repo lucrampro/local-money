@@ -1,0 +1,40 @@
+<template>
+  <l-form-myacount backgroundColor="$gray-background">
+    <a-button @click.native="$router.go(-1)" background="white" color="$primary-color">></a-button>
+    <p>Avoir des contacts vous permet d’effectuer des transactions monétaires plus rapidement</p>
+    <ValidationObserver>
+      <ValidationProvider name="nom du bénéficiaire" rules="required|min:3" v-slot="{ errors }">
+        <m-input v-model="name" :errors="errors" name="name" exemple="Marcel Duchamp">Nom du bénéficiaire</m-input>
+      </ValidationProvider>
+      <ValidationProvider name="id" rules="required|min:3" v-slot="{ errors }">
+        <m-input v-model="accountId" :errors="errors" name="identifiant" exemple="AC14FG">Identifiant</m-input>
+      </ValidationProvider>
+    </ValidationObserver>
+    <div>
+      <a-button width="100%">Enregistrer</a-button>
+      <a-button width="100%" background="$secondary-color">Supprimer</a-button>
+    </div>
+  </l-form-myacount>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      name: '',
+      accountId: '',
+    };
+  },
+  computed: {
+    type() {
+      return this.$route.params.type;
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+::v-deep .aButton {
+  margin: 20px 0px;
+}
+</style>

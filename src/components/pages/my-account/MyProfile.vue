@@ -18,7 +18,7 @@ export default {
       switchButton: {
         leftText: {
           text: 'Mes contacts',
-          value: 'MyContact',
+          value: 'myContacts',
         },
         rightText: {
           text: 'Mes informations',
@@ -30,9 +30,12 @@ export default {
 
   watch: {
     mode(newPageName) {
-      if (newPageName === 'MyContact' || newPageName === 'MyInformation') {
+      if (newPageName === 'myContacts' || newPageName === 'MyInformation') {
         this.$router.push({ name: newPageName });
       }
+    },
+    $route(to) {
+      this.mode = to.name;
     },
   },
 };
