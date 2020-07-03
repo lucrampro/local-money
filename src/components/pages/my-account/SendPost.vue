@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'SendPOst',
   data() {
@@ -18,38 +20,20 @@ export default {
       companyPost: '',
     };
   },
+  computed: {
+    ...mapGetters([
+      'userFirstName',
+    ]),
+  },
   mounted() {
-    // this.$Api.putPost(
-    //   {
-    //     title: 'test depuis le front',
-    //     content: 'ces un test du front',
-    //   },
-    // );
+
   },
   methods: {
     getCompanyPost() {
-      // fetch('http://localhost/api/posts/create', {
-      //   method: 'POST',
-      //   headers: new Headers(
-      //     {
-      //       Autorization: `Bearer ${this.$Api.token}`,
-      //       // 'Content-Type': 'application/json',
-      //     },
-      //   ),
-      //   mode: 'cors',
-      //   cache: 'default',
-      //   'Content-Type': 'application/json',
-      //   body: JSON.stringify(
-      //     {
-      //       title: 'test depuis le front',
-      //       content: 'ces un test du front',
-      //     },
-      //   ),
-      // });
       this.$Api.putPost(
         {
-          title: 'test depuis le front',
-          content: 'ces un test du front',
+          title: this.userFirstName,
+          content: this.companyPost,
         },
       );
     },
