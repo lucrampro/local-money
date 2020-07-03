@@ -2,8 +2,16 @@
 export default [
   {
     path: '/mes-contacts',
-    component: () => import('@/components/pages/my-account/MyProfile/myContact.vue'),
-    name: 'MyContact',
+    component: () => import('@/components/pages/my-account/MyProfile/myContacts.vue'),
+    name: 'myContacts',
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    path: '/ajouter-modifier-contact/:type',
+    component: () => import('@/components/pages/my-account/MyProfile/AddModifyContact.vue'),
+    name: 'AddModifyContact',
     meta: {
       requireAuth: true,
     },
