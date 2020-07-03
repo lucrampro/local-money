@@ -20,8 +20,9 @@ export default {
   name: 'CardPost',
   data() {
     return {
-      like: false,
+      like: this.$props.isLiked,
       likes: this.$props.Numberlikes,
+      idPost: this.$props.idOfPost,
     };
   },
   components: {
@@ -32,14 +33,20 @@ export default {
       this.like = !this.like;
       if (this.like === true) {
         this.likes += 1;
+        this.$Api.putLike(this.idPost);
       } else {
         this.likes -= 1;
+        this.$Api.putDislike(this.idPost);
       }
     },
   },
   props: {
     Numberlikes: {
       default: 6,
+    },
+    idOfPost: {},
+    isLiked: {
+      type: Boolean,
     },
   },
 };
