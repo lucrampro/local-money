@@ -1,5 +1,5 @@
 <template>
-  <div class="navBar" :class="{'open' : isOpen}">
+  <div class="navBar">
     <a-icone-more @click.native="$emit('updateState')" class="buttonMore" :class="{'rotate' : isOpen}" />
     <div class="navBar__visiblePart">
       <a-navbar-picto
