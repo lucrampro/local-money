@@ -34,6 +34,7 @@ export default {
     HeaderInformation,
   },
   created() {
+    this.$Api.getCompanyPost().then((response) => { this.companyPost = response; });
     this.$Api.getMyTransaction()
       .then((response) => response);
   },

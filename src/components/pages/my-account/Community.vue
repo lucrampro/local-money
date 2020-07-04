@@ -25,7 +25,7 @@ export default {
   components: {
     ActualityFilter,
   },
-  mounted() {
+  created() {
     this.setCompanyArray();
   },
   methods: {
