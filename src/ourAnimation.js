@@ -2,15 +2,16 @@
 
 import gsap from 'gsap';
 
+
 class Anime {
 
  openMenu() {
-  gsap.to('.navBar', 1.5, { bottom: '520px' });
+   gsap.to('.navBar', 1.0, { transform: 'translateY( -441px )' });
  }
 
- closeMenu() {
-  gsap.to('.navBar', 1.5, { bottom: '0px' });
- }
+  closeMenu() {
+    gsap.to('.navBar', 1.0, { transform: 'translateY( 0px )' });
+  }
 }
 
 

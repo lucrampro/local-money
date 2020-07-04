@@ -13,6 +13,7 @@
     <m-navbar
       @updateState="menuIsOpen = !menuIsOpen"
       :navPages="navMain"
+      :isOpen="menuIsOpen"
       :navPagesSecondary="navSecondary"
       :currentPageName="this.$router.currentRoute.name"
     />
@@ -148,15 +149,9 @@ export default {
     $route() {
       this.navMenuState = false;
     },
-    menuIsOpen(isOpen) {
-      if (isOpen) {
-        this.$anime.openMenu();
-      } else {
-        this.$anime.closeMenu();
-      }
-    },
   },
 };
+
 </script>
 
 <style lang="scss" scoped>

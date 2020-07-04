@@ -39,6 +39,16 @@ export default {
       type: String,
     },
   },
+  watch: {
+    isOpen(isOpen) {
+      console.log(isOpen);
+      if (isOpen) {
+        this.$anime.openMenu();
+      } else {
+        this.$anime.closeMenu();
+      }
+    },
+  },
 };
 </script>
 
@@ -48,15 +58,10 @@ export default {
   width: 100%;
   background-color: #f5f5f5;
   position: fixed;
-  bottom: 0;
+  bottom: -441px;
   left: 0;
-  transform: translateY(441px);
-  transition: transform cubic-bezier(.33,.63,.83,.69) 0.6s;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
-
-  &.open {
-    transform: translateY(0px);
-  }
+  z-index: 100;
 
   .buttonMore {
     position: absolute;
