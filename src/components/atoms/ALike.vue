@@ -18,7 +18,7 @@ export default {
         },
         isDisLiked: {
           strokeWidth: '20px',
-          fill: '#31a581',
+          // fill: '#31a581',
         },
       },
     };
@@ -44,10 +44,9 @@ svg {
   padding-left: 5px;
   path {
     transform: scale(0.1);
-    stroke: white;
+    stroke: black;
     stroke-width: 20px;
-    fill:#31a581;
-    // fill:#D7443E;
+    fill: none;
   }
 }
 </style>
