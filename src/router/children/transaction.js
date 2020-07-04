@@ -6,6 +6,7 @@ export default [
     name: 'SendMoney',
     meta: {
       requireAuth: true,
+      userPicto: true,
       nextName: 'SelectUserTransaction',
     },
   },
@@ -17,6 +18,7 @@ export default [
     meta: {
       requireAuth: true,
       nextName: 'ChoiceBankCard',
+      userPicto: true,
     },
   },
 
@@ -36,6 +38,7 @@ export default [
     name: 'SelectUserTransaction',
     meta: {
       requireAuth: true,
+      userPicto: true,
     },
   },
 

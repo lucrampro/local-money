@@ -23,7 +23,7 @@
     />
     <l-form-myacount @formSubmit="submit()" boxShadow="none" backgroundColor="$gray-background">
       <template>
-        <a-button v-if="canGoToPreviousPage" @click.native="goToPreviousPage()" background="white" color="$primary-color">></a-button>
+        <a-button :hasBackground="false" v-if="canGoToPreviousPage" @click.native="goToPreviousPage()" background="white" color="$primary-color">></a-button>
         <router-view
           :initFormData="{...formDatas}"
           @updateForm="( formData ) => { updateForm(formData) }"
@@ -32,7 +32,7 @@
       </template>
       <template v-slot:bottom>
         <div class="buttonWrapper">
-          <a-button type="submit" width="100%">Suivant</a-button>
+          <a-button  type="submit" width="100%">Suivant</a-button>
         </div>
       </template>
     </l-form-myacount>

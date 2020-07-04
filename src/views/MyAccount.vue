@@ -97,7 +97,13 @@ export default {
           functionBind: () => {
             this.switchPage('MyTransaction');
           },
-          pageNameBind: 'Mes favoris',
+          pageNameBind: 'Mes contacts',
+        },
+        {
+          functionBind: () => {
+            this.switchPage('MyInformations');
+          },
+          pageNameBind: 'Mes informations',
         },
         {
           pageNameBind: 'Déconnexion',
@@ -161,6 +167,7 @@ export default {
 
 .myAccount {
   padding: 0px 10px;
+  padding-top: 10px;
   padding-bottom: 60px;
 }
 

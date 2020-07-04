@@ -1,7 +1,7 @@
 <template>
   <div class="lHeaderMyCompte">
-    <a-user-picture>{{$props.name[0]}}</a-user-picture>
-    <img class="logo" src="/logo.svg" alt="">
+    <a-user-picture @click.native="$router.push({ name : 'MyInformations' })" v-if="hasUserPicto" >{{$props.name[0]}}</a-user-picture>
+    <img @click="$router.push({ name : 'Home' })" class="logo" src="/logo.svg" alt="">
   </div>
 </template>
 
@@ -13,11 +13,18 @@ export default {
       default: '',
     },
   },
+  computed: {
+    hasUserPicto() {
+      return this.$route.meta.userPicto;
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
 .lHeaderMyCompte {
   padding: 20px;
+  margin-bottom: 30px;
+  height: 70px;
   display: flex;
   position: relative;
   .logo {
@@ -31,7 +38,8 @@ export default {
   }
 }
 
-::v-deep .wrapperProfilePicture {
+::v-deep .wrapperprofilPicture {
   transform: scale(0.7);
+  align-self: center;
 }
 </style>
