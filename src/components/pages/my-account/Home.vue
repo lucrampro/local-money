@@ -9,9 +9,9 @@
     </l-wrapper-block>
     <l-wrapper-block>
       <template v-slot:title >Mes commerçants préférés</template>
-        <m-card-post v-for="(items, index) in lastPost" :key="index" :Numberlikes="items.likes" :idOfPost="items.post_id" :isLiked="items.liked" >
-          <template v-slot:header > {{ items.title }} </template>
-          <template v-slot:main > {{ items.content }} </template>
+        <m-card-post v-for="(post, index) in lastPost" :key="'last_post' + index" :Numberlikes="post.likes" :idOfPost="post.post_id" :isLiked="post.liked" >
+          <template v-slot:header > {{ post.title }} </template>
+          <template v-slot:main > {{ post.content }} </template>
         </m-card-post>
         <template v-slot:bottom ><a-link class="link" @click.native="$router.push({name : 'Community'})">Voir le reste des actualitées</a-link> </template>
     </l-wrapper-block>
@@ -61,7 +61,9 @@ export default {
     lastPost() {
       const lastPost = [];
       for (let i = 0; i < this.lastNumber; i++) {
-        lastPost.push(this.companyPosts[i]);
+        if (this.companyPosts[i]) {
+          lastPost.push(this.companyPosts[i]);
+        }
       }
       return lastPost;
     },
