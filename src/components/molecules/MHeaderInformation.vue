@@ -15,7 +15,6 @@ export default {
   props: {
     name: {
       type: String,
-      default: 'Elisa',
     },
   },
 };

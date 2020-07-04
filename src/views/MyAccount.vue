@@ -1,12 +1,6 @@
 <template>
   <div class="myAccount">
-    <l-header-myCompte :name="userFirstName">
-      <template v-slot:mainText>
-        Bonjour
-        <span class="name">{{ userFirstName }}</span>
-      </template>
-      <template v-slot:subtText>Bienvenue sur votre espace 😁 !</template>
-    </l-header-myCompte>
+    <l-header-myCompte :name="userFirstName" />
     <div class="myAccountContenu">
       <router-view />
     </div>
@@ -95,7 +89,7 @@ export default {
         },
         {
           functionBind: () => {
-            this.switchPage('MyTransaction');
+            this.switchPage('myContacts');
           },
           pageNameBind: 'Mes contacts',
         },
