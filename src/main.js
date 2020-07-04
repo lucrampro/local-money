@@ -3,7 +3,7 @@ import {
   ValidationProvider, extend,
   localize, ValidationObserver,
 } from 'vee-validate';
-
+// import g from 'gsap';
 import {
   required, email, min, alpha_dash,// eslint-disable-line
 } from 'vee-validate/dist/rules';
@@ -21,6 +21,8 @@ import Modules from './components/molecules';
 import Organisme from './components/organisms';
 import Layouts from './components/layouts';
 import i18n from './i18n';
+
+// console.log(g);
 
 Vue.config.productionTip = false;
 

@@ -1,4 +1,6 @@
 <template>
+<button class="aButtonWrapper">
+  <span class="backgroundButton" :style="{background : buttonStyle.background}"></span>
   <button class="aButton" :style="buttonStyle" :type="type">
     <span v-if="!onload">
       <slot></slot>
@@ -35,6 +37,8 @@
       </svg>
     </span>
   </button>
+</button>
+
 </template>
 
 <script>
@@ -78,7 +82,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-button {
+.aButtonWrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.aButton {
   padding: 12px 20px;
   border: 30px;
   color: white;
@@ -86,6 +96,8 @@ button {
   display: table;
   border-radius: 15px;
   margin: 5px 0px;
+  z-index: 3;
+  position: relative;
   &:focus {
     outline: none;
   }
@@ -93,5 +105,19 @@ button {
     margin: auto;
     margin: -9px auto;
   }
+  &__background {
+    position: relative;
+    width: 100%;
+  }
+}
+.backgroundButton {
+  width: 100%;
+  height: 40px;
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  background: black;
+  opacity: 0.6;
+  border-radius: 15px;
 }
 </style>
