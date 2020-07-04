@@ -85,7 +85,7 @@ export default {
     background: white;
     width: 90vw;
     margin: auto;
-    height: 90%;
+    height: 77%;
     border-radius: 30px;
     padding: 20px;
     padding-top: 5vh;
