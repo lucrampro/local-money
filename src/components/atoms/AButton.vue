@@ -5,6 +5,7 @@
     </span>
     <span>
       <svg
+      class="loader"
       v-if="onload"
       width="40px"
         version="1.1"
@@ -88,7 +89,7 @@ button {
   &:focus {
     outline: none;
   }
-  svg {
+  .loader {
     margin: auto;
     margin: -9px auto;
   }
