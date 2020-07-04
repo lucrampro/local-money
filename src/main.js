@@ -8,19 +8,21 @@ import {
   required, email, min, alpha_dash,// eslint-disable-line
 } from 'vee-validate/dist/rules';
 import fr from 'vee-validate/dist/locale/fr.json';
-import App from './App.vue';
-import router from './router';
-import store from './store';
+
 import '@/assets/css/tailwind.css';
 import './registerServiceWorker';
-import requestApi from './RequestApi';
-import styleGuild from './handlerColorPlugin';
+import App from './App.vue';
 import Atoms from './components/atoms';
-import Icones from './components/atoms/Icones';
-import Modules from './components/molecules';
-import Organisme from './components/organisms';
-import Layouts from './components/layouts';
 import i18n from './i18n';
+import Icones from './components/atoms/Icones';
+import Layouts from './components/layouts';
+import Modules from './components/molecules';
+import OurAnimation from './ourAnimation';
+import Organisme from './components/organisms';
+import router from './router';
+import requestApi from './RequestApi';
+import store from './store';
+import styleGuild from './handlerColorPlugin';
 
 Vue.config.productionTip = false;
 
@@ -98,13 +100,15 @@ Vue.component('o-transaction-input', Organisme.OTransactionInput);
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
 
+Vue.use(OurAnimation);
 Vue.use(requestApi);
 Vue.use(styleGuild);
 new Vue({
-  styleGuild,
+  i18n,
+  OurAnimation,
   requestApi,
   router,
   store,
-  i18n,
+  styleGuild,
   render: (h) => h(App),
 }).$mount('#app');

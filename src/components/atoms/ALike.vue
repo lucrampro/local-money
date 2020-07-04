@@ -18,7 +18,6 @@ export default {
         },
         isDisLiked: {
           strokeWidth: '20px',
-          // fill: '#31a581',
         },
       },
     };

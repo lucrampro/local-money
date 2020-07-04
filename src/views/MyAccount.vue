@@ -142,6 +142,7 @@ export default {
   },
   mounted() {
     this.getDetail();
+    this.$anime.to('body', 1.5, { background: 'red' });
   },
   watch: {
     compteType() {
