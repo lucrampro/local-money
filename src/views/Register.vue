@@ -19,7 +19,7 @@
         </ValidationProvider>
       </div>
         <div class="flex justify-center my-2 mt-8">
-          <a-button  class="w-full" type="submit">Se connecter</a-button>
+          <a-button  class="w-full" :onload="formOnload" type="submit">Se connecter</a-button>
         </div>
       <div>
         <a-link class="block mx-auto my-2 mb-4 text-center">
@@ -38,18 +38,25 @@
 export default {
   data() {
     return {
+      formOnload: false,
       mail: 'particular@neymo.com',
       password: '123456',
     };
   },
   methods: {
     submitForm() {
-      this.$Api.login({
-        username: this.mail,
-        password: this.password,
-      }).then(() => {
-        this.$router.push({ name: 'Home' });
-      });
+      this.formOnload = true;
+      if (this.formOnload) {
+        this.$Api.login({
+          username: this.mail,
+          password: this.password,
+        }).then(() => {
+          this.formOnload = false;
+          this.$router.push({ name: 'Home' });
+        }).catch(() => {
+          this.formOnload = false;
+        });
+      }
       // fonction send data to the back
     },
   },

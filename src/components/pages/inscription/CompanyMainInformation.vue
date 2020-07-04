@@ -1,7 +1,7 @@
 <template>
   <ValidationObserver ref="observer">
     <div class="mt-10">
-      <ValidationProvider name="Nom de votre entreprise" rules="required|min:3" v-slot="{ errors }">
+      <ValidationProvider name="Nom de votre entreprise" rules="required|alpha_dash|min:3" v-slot="{ errors }">
         <m-input :errors="errors" name="company_name" v-model="name" exemple="Boulangerie">Nom de votre entreprise</m-input>
       </ValidationProvider>
       <ValidationProvider name="Ville" rules="required|min:3" v-slot="{ errors }">

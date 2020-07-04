@@ -3,17 +3,17 @@
     <template v-slot:header>
       <div class="flex h-auto">
         <span>
-          <a-button v-if="previousPath" background="white" color="#189B73"  @click.native="toPreviousPage()" >></a-button>
+          <a-button v-if="previousPath" background="white" color="#189B73"  @click.native="toPreviousPage()" ><a-icone-back-arrow/></a-button>
         </span>
         <div class="pl-4">
           <p class="text-xl font-semibold sm:text-xl">{{title}}</p>
-          <p class="pt-1 text-sm font-light font-semibold text-gray-600 ">{{subText}}</p>
+          <p class="pt-1 text-sm font-semibold text-gray-600 ">{{subText}}</p>
         </div>
       </div>
     </template>
       <router-view :toNextPage="toNextPage" :initFormData="{...formDatas}" @updateForm="( formData ) => { updateForm(formData) }" @updateFormValid="(val) => {formValid = val}" />
     <template v-slot:bottom>
-      <a-button v-if="currentNamePage !== 'AccountType'" type="submit" class="w-full" >Suviant</a-button>
+      <a-button v-if="currentNamePage !== 'AccountType'" type="submit" :onload="buttonOnload" class="w-full" >Suviant</a-button>
       <a-button  v-if="currentNamePage === 'AccountType'" background="white" color="#189B73" class="w-full" @click.native="$router.push({ name: 'Register' })" >Se connecter</a-button>
     </template>
   </l-regitster>
@@ -29,6 +29,7 @@ export default {
       },
       submitted: false,
       formValid: false,
+      buttonOnload: false,
     };
   },
   methods: {
@@ -45,9 +46,13 @@ export default {
           this.$router.push({ path: `${this.formDatas.type}-${this.nextPath}` });
           this.formValid = false;
         } else {
-          this.$Api.register(this.formatForm(this.formDatas))
+          this.buttonOnload = true;
+          this.$Api.postRegister(this.formatForm(this.formDatas))
             .then(() => {
               this.$router.push({ name: 'Home' });
+            })
+            .catch((error) => {
+              console.error(error);
             });
         }
       }

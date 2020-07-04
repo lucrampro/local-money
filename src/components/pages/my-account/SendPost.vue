@@ -1,57 +1,51 @@
 <template>
   <div>
-    Laisser de mes nouvelles
-    <l-transaction-form @formSubmit="getCompanyPost()">
+    <p>Laisser de mes nouvelles</p>
+    <l-form-myacount @formSubmit="getCompanyPost()">
       <m-textarea v-model="companyPost" :errors="{}" name="sendPost">Votre message</m-textarea>
       <template v-slot:bottom>
-        <a-button type="submit" width="100%">Poster ce message</a-button>
+        <a-button :onload="formOnload" type="submit" width="100%">Poster ce message</a-button>
       </template>
-    </l-transaction-form>
+    </l-form-myacount>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'SendPOst',
   data() {
     return {
       companyPost: '',
+      formOnload: false,
     };
   },
+  computed: {
+    ...mapGetters([
+      'userFirstName',
+      'userId',
+    ]),
+  },
   mounted() {
-    // this.$Api.putPost(
-    //   {
-    //     title: 'test depuis le front',
-    //     content: 'ces un test du front',
-    //   },
-    // );
   },
   methods: {
     getCompanyPost() {
-      // fetch('http://localhost/api/posts/create', {
-      //   method: 'POST',
-      //   headers: new Headers(
-      //     {
-      //       Autorization: `Bearer ${this.$Api.token}`,
-      //       // 'Content-Type': 'application/json',
-      //     },
-      //   ),
-      //   mode: 'cors',
-      //   cache: 'default',
-      //   'Content-Type': 'application/json',
-      //   body: JSON.stringify(
-      //     {
-      //       title: 'test depuis le front',
-      //       content: 'ces un test du front',
-      //     },
-      //   ),
-      // });
-      this.$Api.putPost(
-        {
-          title: 'test depuis le front',
-          content: 'ces un test du front',
-        },
-      );
+      this.formOnload = true;
+      if (this.formOnload) {
+        this.$Api.putPost(
+          {
+            title: 'title',
+            content: this.companyPost,
+          },
+        ).then(() => {
+          this.formOnload = false;
+          this.$store.dispatch('setConfirmPageMessage', 'Votre poste à bien été fait');
+          this.$router.push({ name: 'Confirmation' });
+        }).catch(() => {
+          this.formOnload = false;
+        });
+      }
     },
   },
 };

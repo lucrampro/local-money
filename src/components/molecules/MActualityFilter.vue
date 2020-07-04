@@ -20,7 +20,7 @@ export default {
         { text: 'Tous' },
         { text: 'Les nouveaux adhérents' },
         { text: 'Mes commerçants préférés' },
-        { text: 'Les actualité de la région' },
+        { text: 'Les actualitées de la région' },
       ],
     };
   },

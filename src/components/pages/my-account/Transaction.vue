@@ -5,11 +5,11 @@
       <div class="validationMessageContainer">
         <l-wrapper-block backgroundColor="#F5F5F5">
           <div class="messageConfirmation">
-            <p>Êtes-vous sûr de vouloir {{transferedMoney}} MLC, à {{beneficiaryAccountId}} ( {nom du bénéficier} ) ?</p>
+            <p>Êtes-vous sûr de vouloir {{transferedMoney}} MLC, à {{beneficiaryAccountId}} ( {nom du bénéficiaire} ) ?</p>
           </div>
           <template  v-slot:bottom>
-            <a-button @click.native="submitForm()" width="100%">OUI</a-button>
-            <a-button @click.native="closePopPin()" background="white" color="$primary-color" width="100%">NON</a-button>
+            <a-button :onload="transactionOnload" @click.native="submitForm()" width="100%">OUI</a-button>
+            <a-button v-show="!transactionOnload" @click.native="closePopPin()" background="white" color="$primary-color" width="100%">NON</a-button>
           </template>
         </l-wrapper-block>
       </div>
@@ -21,7 +21,7 @@
       :leftText="switchButton.leftText"
       :rightText="switchButton.rightText"
     />
-    <l-transaction-form @formSubmit="submit()" boxShadow="none" backgroundColor="$gray-background">
+    <l-form-myacount @formSubmit="submit()" boxShadow="none" backgroundColor="$gray-background">
       <template>
         <a-button v-if="canGoToPreviousPage" @click.native="goToPreviousPage()" background="white" color="$primary-color">></a-button>
         <router-view
@@ -35,7 +35,7 @@
           <a-button type="submit" width="100%">Suivant</a-button>
         </div>
       </template>
-    </l-transaction-form>
+    </l-form-myacount>
   </div>
 </template>
 <script>
@@ -47,6 +47,7 @@ export default {
     return {
       formDatas: {},
       formValid: false,
+      transactionOnload: false,
       previousName: [],
       mode: this.$route.name,
       popins: {
@@ -96,14 +97,22 @@ export default {
       }
     },
     closePopPin() {
-      this.popins[this.mode].state = false;
+      if (!this.transactionOnload) {
+        this.popins[this.mode].state = false;
+      }
     },
     submitForm() {
-      this.formDatas.emiterAccountId = this.transferId;
-      this.$Api.transferMoney(this.formDatas).then(() => {
-        this.$store.dispatch('setConfirmPageMessage', 'Votre message a bien été posté !');
-        this.$router.push({ name: 'Confirmation' });
-      });
+      this.formDatas.emiterAccountId = `${this.transferId}`;
+      if (!this.transactionOnload) {
+        this.transactionOnload = true;
+        this.$Api.putTransferMoney(this.formDatas).then(() => {
+          this.$store.dispatch('setConfirmPageMessage', 'Votre transaction à bien été faite');
+          this.$router.push({ name: 'Confirmation' });
+          this.transactionOnload = false;
+        }).catch(() => {
+          this.transactionOnload = false;
+        });
+      }
     },
   },
   computed: {

@@ -4,22 +4,27 @@
       <template> Les entreprises du réseaux  </template>
     </ActualityFilter>
     <l-wrapper-block>
-      <m-card-post>
-        <template v-slot:header> toto </template>
-        <template v-slot:main> toto </template>
-        <template> </template>
+      <m-card-post :hasFooter="false" v-for="(company, index) in companiesList" :key="index"  >
+        <template v-slot:header> {{ company.company_name }} </template>
+        <template v-slot:main> Deescription: {{ company.category }} de {{ company.first_name }}</template>
       </m-card-post>
     </l-wrapper-block>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import ActualityFilter from '../../molecules/MActualityFilter.vue';
 
 export default {
   name: 'Commerce',
   components: {
     ActualityFilter,
+  },
+  computed: {
+    ...mapGetters([
+      'companiesList',
+    ]),
   },
   data() {
     return {
@@ -29,11 +34,10 @@ export default {
         { text: 'Commerçants' },
         { text: 'Favoris' },
       ],
-      companyList: [],
     };
   },
   mounted() {
-    this.$Api.getCompanyList().then((response) => { this.companyList = response; });
+    this.$Api.getCompanyList().then(() => { });
   },
 };
 </script>

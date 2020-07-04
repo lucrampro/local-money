@@ -1,89 +1,132 @@
 <template>
   <div class="myAccount">
-    <l-header-myCompte :name="userFirstName" />
-    <m-menu :currentPageName="this.$router.currentRoute.name" @updataState="(newState) => {navMenuState = newState}" :isActive="navMenuState" />
+    <l-header-myCompte :name="userFirstName">
+      <template v-slot:mainText>
+        Bonjour
+        <span class="name">{{ userFirstName }}</span>
+      </template>
+      <template v-slot:subtText>Bienvenue sur votre espace 😁 !</template>
+    </l-header-myCompte>
     <div class="myAccountContenu">
       <router-view />
     </div>
-    <m-navbarre :navPages="navStates" :currentPageName="this.$router.currentRoute.name"/>
+    <m-navbar
+      :isOpen="menuIsOpen"
+      @updateState="menuIsOpen = !menuIsOpen"
+      :navPages="navMain"
+      :navPagesSecondary="navSecondary"
+      :currentPageName="this.$router.currentRoute.name"
+    />
   </div>
 </template>
 
 <script>
-
-import commerceDefault from '@/assets/img/navbar/commerce-orange.png';
-import commerceSelected from '@/assets/img/navbar/commerce-white.png';
-import communityDefault from '@/assets/img/navbar/community-orange.png';
-import communitySelected from '@/assets/img/navbar/community-white.png';
-import homeDefault from '@/assets/img/navbar/home-orange.png';
-import homeSelected from '@/assets/img/navbar/home-white.png';
-import transactionDefault from '@/assets/img/navbar/transaction-orange.png';
-import transactionSelected from '@/assets/img/navbar/transaction-white.png';
-import menuVertical from '@/assets/img/navbar/carbon_overflow-menu-vertical.png';
-
 import { mapGetters } from 'vuex';
 
 export default {
   name: 'MyAccount',
   data() {
     return {
-      navMenuState: false,
-
-      navStates: [
+      menuIsOpen: false,
+      navMain: [
         {
-          functionBind: () => { this.switchPage('Home'); },
+          functionBind: () => {
+            this.switchPage('Home');
+          },
           pageNameBind: 'Home',
-          defaultImage: homeDefault,
-          selectedImage: homeSelected,
+          pageName: 'Accueil',
+          componentId: 'a-icone-home',
         },
         {
-          functionBind: () => { this.switchPage('Commerce'); },
+          functionBind: () => {
+            this.switchPage('Commerce');
+          },
           pageNameBind: 'Commerce',
-          defaultImage: commerceDefault,
-          selectedImage: commerceSelected,
+          pageName: 'Mes commerçant',
+          componentId: 'a-icone-commerce',
         },
         {
-          functionBind: () => { this.switchPage('Community'); },
+          functionBind: () => {
+            this.switchPage('Community');
+          },
           pageNameBind: 'Community',
-          defaultImage: communityDefault,
-          selectedImage: communitySelected,
+          pageName: 'Communauté',
+          componentId: 'a-icone-community',
         },
         {
-          functionBind: () => { this.switchPage('MyTransaction'); },
+          functionBind: () => {
+            this.switchPage('MyTransaction');
+          },
           pageNameBind: 'MyTransaction',
-          defaultImage: transactionDefault,
-          selectedImage: transactionSelected,
+          pageName: 'Mes transaction',
+          componentId: 'a-icone-transaction',
+        },
+      ],
+      navSecondary: [
+        {
+          functionBind: () => {
+            this.switchPage('SendMoney');
+          },
+          pageNameBind: 'Payer',
         },
         {
-          functionBind: () => { this.navMenuState = true; },
-          defaultImage: menuVertical,
-          selectedImage: menuVertical,
+          functionBind: () => {
+            this.switchPage('ConvertMoney');
+          },
+          pageNameBind: 'Convertire mon argent',
+        },
+        {
+          functionBind: () => {
+            this.switchPage('SendPost');
+          },
+          pageNameBind: 'donner de mes nouvelles',
+        },
+        {
+          functionBind: () => {
+            this.switchPage('Commerce');
+          },
+          pageNameBind: 'Mes favoris',
+        },
+        {
+          functionBind: () => {
+            this.switchPage('Community');
+          },
+          pageNameBind: 'Communauté',
+        },
+        {
+          functionBind: () => {
+            this.switchPage('MyTransaction');
+          },
+          pageNameBind: 'Mes favoris',
+        },
+        {
+          pageNameBind: 'Déconnexion',
+          functionBind: () => { this.$store.dispatch('reset'); this.switchPage('Register'); },
         },
       ],
     };
   },
   computed: {
-    ...mapGetters([
-      'compteType',
-      'userToken',
-      'userFirstName',
-    ]),
+    ...mapGetters(['compteType', 'userToken', 'userFirstName']),
   },
   methods: {
     switchPage(pageName) {
       if (this.currentPageName !== pageName) {
         this.$router.push({ name: pageName });
+        this.menuIsOpen = false;
       }
     },
 
     getDetail() {
       if (this.compteType) {
-        this.$Api.details(this.compteType)
+        this.$Api
+          .getDetails(this.compteType)
           .then(() => {
             console.log('ok');
           })
           .catch(() => {
-            this.$store.dispatch('reset'); this.$router.push('Register');
+            this.$store.dispatch('reset');
+            this.$router.push('Register');
           });
       }
       // else {
@@ -99,7 +142,6 @@ export default {
   },
   mounted() {
     this.getDetail();
-    this.$Api.putPost({ title: 'wesh', content: 'toto' });
   },
   watch: {
     compteType() {
@@ -109,7 +151,6 @@ export default {
       this.navMenuState = false;
     },
   },
-
 };
 </script>
 
