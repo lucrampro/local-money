@@ -56,11 +56,12 @@ export default {
 .navBar {
   height: 520px;
   width: 100%;
-  background-color: #f5f5f5;
-  position: fixed;
   bottom: -441px;
   left: 0;
+  background-color: #f5f5f5;
+  position: fixed;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 31px;
   z-index: 100;
 
   .buttonMore {
