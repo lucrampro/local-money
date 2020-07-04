@@ -5,7 +5,7 @@
       <p>Le solde de votre compte</p>
       </template>
       <p class="mySolde">{{solde}} MLC</p>
-      <a-button  width="100%" @click.native="$router.push({ name : 'SendMoney' })" >Faire un envoi</a-button>
+      <a-button  width="100%" @click.native="$router.push({ name : 'SendMoney' })" >Payer</a-button>
       <a-button  width="100%" @click.native="$router.push({ name : 'ConvertMoney' })" background="#D16228"> Convertir</a-button>
     </l-wrapper-block>
   </div>

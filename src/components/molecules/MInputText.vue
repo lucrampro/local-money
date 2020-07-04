@@ -44,9 +44,14 @@ export default {
     model(newVal, oldVal) {
       if (newVal > oldVal) {
         if (this.mask && this.mask[newVal.length] && this.mask[newVal.length] !== '#') {
-          console.log(this.mask, newVal.length, this.mask[newVal.length]);
           this.model += this.mask[newVal.length];
         }
+      }
+      // console.log();
+      if (this.type === 'tel' && /\D/.test(newVal)) {
+        this.model.slice(1);
+        this.model = this.model.slice(0, this.model.length - 1);
+        return;
       }
       this.$emit('input', newVal);
     },
