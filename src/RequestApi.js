@@ -169,7 +169,7 @@ class ApiRequest extends EventDispatcher {
    * allow to get a token of user and set on the store
    * @param  {Object} loginInformaion information waiting , mail and passworld
    */
-  register(registerPayload) {
+  postRegister(registerPayload) {
     return this.post('/register', {body : registerPayload})
       .then((res) => {
         this.dispatchEvent(new CustomEvent('user-registred', { detail: registerPayload }));

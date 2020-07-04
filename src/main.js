@@ -4,7 +4,9 @@ import {
   localize, ValidationObserver,
 } from 'vee-validate';
 
-import { required, email, min } from 'vee-validate/dist/rules';
+import {
+  required, email, min, alpha_dash,// eslint-disable-line
+} from 'vee-validate/dist/rules';
 import fr from 'vee-validate/dist/locale/fr.json';
 import App from './App.vue';
 import router from './router';
@@ -28,6 +30,7 @@ localize('fr', fr);
 extend('email', email);
 extend('required', required);
 extend('min', min);
+extend('alpha_dash', alpha_dash); // eslint-disable-line
 
 extend('majority', {
   message: () => 'vous n\'avez pas l\'âge requis',
@@ -59,11 +62,13 @@ Vue.component('a-switch-button', Atoms.ASwitchButton);
 Vue.component('a-user-picture', Atoms.AUserPicture);
 
 // Atoms Icons
+console.warn(Icones, 'Atoms');
 Vue.component('a-icone-home', Icones.AIconeHome);
 Vue.component('a-icone-community', Icones.AIconeCommunity);
 Vue.component('a-icone-transaction', Icones.AIconeTransaction);
 Vue.component('a-icone-commerce', Icones.AIconeCommerce);
 Vue.component('a-icone-more', Icones.AIconeMore);
+Vue.component('a-icone-back-arrow', Icones.AIconeBackArrow);
 
 // Molecules
 console.warn(Modules, 'Modules');
