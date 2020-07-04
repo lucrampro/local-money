@@ -27,7 +27,7 @@ export default {
   name: 'MyAccount',
   data() {
     return {
-      menuIsOpen: true,
+      menuIsOpen: false,
       navMain: [
         {
           functionBind: () => {
@@ -77,7 +77,7 @@ export default {
         },
         {
           functionBind: () => {
-            this.switchPage('sendPost');
+            this.switchPage('SendPost');
           },
           pageNameBind: 'donner de mes nouvelles',
         },
@@ -91,7 +91,7 @@ export default {
           functionBind: () => {
             this.switchPage('Community');
           },
-          pageNameBind: 'Community',
+          pageNameBind: 'Communauté',
         },
         {
           functionBind: () => {
@@ -100,10 +100,8 @@ export default {
           pageNameBind: 'Mes favoris',
         },
         {
-          functionBind: () => {
-            this.switchPage('MyTransaction');
-          },
           pageNameBind: 'Déconnexion',
+          functionBind: () => { this.$store.dispatch('reset'); this.switchPage('Register'); },
         },
       ],
     };

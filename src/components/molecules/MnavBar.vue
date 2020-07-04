@@ -12,13 +12,12 @@
       />
     </div>
     <div class="navBar__hiddenPart">
-      <a
-        v-for="(pageIcon, index) in navPagesSecondary"
+      <span
+        v-for="(link, index) in navPagesSecondary"
         :key="'icone_nave_hidden_' + index"
-        @click="pageIcon.functionBind()"
-        :isSelected="currentPageName === pageIcon.pageNameBind"
-      >{{ pageIcon.pageNameBind}}
-      </a>
+        @click="link.functionBind()"
+      >{{ link.pageNameBind}}
+      </span>
     </div>
   </div>
 </template>
@@ -81,7 +80,7 @@ export default {
     background: white;
     width: 90vw;
     margin: auto;
-    height: 100%;
+    height: 90%;
     border-radius: 30px;
     padding: 20px;
     padding-top: 5vh;

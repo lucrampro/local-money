@@ -1,6 +1,7 @@
 <template>
   <button class="aButton" :style="buttonStyle" :type="type">
-    <slot></slot>
+    <span><slot></slot></span>
+    <span></span>
   </button>
 </template>
 
@@ -8,6 +9,9 @@
 export default {
   name: 'AButton',
   computed: {
+    onload: {
+
+    },
     buttonStyle() {
       return {
         color: this.$styleGuild.find(this.$props.color),

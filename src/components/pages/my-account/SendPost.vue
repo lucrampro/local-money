@@ -1,6 +1,6 @@
 <template>
   <div>
-    Laisser de mes nouvelles
+    <p>Laisser de mes nouvelles</p>
     <l-form-myacount @formSubmit="getCompanyPost()">
       <m-textarea v-model="companyPost" :errors="{}" name="sendPost">Votre message</m-textarea>
       <template v-slot:bottom>

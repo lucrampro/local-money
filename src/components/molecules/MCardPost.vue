@@ -58,8 +58,8 @@ export default {
 <style lang="scss">
   .cardPost {
     position: relative;
-    background-color: #31a481;
-    color: #fefefe;
+    background-color: #F5F5F5;
+    color: black;
     border-radius: 45px;
     margin-top: 10px;
     padding: 25px 25px;
