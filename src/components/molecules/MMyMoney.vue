@@ -1,6 +1,6 @@
 <template>
   <div class="myMoney">
-    <l-wrapper-block>
+    <l-wrapper-block :style="{ background : background }" :boxShadow="boxShadow">
       <template v-slot:title >
       <p>Le solde de votre compte</p>
       </template>
@@ -17,6 +17,13 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: 'MyMoney',
+
+  props: {
+    boxShadow: {
+      default: '0px 0px 10px rgba(0, 0, 0, 0.25)',
+    },
+    background: { },
+  },
   computed: {
     ...mapGetters([
       'solde',

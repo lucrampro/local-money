@@ -4,10 +4,9 @@
       <template> Les entreprises du réseaux  </template>
     </ActualityFilter>
     <l-wrapper-block>
-      <m-card-post v-for="(company, index) in companiesList" :key="index"  >
+      <m-card-post :hasFooter="false" v-for="(company, index) in companiesList" :key="index"  >
         <template v-slot:header> {{ company.company_name }} </template>
         <template v-slot:main> Deescription: {{ company.category }} de {{ company.first_name }}</template>
-        <template> </template>
       </m-card-post>
     </l-wrapper-block>
   </div>
