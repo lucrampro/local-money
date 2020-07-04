@@ -11,7 +11,6 @@
       <router-view />
     </div>
     <m-navbar
-      :isOpen="menuIsOpen"
       @updateState="menuIsOpen = !menuIsOpen"
       :navPages="navMain"
       :navPagesSecondary="navSecondary"
@@ -116,7 +115,6 @@ export default {
         this.menuIsOpen = false;
       }
     },
-
     getDetail() {
       if (this.compteType) {
         this.$Api
@@ -149,6 +147,13 @@ export default {
     },
     $route() {
       this.navMenuState = false;
+    },
+    menuIsOpen(isOpen) {
+      if (isOpen) {
+        this.$anime.openMenu();
+      } else {
+        this.$anime.closeMenu();
+      }
     },
   },
 };
