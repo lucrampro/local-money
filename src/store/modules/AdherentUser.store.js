@@ -7,6 +7,7 @@ const initialState = () => ({
   transferId: null,
   transactions: [],
   companiesList: [],
+  companyPosts: [],
 });
 
 export default {
@@ -23,6 +24,7 @@ export default {
     transferId: (state) => state.transferId,
     transactions: (state) => state.transactions,
     companiesList: (state) => state.companiesList,
+    companyPosts: (state) => state.companyPosts,
   },
 
   actions: {
@@ -49,6 +51,9 @@ export default {
     },
     setCompaniesList(context, companiesList) {
       context.commit('SET_COMPANIESLIST', companiesList);
+    },
+    setCompanyPosts(context, companyPosts) {
+      context.commit('SET_COMPANIESPOST', companyPosts);
     },
     reset({ commit }) {
       commit('RESET');
@@ -81,6 +86,9 @@ export default {
     },
     SET_COMPANIESLIST(state, companiesList) {
       state.companiesList = companiesList;
+    },
+    SET_COMPANIESPOST(state, companyPosts) {
+      state.companyPosts = companyPosts;
     },
     RESET(state) {
       const newState = initialState();

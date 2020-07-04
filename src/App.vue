@@ -19,6 +19,7 @@ export default {
       'solde',
       'transferId',
       'companiesList',
+      'companyPosts',
     ]),
   },
   created() {
@@ -71,6 +72,10 @@ export default {
 
     this.$Api.addEventListener('companies-list', (event) => {
       this.$store.dispatch('setCompaniesList', event.detail);
+    });
+
+    this.$Api.addEventListener('session-user-companypost', (event) => {
+      this.$store.dispatch('setCompanyPosts', event.detail);
     });
   },
 };
