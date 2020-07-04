@@ -6,7 +6,7 @@
     <div class="cardPost__main">
       <slot name="main"></slot>
     </div>
-    <div class="cardPost__footer">
+    <div v-if="hasFooter" class="cardPost__footer">
         <a-like @click.native="onLikeClic" :isLiked="like"/>
         <p>{{likes}}</p>
     </div>
@@ -42,7 +42,10 @@ export default {
   },
   props: {
     Numberlikes: {
-      default: 6,
+      default: null,
+    },
+    hasFooter: {
+      default: true,
     },
     idOfPost: {
       Type: String,
