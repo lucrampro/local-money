@@ -46,15 +46,17 @@ export default {
   methods: {
     submitForm() {
       this.formOnload = true;
-      this.$Api.login({
-        username: this.mail,
-        password: this.password,
-      }).then(() => {
-        this.formOnload = false;
-        this.$router.push({ name: 'Home' });
-      }).catch(() => {
-        this.formOnload = false;
-      });
+      if (this.formOnload) {
+        this.$Api.login({
+          username: this.mail,
+          password: this.password,
+        }).then(() => {
+          this.formOnload = false;
+          this.$router.push({ name: 'Home' });
+        }).catch(() => {
+          this.formOnload = false;
+        });
+      }
       // fonction send data to the back
     },
   },

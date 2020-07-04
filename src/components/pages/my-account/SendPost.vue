@@ -32,12 +32,20 @@ export default {
   methods: {
     getCompanyPost() {
       this.formOnload = true;
-      this.$Api.putPost(
-        {
-          title: 'title',
-          content: this.companyPost,
-        },
-      );
+      if (this.formOnload) {
+        this.$Api.putPost(
+          {
+            title: 'title',
+            content: this.companyPost,
+          },
+        ).then(() => {
+          this.formOnload = false;
+          this.$store.dispatch('setConfirmPageMessage', 'Votre poste à bien été fait');
+          this.$router.push({ name: 'Confirmation' });
+        }).catch(() => {
+          this.formOnload = false;
+        });
+      }
     },
   },
 };

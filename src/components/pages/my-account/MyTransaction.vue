@@ -1,6 +1,6 @@
 <template>
   <l-wrapper-block background="black">
-    <template v-slot:title>Mes commerçants préférés</template>
+    <template v-slot:title>Mes dernières transactions :</template>
     <template v-slot:default>
       <div v-for="(transactionDay, index ) in transactions" :key="index">
         <p>{{ transactionDay.date }}</p>
