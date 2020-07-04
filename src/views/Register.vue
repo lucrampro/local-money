@@ -18,17 +18,13 @@
           </m-input>
         </ValidationProvider>
       </div>
-        <div class="flex justify-center my-2 mt-8">
-          <a-button  class="w-full" :onload="formOnload" type="submit">Se connecter</a-button>
-        </div>
+      <a-button width="100%" :onload="formOnload" type="submit">Se connecter</a-button>
       <div>
         <a-link class="block mx-auto my-2 mb-4 text-center">
           Mot de passe oublié ?
         </a-link>
       </div>
-        <div class="flex justify-center my-2">
-          <a-button color="#189B73" background="#fefefe"  class="w-full" @click.native="$router.push({ path: 'inscription/account-type' })">S’inscrire</a-button>
-        </div>
+          <a-button color="#189B73" background="#fefefe" width="100%" @click.native="$router.push({ path: 'inscription/account-type' })">S’inscrire</a-button>
       </template>
   </l-regitster>
 </ValidationObserver>

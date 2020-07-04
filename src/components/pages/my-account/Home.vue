@@ -1,6 +1,14 @@
 <template>
   <div class="home">
-    <HeaderInformation :name="userFirstName"/>
+
+    <HeaderInformation :name="userFirstName">
+      <template v-slot:mainText>
+        Bonjour
+        <span class="name">{{ userFirstName }}</span>
+      </template>
+      <template v-slot:subText>Bienvenue sur votre espace 😁 !</template>
+    </HeaderInformation>
+
     <m-my-money></m-my-money>
     <l-wrapper-block>
       <template v-slot:title > Mes dernières transactions</template>

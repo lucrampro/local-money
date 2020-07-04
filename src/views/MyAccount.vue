@@ -1,19 +1,13 @@
 <template>
   <div class="myAccount">
-    <l-header-myCompte :name="userFirstName">
-      <template v-slot:mainText>
-        Bonjour
-        <span class="name">{{ userFirstName }}</span>
-      </template>
-      <template v-slot:subtText>Bienvenue sur votre espace 😁 !</template>
-    </l-header-myCompte>
+    <l-header-myCompte :name="userFirstName" />
     <div class="myAccountContenu">
       <router-view />
     </div>
     <m-navbar
-      :isOpen="menuIsOpen"
       @updateState="menuIsOpen = !menuIsOpen"
       :navPages="navMain"
+      :isOpen="menuIsOpen"
       :navPagesSecondary="navSecondary"
       :currentPageName="this.$router.currentRoute.name"
     />
@@ -95,9 +89,15 @@ export default {
         },
         {
           functionBind: () => {
-            this.switchPage('MyTransaction');
+            this.switchPage('myContacts');
           },
-          pageNameBind: 'Mes favoris',
+          pageNameBind: 'Mes contacts',
+        },
+        {
+          functionBind: () => {
+            this.switchPage('MyInformations');
+          },
+          pageNameBind: 'Mes informations',
         },
         {
           pageNameBind: 'Déconnexion',
@@ -116,7 +116,6 @@ export default {
         this.menuIsOpen = false;
       }
     },
-
     getDetail() {
       if (this.compteType) {
         this.$Api
@@ -152,6 +151,7 @@ export default {
     },
   },
 };
+
 </script>
 
 <style lang="scss" scoped>
@@ -161,6 +161,7 @@ export default {
 
 .myAccount {
   padding: 0px 10px;
+  padding-top: 10px;
   padding-bottom: 60px;
 }
 

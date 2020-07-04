@@ -9,6 +9,7 @@ export default [
       name: 'Home',
       meta: {
         requireAuth: true,
+        userPicto: false,
       },
     },
     {
@@ -17,6 +18,7 @@ export default [
       name: 'Commerce',
       meta: {
         requireAuth: true,
+        userPicto: true,
       },
     },
     {
@@ -25,6 +27,7 @@ export default [
       name: 'MyTransaction',
       meta: {
         requireAuth: true,
+        userPicto: true,
       },
     },
     
@@ -35,6 +38,7 @@ export default [
       children : transactionChildrens,
       meta: {
         requireAuth: true,
+        userPicto: true,
       },
     },
 
@@ -44,6 +48,7 @@ export default [
       name: 'Community',
       meta: {
         requireAuth: true,
+        userPicto: true,
       },
     },
 
@@ -62,6 +67,7 @@ export default [
       children : profileChildrens,
       meta: {
         requireAuth: true,
+        userPicto: false,
       },
     },
   ];

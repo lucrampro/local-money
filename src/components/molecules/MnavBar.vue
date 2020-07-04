@@ -1,5 +1,5 @@
 <template>
-  <div class="navBar" :class="{'open' : isOpen}">
+  <div class="navBar">
     <a-icone-more @click.native="$emit('updateState')" class="buttonMore" :class="{'rotate' : isOpen}" />
     <div class="navBar__visiblePart">
       <a-navbar-picto
@@ -39,6 +39,16 @@ export default {
       type: String,
     },
   },
+  watch: {
+    isOpen(isOpen) {
+      console.log(isOpen);
+      if (isOpen) {
+        this.$anime.openMenu();
+      } else {
+        this.$anime.closeMenu();
+      }
+    },
+  },
 };
 </script>
 
@@ -46,17 +56,13 @@ export default {
 .navBar {
   height: 520px;
   width: 100%;
+  bottom: -441px;
+  left: 0;
   background-color: #f5f5f5;
   position: fixed;
-  bottom: 0;
-  left: 0;
-  transform: translateY(441px);
-  transition: transform cubic-bezier(.33,.63,.83,.69) 0.6s;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
-
-  &.open {
-    transform: translateY(0px);
-  }
+  border-radius: 31px;
+  z-index: 100;
 
   .buttonMore {
     position: absolute;
@@ -80,7 +86,7 @@ export default {
     background: white;
     width: 90vw;
     margin: auto;
-    height: 90%;
+    height: 77%;
     border-radius: 30px;
     padding: 20px;
     padding-top: 5vh;
