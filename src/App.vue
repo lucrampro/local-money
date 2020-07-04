@@ -85,5 +85,10 @@ export default {
 <style lang="scss">
 #app {
   min-height: 100vh;
+  max-width: 687px;
+  margin: auto;
+}
+body {
+   background-color: #00000005;
 }
 </style>
