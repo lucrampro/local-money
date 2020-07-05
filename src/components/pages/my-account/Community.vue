@@ -1,8 +1,8 @@
 <template>
   <div class="community">
     <l-wrapper-block v-if="compteType === 'company'">
-      <p>Donnez des nouvelles de votre acititée<br> au près des autres adhérents </p>
-      <a-button @click.native="$router.push({ name : 'SendPost'})" class="buttonGiveNew">Donner de vos nouvelles</a-button>
+      <p>Donnez des nouvelles de votre activité<br> au près des autres adhérents </p>
+      <a-button  width="100%" @click.native="$router.push({ name : 'SendPost'})" class="buttonGiveNew">Donner de vos nouvelles</a-button>
     </l-wrapper-block>
     <actuality-filter> <template> Mon fils d'actualité </template> </actuality-filter>
     <!-- HERE IS PLACE FOR INPUT TO COMPANY SEND POST  -->

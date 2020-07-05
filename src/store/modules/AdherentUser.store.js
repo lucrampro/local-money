@@ -37,8 +37,8 @@ export default {
     setUserId(context, userId) {
       context.commit('SET_USER_ID', Number(userId));
     },
-    setCompteType(context, userId) {
-      context.commit('SET_COMPTE_TYPE', userId);
+    setCompteType(context, compteType) {
+      context.commit('SET_COMPTE_TYPE', compteType);
     },
     setSolde(context, solde) {
       context.commit('SET_SOLDE', solde);
