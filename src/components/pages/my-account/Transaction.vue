@@ -5,11 +5,12 @@
       <div class="validationMessageContainer">
         <l-wrapper-block backgroundColor="#F5F5F5">
           <div class="messageConfirmation">
-            <p>Êtes-vous sûr de vouloir {{transferedMoney}} MLC, à {{beneficiaryAccountId}} ( {nom du bénéficiaire} ) ?</p>
+            <p ref="messagePoppin">Êtes-vous sûr de vouloir {{transferedMoney}} MLC, à {{beneficiaryAccountId}} ( {nom du bénéficiaire} ) ?</p>
           </div>
           <template  v-slot:bottom>
-            <a-button :onload="transactionOnload" @click.native="submitForm()" width="100%">OUI</a-button>
-            <a-button v-show="!transactionOnload" @click.native="closePopPin()" background="white" color="$primary-color" width="100%">NON</a-button>
+            <a-button v-show="!trasactionError" :onload="transactionOnload" @click.native="submitForm()" width="100%">OUI</a-button>
+            <a-button v-show="!transactionOnload && !trasactionError" @click.native="closePopPin()" background="white" color="$primary-color" width="100%">NON</a-button>
+            <a-button v-show="!transactionOnload && trasactionError" @click.native="$router.push({ name : 'MyTransaction'})" width="100%">Revenir plus tard</a-button>
           </template>
         </l-wrapper-block>
       </div>
@@ -50,6 +51,7 @@ export default {
       transactionOnload: false,
       previousName: [],
       mode: this.$route.name,
+      type: '',
       popins: {
         SendMoney: {
           state: false,
@@ -110,6 +112,8 @@ export default {
           this.$router.push({ name: 'Confirmation' });
           this.transactionOnload = false;
         }).catch(() => {
+          this.$refs.messagePoppin.innerHTML = 'une erreure ses produite veuillez réessayer plus tard 😔';
+          this.trasactionError = true;
           this.transactionOnload = false;
         });
       }
@@ -132,7 +136,7 @@ export default {
       return this.$route.meta.nextName;
     },
     popinsOpen() {
-      return this.popins.SendMoney.state || this.popins.ConvertMoney.state;
+      return (this.popins.SendMoney && this.popins.SendMoney.state) || (this.popins.ConvertMoney && this.popins.ConvertMoney.state);
     },
     currentPopPin() {
       return this.popins[this.mode];

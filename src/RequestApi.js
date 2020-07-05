@@ -86,7 +86,7 @@ class ApiRequest extends EventDispatcher {
           return res.json().then((res2) => {
             reject(res2);
           });
-        }).catch((res) => reject(res.json()));
+        }).catch((res) => reject(res));
       }),
 
       /**
@@ -110,7 +110,7 @@ class ApiRequest extends EventDispatcher {
           return res.json().then((res2) => {
             reject(res2);
           });
-        }).catch((res) => reject(res.json()));
+        }).catch((res) => reject(res));
       }),
       ///
       delete: (path, payload) => new Promise((resolve, reject) => {
