@@ -22,8 +22,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .lHeaderMyCompte {
-  padding: 20px;
-  margin-bottom: 30px;
+  padding: 10px;
   height: 70px;
   display: flex;
   position: relative;

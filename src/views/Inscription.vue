@@ -1,20 +1,46 @@
 <template>
   <l-regitster @formSubmit="toNextPage()">
     <template v-slot:header>
-      <div class="flex h-auto">
+      <div class="header">
         <span>
-          <a-button v-if="previousPath" background="white" color="#189B73"  @click.native="toPreviousPage()" ><a-icone-back-arrow/></a-button>
+          <a-button
+            v-if="previousPath"
+            background="white"
+            :hasSecondaryBackground="false"
+            color="#189B73"
+            @click.native="toPreviousPage()"
+          >
+            <a-icone-back-arrow />
+          </a-button>
         </span>
-        <div class="pl-4">
-          <p class="text-xl font-semibold sm:text-xl">{{title}}</p>
-          <p class="pt-1 text-sm font-semibold text-gray-600 ">{{subText}}</p>
+        <div class="textInstruction">
+          <p class="title">{{title}}</p>
+          <p class="subText">{{subText}}</p>
         </div>
       </div>
     </template>
-      <router-view :toNextPage="toNextPage" :initFormData="{...formDatas}" @updateForm="( formData ) => { updateForm(formData) }" @updateFormValid="(val) => {formValid = val}" />
+    <router-view
+      :toNextPage="toNextPage"
+      :initFormData="{...formDatas}"
+      @updateForm="( formData ) => { updateForm(formData) }"
+      @updateFormValid="(val) => {formValid = val}"
+    />
     <template v-slot:bottom>
-      <a-button width="100%" v-if="currentNamePage !== 'AccountType'" type="submit" :onload="buttonOnload" class="w-full" >Suviant</a-button>
-      <a-button width="100%"  v-if="currentNamePage === 'AccountType'" background="white" color="#189B73" class="w-full" @click.native="$router.push({ name: 'Register' })" >Se connecter</a-button>
+      <a-button
+        width="100%"
+        v-if="currentNamePage !== 'AccountType'"
+        type="submit"
+        :onload="buttonOnload"
+        class="w-full"
+      >Suviant</a-button>
+      <a-button
+        width="100%"
+        v-if="currentNamePage === 'AccountType'"
+        background="white"
+        color="#189B73"
+        class="w-full"
+        @click.native="$router.push({ name: 'Register' })"
+      >Se connecter</a-button>
     </template>
   </l-regitster>
 </template>
@@ -43,11 +69,14 @@ export default {
     toNextPage() {
       if (this.formValid) {
         if (!this.pageSubmited) {
-          this.$router.push({ path: `${this.formDatas.type}-${this.nextPath}` });
+          this.$router.push({
+            path: `${this.formDatas.type}-${this.nextPath}`,
+          });
           this.formValid = false;
         } else {
           this.buttonOnload = true;
-          this.$Api.postRegister(this.formatForm(this.formDatas))
+          this.$Api
+            .postRegister(this.formatForm(this.formDatas))
             .then(() => {
               this.$router.push({ name: 'Home' });
             })
@@ -91,5 +120,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header {
+  align-items: center;
+  display: flex;
+  .textInstruction {
+    padding-left: 10px ;
+    .title {
+      margin: auto;
+    }
+    .subText {
+      padding-top: 1px;
+      font-size: 14px;
+      font-weight: 600;
+      color: $gray;
+    }
+  }
+}
 
 </style>

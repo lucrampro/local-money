@@ -38,9 +38,6 @@ export default {
   background-position-y: -13%;
   background-repeat: no-repeat;
 
-  .header {
-    max-height: 96px;
-  }
   .main {
     min-height: 40vh;
   }

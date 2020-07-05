@@ -42,6 +42,8 @@ span {
 }
 .pictoWrapper {
   transition: all 360.713ms ease 0ms;
+  display: flex;
+  flex-direction: column;
 }
 .pageName {
   &.hidden {

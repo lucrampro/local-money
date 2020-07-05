@@ -9,7 +9,7 @@ import {
 } from 'vee-validate/dist/rules';
 import fr from 'vee-validate/dist/locale/fr.json';
 
-import '@/assets/css/tailwind.css';
+import '@/assets/css/reset.css';
 import './registerServiceWorker';
 import App from './App.vue';
 import Atoms from './components/atoms';

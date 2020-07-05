@@ -2,10 +2,31 @@
   font-family: Nunito;
 }
 
+.block {
+  display: block;
+}
+
+.flex {
+  display: flex;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.text-sm {
+  font-size: .875rem;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
 $primary-color: #189B73;
 $primary-color-100: #31A481;
 $secondary-color: #DE6B48;
 $gray-background: #F5F5F5;
+$gray: #718096;;
 
 @font-face {
   font-family: 'Nunito';
