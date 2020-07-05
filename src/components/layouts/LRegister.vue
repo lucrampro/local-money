@@ -51,6 +51,7 @@ export default {
     min-height: 40vh;
   }
   .wrapperConnexion {
+    z-index: 40;
     min-height: 75vh;
     height: 100%;
     background: #F9F9F9;
