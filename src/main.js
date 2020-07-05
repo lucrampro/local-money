@@ -3,21 +3,28 @@ import {
   ValidationProvider, extend,
   localize, ValidationObserver,
 } from 'vee-validate';
-
-import { required, email, min } from 'vee-validate/dist/rules';
+// import g from 'gsap';
+import {
+  required, email, min, alpha_dash,// eslint-disable-line
+} from 'vee-validate/dist/rules';
 import fr from 'vee-validate/dist/locale/fr.json';
-import App from './App.vue';
-import router from './router';
-import store from './store';
-import '@/assets/css/tailwind.css';
+
+import '@/assets/css/reset.css';
 import './registerServiceWorker';
-import requestApi from './RequestApi';
-import styleGuild from './handlerColorPlugin';
+import App from './App.vue';
 import Atoms from './components/atoms';
-import Modules from './components/molecules';
-import Organisme from './components/organisms';
-import Layouts from './components/layouts';
 import i18n from './i18n';
+import Icones from './components/atoms/Icones';
+import Layouts from './components/layouts';
+import Modules from './components/molecules';
+import OurAnimation from './ourAnimation';
+import Organisme from './components/organisms';
+import router from './router';
+import requestApi from './RequestApi';
+import store from './store';
+import styleGuild from './handlerColorPlugin';
+
+// console.log(g);
 
 Vue.config.productionTip = false;
 
@@ -27,6 +34,7 @@ localize('fr', fr);
 extend('email', email);
 extend('required', required);
 extend('min', min);
+extend('alpha_dash', alpha_dash); // eslint-disable-line
 
 extend('majority', {
   message: () => 'vous n\'avez pas l\'âge requis',
@@ -57,25 +65,35 @@ Vue.component('a-picto', Atoms.APicto);
 Vue.component('a-switch-button', Atoms.ASwitchButton);
 Vue.component('a-user-picture', Atoms.AUserPicture);
 
+// Atoms Icons
+console.warn(Icones, 'Icone Atoms');
+Vue.component('a-icone-home', Icones.AIconeHome);
+Vue.component('a-icone-community', Icones.AIconeCommunity);
+Vue.component('a-icone-transaction', Icones.AIconeTransaction);
+Vue.component('a-icone-commerce', Icones.AIconeCommerce);
+Vue.component('a-icone-more', Icones.AIconeMore);
+Vue.component('a-icone-back-arrow', Icones.AIconeBackArrow);
+Vue.component('a-icone-modify', Icones.AIconeModify);
+
 // Molecules
 console.warn(Modules, 'Modules');
 Vue.component('m-input', Modules.MInputText);
 Vue.component('m-textarea', Modules.MTextarea);
 Vue.component('m-radio', Modules.MRadio);
-Vue.component('m-navbarre', Modules.MNavbarre);
+Vue.component('m-navbar', Modules.MnavBar);
 Vue.component('m-menu', Modules.MMenu);
 Vue.component('m-transaction', Modules.MTransaction);
 Vue.component('m-card-transaction', Modules.MCardTransaction);
 Vue.component('m-card-post', Modules.MCardPost);
 Vue.component('m-my-money', Modules.MMyMoney);
-Vue.component('o-transaction-input', Modules.MTransactionInput);
+Vue.component('m-contact-block', Modules.MContactBlock);
 
 // Layouts
 console.warn(Layouts, 'Layouts');
 Vue.component('l-regitster', Layouts.LRegister);
 Vue.component('l-overlay', Layouts.LOverlay);
 Vue.component('l-wrapper-block', Layouts.LWrapperBlock);
-Vue.component('l-transaction-form', Layouts.LTransactionForm);
+Vue.component('l-form-myacount', Layouts.LFormMyAcount);
 Vue.component('l-header-myCompte', Layouts.LHeaderMyCompte);
 
 // Organisme
@@ -85,13 +103,15 @@ Vue.component('o-transaction-input', Organisme.OTransactionInput);
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
 
+Vue.use(OurAnimation);
 Vue.use(requestApi);
 Vue.use(styleGuild);
 new Vue({
-  styleGuild,
+  i18n,
+  OurAnimation,
   requestApi,
   router,
   store,
-  i18n,
+  styleGuild,
   render: (h) => h(App),
 }).$mount('#app');

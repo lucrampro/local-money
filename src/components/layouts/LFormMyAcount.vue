@@ -1,6 +1,6 @@
 <template>
     <div
-      class="LTransactionForm"
+      class="LFormMyAcount"
       :style="{ 'box-shadow' : $props.boxShadow ,'background-color' : currentBackgroundColor  }"
     >
       <div class="header">
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'LTransactionForm',
+  name: 'LFormMyAcount',
   props: {
     backgroundColor: {
       default: 'white',
@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.LTransactionForm {
+.LFormMyAcount {
   border-radius: 35px;
   padding: 40px 25px;
   margin: 10px 0px;

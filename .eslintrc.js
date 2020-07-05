@@ -20,6 +20,7 @@ module.exports = {
     "max-len" : "off",
     "ricted-syntax" :"off",
     "no-new":"off",
+    "no-plusplus": "off",
     // "no-unused-vars" : "off",
 
     

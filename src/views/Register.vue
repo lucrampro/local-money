@@ -18,17 +18,13 @@
           </m-input>
         </ValidationProvider>
       </div>
-        <div class="flex justify-center my-2 mt-8">
-          <a-button  class="w-full" type="submit">Se connecter</a-button>
-        </div>
+      <a-button width="100%" :onload="formOnload" type="submit">Se connecter</a-button>
       <div>
-        <a-link class="block mx-auto my-2 mb-4 text-center">
+        <a-link class="block">
           Mot de passe oublié ?
         </a-link>
       </div>
-        <div class="flex justify-center my-2">
-          <a-button color="#189B73" background="#fefefe"  class="w-full" @click.native="$router.push({ path: 'inscription/account-type' })">S’inscrire</a-button>
-        </div>
+          <a-button color="#189B73" background="#fefefe" width="100%" @click.native="$router.push({ path: 'inscription/account-type' })">S’inscrire</a-button>
       </template>
   </l-regitster>
 </ValidationObserver>
@@ -38,18 +34,25 @@
 export default {
   data() {
     return {
+      formOnload: false,
       mail: 'particular@neymo.com',
       password: '123456',
     };
   },
   methods: {
     submitForm() {
-      this.$Api.login({
-        username: this.mail,
-        password: this.password,
-      }).then(() => {
-        this.$router.push({ name: 'Home' });
-      });
+      this.formOnload = true;
+      if (this.formOnload) {
+        this.$Api.login({
+          username: this.mail,
+          password: this.password,
+        }).then(() => {
+          this.formOnload = false;
+          this.$router.push({ name: 'Home' });
+        }).catch(() => {
+          this.formOnload = false;
+        });
+      }
       // fonction send data to the back
     },
   },
@@ -57,5 +60,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+::v-deep .Alink {
+ margin: 20px auto;
+ text-align: center;
+}
 </style>

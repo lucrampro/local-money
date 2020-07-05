@@ -2,8 +2,8 @@
   <ValidationObserver ref="observer">
     <p>Montant à envoyer  {{transferedMoney || 0}} MCL</p>
     <div>
-      <ValidationProvider name="Identifiant du bénéficier" rules="required|min:2" v-slot="{ errors }">
-        <m-input :errors="errors" name="zipCode" type="tel" v-model="beneficiaryAccountId" maxlength="5" exemple="AC14FG">Identifiant du bénéficier</m-input>
+      <ValidationProvider name="Identifiant du bénéficiaire" rules="required|min:2" v-slot="{ errors }">
+        <m-input :errors="errors" name="zipCode" type="tel" v-model="beneficiaryAccountId" maxlength="5" exemple="AC14FG">Identifiant du bénéficiaire</m-input>
       </ValidationProvider>
       <!-- // dont remove -->
       <!-- <m-input :errors="{}" name="send_name">Nom de l’envoie</m-input> -->
