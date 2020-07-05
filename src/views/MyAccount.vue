@@ -59,7 +59,7 @@ export default {
       navSecondary: [
         {
           functionBind: () => {
-            this.switchPage('SendMoney');
+            this.switchPage('Buy');
           },
           pageNameBind: 'Payer',
         },

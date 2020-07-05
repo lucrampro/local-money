@@ -24,7 +24,7 @@
     />
     <l-form-myacount @formSubmit="submit()" boxShadow="none" backgroundColor="$gray-background">
       <template>
-        <a-button :hasBackground="false" v-if="canGoToPreviousPage" @click.native="goToPreviousPage()" background="white" color="$primary-color">></a-button>
+        <a-button :hasSecondaryBackground="false" v-if="canGoToPreviousPage" @click.native="goToPreviousPage()" background="white" color="$primary-color"><a-icone-back-arrow /></a-button>
         <router-view
           :initFormData="{...formDatas}"
           @updateForm="( formData ) => { updateForm(formData) }"
@@ -53,7 +53,7 @@ export default {
       mode: this.$route.name,
       type: '',
       popins: {
-        SendMoney: {
+        Buy: {
           state: false,
         },
         ConvertMoney: {
@@ -62,8 +62,8 @@ export default {
       },
       switchButton: {
         leftText: {
-          text: 'Envoyer',
-          value: 'SendMoney',
+          text: 'Payer',
+          value: 'Buy',
         },
         rightText: {
           text: 'Convertir',
@@ -74,7 +74,7 @@ export default {
   },
   watch: {
     mode(newPageName) {
-      if (newPageName === 'ConvertMoney' || newPageName === 'SendMoney') {
+      if (newPageName === 'ConvertMoney' || newPageName === 'Buy') {
         this.$router.push({ name: newPageName });
       }
     },
@@ -130,13 +130,13 @@ export default {
       return this.formDatas && this.formDatas.beneficiaryAccountId;
     },
     canGoToPreviousPage() {
-      return this.$route.name !== 'ConvertMoney' && this.$route.name !== 'SendMoney';
+      return this.$route.name !== 'ConvertMoney' && this.$route.name !== 'Buy';
     },
     nextName() {
       return this.$route.meta.nextName;
     },
     popinsOpen() {
-      return (this.popins.SendMoney && this.popins.SendMoney.state) || (this.popins.ConvertMoney && this.popins.ConvertMoney.state);
+      return (this.popins.Buy && this.popins.Buy.state) || (this.popins.ConvertMoney && this.popins.ConvertMoney.state);
     },
     currentPopPin() {
       return this.popins[this.mode];

@@ -1,6 +1,6 @@
 <template>
 <button class="aButtonWrapper">
-  <span v-if="hasBackground" class="backgroundButton" :style="{background : buttonStyle.background}"></span>
+  <span v-if="hasSecondaryBackground" class="backgroundButton" :style="{background : buttonStyle.background}"></span>
   <button class="aButton" :style="buttonStyle" :type="type">
     <span v-if="!onload">
       <slot></slot>
@@ -58,7 +58,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    hasBackground: {
+    hasSecondaryBackground: {
       default: true,
     },
     type: {

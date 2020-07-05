@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default [
   {
-    path: 'envoi',
-    component: () => import('@/components/pages/my-account/transaction/SendMoney.vue'),
-    name: 'SendMoney',
+    path: 'payer',
+    component: () => import('@/components/pages/my-account/transaction/Buy.vue'),
+    name: 'Buy',
     meta: {
       requireAuth: true,
       userPicto: true,

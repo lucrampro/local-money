@@ -1,7 +1,7 @@
 <template>
   <div class="mContactBlock">
     <span>Marcel Duchamp</span>
-    <img src="@/assets/img/pictos/default.png" alt="" srcset="">
+    <a-icone-modify/>
   </div>
 </template>
 
