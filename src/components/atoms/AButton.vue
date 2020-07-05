@@ -89,6 +89,9 @@ export default {
   position: relative;
   display: block;
   width: 100%;
+  border: none;
+  background: transparent;
+  padding: 0;
 }
 
 .aButton {

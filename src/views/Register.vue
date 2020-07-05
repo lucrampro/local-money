@@ -20,7 +20,7 @@
       </div>
       <a-button width="100%" :onload="formOnload" type="submit">Se connecter</a-button>
       <div>
-        <a-link class="block mx-auto my-2 mb-4 text-center">
+        <a-link class="block">
           Mot de passe oublié ?
         </a-link>
       </div>
@@ -60,5 +60,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+::v-deep .Alink {
+ margin: 20px auto;
+ text-align: center;
+}
 </style>

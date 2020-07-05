@@ -48,6 +48,7 @@ export default {
     return {
       formDatas: {},
       formValid: false,
+      trasactionError: false,
       transactionOnload: false,
       previousName: [],
       mode: this.$route.name,
@@ -168,7 +169,7 @@ export default {
 
 ::v-deep .wrapperBlock {
   height: 100%;
-  max-width: 95vw;
+  max-width: 80vw;
 }
 
 ::v-deep .buttonSwitch {
