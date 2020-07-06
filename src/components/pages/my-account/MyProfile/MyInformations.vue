@@ -2,10 +2,9 @@
   <m-card-post>
     <template v-slot:main>
       <a-button>Modifier mes informations</a-button>
-      <ul v-for="(info, index) in myInformation" :key="index">
-        <li>{{info.title}}</li>
-        <li>{{info.firstInfo}}</li>
-        <li>{{info.secondInfo}}</li>
+      <ul>
+        <li>Mes informations</li>
+        <li v-for="(items, index) in myInformation" :key="index">{{index}}: {{items}}</li>
       </ul>
     </template>
   </m-card-post>
@@ -17,18 +16,17 @@ export default {
   data() {
     return {
       myInformation: [
-        {
-          title: 'Contact',
-          firstInfo: '0678567974',
-          secondInfo: 'samantha.poitier@gmail.com',
-        },
-        {
-          title: 'Adresse',
-          firstInfo: '345 allee de la tortue',
-          secondInfo: '24000, Allex',
-        },
       ],
     };
+  },
+  mounted() {
+    this.$Api.getUserInfo(this.$Api.token)
+      .then((response) => {
+        this.myInformation = response;
+        console.log('je suis myInformation', this.myInformation);
+      });
+  },
+  methods: {
   },
 };
 </script>

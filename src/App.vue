@@ -49,7 +49,7 @@ export default {
         this.$store.dispatch('setUserId', event.detail.id);
         this.$store.dispatch('setUserFirstName', event.detail.first_name);
         this.$store.dispatch('setCompteType', event.detail.type);
-        this.$Api.setUserType(event.detail[0].type);
+        this.$Api.setUserType(event.detail.type);
       }
 
       // save the user on Storage when this connected

@@ -182,12 +182,15 @@ class ApiRequest extends EventDispatcher {
    * @param  {String} token token of custumer
    */
   getUserInfo(token) {
-    return this.get('/me', { Headers: { Authorization: `Bearer ${token || this.token}` } })
-      .then((res) => {
-        this.dispatchEvent(new CustomEvent('session-user-information', { detail: res }));
-        return res;
-      })
-      .catch((res) => res);
+    return new Promise((resolve, reject) => {
+      return this.get('/me', { Headers: { Authorization: `Bearer ${token || this.token}` } })
+        .then((res) => {
+          console.log(res);
+          this.dispatchEvent(new CustomEvent('session-user-information', { detail: res }));
+          return resolve(res);
+        })
+        .catch((res) => reject(res));
+    })
   }
 
   /**
@@ -199,7 +202,7 @@ class ApiRequest extends EventDispatcher {
       return new Promise((resolve, reject) => {
         return this.get(`/${type}/account`, { Headers: { Authorization: `Bearer ${this.token}` , 'Content-Type': 'application/x-www-form-urlencoded'} })
           .then((res) => {
-            this.dispatchEvent(new CustomEvent('session-user-details', { detail: res }));
+            this.dispatchEvent(new CustomEvent('session-user-details', { detail: res.length ? res[0] : res }));
             return resolve(res);
           })
           .catch((res) => reject(res));
@@ -234,6 +237,16 @@ class ApiRequest extends EventDispatcher {
 
   getCompanyList() {
     return this.get('/companies', {
+      Headers: { Authorization:`Bearer ${this.token}` },
+    }).then((response) => {
+      this.dispatchEvent(new CustomEvent('companies-list', { detail: response}));
+      return response
+    })
+      .catch((response) => response);
+  }
+
+  getContactList() {
+    return this.get('/contacts', {
       Headers: { Authorization:`Bearer ${this.token}` },
     }).then((response) => {
       this.dispatchEvent(new CustomEvent('companies-list', { detail: response}));
