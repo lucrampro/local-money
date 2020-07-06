@@ -58,6 +58,12 @@ export default {
     model(newVal) {
       this.$emit('input', newVal);
     },
+    '$attrs.value': function (newVal, oldVal) {
+      console.log(newVal, oldVal);
+      if (newVal !== oldVal) {
+        this.model = newVal;
+      }
+    },
   },
 };
 </script>

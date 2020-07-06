@@ -1,7 +1,7 @@
 <template>
   <div class="MInput">
     <span class="wrapperInputLabel">
-      <label :for="name">{{placeholder}}</label>
+      <label :for="name">{{ label || placeholder}}</label>
       <input
         :id="name"
         ref="input"
@@ -46,6 +46,9 @@ export default {
     maxlength: {
       type: String,
       default: '50',
+    },
+    label: {
+      default: '',
     },
     type: {
       type: String,

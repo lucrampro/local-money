@@ -5,9 +5,9 @@ const FormMixin = {
     for (const payloadKey in initFormData) {
       this[payloadKey] = initFormData[`${payloadKey}`]
       
-      console.log( this[payloadKey] , initFormData[`${payloadKey}`])
+      // console.log( this[payloadKey] , initFormData[`${payloadKey}`])
     }
-    console.log(initFormData)
+    // console.log(initFormData)
     /* eslint-enable */
   },
   props: {

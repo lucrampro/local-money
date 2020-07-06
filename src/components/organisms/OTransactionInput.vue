@@ -1,6 +1,6 @@
 <template>
   <div class="OTransactionInut">
-    <m-input :name="name" :errors="errors" v-model="model" type="tel">MCL</m-input>
+    <m-input :name="name" :errors="errors" :label="label" v-model="model" type="tel"></m-input>
   </div>
 </template>
 
@@ -17,7 +17,13 @@ export default {
       this.$emit('input', newVal);
     },
   },
-  props: ['name', 'errors'],
+  props: {
+    name: {},
+    errors: {},
+    label: {
+      default: '',
+    },
+  },
 };
 </script>
 

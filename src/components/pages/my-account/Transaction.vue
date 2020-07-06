@@ -34,7 +34,8 @@
 
     <a-switch-button
       name="switch__page__transaction"
-      v-model="mode"
+      @updateOption="(option) => { updatedMode(option) }"
+       v-model="mode"
       :leftText="switchButton.leftText"
       :rightText="switchButton.rightText"
     />
@@ -76,7 +77,6 @@ export default {
       formDatas: {},
       trasactionError: false,
       transactionOnload: false,
-      previousName: [],
       mode: this.$route.name,
       type: '',
       popins: {
@@ -100,18 +100,23 @@ export default {
     };
   },
   watch: {
-    mode(newPageName) {
-      if (newPageName === 'ConvertMoney' || newPageName === 'Buy') {
-        this.$router.push({ name: newPageName });
+    $route(to) {
+      if (to.name === 'ConvertMoney' || to.name === 'Buy') {
+        this.mode = to.name;
+        console.log(this.mode);
       }
     },
   },
+
   methods: {
     updateForm(curentFormData) {
       this.formDatas = {
         ...this.formDatas,
         ...curentFormData,
       };
+    },
+    updatedMode(option) {
+      this.$router.push({ name: option });
     },
     goToPreviousPage() {
       this.$router.go(-1);

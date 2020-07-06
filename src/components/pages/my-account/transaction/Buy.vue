@@ -3,7 +3,7 @@
     <div>
         <p>Mon solde : {{solde}} MCL</p>
         <p>Je souhaite faire un envoi d’une valeur de</p>
-        <o-transaction-input v-model="transferedMoney" :errors="errors" name="sum_to_send" />
+        <o-transaction-input v-model="transferedMoney" label="MLC" :errors="errors" name="sum_to_send" />
     </div>
   </ValidationProvider>
 </template>
