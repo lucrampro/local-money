@@ -2,6 +2,7 @@
   <div class="registerInscription">
     <img class="logo" src="/logo.svg" alt />
     <div class="wrapperConnexion">
+
       <ValidationObserver ref="observer" v-slot="{ validate, valid }">
         <!-- SLOT HEADER -->
         <div class="header">
