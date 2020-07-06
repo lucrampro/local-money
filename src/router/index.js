@@ -45,6 +45,9 @@ const routes = [
     path: '/presentation-de-l\'app',
     name: 'Landing',
     component: Landing,
+    meta: {
+      requireAuth: true,
+    },
   },
 ];
 
