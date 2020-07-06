@@ -95,6 +95,7 @@ export default {
 }
 
 .aButton {
+  width: 100%;
   padding: 15px 20px;
   border: 30px;
   color: white;

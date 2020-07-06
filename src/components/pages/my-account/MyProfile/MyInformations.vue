@@ -1,10 +1,28 @@
 <template>
   <l-wrapper-block backgroundColor="$gray-background">
-    <p>Contact</p>
-    <p>0652320475</p>
-    <p>elisa.tortue@maplateforme.com</p>
-    <p>Adresse</p>
-    <p>4, chemin de la tour 26400, Allex</p>
-    <p>Description</p>
+    <a-button>Modifier mes informations</a-button>
+    <div class="contactInformation">
+      <ul>
+        <li>Toto</li>
+        <li>0652320475</li>
+        <li>toto@toto.com</li>
+      </ul>
+    </div>
   </l-wrapper-block>
 </template>
+
+<style lang="scss" scoped>
+.contactInformation {
+  ul {
+    list-style: none;
+    li {
+      font-weight: 400;
+      &:first-child {
+        margin: 15px 0px;
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+  }
+}
+</style>
