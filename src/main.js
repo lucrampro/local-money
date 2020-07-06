@@ -88,6 +88,7 @@ Vue.component('m-card-transaction', Modules.MCardTransaction);
 Vue.component('m-card-post', Modules.MCardPost);
 Vue.component('m-my-money', Modules.MMyMoney);
 Vue.component('m-contact-block', Modules.MContactBlock);
+Vue.component('m-error-message', Modules.MErrorMessage);
 
 // Layouts
 console.warn(Layouts, 'Layouts');

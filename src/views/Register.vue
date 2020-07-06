@@ -1,8 +1,9 @@
 <template>
 <ValidationObserver>
+  <m-error-message :message="errorMessage" v-show="error"/>
   <l-regitster @formSubmit="submitForm">
       <template v-slot:header>
-        <p class="wellcomeMessage">Bienvenue sur NeyMo !</p>
+        <p class="wellcomeMessage">Bienvenue <br>sur NeyMo !</p>
         <p>Connectez vous pour continuer </p>
       </template>
       <template v-slot:default>
@@ -34,8 +35,10 @@
 export default {
   data() {
     return {
-      mail: 'particular@neymo.com',
-      password: '123456',
+      error: false,
+      errorMessage: '',
+      mail: '',
+      password: '',
       formOnload: false,
     };
   },
@@ -49,7 +52,11 @@ export default {
       }).then(() => {
         this.$router.push({ name: 'Home' });
         this.formOnload = false;
-      }).catch(() => {
+      }).catch((error) => {
+        if (error.code === 401) {
+          this.errorMessage = 'vos identifiants sont incorrects.';
+          this.error = true;
+        }
         this.formOnload = false;
       });
 
@@ -60,12 +67,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.MerrorMessage {
+  top: 30px;
+  transition: opacity 0.5s;
+}
+
 .wellcomeMessage {
   font-size: 22px;
   font-weight: 600;
   line-height: 26px;
   font-family: $secondary-font;
 }
+
 ::v-deep .Alink {
   text-align: center;
   display: block;

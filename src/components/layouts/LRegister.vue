@@ -1,29 +1,32 @@
 <template>
   <div class="registerInscription">
-    <img class="logo" src="/logo.svg" alt="">
+    <img class="logo" src="/logo.svg" alt />
     <div class="wrapperConnexion">
-      <!-- SLOT HEADER -->
-      <div class="header">
-        <slot name="header"></slot>
-      </div>
-      <form v-on:submit.prevent="submit()">
-        <!-- SLOT DEFAULT -->
-        <div class="main">
-          <slot></slot>
+      <ValidationObserver ref="observer" v-slot="{ validate, valid }">
+        <!-- SLOT HEADER -->
+        <div class="header">
+          <slot name="header"></slot>
         </div>
-        <!-- SLOT BOTTOM -->
-        <slot name="bottom"></slot>
-      </form>
+        <form v-on:submit.prevent="submit(valid); validate()">
+          <!-- SLOT DEFAULT -->
+          <div class="main" v-bind:valid="valid">
+            <slot v-bind:validate="validate"></slot>
+          </div>
+          <!-- SLOT BOTTOM -->
+          <slot name="bottom"></slot>
+        </form>
+      </ValidationObserver>
     </div>
-
   </div>
 </template>
 <script>
 export default {
   name: 'LRegister',
   methods: {
-    submit() {
-      this.$emit('formSubmit');
+    submit(valid) {
+      if (valid) {
+        this.$emit('formSubmit');
+      }
     },
   },
 };
@@ -32,9 +35,9 @@ export default {
 <style lang="scss" scoped>
 .registerInscription {
   background: url("../../assets/img/background-register.png");
-  padding-top: 21vh;
+  padding-top: 25vh;
   background-size: contain;
-  background-position-y: -13%;
+  background-position-y: -8%;
   background-repeat: no-repeat;
   .logo {
     position: absolute;
@@ -53,7 +56,7 @@ export default {
     z-index: 40;
     min-height: 75vh;
     height: 100%;
-    background: #F9F9F9;
+    background: #f9f9f9;
     border-radius: 35px 35px 0px 0px;
     padding: 30px 32px;
   }
