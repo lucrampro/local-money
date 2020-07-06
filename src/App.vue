@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <router-link to="/presentation-de-l'app">toto</router-link>
     <router-view/>
   </div>
 </template>
@@ -83,6 +84,23 @@ export default {
     this.$Api.addEventListener('session-user-companypost', (event) => {
       this.$store.dispatch('setCompanyPosts', event.detail);
     });
+  },
+  mounted() {
+    if (this.$route.name === 'Landing') {
+      this.setAppMargin();
+    }
+  },
+  methods: {
+    setAppMargin() {
+      document.querySelector('#app').style.margin = '0px';
+    },
+  },
+  watch: {
+    $route(to) {
+      if (to.name === 'Langing') {
+        this.setAppMargin();
+      }
+    },
   },
 };
 
