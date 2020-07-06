@@ -86,7 +86,7 @@ class ApiRequest extends EventDispatcher {
           return res.json().then((res2) => {
             reject(res2);
           });
-        }).catch((res) => reject(res));
+        }).catch((res) => reject(res.json()));
       }),
 
       /**
@@ -195,14 +195,16 @@ class ApiRequest extends EventDispatcher {
    * @param  {String} type type is particular or company
    */
   getDetails(type = this.userType) {
-    return new Promise((resolve, reject) => {
-      return this.get(`/${type}/account`, { Headers: { Authorization: `Bearer ${this.token}` , 'Content-Type': 'application/x-www-form-urlencoded'} })
-        .then((res) => {
-          this.dispatchEvent(new CustomEvent('session-user-details', { detail: res }));
-          return resolve(res);
-        })
-        .catch((res) => reject(res));
-    })
+    if (type) {
+      return new Promise((resolve, reject) => {
+        return this.get(`/${type}/account`, { Headers: { Authorization: `Bearer ${this.token}` , 'Content-Type': 'application/x-www-form-urlencoded'} })
+          .then((res) => {
+            this.dispatchEvent(new CustomEvent('session-user-details', { detail: res }));
+            return resolve(res);
+          })
+          .catch((res) => reject(res));
+      })
+    }
   }
 
   /**
