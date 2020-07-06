@@ -5,6 +5,11 @@
 .block {
   display: block;
 }
+.v-min {
+  @media screen and (min-width: 350px) {
+    display: none;
+  }
+}
 
 .flex {
   display: flex;

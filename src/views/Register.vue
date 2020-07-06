@@ -3,7 +3,7 @@
   <m-error-message :message="errorMessage" v-show="error"/>
   <l-regitster @formSubmit="submitForm">
       <template v-slot:header>
-        <p class="wellcomeMessage">Bienvenue <br>sur NeyMo !</p>
+        <p class="wellcomeMessage">Bienvenue <br class="v-min">sur NeyMo !</p>
         <p>Connectez vous pour continuer </p>
       </template>
       <template v-slot:default>
