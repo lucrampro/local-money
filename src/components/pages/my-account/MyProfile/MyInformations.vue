@@ -1,14 +1,14 @@
 <template>
-  <l-wrapper-block backgroundColor="$gray-background">
-    <a-button>Modifier mes informations</a-button>
-    <div class="contactInformation">
+  <m-card-post>
+    <template v-slot:main>
+      <a-button>Modifier mes informations</a-button>
       <ul v-for="(info, index) in myInformation" :key="index">
         <li>{{info.title}}</li>
         <li>{{info.firstInfo}}</li>
         <li>{{info.secondInfo}}</li>
       </ul>
-    </div>
-  </l-wrapper-block>
+    </template>
+  </m-card-post>
 </template>
 
 <script>
@@ -34,7 +34,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.contactInformation {
   ul {
     list-style: none;
     li {
@@ -46,5 +45,4 @@ export default {
       }
     }
   }
-}
 </style>
