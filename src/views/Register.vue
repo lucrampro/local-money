@@ -21,8 +21,8 @@
         <!-- <a-link class="block mx-auto my-2 mb-4 text-center">
           Mot de passe oublié ?
         </a-link> -->
-        <a-button :onload="formOnload" width="100%" type="submit">Se connecter</a-button>
         <div class="wrapperButton">
+          <a-button :onload="formOnload" width="100%" type="submit">Se connecter</a-button>
           <a-button color="#189B73" background="#fefefe"  width="100%"  @click.native="$router.push({ path: 'inscription/account-type' })">S’inscrire</a-button>
         </div>
       </template>
@@ -61,8 +61,10 @@ export default {
 
 <style lang="scss" scoped>
 .wellcomeMessage {
-  font-size: 32px;
+  font-size: 22px;
   font-weight: 600;
+  line-height: 26px;
+  font-family: $secondary-font;
 }
 ::v-deep .Alink {
   text-align: center;
@@ -70,7 +72,7 @@ export default {
   margin: 20px auto;
 }
 .wrapperButton {
-  height: 200px;
+  height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

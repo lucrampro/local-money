@@ -31,7 +31,6 @@ export default {
 
 <style lang="scss" scoped>
 .registerInscription {
-  min-height: 100vh;
   background: url("../../assets/img/background-register.png");
   padding-top: 21vh;
   background-size: contain;
@@ -44,7 +43,7 @@ export default {
     top: 7%;
     right: 0px;
     left: 0px;
-    height: 100px;
+    height: 60px;
   }
 
   .main {

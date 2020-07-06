@@ -94,7 +94,7 @@ label {
   font-size: 0.875rem;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.2rem;
   color: $gray;
   margin: 5px 0px;
 }
