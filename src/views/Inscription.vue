@@ -75,11 +75,7 @@ export default {
           this.formValid = false;
         } else {
           this.buttonOnload = true;
-          this.$Api
-            .postRegister(this.formatForm(this.formDatas))
-            .then(() => {
-              this.$router.push({ name: 'Home' });
-            })
+          this.$Api.postRegister(this.formatForm(this.formDatas))
             .catch((error) => {
               console.error(error);
             });

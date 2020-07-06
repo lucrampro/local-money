@@ -35,7 +35,7 @@ export default [
       submit : false,
       previousPath: 'particular-first-information',
       title: 'Inscription',
-      subText: 'Ces information nous sont utiles afin de vous identifier',
+      subText: 'Ces informations nous sont utiles afin de vous identifier',
     }
   },
 
@@ -78,7 +78,7 @@ export default [
       submit : false,
       previousPath: 'company-first-information',
       title: 'Inscription',
-      subText: 'Ces information nous sont utiles afin de vous identifier',
+      subText: 'Ces informations nous sont utiles afin de vous identifier',
     }
   },
 
@@ -90,7 +90,7 @@ export default [
       submit : true,
       previousPath: 'company-contact-info',
       title: 'Inscription',
-      subText: 'Ces information nous sont utiles afin de vous identifier',
+      subText: 'Ces informations nous sont utiles afin de vous identifier',
     }
   },
   

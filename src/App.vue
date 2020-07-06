@@ -28,7 +28,6 @@ export default {
     } if (this.compteType) {
       this.$Api.setUserType(this.compteType);
     }
-    this.$Api.getUserInfo();
 
     // listen whene a user come to log for set a token in the store, add after set other infomation
     this.$Api.addEventListener('session-user-login', (event) => {
@@ -70,7 +69,7 @@ export default {
       this.$Api.login({
         username: event.detail.email,
         password: event.detail.password,
-      }).then((resLogin) => resLogin);
+      }).then(() => this.$router.push({ name: 'Home' }));
     });
 
     this.$Api.addEventListener('session-user-transactions', (event) => {

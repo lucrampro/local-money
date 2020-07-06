@@ -5,7 +5,7 @@
         <m-input :errors="errors" name="company_name" v-model="name" exemple="Boulangerie">Nom de votre entreprise</m-input>
       </ValidationProvider>
       <ValidationProvider name="Ville" rules="required|min:3" v-slot="{ errors }">
-        <m-input :errors="errors" name="city" type="tel" v-model="city" maxlength="30" exemple="Paris">Ville</m-input>
+        <m-input :errors="errors" name="city" v-model="city" maxlength="30" exemple="Paris">Ville</m-input>
       </ValidationProvider>
       <ValidationProvider name="code postal" rules="required|min:3" v-slot="{ errors }">
         <m-input :errors="errors" name="zipCode" type="tel" v-model="zipCode" maxlength="5" exemple="75000">Code postal</m-input>

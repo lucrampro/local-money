@@ -51,6 +51,8 @@ export default {
   },
   watch: {
     model(newVal, oldVal) {
+      const regex = new RegExp('[0-9]| ');
+
       if (newVal > oldVal) {
         if (
           this.mask
@@ -60,12 +62,13 @@ export default {
           this.model += this.mask[newVal.length];
         }
       }
-      // console.log();
-      if (this.type === 'tel' && /\D/.test(newVal)) {
+
+      if (this.type === 'tel' && !regex.test(newVal[newVal.length - 1])) {
         this.model.slice(1);
         this.model = this.model.slice(0, this.model.length - 1);
         return;
       }
+
       this.$emit('input', newVal);
     },
   },

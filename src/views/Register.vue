@@ -18,15 +18,11 @@
           </m-input>
         </ValidationProvider>
       </div>
-        <div class="flex justify-center my-2 mt-8">
-          <a-button :onload="formOnload" width="100%" type="submit">Se connecter</a-button>
-        </div>
-      <div>
         <!-- <a-link class="block mx-auto my-2 mb-4 text-center">
           Mot de passe oublié ?
         </a-link> -->
-      </div>
-        <div class="flex justify-center my-2">
+        <a-button :onload="formOnload" width="100%" type="submit">Se connecter</a-button>
+        <div class="wrapperButton">
           <a-button color="#189B73" background="#fefefe"  width="100%"  @click.native="$router.push({ path: 'inscription/account-type' })">S’inscrire</a-button>
         </div>
       </template>
@@ -72,6 +68,12 @@ export default {
   text-align: center;
   display: block;
   margin: 20px auto;
+}
+.wrapperButton {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 </style>
