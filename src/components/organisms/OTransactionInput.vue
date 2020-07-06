@@ -24,17 +24,23 @@ export default {
 <style lang="scss" scoped>
 
 ::v-deep .MInput {
-  display: flex;
-  flex-direction: row-reverse;
-  label {
-    font-size: 40px;
-    color: black;
-    font-weight: 600;
+  .wrapperInputLabel {
+    display: flex;
+    flex-direction: row-reverse;
+    label {
+      font-size: 40px;
+      color: black;
+      font-weight: 600;
+    }
+    input {
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+    }
   }
-  input {
-    background-color: transparent;
-    border: none;
-    box-shadow: none;
+  .errorMessage {
+    display: block;
+    padding-top: 10px;
   }
 }
 
@@ -42,7 +48,8 @@ export default {
   border-bottom: solid 1px #F2A379;
   color: rgb(41, 41, 41);
   background: transparent;
-  width: 300px;
+  width: 100%;
+  max-width: 370px;
   font-size: 40px;
   height: 60px;
 }

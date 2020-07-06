@@ -1,16 +1,19 @@
 <template>
   <div class="MInput">
-    <label :for="name">{{placeholder}}</label>
-    <input
-      :id="name"
-      ref="input"
-      :name="name"
-      :maxlength="maxlength"
-      :rules="rules"
-      :placeholder="exemple"
-      v-model="model"
-      :type="type"
-    />
+    <span class="wrapperInputLabel">
+      <label :for="name">{{placeholder}}</label>
+      <input
+        :id="name"
+        ref="input"
+        :name="name"
+        :maxlength="maxlength"
+        :rules="rules"
+        value="model"
+        :placeholder="exemple"
+        v-model="model"
+        :type="type"
+      />
+    </span>
     <span class="errorMessage">{{errors[0]}}</span>
   </div>
 </template>
@@ -103,5 +106,6 @@ input {
 }
 .errorMessage {
   color: #ff3b3b;
+  font-size: 16px;
 }
 </style>
