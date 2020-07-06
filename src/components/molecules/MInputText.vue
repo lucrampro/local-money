@@ -89,14 +89,7 @@ export default {
   margin: 10px 0px;
 }
 label {
-  display: block;
-  font-weight: 600;
-  font-size: 0.875rem;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  padding-bottom: 0.2rem;
-  color: $gray;
-  margin: 5px 0px;
+  @include labelInput;
 }
 input {
   background: #ffffff;

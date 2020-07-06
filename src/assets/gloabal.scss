@@ -2,6 +2,24 @@
   font-family: Nunito;
 }
 
+@mixin title {
+  font-weight: bold;
+  margin-bottom: 15px;
+  display: flex;
+  text-transform: uppercase;
+}
+
+@mixin labelInput {
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  padding-bottom: 0.2rem;
+  color: $gray;
+  margin: 5px 0px;
+}
+
 .block {
   display: block;
 }
@@ -33,6 +51,7 @@ $secondary-color: #DE6B48;
 $gray-background: #F5F5F5;
 $gray: #718096;
 $secondary-font: Raleway;
+
 
 @font-face {
   font-family: 'Nunito';
