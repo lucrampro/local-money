@@ -85,10 +85,11 @@ export default {
     background: white;
     width: 90vw;
     margin: auto;
-    height: 66%;
+    height: 71%;
     border-radius: 30px;
     padding: 20px;
     padding-top: 5vh;
+    padding-bottom: 60px;
   }
   .wrapper--links {
     font-size: 11px;
