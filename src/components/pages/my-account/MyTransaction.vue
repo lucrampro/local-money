@@ -1,10 +1,10 @@
 <template>
   <div>
     <m-my-money boxShadow="none" background="#F5F5F5" :convertMoney="false"></m-my-money>
-    <l-wrapper-block background="black">
+    <l-wrapper-block ref="lWrapperBlock" background="black">
       <template class="title" v-slot:title>Mes dernières transactions :</template>
       <template v-slot:default>
-        <div v-for="(transactionDay, index ) in userTrasactions" :key="index">
+        <div v-for="(transactionDay, index ) in userTrasactions" :key="index" class="transaction">
           <p class="transactionDay">{{ transactionDay.date }}</p>
           <m-card-transaction
             v-for="(transaction, index) in transactionDay.transaction"
@@ -35,7 +35,7 @@ export default {
      * @param { DOMElement } target
      * @ref OurAnimation.js
      */
-    this.$anime.animeElementOnMounted(document.querySelectorAll('.wrapperTransaction'));
+    this.$anime.animationOnMounted(this.$refs.lWrapperBlock.$el.querySelectorAll('.transaction'));
   },
   methods: {
     addZero(i) {
@@ -48,7 +48,6 @@ export default {
       const d = new Date(date);
       const h = this.addZero(d.getHours());
       const m = this.addZero(d.getMinutes());
-      console.log(`${h}h${m}`);
       return `${h}h${m}`;
     },
   },

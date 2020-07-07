@@ -92,11 +92,6 @@ export default {
     this.$Api.addEventListener('remove-contact', (event) => this.$store.dispatch('removeContact', event.detail));
     this.$Api.addEventListener('composant-gouvernanceList', (event) => this.$store.dispatch('setGouvernanceList', event.detail));
   },
-  mounted() {
-    if (this.$route.name === 'Landing') {
-      this.setAppMargin();
-    }
-  },
   methods: {
     setAppMargin() {
       document.querySelector('#app').style.margin = '0px';
