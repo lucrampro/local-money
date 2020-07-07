@@ -171,6 +171,18 @@ class ApiRequest extends EventDispatcher {
     })
   }
 
+  getGouvernance() {
+    return new Promise((resolve, reject) => {
+      return this.get(`/governances`, {
+        Headers: { Authorization:`Bearer ${this.token}` },
+      }).then((response) => {
+        this.dispatchEvent(new CustomEvent('composant-gouvernanceList', { detail: response}));
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
+  }
+
   /**
    * allow to get a token of user and set on the store
    * @param  {Object} loginInformaion information waiting , mail and passworld

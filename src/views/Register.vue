@@ -24,7 +24,7 @@
         </a-link> -->
         <div class="wrapperButton">
           <a-button :onload="formOnload" width="100%" type="submit">Se connecter</a-button>
-          <a-button color="#189B73" background="#fefefe"  width="100%"  @click.native="$router.push({ path: 'inscription/account-type' })">S’inscrire</a-button>
+          <a-button color="#189B73" background="#fefefe"  width="100%"  @click.native="$router.push({ path: 'inscription/choisissez-votre-monnaie' })">S’inscrire</a-button>
         </div>
       </template>
   </l-regitster>
@@ -59,9 +59,13 @@ export default {
         }
         this.formOnload = false;
       });
-
-      // fonction send data to the back
     },
+  },
+  created() {
+    this.$Api.get('/governances')
+      .then((gouvernanceList) => {
+        this.gouvernanceList = gouvernanceList;
+      });
   },
 };
 </script>

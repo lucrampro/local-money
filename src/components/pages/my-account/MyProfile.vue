@@ -40,7 +40,7 @@ export default {
   watch: {
     mode(newPageName) {
       if (newPageName !== 'myContacts' || newPageName !== 'MyInformation') {
-        this.$router.push({ name: newPageName });
+        this.$router.push({ name: newPageName }).catch(() => {});
       }
     },
     $route(to) {

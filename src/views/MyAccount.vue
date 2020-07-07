@@ -106,6 +106,7 @@ export default {
   methods: {
     switchPage(pageName) {
       if (this.currentPageName !== pageName) {
+        console.log(this.currentPageName, pageName);
         this.$router.push({ name: pageName });
         this.menuIsOpen = false;
       }

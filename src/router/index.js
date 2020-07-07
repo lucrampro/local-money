@@ -35,7 +35,7 @@ const routes = [
     },
   },
   {
-    path: '/confirmation',
+    path: 'confirmation',
     name: 'Confirmation',
     component: Confirm,
     meta: {

@@ -4,11 +4,10 @@
       <div class="header">
         <span>
           <a-button
-            v-if="previousPath"
             background="white"
             :hasSecondaryBackground="false"
             color="#189B73"
-            @click.native="toPreviousPage()"
+            @click.native="$router.go(-1)"
           >
             <a-icone-back-arrow />
           </a-button>
@@ -29,35 +28,36 @@
     <template v-slot:bottom>
       <a-button
         width="100%"
-        v-if="currentNamePage !== 'AccountType'"
         type="submit"
         :onload="buttonOnload"
-        class="w-full"
+        v-if="currentNamePage !=='AccountType'"
       >Suviant</a-button>
-      <a-button
+      <!-- <a-button
         width="100%"
-        v-if="currentNamePage === 'AccountType'"
         background="white"
         color="#189B73"
-        class="w-full"
+        v-if="!previousPath"
         @click.native="$router.push({ name: 'Register' })"
-      >Se connecter</a-button>
+      >Se connecter</a-button> -->
     </template>
   </l-regitster>
 </template>
 
 <script>
+
 export default {
   name: 'inscription',
   data() {
     return {
       formDatas: {
-        governanceId: 10,
       },
       submitted: false,
       formValid: false,
       buttonOnload: false,
     };
+  },
+  mounted() {
+    console.log(this.$router);
   },
   methods: {
     formatForm(payloadForm) {
@@ -69,9 +69,12 @@ export default {
     },
     toNextPage() {
       if (!this.pageSubmited) {
+        const { nextPath } = this;
+        const newPath = this.formDatas.type ? `${this.formDatas.type}-${nextPath}` : nextPath;
         this.$router.push({
-          path: `${this.formDatas.type}-${this.nextPath}`,
+          path: newPath,
         });
+
         this.formValid = false;
       } else {
         this.buttonOnload = true;
