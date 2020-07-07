@@ -12,12 +12,12 @@
       />
     </div>
     <div class="navBar__hiddenPart">
-      <span
+      <a
         v-for="(link, index) in navPagesSecondary"
         :key="'icone_nave_hidden_' + index"
         @click="link.functionBind()"
       >{{ link.pageNameBind}}
-      </span>
+      </a>
     </div>
   </div>
 </template>
