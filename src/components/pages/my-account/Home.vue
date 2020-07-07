@@ -28,10 +28,6 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
-<<<<<<< HEAD
-// import gsap from 'gsap';
-=======
->>>>>>> 82f2dfe9739cdc2c39be319f8c759efdbb275974
 
 import HeaderInformation from '../../molecules/MHeaderInformation.vue';
 
