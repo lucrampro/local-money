@@ -46,10 +46,6 @@ export default {
     this.$Api.getMyTransaction()
       .then((response) => response);
   },
-  mounted() {
-    // const toto = document.querySelectorAll('.wrapperBlock');
-    console.log('je suis anime', this.$anime.animeElementOnMounted);
-  },
   computed: {
     ...mapGetters([
       'transactions',
