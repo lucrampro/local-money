@@ -130,7 +130,25 @@ class ApiRequest extends EventDispatcher {
           });
         }).catch((res) => reject(res));
       }),
+      put: (path, payload) => new Promise((resolve, reject) => {
+        payload.Headers = payload.Headers ?  payload.Headers : {}
+        payload.Headers['Content-Type'] = payload.Headers['Content-Type'] ? payload.Headers['Content-Type'] : 'application/json';
+        return fetch(path, {
+          ...init,
+          headers: new Headers(payload.Headers),
+          body: JSON.stringify(payload.body,),
+          method: 'put',
+        }).then((res) => {
+          if (res.ok) {
+            return resolve(res.json());
+          }
+          return res.json().then((res2) => {
+            reject(res2);
+          });
+        }).catch((res) => reject(res));
+      }),
     };
+    
   }
 
   /**
@@ -242,6 +260,49 @@ class ApiRequest extends EventDispatcher {
       .catch(((response) => response));
   }
 
+  putTransferMoney(transactionInformation) {
+    return new Promise((resolve, reject) => {
+      return this.post('/transfer-money', {
+        Headers: { Authorization:`Bearer ${this.token}` },
+        body : transactionInformation,
+      }).then((response) => {
+        this.getMyTransaction()
+        this.getUserInfo()
+        return resolve(response)
+      })
+        .catch((response) => reject(response));
+    })
+  }
+
+  getLocalMoney(transactionInformation) {
+    return new Promise((resolve, reject) => {
+      return this.put('/convert-money', {
+        Headers: { Authorization:`Bearer ${this.token}` },
+        body : transactionInformation,
+      }).then((response) => {
+        this.getMyTransaction()
+        this.getUserInfo()
+        return resolve(response)
+      }).catch((response) => reject(response));
+    })
+  }
+
+
+  checkCreditCard(playload) {
+    console.log(playload)
+    return new Promise((resolve, reject) => {
+      return this.post('/check-credit-card', {
+        Headers: { Authorization:`Bearer ${this.token}` },
+        body : playload,
+      }).then((response) => {
+        this.getMyTransaction()
+        this.getUserInfo()
+        return resolve(response)
+      }).catch((response) => reject(response));
+    })
+  }
+
+  
   getCompanyPost() {
     return this.get('/posts', {
       Headers: { Authorization:`Bearer ${this.token}` },
@@ -272,20 +333,6 @@ class ApiRequest extends EventDispatcher {
       .catch((response) => response);
   }
   
-  putTransferMoney(transactionInformation) {
-    return new Promise((resolve, reject) => {
-      return this.post('/transfer-money', {
-        Headers: { Authorization:`Bearer ${this.token}` },
-        body : transactionInformation,
-      }).then((response) => {
-        this.getMyTransaction()
-        this.getUserInfo()
-        return resolve(response)
-      })
-        .catch((response) => reject(response));
-    })
-  }
-
   putPost(payload) {
     return new Promise((resolve, reject) => {
       return this.post('/posts/create', {
