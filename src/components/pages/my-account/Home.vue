@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" ref="toto">
 
     <HeaderInformation :name="userFirstName">
       <template v-slot:mainText>
@@ -28,7 +28,6 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
-import gsap from 'gsap';
 
 import HeaderInformation from '../../molecules/MHeaderInformation.vue';
 
@@ -46,6 +45,10 @@ export default {
     this.$Api.getCompanyPost().then((response) => { this.companyPost = response; });
     this.$Api.getMyTransaction()
       .then((response) => response);
+  },
+  mounted() {
+    // const toto = document.querySelectorAll('.wrapperBlock');
+    console.log('je suis anime', this.$anime.animeElementOnMounted);
   },
   computed: {
     ...mapGetters([
@@ -75,13 +78,6 @@ export default {
       }
       return lastPost;
     },
-  },
-  mounted() {
-    const target = document.querySelectorAll('.wrapperBlock');
-    const tl = gsap.timeline();
-
-    tl.staggerTo(target, 0, { y: '10px', opacity: 0.5 })
-      .staggerTo(target, 0.5, { y: '0px', opacity: 1 }, 0.1);
   },
 };
 </script>
