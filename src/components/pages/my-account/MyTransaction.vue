@@ -1,6 +1,6 @@
 <template>
   <div>
-    <m-my-money boxShadow="none" background="#F5F5F5"></m-my-money>
+    <m-my-money boxShadow="none" background="#F5F5F5" :convertMoney="false"></m-my-money>
     <l-wrapper-block background="black">
       <template class="title" v-slot:title>Mes dernières transactions :</template>
       <template v-slot:default>
@@ -14,6 +14,7 @@
             :sum="transaction.transfered_money"
             :statusTransactionUser="transaction.status_transaction_user"
           ></m-card-transaction>
+
         </div>
       </template>
     </l-wrapper-block>
@@ -29,6 +30,12 @@ export default {
   },
   mounted() {
     this.$Api.getMyTransaction().then((response) => response);
+    console.log('toto', this.$anime);
+    /**
+     * @param { DOMElement } target
+     * @ref OurAnimation.js
+     */
+    this.$anime.animeElementOnMounted(document.querySelectorAll('.wrapperTransaction'));
   },
   methods: {
     addZero(i) {
@@ -68,9 +75,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .transaction {
-  margin: 16px 0px;
-}
 
 .transactionDay {
   font-weight: 600;

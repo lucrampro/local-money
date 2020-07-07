@@ -32,6 +32,9 @@ export default {
   created() {
     this.setCompanyArray();
   },
+  mounted() {
+    this.$anime.animeElementOnMounted(document.querySelectorAll('.cardPost'));
+  },
   methods: {
     setCompanyArray() {
       this.$Api.getCompanyPost().then((response) => { this.companyPost = response; });

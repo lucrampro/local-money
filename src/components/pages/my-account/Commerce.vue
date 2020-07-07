@@ -38,6 +38,8 @@ export default {
   },
   mounted() {
     this.$Api.getCompanyList().then(() => { });
+
+    this.$Api.animeElementOnMounted(document.querySelector('.cardPost'));
   },
 };
 </script>

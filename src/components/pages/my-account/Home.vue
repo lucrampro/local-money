@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" ref="toto">
 
     <HeaderInformation :name="userInfomations.first_name">
       <template v-slot:mainText>
@@ -73,7 +73,6 @@ export default {
       });
       return lastTransaction;
     },
-
     lastPost() {
       const lastPost = [];
       for (let i = 0; i < this.lastNumber; i++) {
@@ -83,6 +82,10 @@ export default {
       }
       return lastPost;
     },
+  },
+  mounted() {
+    const target = document.querySelectorAll('.wrapperBlock');
+    this.$anime.animationOnMounted(target);
   },
 };
 </script>
