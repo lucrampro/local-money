@@ -22,7 +22,7 @@
             >NON</a-button>
             <a-button
               v-show="!transactionOnload && trasactionError"
-              @click.native="$router.push({ name : 'Transaction'})"
+              @click.native="$router.push({ name : 'Transaction'}); popinsOpen = false"
               width="100%"
             >Revenir plus tard</a-button>
           </template>
@@ -79,14 +79,7 @@ export default {
       childreOnLoad: false,
       mode: this.$route.name,
       type: '',
-      popins: {
-        Buy: {
-          state: false,
-        },
-        ConvertMoney: {
-          state: false,
-        },
-      },
+      popinsOpen: false,
       switchButton: {
         leftText: {
           text: 'Payer',
@@ -132,7 +125,7 @@ export default {
 
     closePopPin() {
       if (!this.transactionOnload) {
-        this.popins[this.mode].state = false;
+        this.popinsOpen = false;
       }
     },
     putErroPoppin() {
@@ -148,6 +141,7 @@ export default {
       this.$router.push({ name: 'Confirmation' });
       this.transactionOnload = false;
     },
+
     submitBuy() {
       this.transactionOnload = true;
       this.$Api
@@ -156,7 +150,8 @@ export default {
           this.putSuccessPoppin();
         })
         .catch(() => {
-          this.putSuccessPoppin();
+          console.log('ok');
+          this.putErroPoppin();
         });
     },
 
@@ -187,11 +182,11 @@ export default {
       this.childreOnLoad = true;
       this.$Api.checkCreditCard({ numbers_card: this.formDatas.numbers_card, date: this.formatForm(this.formDatas.date), cvc: this.formDatas.cvc }).then(() => {
         this.$refs.messagePoppin.innerHTML = `Êtes-vous sûr de vouloir changer ${this.formDatas.transfered_money} €, en ${this.formDatas.transfered_money} MCL. Sachez que la reconversion vers l'euro ne sera pas possible.`;
-        this.popins[this.mode].state = true;
+        this.popinsOpen = true;
         this.childreOnLoad = false;
       }).catch(() => {
         this.$refs.messagePoppin.innerHTML = "Votre carte bancaire n'est pas valide veuillez contacter votre gouvenance pour plus de détails";
-        this.popins[this.mode].state = true;
+        this.popinsOpen = true;
         this.childreOnLoad = false;
         this.trasactionError = true;
       });
@@ -199,7 +194,7 @@ export default {
 
     validationBuy() {
       this.$refs.messagePoppin.innerHTML = 'Êtes-vous sûr de vouloir envoyer {{transferedMoney}} MLC, au bénéficier  ?';
-      this.popins[this.mode].state = true;
+      this.popinsOpen = true;
     },
 
     submit(valid) {
@@ -228,12 +223,6 @@ export default {
     },
     nextName() {
       return this.$route.meta.nextName;
-    },
-    popinsOpen() {
-      return (
-        (this.popins.Buy && this.popins.Buy.state)
-        || (this.popins.ConvertMoney && this.popins.ConvertMoney.state)
-      );
     },
     currentPopPin() {
       return this.popins[this.mode];
