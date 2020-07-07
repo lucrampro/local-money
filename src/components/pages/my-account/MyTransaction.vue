@@ -1,8 +1,7 @@
 <template>
   <div>
-    <m-my-money boxShadow="none" background="#F5F5F5"></m-my-money>
+    <m-my-money boxShadow="none" background="#F5F5F5" :convertMoney="false"></m-my-money>
     <l-wrapper-block background="black">
-      <template v-slot:title>Mes dernières transactions :</template>
       <template v-slot:default>
         <div v-for="(transactionDay, index ) in transactions" :key="index">
           <p>{{ transactionDay.date }}</p>
