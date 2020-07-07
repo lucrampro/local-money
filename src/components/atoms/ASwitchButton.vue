@@ -69,13 +69,14 @@ export default {
 
 <style lang="scss" scoped>
 .buttonSwitch {
-  padding: 15px 0px;
   display: flex;
   position: relative;
   box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.07);
   border-radius: 15px;
-  width: 100%;
+  width: 60%;
+  margin: auto;
   justify-content: space-evenly;
+  background-color: rgba(255, 255, 255, 0.637);
   &__text {
     position: relative;
     margin: 20px;

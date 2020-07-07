@@ -53,7 +53,7 @@ export default {
 .ccvAndDate {
   display: flex;
   justify-content: space-between;
-  max-width: 600px;
+  max-width: 340px;
 }
 .cvc {
   width: 100px;
