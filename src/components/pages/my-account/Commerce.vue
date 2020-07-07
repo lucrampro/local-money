@@ -14,6 +14,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import gsap from 'gsap';
 // import ActualityFilter from '../../molecules/MActualityFilter.vue';
 
 export default {
@@ -38,6 +39,12 @@ export default {
   },
   mounted() {
     this.$Api.getCompanyList().then(() => { });
+
+    const target = document.querySelectorAll('.cardPost');
+    const tl = gsap.timeline();
+
+    tl.staggerTo(target, 0, { y: '10px', opacity: 0.5 })
+      .staggerTo(target, 0.5, { y: '0px', opacity: 1 }, 0.1);
   },
 };
 </script>

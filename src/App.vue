@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <router-link to="/presentation-de-l'app">toto</router-link>
     <router-view/>
   </div>
 </template>

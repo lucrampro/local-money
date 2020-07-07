@@ -28,6 +28,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
+import gsap from 'gsap';
 
 import HeaderInformation from '../../molecules/MHeaderInformation.vue';
 
@@ -65,7 +66,6 @@ export default {
       });
       return lastTransaction;
     },
-
     lastPost() {
       const lastPost = [];
       for (let i = 0; i < this.lastNumber; i++) {
@@ -75,6 +75,13 @@ export default {
       }
       return lastPost;
     },
+  },
+  mounted() {
+    const target = document.querySelectorAll('.wrapperBlock');
+    const tl = gsap.timeline();
+
+    tl.staggerTo(target, 0, { y: '10px', opacity: 0.5 })
+      .staggerTo(target, 0.5, { y: '0px', opacity: 1 }, 0.1);
   },
 };
 </script>
