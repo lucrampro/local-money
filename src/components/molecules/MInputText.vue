@@ -10,6 +10,7 @@
       :placeholder="exemple"
       v-model="model"
       :type="type"
+      :disabled="disabled"
     />
     <span class="errorMessage">{{errors[0]}}</span>
   </div>
@@ -20,7 +21,7 @@ export default {
   name: 'MInput',
   data() {
     return {
-      model: this.$attrs.value || '',
+      model: this.$attrs.value,
     };
   },
   props: {
@@ -43,6 +44,9 @@ export default {
     maxlength: {
       type: String,
       default: '50',
+    },
+    disabled: {
+      default: false,
     },
     type: {
       type: String,
@@ -71,6 +75,12 @@ export default {
 
       this.$emit('input', newVal);
     },
+  },
+  '$attrs.value': function (newVal, oldVal) {
+    console.log(newVal, oldVal);
+    if (newVal !== oldVal) {
+      this.model = newVal;
+    }
   },
   computed: {
     placeholder() {

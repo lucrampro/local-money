@@ -1,8 +1,8 @@
 <template>
   <div>
-    <l-header-informations :name="userFirstName">
-      <template v-slot:mainText >{{ userFirstName }}</template>
-      <template v-slot:subText >Votre identifiant : {{userId}}<br> <span v-if="compteType ==='company'">Compte profesionne</span></template>
+    <l-header-informations :name=" userInfomations.first_name">
+      <template v-slot:mainText >{{ userInfomations.first_name }}</template>
+      <template v-slot:subText >Votre identifiant : {{userInfomations.id}}<br> <span v-if="compteType ==='company'">Compte profesionne</span></template>
     </l-header-informations>
    <a-switch-button
       name="switch__page__transaction"
@@ -51,9 +51,8 @@ export default {
     ...mapGetters([
       'transactions',
       'userToken',
-      'userFirstName',
+      'userInfomations',
       'compteType',
-      'userId',
       'solde',
       'transferId',
     ]),

@@ -13,20 +13,24 @@ export default {
     ...mapGetters([
       'transactions',
       'userToken',
-      'userFirstName',
+      'userInfomations',
       'compteType',
       'userId',
       'solde',
       'transferId',
       'companiesList',
       'companyPosts',
+      'contacts',
     ]),
+  },
+  mounted() {
+    this.$Api.getDetails();
   },
   created() {
     if (this.userToken) {
       this.$Api.setToken(this.userToken);
-    } if (this.compteType) {
-      this.$Api.setUserType(this.compteType);
+    } if (this.userInfomations.type) {
+      this.$Api.setUserType(this.userInfomations.type);
     }
 
     // listen whene a user come to log for set a token in the store, add after set other infomation
@@ -39,18 +43,9 @@ export default {
 
     // set infomation of user
     this.$Api.addEventListener('session-user-information', (event) => {
-      if (event.detail[0]) {
-        // get information of user if have a token
-        this.$store.dispatch('setUserId', event.detail[0].id);
-        this.$store.dispatch('setUserFirstName', event.detail[0].first_name);
-        this.$store.dispatch('setCompteType', event.detail[0].type);
-        this.$Api.setUserType(event.detail[0].type);
-      } else {
-        this.$store.dispatch('setUserId', event.detail.id);
-        this.$store.dispatch('setUserFirstName', event.detail.first_name);
-        this.$store.dispatch('setCompteType', event.detail.type);
-        this.$Api.setUserType(event.detail.type);
-      }
+      this.$store.dispatch('setUserInformations', event.detail);
+      this.$Api.setUserType(event.detail.type);
+      this.$Api.getDetails();
 
       // save the user on Storage when this connected
       // const oldTokens = JSON.parse(sessionStorage.getItem('token') || '{}');
@@ -82,6 +77,9 @@ export default {
 
     this.$Api.addEventListener('session-user-companypost', (event) => {
       this.$store.dispatch('setCompanyPosts', event.detail);
+    });
+    this.$Api.addEventListener('user-contacts', (event) => {
+      this.$store.dispatch('setContacts', event.detail);
     });
   },
 };

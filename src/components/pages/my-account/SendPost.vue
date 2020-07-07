@@ -23,11 +23,11 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'userFirstName',
       'userId',
     ]),
   },
   mounted() {
+    this.$Api.getDetails();
   },
   methods: {
     getCompanyPost() {

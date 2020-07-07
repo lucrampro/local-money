@@ -26,7 +26,7 @@ const routes = [
     },
   },
   {
-    path: '/inscription/',
+    path: '/inscription',
     name: 'inscription',
     component: Inscription,
     children: inscriptionChildrens,

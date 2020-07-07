@@ -1,6 +1,6 @@
 <template>
   <div class="myAccount">
-    <l-header-myCompte :name="userFirstName" />
+    <l-header-myCompte :name="userInfomations.first_name" />
     <div class="myAccountContenu">
       <router-view />
     </div>
@@ -107,7 +107,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['compteType', 'userToken', 'userFirstName']),
+    ...mapGetters(['compteType', 'userToken', 'userInfomations']),
   },
   methods: {
     switchPage(pageName) {

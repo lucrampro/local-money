@@ -116,7 +116,7 @@ class ApiRequest extends EventDispatcher {
       delete: (path, payload) => new Promise((resolve, reject) => {
         payload.Headers = payload.Headers ?  payload.Headers : {}
         payload.Headers['Content-Type'] = payload.Headers['Content-Type'] ? payload.Headers['Content-Type'] : 'application/json';
-        fetch(path, {
+        return fetch(path, {
           ...init,
           headers: new Headers(payload.Headers),
           body: JSON.stringify(payload.body,),
@@ -128,7 +128,7 @@ class ApiRequest extends EventDispatcher {
           return res.json().then((res2) => {
             reject(res2);
           });
-        }).catch((res) => reject(res.json()));
+        }).catch((res) => reject(res));
       }),
     };
   }
@@ -198,6 +198,7 @@ class ApiRequest extends EventDispatcher {
    * @param  {String} type type is particular or company
    */
   getDetails(type = this.userType) {
+    console.log(this.userType);
     if (type) {
       return new Promise((resolve, reject) => {
         return this.get(`/${type}/account`, { Headers: { Authorization: `Bearer ${this.token}` , 'Content-Type': 'application/x-www-form-urlencoded'} })
@@ -308,17 +309,20 @@ class ApiRequest extends EventDispatcher {
       return this.get(`/contacts`, {
         Headers: { Authorization:`Bearer ${this.token}` },
       }).then((response) => {
+        this.dispatchEvent(new CustomEvent('user-contacts', { detail: response}));
         return resolve(response)
       })
         .catch((response) => reject(response));
     })
   }
   
-  putContact() {
+  putContact(playload) {
     return new Promise((resolve, reject) => {
       return this.post(`/contacts/create`, {
         Headers: { Authorization:`Bearer ${this.token}` },
+        body: playload,
       }).then((response) => {
+        this.getContacts()
         return resolve(response)
       })
         .catch((response) => reject(response));
@@ -330,9 +334,10 @@ class ApiRequest extends EventDispatcher {
       return this.delete(`/contacts/${contactId}/delete`, {
         Headers: { Authorization:`Bearer ${this.token}` },
       }).then((response) => {
+        console.log('her', response)
         return resolve(response)
       })
-        .catch((response) => reject(response));
+      .catch((response) => reject(response));
     })
   }
 
@@ -378,7 +383,7 @@ class ApiRequest extends EventDispatcher {
     return this.request.put(this.uri + (path || ''), payload || {});
   }
 
-  del(path, payload) {
+  delete(path, payload) {
     return this.request.delete(this.uri + (path || ''), payload || {});
   }
 }

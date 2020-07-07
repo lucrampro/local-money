@@ -1,16 +1,22 @@
 <template>
-  <m-card-post>
+  <m-card-post :hasFooter="false">
     <template v-slot:main>
-      <a-button>Modifier mes informations</a-button>
+      <!-- <a-button>Modifier mes informations</a-button> -->
+      <h2 class="title">Mes informations</h2>
+      <h3>Contact</h3>
       <ul>
-        <li>Mes informations</li>
-        <li v-for="(items, index) in myInformation" :key="index">{{index}}: {{items}}</li>
+        <li>{{userInfomations.last_name}}</li>
+        <li>{{userInfomations.first_name}}</li>
+        <li>{{userInfomations.number_phone}}</li>
+        <li>{{userInfomations.address}}</li>
       </ul>
     </template>
   </m-card-post>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'myInformation',
   data() {
@@ -26,21 +32,25 @@ export default {
         console.log('je suis myInformation', this.myInformation);
       });
   },
+  computed: {
+    ...mapGetters([
+      'userInfomations',
+    ]),
+  },
   methods: {
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.title {
+  // @include title;
+  padding: 20px 0px;
+}
   ul {
     list-style: none;
     li {
       font-weight: 400;
-      &:first-child {
-        margin: 15px 0px;
-        font-weight: bold;
-        font-size: 20px;
-      }
     }
   }
 </style>
