@@ -4,7 +4,7 @@ import profileChildrens from './myProfile';
 /* eslint-disable */
 export default [
     {
-      path: '/home',
+      path: 'home',
       component: () => import('../../components/pages/my-account/Home.vue'),
       name: 'Home',
       meta: {
@@ -13,7 +13,7 @@ export default [
       },
     },
     {
-      path: '/commerce',
+      path: 'commerce',
       component: () => import('../../components/pages/my-account/Commerce.vue'),
       name: 'Commerce',
       meta: {
@@ -22,7 +22,7 @@ export default [
       },
     },
     {
-      path: '/mes-transaction',
+      path: 'mes-transaction',
       component: () => import('../../components/pages/my-account/MyTransaction.vue'),
       name: 'MyTransaction',
       meta: {
@@ -32,7 +32,7 @@ export default [
     },
     
     {
-      path: '/transaction',
+      path: 'transaction',
       component: () => import('../../components/pages/my-account/Transaction.vue'),
       name: 'Transaction',
       children : transactionChildrens,
@@ -43,7 +43,7 @@ export default [
     },
 
     {
-      path: '/community',
+      path: 'community',
       component: () => import('../../components/pages/my-account/Community.vue'),
       name: 'Community',
       meta: {
@@ -53,7 +53,7 @@ export default [
     },
 
     {
-      path: '/je-donne-de-mes-nouvelles',
+      path: 'je-donne-de-mes-nouvelles',
       component: () => import('../../components/pages/my-account/SendPost.vue'),
       name: 'SendPost',
       meta: {
@@ -61,7 +61,7 @@ export default [
       },
     },
     {
-      path: '/mon-profil',
+      path: 'mon-profil',
       component: () => import('../../components/pages/my-account/MyProfile.vue'),
       name: 'MyProfile',
       children : profileChildrens,

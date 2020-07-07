@@ -67,6 +67,7 @@ Vue.component('a-navbar-picto', Atoms.ANavbarPicto);
 Vue.component('a-picto', Atoms.APicto);
 Vue.component('a-switch-button', Atoms.ASwitchButton);
 Vue.component('a-user-picture', Atoms.AUserPicture);
+Vue.component('a-select', Atoms.ASelect);
 
 // Atoms Icons
 console.warn(Icones, 'Icone Atoms');
