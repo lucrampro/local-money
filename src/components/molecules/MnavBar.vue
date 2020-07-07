@@ -1,5 +1,5 @@
 <template>
-  <div class="navBar">
+  <div class="navBar" :class="{'isOpen' : isOpen}">
     <a-icone-more @click.native="$emit('updateState')" class="buttonMore" :class="{'rotate' : isOpen}" />
     <div class="navBar__visiblePart">
       <a-navbar-picto
@@ -109,10 +109,10 @@ export default {
   @media screen and (min-width: 1085px) {
     top: -20px;
     right: 0px;
-    width: 400px;
+    width: 370px;
     height: 110vh;
     padding-top: 53px;
-
+    transform: translateY(0px) !important;
     .navBar__hiddenPart {
       width: auto;
     }

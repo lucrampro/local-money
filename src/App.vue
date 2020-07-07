@@ -107,6 +107,7 @@ export default {
 .mainWrapper {
   @media screen and (min-width: 1085px) {
     padding-left: 350px;
+    padding-right: calc(60vh - 350px);
   }
 }
 body {
