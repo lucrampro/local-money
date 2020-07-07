@@ -64,6 +64,8 @@ export default {
 
     &--date {
       grid-area: 3 / 2 / 5 / 5;
+      font-weight: 300;
+      color: rgb(39, 39, 39);
     }
 
     &--sum {

@@ -156,7 +156,6 @@ export default {
     },
 
     submitForm() {
-      this.formDatas.emiterAccountId = `${this.transferId}`;
       if (!this.transactionOnload) {
         if (this.mode === 'Buy') {
           this.submitBuy();

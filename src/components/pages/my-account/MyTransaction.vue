@@ -4,13 +4,13 @@
     <l-wrapper-block background="black">
       <template class="title" v-slot:title>Mes dernières transactions :</template>
       <template v-slot:default>
-        <div v-for="(transactionDay, index ) in transactions" :key="index">
-          <p>{{ transactionDay.date }}</p>
+        <div v-for="(transactionDay, index ) in userTrasactions" :key="index">
+          <p class="transactionDay">{{ transactionDay.date }}</p>
           <m-card-transaction
             v-for="(transaction, index) in transactionDay.transaction"
             :key="index"
             :name="transaction.beneficiary_name"
-            :date="transactionDay.date"
+            :date="transaction.date.date"
             :sum="transaction.transfered_money"
             :statusTransactionUser="transaction.status_transaction_user"
           ></m-card-transaction>
@@ -30,6 +30,23 @@ export default {
   mounted() {
     this.$Api.getMyTransaction().then((response) => response);
   },
+  methods: {
+    addZero(i) {
+      if (i < 10) {
+        i = `0${i}`;
+      }
+      return i;
+    },
+    transformDate(date) {
+      console.log(date);
+      const d = new Date(date);
+      const h = this.addZero(d.getHours());
+      const m = this.addZero(d.getMinutes());
+      console.log(`${h}h${m}`);
+      return `${h}h${m}`;
+    },
+  },
+
   computed: {
     ...mapGetters([
       'transactions',
@@ -39,6 +56,14 @@ export default {
       'solde',
       'transferId',
     ]),
+    userTrasactions() {
+      const transactions = JSON.parse(JSON.stringify(this.transactions));
+      transactions.forEach((transactionDay) => transactionDay.transaction.forEach((transaction) => {
+        const newDate = this.transformDate(transaction.date.date);
+        transaction.date.date = newDate;
+      }));
+      return transactions;
+    },
   },
 };
 </script>
@@ -49,6 +74,7 @@ export default {
 }
 
 .transactionDay {
-  font-weight: 800;
+  font-weight: 600;
+  font: 18px;
 }
 </style>
