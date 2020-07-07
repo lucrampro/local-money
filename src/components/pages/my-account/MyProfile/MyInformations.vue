@@ -4,12 +4,8 @@
       <!-- <a-button>Modifier mes informations</a-button> -->
       <h2 class="title">Mes informations</h2>
       <h3>Contact</h3>
-      <ul>
-        <li>{{userInfomations.last_name}}</li>
-        <li>{{userInfomations.first_name}}</li>
-        <li>{{userInfomations.number_phone}}</li>
-        <li>{{userInfomations.address}}</li>
-      </ul>
+        <p>{{userInfomations.number_phone}}</p>
+        <p>{{userInfomations.address}}</p>
     </template>
   </m-card-post>
 </template>

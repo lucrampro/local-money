@@ -10,7 +10,7 @@
       :leftText="switchButton.leftText"
       :rightText="switchButton.rightText"
     />
-    <router-view></router-view>
+    <router-view :contacts="contacts" ></router-view>
   </div>
 </template>
 
@@ -53,8 +53,10 @@ export default {
       'userToken',
       'userInfomations',
       'compteType',
+      'companyPosts',
       'solde',
       'transferId',
+      'contacts',
     ]),
   },
 };

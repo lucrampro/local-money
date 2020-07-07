@@ -67,6 +67,10 @@ export default {
     setContacts(context, contacts) {
       context.commit('SET_CONTACTS', contacts);
     },
+    removeContact(context, contactId) {
+      const newConcats = this.getters.contacts.filter((contacts) => contacts.account_id !== Number(contactId));
+      context.commit('SET_CONTACTS', newConcats);
+    },
     reset({ commit }) {
       commit('RESET');
     },

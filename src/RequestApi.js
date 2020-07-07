@@ -191,10 +191,6 @@ class ApiRequest extends EventDispatcher {
     return new Promise((resolve, reject) => {
       return this.get('/me', { Headers: { Authorization: `Bearer ${token || this.token}` } })
         .then((res) => {
-<<<<<<< HEAD
-          console.log(res);
-=======
->>>>>>> feat/buy
           this.dispatchEvent(new CustomEvent('session-user-information', { detail: res }));
           return resolve(res);
         })
@@ -207,7 +203,6 @@ class ApiRequest extends EventDispatcher {
    * @param  {String} type type is particular or company
    */
   getDetails(type = this.userType) {
-    console.log(this.userType);
     if (type) {
       return new Promise((resolve, reject) => {
         return this.get(`/${type}/account`, { Headers: { Authorization: `Bearer ${this.token}` , 'Content-Type': 'application/x-www-form-urlencoded'} })
@@ -229,7 +224,7 @@ class ApiRequest extends EventDispatcher {
       Headers: { Authorization: `Bearer ${this.token}` },
     }).then((response) => {
       this.getDetails(this.userType)
-      this.dispatchEvent(new CustomEvent('session-user-transactions', { detail: response}));
+      this.dispatchEvent(new CustomEvent('session-user-transactions', { detail: response.length ? response[0] : response}));
       return response;
     })
       .catch(((response) => response));
@@ -343,7 +338,7 @@ class ApiRequest extends EventDispatcher {
       return this.delete(`/contacts/${contactId}/delete`, {
         Headers: { Authorization:`Bearer ${this.token}` },
       }).then((response) => {
-        console.log('her', response)
+        this.dispatchEvent(new CustomEvent('remove-contact', { detail: contactId}));
         return resolve(response)
       })
       .catch((response) => reject(response));

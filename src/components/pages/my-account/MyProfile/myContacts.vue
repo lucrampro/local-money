@@ -12,10 +12,14 @@
 <script>
 
 export default {
-  data() {
-    return {
-      contacts: [],
-    };
+  name: 'MyContacts',
+  props: {
+    contacts: {
+      default: [],
+    },
+  },
+  mounted() {
+    this.$Api.getContacts();
   },
   methods: {
     nextPage(contact) {
@@ -24,17 +28,10 @@ export default {
       });
     },
   },
-  mounted() {
-    this.$Api.getContacts()
-      .then((res) => {
-        console.log(res);
-      });
-    this.contacts = this.$store.getters.contacts;
-  },
 };
 </script>
+<style lang="scss" scoped>
 
-<style lang="scss" scope="this api replaced by slot-scope in 2.5.0+">
 .wrapperButton {
   padding-bottom: 10px;
 }

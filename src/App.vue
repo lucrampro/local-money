@@ -46,12 +46,6 @@ export default {
       this.$store.dispatch('setUserInformations', event.detail);
       this.$Api.setUserType(event.detail.type);
       this.$Api.getDetails();
-
-      // save the user on Storage when this connected
-      // const oldTokens = JSON.parse(sessionStorage.getItem('token') || '{}');
-      // const newTokens = oldTokens;
-      // newTokens[this.userFirstName] = this.userToken;
-      // sessionStorage.setItem('Users', JSON.stringify(newTokens));
     });
 
     // set infomation of user
@@ -78,9 +72,15 @@ export default {
     this.$Api.addEventListener('session-user-companypost', (event) => {
       this.$store.dispatch('setCompanyPosts', event.detail);
     });
+
     this.$Api.addEventListener('user-contacts', (event) => {
-      this.$store.dispatch('setContacts', event.detail);
+      if (event.detail.Information) {
+        return this.$store.dispatch('setContacts', []);
+      }
+      return this.$store.dispatch('setContacts', event.detail);
     });
+
+    this.$Api.addEventListener('remove-contact', (event) => this.$store.dispatch('removeContact', event.detail));
   },
 };
 

@@ -1,19 +1,5 @@
 <template>
   <div class="MInput">
-<<<<<<< HEAD
-    <label :for="name">{{placeholder}}</label>
-    <input
-      :id="name"
-      ref="input"
-      :name="name"
-      :maxlength="maxlength"
-      :rules="rules"
-      :placeholder="exemple"
-      v-model="model"
-      :type="type"
-      :disabled="disabled"
-    />
-=======
     <span class="wrapperInputLabel">
       <label :for="name">{{ label || placeholder}}</label>
       <input
@@ -28,7 +14,6 @@
         :type="type"
       />
     </span>
->>>>>>> feat/buy
     <span class="errorMessage">{{errors[0]}}</span>
   </div>
 </template>
@@ -62,13 +47,11 @@ export default {
       type: String,
       default: '50',
     },
-<<<<<<< HEAD
     disabled: {
       default: false,
-=======
+    },
     label: {
       default: '',
->>>>>>> feat/buy
     },
     type: {
       type: String,

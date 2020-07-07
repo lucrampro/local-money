@@ -33,16 +33,7 @@ export default {
     };
   },
   computed: {
-<<<<<<< HEAD
-    ...mapGetters([
-      'userId',
-    ]),
-  },
-  mounted() {
-    this.$Api.getDetails();
-=======
     ...mapGetters(['userFirstName', 'userId']),
->>>>>>> feat/buy
   },
   mounted() {},
   methods: {
