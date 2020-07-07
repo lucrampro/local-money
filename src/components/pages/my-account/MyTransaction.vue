@@ -34,7 +34,7 @@ export default {
      * @param { DOMElement } target
      * @ref OurAnimation.js
      */
-    this.$anime.animeElementOnMounted(document.querySelectorAll('.wrapperTransaction'));
+    this.$anime.animationOnMounted(document.querySelectorAll('.wrapperTransaction'));
   },
   computed: {
     ...mapGetters([

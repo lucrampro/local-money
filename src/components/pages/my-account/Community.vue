@@ -33,7 +33,7 @@ export default {
     this.setCompanyArray();
   },
   mounted() {
-    this.$anime.animeElementOnMounted(document.querySelectorAll('.cardPost'));
+    this.$anime.animationOnMounted(document.querySelectorAll('.cardPost'));
   },
   methods: {
     setCompanyArray() {

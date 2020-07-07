@@ -1,11 +1,15 @@
 <template>
   <div id="app">
-    <router-view/>
+    <div class="overlayTransition"></div>
+    <transition @leave="leave" @enter="enter" :css='false' mode='out-in' appear>
+      <router-view/>
+    </transition>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import gsap from 'gsap';
 
 export default {
   name: 'app',
@@ -90,6 +94,15 @@ export default {
     }
   },
   methods: {
+    leave(el, done) {
+      console.log(el, done);
+      gsap.timeline({ onComplete: () => { done(); } }).to('.overlayTransition', 1, { left: '0vw', ease: 'expo.out' });
+    },
+    enter(el, done) {
+      console.log(el, done);
+      gsap.timeline({ onComplete: () => { done(); } }).to('.overlayTransition', 0.8, { left: '100vw', ease: 'expo.out' })
+        .set('.overlayTransition', { left: '-100vw' });
+    },
     setAppMargin() {
       document.querySelector('#app').style.margin = '0px';
     },
@@ -110,6 +123,16 @@ export default {
   min-height: 100vh;
   max-width: 687px;
   margin: auto;
+  position: relative;
+  .overlayTransition {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: -101vw;
+    background: $primary-color;
+    z-index: 999;
+  }
 }
 body {
    background-color: #00000005;

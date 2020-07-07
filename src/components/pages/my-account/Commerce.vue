@@ -39,7 +39,7 @@ export default {
   mounted() {
     this.$Api.getCompanyList().then(() => { });
 
-    this.$Api.animeElementOnMounted(document.querySelector('.cardPost'));
+    this.$anime.animationOnMounted(document.querySelectorAll('.cardPost'));
   },
 };
 </script>
