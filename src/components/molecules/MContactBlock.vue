@@ -1,6 +1,6 @@
 <template>
   <div class="mContactBlock">
-    <p>{{fullName || name}} <br><span class="type">{{type}}</span></p>
+    <span>{{$props.contactName}}</span>
     <a-icone-modify @click.native="$emit('clickRemove')"/>
   </div>
 </template>
@@ -10,14 +10,8 @@
 export default {
   name: 'MContactBlock',
   props: {
-    type: {},
-    name: {},
-    firstName: {},
-    lastName: {},
-  },
-  computed: {
-    fullName() {
-      return this.firstName && this.lastName ? `${this.firstName} ${this.lastName}` : this.name;
+    contactName: {
+      default: '',
     },
   },
 };
@@ -31,11 +25,5 @@ export default {
   padding: 15px 20px;
   background-color: white;
   border-radius: 10px;
-  margin: 10px 0px;
-}
-
-.type {
-  font-size: 14px;
-  color: $secondary-color;
 }
 </style>
