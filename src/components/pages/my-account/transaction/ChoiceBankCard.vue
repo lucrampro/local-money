@@ -50,12 +50,13 @@ export default {
 
 <style lang="scss">
 
-.cvc {
-  width: 300px;
-}
-
 .ccvAndDate {
   display: flex;
+  justify-content: space-between;
+  max-width: 600px;
+}
+.cvc {
+  width: 100px;
 }
 
 </style>

@@ -122,21 +122,20 @@ export default {
             this.$store.dispatch('reset');
             this.$router.push('Register');
           });
+      } else {
+        this.$Api.getUserInfo(this.userToken)
+          .then(() => {
+            this.getDetail();
+          })
+          .catch(() => {
+            this.$store.dispatch('reset'); this.$router.push('Register');
+          });
       }
-      // else {
-      //   this.$Api.getUserInfo(this.userToken)
-      //     .then(() => {
-      //       this.getDetail();
-      //     })
-      //     .catch(() => {
-      //       this.$store.dispatch('reset'); this.$router.push('Register');
-      //     });
-      // }
     },
   },
   mounted() {
     this.getDetail();
-    if (this.compteType === 'company') {
+    if (this.userInfomations.type === 'company') {
       this.navSecondary.splice(2, 0, {
         functionBind: () => {
           this.switchPage('SendPost');

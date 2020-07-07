@@ -17,6 +17,7 @@
           @click.native="switchMode()"
           background="white"
           :hasSecondaryBackground="false"
+          v-if="compteType === 'company'"
         >
           <a-icone-conver />
         </a-button>
@@ -56,9 +57,12 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['solde']),
+    ...mapGetters(['solde', 'userInfomations']),
     label() {
       return this.mode === 'local' ? 'MLC' : '€';
+    },
+    compteType() {
+      return this.userInfomations.type;
     },
   },
   mixins: [formMixin],
