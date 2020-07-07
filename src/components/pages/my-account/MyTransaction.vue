@@ -6,6 +6,7 @@
       <template v-slot:default>
         <div v-for="(transactionDay, index ) in transactions" :key="index">
           <p>{{ transactionDay.date }}</p>
+
           <m-card-transaction
             v-for="(transaction, index) in transactionDay.transaction"
             :key="index"
@@ -13,6 +14,7 @@
             :date="transactionDay.date"
             :sum="transaction.transfered_money"
           ></m-card-transaction>
+
         </div>
       </template>
     </l-wrapper-block>
@@ -44,9 +46,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .transaction {
-  margin: 16px 0px;
-}
 
 .transactionDay {
   font-weight: 800;

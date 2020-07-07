@@ -39,7 +39,7 @@ export default {
   padding: 10px;
   max-width: 100%;
   border-radius: 20px;
-  margin: 5px 0px;
+  margin: 20px 0px;
   .transactionElement {
     &--picto {
       margin: auto;
