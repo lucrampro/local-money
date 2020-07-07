@@ -3,9 +3,11 @@
     <a-picto  class="transactionElement--picto" type="default"/>
     <p class="transactionElement--name" >  {{$props.name}}</p>
     <p class="transactionElement--date">  {{$props.date}}</p>
-    <p class="transactionElement--sum">  {{$props.sum}}</p>
+    <p class="transactionElement--sum" :class="statusTransactionUser">  {{ fullTransactionValue }} </p>
   </div>
 </template>
+
+statusTransactionUser
 
 <script>
 
@@ -14,15 +16,24 @@ export default {
   props: {
     name: {
       type: String,
-      default: 'Cheik',
+      default: '',
     },
     date: {
       type: String,
-      default: 'Ven 22',
+      default: '',
     },
     sum: {
       type: String,
-      default: '6MCl',
+      default: '',
+    },
+    statusTransactionUser: {
+      type: String,
+      default: '',
+    },
+  },
+  computed: {
+    fullTransactionValue() {
+      return this.statusTransactionUser === 'emiter' ? `- ${this.sum}` : `+ ${this.sum}`;
     },
   },
 };
@@ -58,6 +69,12 @@ export default {
     &--sum {
       font-weight: bold;
       grid-area: 2 / 5 / 4 / 6;
+      &.emiter {
+        color: #D16228;
+      }
+      &.beneficiary {
+        color: #189B73
+      }
     }
   }
 }

@@ -22,7 +22,7 @@
             >NON</a-button>
             <a-button
               v-show="!transactionOnload && trasactionError"
-              @click.native="$router.push({ name : 'Transaction'}); popinsOpen = false"
+              @click.native="$router.push({ name : 'MyTransaction'}); popinsOpen = false"
               width="100%"
             >Revenir plus tard</a-button>
           </template>

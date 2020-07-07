@@ -2,16 +2,17 @@
   <div>
     <m-my-money boxShadow="none" background="#F5F5F5"></m-my-money>
     <l-wrapper-block background="black">
-      <template v-slot:title>Mes dernières transactions :</template>
+      <template class="title" v-slot:title>Mes dernières transactions :</template>
       <template v-slot:default>
         <div v-for="(transactionDay, index ) in transactions" :key="index">
           <p>{{ transactionDay.date }}</p>
           <m-card-transaction
             v-for="(transaction, index) in transactionDay.transaction"
             :key="index"
-            :name="`utilisateur ${transaction.id}`"
+            :name="transaction.beneficiary_name"
             :date="transactionDay.date"
             :sum="transaction.transfered_money"
+            :statusTransactionUser="transaction.status_transaction_user"
           ></m-card-transaction>
         </div>
       </template>
