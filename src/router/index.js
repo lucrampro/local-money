@@ -38,6 +38,9 @@ const routes = [
     path: '/confirmation',
     name: 'Confirmation',
     component: Confirm,
+    meta: {
+      requireAuth: true,
+    },
   },
 ];
 

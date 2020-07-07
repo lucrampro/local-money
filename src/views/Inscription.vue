@@ -19,12 +19,13 @@
         </div>
       </div>
     </template>
-    <router-view
-      :toNextPage="toNextPage"
-      :initFormData="{...formDatas}"
-      @updateForm="( formData ) => { updateForm(formData) }"
-      @updateFormValid="(val) => {formValid = val}"
-    />
+    <template>
+      <router-view
+        :toNextPage="toNextPage"
+        :initFormData="{...formDatas}"
+        @updateForm="( formData ) => { updateForm(formData) }"
+      />
+    </template>
     <template v-slot:bottom>
       <a-button
         width="100%"
@@ -67,19 +68,17 @@ export default {
       return payloadForm;
     },
     toNextPage() {
-      if (this.formValid) {
-        if (!this.pageSubmited) {
-          this.$router.push({
-            path: `${this.formDatas.type}-${this.nextPath}`,
+      if (!this.pageSubmited) {
+        this.$router.push({
+          path: `${this.formDatas.type}-${this.nextPath}`,
+        });
+        this.formValid = false;
+      } else {
+        this.buttonOnload = true;
+        this.$Api.postRegister(this.formatForm(this.formDatas))
+          .catch((error) => {
+            console.log(error);
           });
-          this.formValid = false;
-        } else {
-          this.buttonOnload = true;
-          this.$Api.postRegister(this.formatForm(this.formDatas))
-            .catch((error) => {
-              console.error(error);
-            });
-        }
       }
     },
     toPreviousPage() {
@@ -123,6 +122,11 @@ export default {
     padding-left: 10px ;
     .title {
       margin: auto;
+      font-family: $secondary-font;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 26px;
     }
     .subText {
       padding-top: 1px;

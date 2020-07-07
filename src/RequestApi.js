@@ -86,7 +86,7 @@ class ApiRequest extends EventDispatcher {
           return res.json().then((res2) => {
             reject(res2);
           });
-        }).catch((res) => reject(res.json()));
+        }).catch((res) => reject(res && res.json()));
       }),
 
       /**
@@ -110,7 +110,7 @@ class ApiRequest extends EventDispatcher {
           return res.json().then((res2) => {
             reject(res2);
           });
-        }).catch((res) => reject(res));
+        }).catch((res) => reject(res.json()));
       }),
       ///
       delete: (path, payload) => new Promise((resolve, reject) => {
@@ -158,11 +158,17 @@ class ApiRequest extends EventDispatcher {
    * @param  {Object} loginInformaion information waiting , mail and passworld
    */
   login(loginInformaion) {
-    return this.post('/login_check', {body : loginInformaion })
-      .then((res) => {
-        this.dispatchEvent(new CustomEvent('session-user-login', { detail: res }));
-        return res;
-      });
+    return new Promise((resolve, reject) => {
+      return this.post('/login_check', {body : loginInformaion })
+        .then((res) => {
+          this.dispatchEvent(new CustomEvent('session-user-login', { detail: res }));
+          console.log(res)
+          return resolve(res);
+        }).catch((res) => {
+          console.log(res)
+          return reject(res);
+        })
+    })
   }
 
   /**
@@ -185,7 +191,10 @@ class ApiRequest extends EventDispatcher {
     return new Promise((resolve, reject) => {
       return this.get('/me', { Headers: { Authorization: `Bearer ${token || this.token}` } })
         .then((res) => {
+<<<<<<< HEAD
           console.log(res);
+=======
+>>>>>>> feat/buy
           this.dispatchEvent(new CustomEvent('session-user-information', { detail: res }));
           return resolve(res);
         })

@@ -1,5 +1,6 @@
 <template>
   <div class="MInput">
+<<<<<<< HEAD
     <label :for="name">{{placeholder}}</label>
     <input
       :id="name"
@@ -12,6 +13,22 @@
       :type="type"
       :disabled="disabled"
     />
+=======
+    <span class="wrapperInputLabel">
+      <label :for="name">{{ label || placeholder}}</label>
+      <input
+        :id="name"
+        ref="input"
+        :name="name"
+        :maxlength="maxlength"
+        :rules="rules"
+        value="model"
+        :placeholder="exemple"
+        v-model="model"
+        :type="type"
+      />
+    </span>
+>>>>>>> feat/buy
     <span class="errorMessage">{{errors[0]}}</span>
   </div>
 </template>
@@ -45,8 +62,13 @@ export default {
       type: String,
       default: '50',
     },
+<<<<<<< HEAD
     disabled: {
       default: false,
+=======
+    label: {
+      default: '',
+>>>>>>> feat/buy
     },
     type: {
       type: String,
@@ -99,14 +121,7 @@ export default {
   margin: 10px 0px;
 }
 label {
-  display: block;
-  font-weight: 600;
-  font-size: 0.875rem;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  padding-bottom: 0.5rem;
-  color: $gray;
-  margin: 5px 0px;
+  @include labelInput;
 }
 input {
   background: #ffffff;
@@ -120,5 +135,6 @@ input {
 }
 .errorMessage {
   color: #ff3b3b;
+  font-size: 16px;
 }
 </style>

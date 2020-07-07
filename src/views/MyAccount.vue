@@ -71,12 +71,6 @@ export default {
         },
         {
           functionBind: () => {
-            this.switchPage('SendPost');
-          },
-          pageNameBind: 'donner de mes nouvelles',
-        },
-        {
-          functionBind: () => {
             this.switchPage('Commerce');
           },
           pageNameBind: 'Mes favoris',
@@ -141,6 +135,14 @@ export default {
   },
   mounted() {
     this.getDetail();
+    if (this.compteType === 'company') {
+      this.navSecondary.splice(2, 0, {
+        functionBind: () => {
+          this.switchPage('SendPost');
+        },
+        pageNameBind: 'donner de mes nouvelles',
+      });
+    }
   },
   watch: {
     compteType() {
