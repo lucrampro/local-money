@@ -28,7 +28,6 @@ class Anime {
 export default {
   install(Vue) {
     const anime = new Anime();
-    anime.prototype = gsap;
     Vue.prototype.$anime = anime;
   },
 };
