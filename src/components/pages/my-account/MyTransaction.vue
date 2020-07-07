@@ -38,7 +38,6 @@ export default {
       return i;
     },
     transformDate(date) {
-      console.log(date);
       const d = new Date(date);
       const h = this.addZero(d.getHours());
       const m = this.addZero(d.getMinutes());

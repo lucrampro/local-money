@@ -105,5 +105,17 @@ export default {
     flex-direction: column;
     justify-content: space-around;
   }
+
+  @media screen and (min-width: 1085px) {
+    top: -20px;
+    right: 0px;
+    width: 400px;
+    height: 110vh;
+    padding-top: 53px;
+
+    .navBar__hiddenPart {
+      width: auto;
+    }
+  }
 }
 </style>
