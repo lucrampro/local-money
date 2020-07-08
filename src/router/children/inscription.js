@@ -1,6 +1,16 @@
 /* eslint-disable */
 export default [
-
+  {
+    path: 'choisissez-votre-monnaie',
+    component: () => import('../../components/pages/inscription/GouvernanceChoice.vue'),
+    name: 'GouvernanceChoice',
+    meta: {
+      submit : false,
+      nextPath: 'account-type',
+      title: 'Quel type de compte souhaitez vous creer ?',
+      subText: 'Bienvenue sur NeyMo !',
+    },
+  },
   {
     path: 'account-type',
     component: () => import('../../components/pages/inscription/AccountType.vue'),
@@ -8,6 +18,7 @@ export default [
     meta: {
       submit : false,
       nextPath: 'first-information',
+      previousPath: 'choisissez-votre-monnaie',
       title: 'Quel type de compte souhaitez vous creer ?',
       subText: 'Bienvenue sur NeyMo !',
     },

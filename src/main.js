@@ -5,7 +5,7 @@ import {
 } from 'vee-validate';
 // import g from 'gsap';
 import {
-  required, email, min, alpha_dash, max,// eslint-disable-line
+  required, email, min, alpha_dash, max, max_value, min_value,numeric,// eslint-disable-line
 } from 'vee-validate/dist/rules';
 import fr from 'vee-validate/dist/locale/fr.json';
 
@@ -36,6 +36,9 @@ extend('required', required);
 extend('min', min);
 extend('alpha_dash', alpha_dash); // eslint-disable-line
 extend('max', max);
+extend('max_value', max_value);
+extend('min_value', min_value);
+extend('numeric', numeric);
 
 extend('majority', {
   message: () => 'vous n\'avez pas l\'âge requis',
@@ -65,6 +68,7 @@ Vue.component('a-navbar-picto', Atoms.ANavbarPicto);
 Vue.component('a-picto', Atoms.APicto);
 Vue.component('a-switch-button', Atoms.ASwitchButton);
 Vue.component('a-user-picture', Atoms.AUserPicture);
+Vue.component('a-select', Atoms.ASelect);
 
 // Atoms Icons
 console.warn(Icones, 'Icone Atoms');
@@ -88,6 +92,7 @@ Vue.component('m-card-transaction', Modules.MCardTransaction);
 Vue.component('m-card-post', Modules.MCardPost);
 Vue.component('m-my-money', Modules.MMyMoney);
 Vue.component('m-contact-block', Modules.MContactBlock);
+Vue.component('m-error-message', Modules.MErrorMessage);
 
 // Layouts
 console.warn(Layouts, 'Layouts');

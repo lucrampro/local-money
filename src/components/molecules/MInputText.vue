@@ -1,16 +1,19 @@
 <template>
   <div class="MInput">
-    <label :for="name">{{placeholder}}</label>
-    <input
-      :id="name"
-      ref="input"
-      :name="name"
-      :maxlength="maxlength"
-      :rules="rules"
-      :placeholder="exemple"
-      v-model="model"
-      :type="type"
-    />
+    <span class="wrapperInputLabel">
+      <label :for="name">{{ label || placeholder}}</label>
+      <input
+        :id="name"
+        ref="input"
+        :name="name"
+        :maxlength="maxlength"
+        :rules="rules"
+        value="model"
+        :placeholder="exemple"
+        v-model="model"
+        :type="type"
+      />
+    </span>
     <span class="errorMessage">{{errors[0]}}</span>
   </div>
 </template>
@@ -20,7 +23,7 @@ export default {
   name: 'MInput',
   data() {
     return {
-      model: this.$attrs.value || '',
+      model: this.$attrs.value,
     };
   },
   props: {
@@ -43,6 +46,12 @@ export default {
     maxlength: {
       type: String,
       default: '50',
+    },
+    disabled: {
+      default: false,
+    },
+    label: {
+      default: '',
     },
     type: {
       type: String,
@@ -72,6 +81,12 @@ export default {
       this.$emit('input', newVal);
     },
   },
+  '$attrs.value': function (newVal, oldVal) {
+    console.log(newVal, oldVal);
+    if (newVal !== oldVal) {
+      this.model = newVal;
+    }
+  },
   computed: {
     placeholder() {
       return (
@@ -89,14 +104,7 @@ export default {
   margin: 10px 0px;
 }
 label {
-  display: block;
-  font-weight: 600;
-  font-size: 0.875rem;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  padding-bottom: 0.5rem;
-  color: $gray;
-  margin: 5px 0px;
+  @include labelInput;
 }
 input {
   background: #ffffff;
@@ -110,5 +118,6 @@ input {
 }
 .errorMessage {
   color: #ff3b3b;
+  font-size: 16px;
 }
 </style>

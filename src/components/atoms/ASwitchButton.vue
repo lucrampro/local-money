@@ -58,19 +58,26 @@ export default {
     model(newVal) {
       this.$emit('input', newVal);
     },
+    '$attrs.value': function (newVal, oldVal) {
+      if (newVal !== oldVal) {
+        this.model = newVal;
+      }
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .buttonSwitch {
-  padding: 15px 0px;
   display: flex;
   position: relative;
   box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.07);
   border-radius: 15px;
-  width: 100%;
+  width: 60%;
+  max-width: 375px;
+  margin: auto;
   justify-content: space-evenly;
+  background-color: rgba(255, 255, 255, 0.637);
   &__text {
     position: relative;
     margin: 20px;
