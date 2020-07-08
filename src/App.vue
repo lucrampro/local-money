@@ -2,7 +2,9 @@
 <div class="mainWrapper">
   <div id="app">
     <div class="overlayTransition">
-      <div class="second"></div>
+      <div class="second">
+        <p>Nous chargons vos données</p>
+      </div>
     </div>
     <transition @leave="leave" @enter="enter" :css='false' mode='out-in' appear>
       <router-view/>
@@ -13,6 +15,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import gsap from 'gsap';
 
 export default {
   name: 'app',
@@ -111,7 +114,7 @@ export default {
     enter(el, done) {
       switch (this.$route.name) {
         case 'Home':
-          console.log(this.$route.name);
+          this.$anime.gsap.to('.second p', 0.5, { scale: 1, opacity: 1 });
           break;
         default:
           this.$anime.gsap.timeline({ onComplete: () => { done(); } }).to('.overlayTransition', 0.8, { left: '100vw', ease: 'expo.out' })
@@ -129,8 +132,12 @@ export default {
         this.setAppMargin();
       }
     },
-    userInfomations: (el) => {
-      console.log('les information sont charger', el);
+    userInfomations: () => {
+      gsap.timeline().to('.second p', 0.2, { opacity: 0, scale: 0.8 })
+        .to('.overlayTransition', 0.8, { left: '100vw', ease: 'expo.out' })
+        .set('.overlayTransition', { left: '-100vw' })
+        .set('.overlayTransition .second', { width: '90%' });
+      console.log('on est ok');
     },
   },
 };
@@ -156,6 +163,15 @@ export default {
       background: $primary-color;
       height: 100%;
       width: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      p {
+        color: wheat;
+        font-weight: bold;
+        opacity: 0;
+        transform: scale(0.7);
+      }
     }
   }
 }
