@@ -30,13 +30,11 @@
 </template>
 
 <script>
+
+import BehaviorMixin from './mixins/selectAndSwitchMixin';
+
 export default {
   name: 'buttonSwitch',
-  data() {
-    return {
-      model: this.$attrs.value || '',
-    };
-  },
   props: {
     name: {
       default: 'switch',
@@ -54,16 +52,7 @@ export default {
       },
     },
   },
-  watch: {
-    model(newVal) {
-      this.$emit('input', newVal);
-    },
-    '$attrs.value': function (newVal, oldVal) {
-      if (newVal !== oldVal) {
-        this.model = newVal;
-      }
-    },
-  },
+  mixins: [BehaviorMixin],
 };
 </script>
 

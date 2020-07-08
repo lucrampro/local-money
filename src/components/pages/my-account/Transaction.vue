@@ -54,6 +54,7 @@
             :initFormData="{...formDatas}"
             @updateForm="( formData ) => { updateForm(formData) }"
             @updateFormValid="(val) => {formValid = val}"
+            @submitForm="(valid) => {submit(valid)}"
             :childreOnLoad="childreOnLoad"
           />
         </template>
@@ -144,13 +145,13 @@ export default {
 
     submitBuy() {
       this.transactionOnload = true;
+      const { beneficiaryAccountNumber, transfered_money } = this.formDatas; // eslint-disable-line
       this.$Api
-        .putTransferMoney(this.formDatas)
+        .putTransferMoney({ beneficiaryAccountNumber, transfered_money })
         .then(() => {
           this.putSuccessPoppin();
         })
         .catch(() => {
-          console.log('ok');
           this.putErroPoppin();
         });
     },
@@ -270,7 +271,7 @@ export default {
 }
 
 .buttonWrapper {
-  padding-top: 90px;
+  padding-top: 30px;
   padding-bottom: 20px;
 }
 </style>

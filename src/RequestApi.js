@@ -224,7 +224,7 @@ class ApiRequest extends EventDispatcher {
         })
         .catch((res) => reject(res)));
     }
-    return new Promise((resolve, reject) => reject());
+    return false;
   }
 
   /**
