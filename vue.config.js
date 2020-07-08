@@ -7,6 +7,11 @@ module.exports = {
       background_color: '#ffffff',
       display: 'fullscreen',
       manifestPath: 'manifest.json',
+      workboxPluginMode: 'InjectManifest',
+      start_url: '/index.html',
+      workboxOptions: {
+        swSrc: 'src/sw.js',
+      },
       icons: [
         {
           src: '/images/icons/icon-32x32.png',

@@ -4368,6 +4368,11 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
 
+gsa@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/gsa/-/gsa-0.0.0.tgz#ae701c976e1803d8348e713591307631e2515ccd"
+  integrity sha1-rnAcl24YA9g0jnE1kTB2MeJRXM0=
+
 gsap@^3.3.4:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/gsap/-/gsap-3.3.4.tgz#759b9ecba1d21ad243f0d09900f29c4773b8cb32"
