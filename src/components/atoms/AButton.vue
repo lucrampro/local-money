@@ -95,6 +95,7 @@ export default {
 }
 
 .aButton {
+  cursor: pointer;
   padding: 15px 20px;
   border: 30px;
   color: white;
