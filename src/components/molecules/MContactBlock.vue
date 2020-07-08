@@ -1,11 +1,13 @@
 <template>
   <div class="mContactBlock">
     <p>{{fullName || name}} <br><span class="type">{{type}}</span></p>
-    <a-icone-modify @click.native="$emit('clickRemove')"/>
+    <a-icone-remove @click.native="$emit('clickRemove')"/>
   </div>
 </template>
 
 <script>
+
+import AIconeRemove from '@/components/atoms/Icones/AIconeRemove.vue';
 
 export default {
   name: 'MContactBlock',
@@ -14,6 +16,9 @@ export default {
     name: {},
     firstName: {},
     lastName: {},
+  },
+  components: {
+    'a-icone-remove': AIconeRemove,
   },
   computed: {
     fullName() {
