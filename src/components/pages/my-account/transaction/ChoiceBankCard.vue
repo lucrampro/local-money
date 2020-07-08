@@ -10,8 +10,8 @@
         <ValidationProvider name="cvc" rules="required|numeric|min:3|max:3" v-slot="{ errors }">
           <m-input type="tel" class="cvc" maxlength="3" :errors="errors" v-model="cvc" name="cvc">Ccv</m-input>
         </ValidationProvider>
-        <ValidationProvider name="date" rules="required" max v-slot="{ errors }">
-          <m-input type="date" v-model="date" :errors="errors" name="date">date de validité</m-input>
+        <ValidationProvider name="date" rules="required|min:5|max:5" max v-slot="{ errors }">
+          <m-input type="tel" v-model="date" maxlength="5" mask="##/##" :errors="errors" name="date">date de validité</m-input>
         </ValidationProvider>
       </span>
     </div>

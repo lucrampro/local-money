@@ -179,7 +179,11 @@ export default {
 
     validationCovertion() {
       this.childreOnLoad = true;
-      this.$Api.checkCreditCard({ numbers_card: this.formDatas.numbers_card, date: this.formatForm(this.formDatas.date), cvc: this.formDatas.cvc }).then(() => {
+      const { transfered_money, numbers_card, cvc } = this.formDatas;  // eslint-disable-line
+      const date = this.formatForm(this.formDatas.date);
+      this.$Api.checkCreditCard({
+        transfered_money, numbers_card, date, cvc,
+      }).then(() => {
         this.$refs.messagePoppin.innerHTML = `Êtes-vous sûr de vouloir changer ${this.formDatas.transfered_money} €, en ${this.formDatas.transfered_money} MCL. Sachez que la reconversion vers l'euro ne sera pas possible.`;
         this.popinsOpen = true;
         this.childreOnLoad = false;
@@ -192,7 +196,8 @@ export default {
     },
 
     validationBuy() {
-      this.$refs.messagePoppin.innerHTML = 'Êtes-vous sûr de vouloir envoyer {{transferedMoney}} MLC, au bénéficier  ?';
+      const { transfered_money, beneficiaryAccountNumber } = this.formDatas;  // eslint-disable-line
+      this.$refs.messagePoppin.innerHTML = `Êtes-vous sûr de vouloir envoyer ${transfered_money} MLC, au bénéficier ${beneficiaryAccountNumber} ?`;// eslint-disable-line
       this.popinsOpen = true;
     },
 
@@ -214,8 +219,8 @@ export default {
     transferedMoney() {
       return this.formDatas && this.formDatas.transferedMoney;
     },
-    beneficiaryAccountId() {
-      return this.formDatas && this.formDatas.beneficiaryAccountId;
+    beneficiaryAccountNumber() {
+      return this.formDatas && this.formDatas.beneficiaryAccountNumber;
     },
     canGoToPreviousPage() {
       return this.$route.name !== 'ConvertMoney' && this.$route.name !== 'Buy';
