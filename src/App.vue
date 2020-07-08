@@ -1,13 +1,19 @@
 <template>
 <div class="mainWrapper">
   <div id="app">
-    <router-view />
+    <div class="overlayTransition">
+      <div class="second"></div>
+    </div>
+    <transition @leave="leave" @enter="enter" :css='false' mode='out-in' appear>
+      <router-view/>
+    </transition>
   </div>
 </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import gsap from 'gsap';
 
 export default {
   name: 'app',
@@ -93,6 +99,18 @@ export default {
     this.$Api.addEventListener('composant-gouvernanceList', (event) => this.$store.dispatch('setGouvernanceList', event.detail));
   },
   methods: {
+    leave(el, done) {
+      console.log(el, done);
+      gsap.timeline({ onComplete: () => { done(); } })
+        .to('.overlayTransition', 1, { left: '0vw', ease: 'expo.out' }, 'stepOne')
+        .to('.overlayTransition .second', 1, { width: '100%', ease: 'expo.out' }, 'stepOne');
+    },
+    enter(el, done) {
+      console.log(el, done);
+      gsap.timeline({ onComplete: () => { done(); } }).to('.overlayTransition', 0.8, { left: '100vw', ease: 'expo.out' })
+        .set('.overlayTransition', { left: '-100vw' })
+        .set('.overlayTransition .second', { width: '90%' });
+    },
     setAppMargin() {
       document.querySelector('#app').style.margin = '0px';
     },
@@ -114,6 +132,21 @@ export default {
   min-height: 100vh;
   max-width: 687px;
   margin: auto;
+  position: relative;
+  .overlayTransition {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: -101vw;
+    background: #8BCDB9;
+    z-index: 999;
+    .second {
+      background: $primary-color;
+      height: 100%;
+      width: 90%;
+    }
+  }
 }
 
 .mainWrapper {
