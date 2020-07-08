@@ -6,6 +6,10 @@
       <h3>Contact</h3>
         <p>{{userInfomations.number_phone}}</p>
         <p>{{userInfomations.address}}</p>
+        <div>
+          <h3>Description</h3>
+          <p>{{userInfomations.description}}</p>
+        </div>
     </template>
   </m-card-post>
 </template>

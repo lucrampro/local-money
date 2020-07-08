@@ -37,7 +37,7 @@ export default {
       context.commit('SET_TOKEN', token);
     },
     setUserInformations(context, informations) {
-      const informationAutorised = ['id', 'type', 'first_name', 'last_name', 'address', 'number_phone'];
+      const informationAutorised = ['id', 'type', 'first_name', 'last_name', 'address', 'number_phone', 'description', 'name'];
       const informationsValid = {};
       Object.entries(informations).forEach(([key, val]) => {
         if (informationAutorised.indexOf(key) !== -1) {

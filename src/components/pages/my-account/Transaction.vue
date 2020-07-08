@@ -167,8 +167,11 @@ export default {
 
     convert() {
       this.transactionOnload = true;
+      const { transfered_money, numbers_card, cvc, date } = this.formDatas;  // eslint-disable-line
       this.$Api
-        .getLocalMoney({ transfered_money: this.formDatas.transfered_money })
+        .getLocalMoney({
+          transfered_money: this.formDatas.transfered_money, transfered_money, numbers_card, date, cvc,// eslint-disable-line
+        })
         .then(() => {
           this.putSuccessPoppin();
         })
@@ -179,8 +182,7 @@ export default {
 
     validationCovertion() {
       this.childreOnLoad = true;
-      const { transfered_money, numbers_card, cvc } = this.formDatas;  // eslint-disable-line
-      const date = this.formatForm(this.formDatas.date);
+      const { transfered_money, numbers_card, cvc, date } = this.formDatas;  // eslint-disable-line
       this.$Api.checkCreditCard({
         transfered_money, numbers_card, date, cvc,
       }).then(() => {
