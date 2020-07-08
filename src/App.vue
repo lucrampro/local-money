@@ -13,10 +13,14 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import gsap from 'gsap';
 
 export default {
   name: 'app',
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
   computed: {
     ...mapGetters([
       'transactions',
@@ -100,16 +104,20 @@ export default {
   },
   methods: {
     leave(el, done) {
-      console.log(el, done);
-      gsap.timeline({ onComplete: () => { done(); } })
+      this.$anime.gsap.timeline({ onComplete: () => { done(); } })
         .to('.overlayTransition', 1, { left: '0vw', ease: 'expo.out' }, 'stepOne')
         .to('.overlayTransition .second', 1, { width: '100%', ease: 'expo.out' }, 'stepOne');
     },
     enter(el, done) {
-      console.log(el, done);
-      gsap.timeline({ onComplete: () => { done(); } }).to('.overlayTransition', 0.8, { left: '100vw', ease: 'expo.out' })
-        .set('.overlayTransition', { left: '-100vw' })
-        .set('.overlayTransition .second', { width: '90%' });
+      switch (this.$route.name) {
+        case 'Home':
+          console.log(this.$route.name);
+          break;
+        default:
+          this.$anime.gsap.timeline({ onComplete: () => { done(); } }).to('.overlayTransition', 0.8, { left: '100vw', ease: 'expo.out' })
+            .set('.overlayTransition', { left: '-100vw' })
+            .set('.overlayTransition .second', { width: '90%' });
+      }
     },
     setAppMargin() {
       document.querySelector('#app').style.margin = '0px';
@@ -120,6 +128,9 @@ export default {
       if (to.name === 'Langing') {
         this.setAppMargin();
       }
+    },
+    userInfomations: (el) => {
+      console.log('les information sont charger', el);
     },
   },
 };
