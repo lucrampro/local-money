@@ -137,7 +137,6 @@ export default {
         .to('.overlayTransition', 0.8, { left: '100vw', ease: 'expo.out' })
         .set('.overlayTransition', { left: '-100vw' })
         .set('.overlayTransition .second', { width: '90%' });
-      console.log('on est ok');
     },
   },
 };
