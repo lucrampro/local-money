@@ -31,9 +31,13 @@ export default {
     },
   },
 
+  mounted() {
+    this.$anime.heartAnimation(this.$refs.like, this.currentState);
+  },
+
   watch: {
-    currentState(newState, oldState) {
-      this.$anime.heartAnimation(this.$refs.like, newState, oldState);
+    currentState(newState) {
+      this.$anime.heartAnimation(this.$refs.like, newState);
     },
   },
 
