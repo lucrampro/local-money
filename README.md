@@ -41,60 +41,61 @@ GreenSock est recconu pour sa legerté et son optimisation de plus sa syntaxe si
 
 Bibliothèque de gestionnaire d'état ***Vuex***
 
-le store de vuex est a été n'écéssaire à faire a fin d'améliorer l'experience utilisateur, et le développemnent de l'application.
-il permet de stocker une partie des informations de l'utilisateur dans le store, ce qui permet des temps de chargement moins long afin qu'il puisse déja accéder à ses informations sans qu'ils est forcément à attendre une requette du backend. 
-nous utilisons vuex persite data afin d'aussi améliorer l'experience utilisateur, pourqu'il puisse changer de page ou revenir sur l'application sans  qu'il est à se reconnecter de nouveau.
+Le store de vuex est a été nécessaire à faire a fin d'améliorer l'expérience utilisateur, et le développement de l'application.
+Il permet de stocker une partie des informations de l'utilisateur dans le store, ce qui permet des temps de chargement moins long afin qu'il puisse déjà accéder à ses informations sans qu'ils soit forcément à attendre une requête du backend.
+Nous utilisons vuex persiste data afin d'aussi améliorer l'expérience utilisateur, pour que l'utilisateur puisse changer de page ou revenir sur l'application sans qu'il ait à se reconnecter de nouveau.
 _______
 
 ### Pwa
 
-nous avons mis en place l'application en pwa pour améliorér l'experience pour que l'utilisateur puisse avoir accés a son application même quand il n'a plus d'accés a internet.
-et la pwa permet d'installer notre application sur son téléphone quoi de plus normal pour une application bancaire, qui est censé être consulté régulièrement ?
+Nous avons mis en place l'application en pwa pour améliorer l'expérience pour que l'utilisateur puisse avoir accès a son application sans qu'il n'ait accès a internet.
+Et la pwa permet d'installer notre application sur son téléphone quoi de plus normal pour une application bancaire, qui est censé être consulté régulièrement ?
 
 ###  Atomic desing
 
-nous avons mis en place une logique se basent sur de l'atomic desing afin de creer nos composant.
-il y a une nomonclature spécifique afin de pouvoir reperer plus facilement a quelle famille apartienents chaques composants.
+Nous avons mis en place une logique se basent sur de l'atomic desing afin de créer nos composant.
+Il y a une nomenclature spécifique afin de pouvoir repérer plus facilement à quelle famille appartiennent chaque composants.
 
 ### nomonclature
 
 a-nomducomposant : pour les atoms
 m-nomducomposant : pour les molécules
-o-organisme : pour les organisme
+o-organisme : pour les organismes
 l-layout : pour les composants de layouts.
 
-les import de ses composant sont fait automatiquement dans le main ce qui permet de ne pas les importer a chaque page, 
-ce qui permet de garder des nom de composant identique sur chaque page.
+les imports de ses composant sont fait automatiquement dans le main ce qui permet de ne pas les importer a chaque page, et ce qui permet de garder des nom de composant identique sur chaque page.
 
 
 ### SCSS scoped
 
-nous avons chosis du scss scoped, car c'est un des languages de stylisation le plus proche du css,
-ce qui permettera une meilleur maintenance dans le temps car le style d'une page reste en css,
-et pour tout autre développeur qui aimerait repasser sur le code dans le futur, il lui sera plus facile.
+Nous avons choisis du scss scoped, car c'est un des langages de stylisation le plus proche du css,
+ce qui permettra une meilleure maintenance dans le temps car le style d'une page reste en css,
+et pour tout autre développeur qui aimerait repasser sur le code dans le futur, il lui sera plus facile pour lui.
+
+la nomonclature des class css est le bem, nous l'avons choisis par defaut.
+
 
 ### Accessibilité
 
-Un des points que nous avons voulus garder c'est l'accésibilité de nos composants, et de ne pas tomber dans le piège du button qui est enfaite une div, 
-c'est pour cela que nous avons creer nos composant en respectant la sémantique html afin que nos éléments même sans css ne perde pas touts leurs sens.
-un des meilleurs exemple de d'utilisation est le a-switch-button et le l-form-register, qui récupère des comportement de base du navigateur afin de mettre un surcouche et css et javascript.
+Un des points que nous avons voulus garder c'est l'accessibilité de nos composants, et de ne pas tomber dans le piège du bouton qui est en faite une div,
+c'est pour cela que nous avons créé nos composant en respectant la sémantique HTML afin que nos éléments même sans CSS ne perde pas touts leurs sens.
+Un des meilleurs exemple de d'utilisation est le a-switch-button et le l-form-register, qui récupère des comportements de base du navigateur afin de mettre une surcouche et CSS et JavaScript.
 
 
 ###  sécurité (vue router)
 
-Le router-vue est les route imbriqué était nécessaire afin de creer une sécurité stable est maintenable dans notre application, ce qui nous à permet de ne pas autorisr sertaines page à sertains type d'utilsateur, ou si l'utilisateur n'est pas connecté.
+Le router-vue est les route imbriqué était nécessaire afin de créer une sécurité stable est maintenable dans notre application, ce qui nous à permettre de ne pas autorise certaines pages à certains types d'utilisateur, ou si l'utilisateur n'est pas connecté.
 
 
 ###  Pluging
 
-nous avons fait des pluging customs afin d'améliorer la stabilité et la maintenabilité de notre code se qui nous permit de gagner énormément de temps, sur l'acheminement des data vers le store, grace a notre pluging $requestApi, ou encore animer de manière générique nos composants avex ourAnimation.
+Nous avons fait des plugins customs afin d'améliorer la stabilité et la maintenabilité de notre code ce qui nous permit de gagner énormément de temps par exemple,  sur l'acheminement des data vers le store, grâce a notre plugin $Api, ou encore animer de manière générique nos composants avec ourAnimation.
 
 
 ###   Responsive
 
-l'application n'a pas était pensé responsive, mais côté front nous avons rendu l'utilisation de l'aplication en version desktop, ce qui permettera au entreprise de gerer le compt depuis un terminal plus adapté a leur type d'activité.
+L'application n'a pas était pensé responsive, mais côté front nous avons rendu l'utilisation de l'application en version desktop, ce qui permettra aux entreprises de gérer le compte depuis un terminal plus adapté a leur type d'activité.
 
 ###   librairi - perfomance
 
-Comme dit prècédement nous avons des problèmatiques d'optimisation de performances, nous avons donc choisi d'utiliser le moins de librairi externe a vue,
-et nous arrivés au résulta de deux 'Veevalidate + vue-i18n' && 'GreenSock' ce qui est vraiment pas mal, et nous permet d'avoir un build total notre application de : ≈ *(400 KiB)*
+Comme dit précédemment nous avons des problématiques d'optimisation de performances, nous avons donc choisi d'utiliser le moins de librairie externe a vue, et nous arrivés au résulta de 3 'Veevalidate', 'vue-i18n', 'GreenSock' ce qui est vraiment pas mal, et nous permet d'avoir un build total notre application de : ≈ *(400 KiB)*

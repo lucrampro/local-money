@@ -218,8 +218,8 @@ export default {
   },
   computed: {
     ...mapGetters(['transferId']),
-    transferedMoney() {
-      return this.formDatas && this.formDatas.transferedMoney;
+    transfered_money() {
+      return this.formDatas && this.formDatas.transfered_money;
     },
     beneficiaryAccountNumber() {
       return this.formDatas && this.formDatas.beneficiaryAccountNumber;
