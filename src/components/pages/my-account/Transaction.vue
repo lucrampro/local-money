@@ -156,14 +156,66 @@ export default {
           });
       }
     },
+<<<<<<< HEAD
+=======
+
+    convert() {
+      this.transactionOnload = true;
+      this.$Api
+        .getLocalMoney({ transfered_money: this.formDatas.transfered_money })
+        .then(() => {
+          this.putSuccessPoppin();
+        })
+        .catch(() => {
+          this.putErroPoppin();
+        });
+    },
+
+    validationCovertion() {
+      this.childreOnLoad = true;
+      const { transfered_money, numbers_card, cvc } = this.formDatas;  // eslint-disable-line
+      const date = this.formatForm(this.formDatas.date);
+      this.$Api.checkCreditCard({
+        transfered_money, numbers_card, date, cvc,
+      }).then(() => {
+        this.$refs.messagePoppin.innerHTML = `Êtes-vous sûr de vouloir changer ${this.formDatas.transfered_money} €, en ${this.formDatas.transfered_money} MCL. Sachez que la reconversion vers l'euro ne sera pas possible.`;
+        this.popinsOpen = true;
+        this.childreOnLoad = false;
+      }).catch(() => {
+        this.$refs.messagePoppin.innerHTML = "Votre carte bancaire n'est pas valide veuillez contacter votre gouvenance pour plus de détails";
+        this.popinsOpen = true;
+        this.childreOnLoad = false;
+        this.trasactionError = true;
+      });
+    },
+
+    validationBuy() {
+      const { transfered_money, beneficiaryAccountNumber } = this.formDatas;  // eslint-disable-line
+      this.$refs.messagePoppin.innerHTML = `Êtes-vous sûr de vouloir envoyer ${transfered_money} MLC, au bénéficier ${beneficiaryAccountNumber} ?`;// eslint-disable-line
+      this.popinsOpen = true;
+    },
+
+    submit(valid) {
+      if (valid) {
+        if (this.nextName) {
+          this.$router.push({ name: this.nextName });
+        } else if (this.mode === 'Buy') {
+          this.validationBuy();
+        } else if (this.mode === 'ConvertMoney') {
+          this.validationCovertion();
+        }
+      }
+    },
+
+>>>>>>> develop
   },
   computed: {
     ...mapGetters(['transferId']),
     transferedMoney() {
       return this.formDatas && this.formDatas.transferedMoney;
     },
-    beneficiaryAccountId() {
-      return this.formDatas && this.formDatas.beneficiaryAccountId;
+    beneficiaryAccountNumber() {
+      return this.formDatas && this.formDatas.beneficiaryAccountNumber;
     },
     canGoToPreviousPage() {
       return this.$route.name !== 'ConvertMoney' && this.$route.name !== 'Buy';

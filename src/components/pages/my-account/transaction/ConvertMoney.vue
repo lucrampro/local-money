@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     switchMode() {
-      console.log(this.mode);
       this.mode = this.mode === 'local' ? 'euro' : 'local';
     },
   },
