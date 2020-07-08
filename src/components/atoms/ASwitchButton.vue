@@ -62,7 +62,7 @@ export default {
   position: relative;
   box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.07);
   border-radius: 15px;
-  width: 60%;
+  width: 100%;
   max-width: 375px;
   margin: auto;
   justify-content: space-evenly;
