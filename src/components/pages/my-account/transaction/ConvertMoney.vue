@@ -6,7 +6,7 @@
       <div class="fieldConvert">
         <ValidationProvider>
           <o-transaction-input
-            v-model="transfered_money"
+            v-model="transferedMoney"
             :label="label"
             :errors="{}"
             name="sum_to_send"
@@ -22,9 +22,9 @@
           <a-icone-conver />
         </a-button>
       </div>
-      <div v-if="transfered_money" class="bottom">
-        <p v-if="mode === 'local'">en euro {{transfered_money}} €</p>
-        <p v-else>en monnaie locale {{transfered_money}} mlc</p>
+      <div v-if="transferedMoney" class="bottom">
+        <p v-if="mode === 'local'">en euro {{transferedMoney}} €</p>
+        <p v-else>en monnaie locale {{transferedMoney}} mlc</p>
       </div>
     </div>
   </ValidationObserver>
@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       mode: 'local',
-      transfered_money: '',
+      transferedMoney: '',
     };
   },
   components: {
@@ -46,8 +46,8 @@ export default {
   },
 
   watch: {
-    transfered_money(newVal) {
-      this.$emit('updateForm', { transfered_money: newVal });
+    transferedMoney(newVal) {
+      this.$emit('updateForm', { transferedMoney: newVal });
     },
   },
   methods: {

@@ -145,9 +145,9 @@ export default {
 
     submitBuy() {
       this.transactionOnload = true;
-      const { beneficiaryAccountNumber, transfered_money } = this.formDatas; // eslint-disable-line
+      const { beneficiaryAccountNumber, transferedMoney } = this.formDatas; // eslint-disable-line
       this.$Api
-        .putTransferMoney({ beneficiaryAccountNumber, transfered_money })
+        .putTransferMoney({ beneficiaryAccountNumber, transferedMoney })
         .then(() => {
           this.putSuccessPoppin();
         })
@@ -168,10 +168,10 @@ export default {
 
     convert() {
       this.transactionOnload = true;
-      const { transfered_money, numbers_card, cvc, date } = this.formDatas;  // eslint-disable-line
+      const { transferedMoney, numbers_card, cvc, date } = this.formDatas;  // eslint-disable-line
       this.$Api
         .getLocalMoney({
-          transfered_money: this.formDatas.transfered_money, transfered_money, numbers_card, date, cvc,// eslint-disable-line
+          transferedMoney: this.formDatas.transferedMoney, transferedMoney, numbers_card, date, cvc,// eslint-disable-line
         })
         .then(() => {
           this.putSuccessPoppin();
@@ -183,11 +183,11 @@ export default {
 
     validationCovertion() {
       this.childreOnLoad = true;
-      const { transfered_money, numbers_card, cvc, date } = this.formDatas;  // eslint-disable-line
+      const { transferedMoney, numbers_card, cvc, date } = this.formDatas;  // eslint-disable-line
       this.$Api.checkCreditCard({
-        transfered_money, numbers_card, date, cvc,
+        transferedMoney, numbers_card, date, cvc,
       }).then(() => {
-        this.$refs.messagePoppin.innerHTML = `Êtes-vous sûr de vouloir changer ${this.formDatas.transfered_money} €, en ${this.formDatas.transfered_money} MCL. Sachez que la reconversion vers l'euro ne sera pas possible.`;
+        this.$refs.messagePoppin.innerHTML = `Êtes-vous sûr de vouloir changer ${this.formDatas.transferedMoney} €, en ${this.formDatas.transferedMoney} MCL. Sachez que la reconversion vers l'euro ne sera pas possible.`;
         this.popinsOpen = true;
         this.childreOnLoad = false;
       }).catch(() => {
@@ -199,8 +199,8 @@ export default {
     },
 
     validationBuy() {
-      const { transfered_money, beneficiaryAccountNumber } = this.formDatas;  // eslint-disable-line
-      this.$refs.messagePoppin.innerHTML = `Êtes-vous sûr de vouloir envoyer ${transfered_money} MLC, au bénéficier ${beneficiaryAccountNumber} ?`;// eslint-disable-line
+      const { transferedMoney, beneficiaryAccountNumber } = this.formDatas;  // eslint-disable-line
+      this.$refs.messagePoppin.innerHTML = `Êtes-vous sûr de vouloir envoyer ${transferedMoney} MLC, au bénéficier ${beneficiaryAccountNumber} ?`;// eslint-disable-line
       this.popinsOpen = true;
     },
 
@@ -219,8 +219,8 @@ export default {
   },
   computed: {
     ...mapGetters(['transferId']),
-    transfered_money() {
-      return this.formDatas && this.formDatas.transfered_money;
+    transferedMoney() {
+      return this.formDatas && this.formDatas.transferedMoney;
     },
     beneficiaryAccountNumber() {
       return this.formDatas && this.formDatas.beneficiaryAccountNumber;
