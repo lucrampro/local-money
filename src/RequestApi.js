@@ -193,7 +193,9 @@ class ApiRequest extends EventDispatcher {
   postRegister(registerPayload) {
     return this.post('/register', { body: registerPayload })
       .then((res) => {
-        this.dispatchEvent(new CustomEvent('user-registred', { detail: registerPayload }));
+        if (!res.Error) {
+          this.dispatchEvent(new CustomEvent('user-registred', { detail: registerPayload }));
+        }
         return res;
       }).catch((res) => res);
   }
@@ -265,6 +267,17 @@ class ApiRequest extends EventDispatcher {
     }).catch((response) => reject(response)));
   }
 
+  getEuro(transactionInformation) {
+    return new Promise((resolve, reject) => this.post('/currency-converter/to-euro', {
+      Headers: { Authorization: `Bearer ${this.token}` },
+      body: transactionInformation,
+    }).then((response) => {
+      this.getMyTransaction();
+      this.getUserInfo();
+      return resolve(response);
+    }).catch((response) => reject(response)));
+  }
+
   checkCreditCard(payload) {
     return new Promise((resolve, reject) => this.post('/check-credit-card', {
       Headers: { Authorization: `Bearer ${this.token}` },
@@ -291,6 +304,16 @@ class ApiRequest extends EventDispatcher {
       Headers: { Authorization: `Bearer ${this.token}` },
     }).then((response) => {
       this.dispatchEvent(new CustomEvent('companies-list', { detail: response }));
+      return response;
+    })
+      .catch((response) => response);
+  }
+
+  getCategories() {
+    return this.get('/categories', {
+      Headers: { Authorization: `Bearer ${this.token}` },
+    }).then((response) => {
+      this.dispatchEvent(new CustomEvent('composant-categorysList', { detail: response }));
       return response;
     })
       .catch((response) => response);

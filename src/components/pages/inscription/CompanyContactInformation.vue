@@ -7,9 +7,9 @@
       <ValidationProvider name="prenom" rules="required|min:3" v-slot="{ errors }">
         <m-input v-model="lastName" name="last_name" :errors="errors" exemple="Brontis" class="mt-4">Prenom</m-input>
       </ValidationProvider>
-      <ValidationProvider name="age" rules="required|min:10|majority" v-slot="{ errors }">
+      <!-- <ValidationProvider name="age" rules="required|min:10|majority" v-slot="{ errors }">
         <m-input :errors="errors" name="date_of_birth" type="date" v-model="birthDay" maxlength="8" exemple="30/09/1998">Age</m-input>
-      </ValidationProvider>
+      </ValidationProvider> -->
       <ValidationProvider name="numéro de téléphone" rules="required|min:3" v-slot="{ errors }">
         <m-input :errors="errors" name="tel" type="tel" v-model="phoneNumber" mask="## ## ## ## ##" maxlength="14" exemple="06 21 48 37 99">Téléphone</m-input>
       </ValidationProvider>
@@ -36,7 +36,7 @@ export default {
     return {
       firstName: '',
       lastName: '',
-      birthDay: '',
+      // birthDay: '',
       phoneNumber: '',
       email: '',
       password: '',

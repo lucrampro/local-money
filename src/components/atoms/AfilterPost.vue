@@ -1,9 +1,7 @@
 <template>
-  <div class="filter">
-    <button>
-      <slot></slot>
-    </button>
-  </div>
+  <button>
+    <slot></slot>
+  </button>
 </template>
 
 <script>
@@ -13,18 +11,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.filter {
+button {
   background-color: #189b73;
   margin: 2px;
   color: #fefefe;
   height: 30px;
   width: auto;
-  border-radius: 16.5px;
+  border-radius: 20px;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px 10px;
+  padding: 20px 10px;
   button {
     outline: none;
   }

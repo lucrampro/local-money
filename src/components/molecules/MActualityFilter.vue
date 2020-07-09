@@ -4,7 +4,7 @@
      <slot></slot>
    </p>
    <div class="wrapper-filter">
-    <filter-post v-for="(items, index) in $props.filters" :key="index"> {{ items.text }} </filter-post>
+    <a-filter-post v-for="(items, index) in $props.filters" :key="index"> {{ items.text }} </a-filter-post>
    </div>
 </div>
 </template>
@@ -25,7 +25,7 @@ export default {
     };
   },
   components: {
-    FilterPost,
+    'a-filter-post': FilterPost,
   },
   props: {
     filters: {

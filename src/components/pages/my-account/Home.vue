@@ -15,10 +15,12 @@
       <m-card-transaction
         v-for="(transaction, index) in lastTrasacton"
         :key="index"
-        :name="transaction.beneficiary_name"
+        :beneficiaryName="transaction.beneficiary_name"
+        :emiterName="transaction.emiter_name"
         :date="transaction.date"
         :sum="transaction.transfered_money"
         :statusTransactionUser="transaction.status_transaction_user"
+        :categorie="transaction.category"
 
       ></m-card-transaction>
       <template v-slot:bottom ><a-link class="link" @click.native="$router.push({name : 'MyTransaction'})">Voir toutes mes transactions</a-link> </template>
@@ -94,6 +96,10 @@ export default {
 
 ::v-deep .picto {
   margin-right: 10px ;
+}
+
+.name {
+  font-weight: 300;
 }
 
 .link {

@@ -36,6 +36,7 @@ export default {
       'companiesList',
       'companyPosts',
       'contacts',
+      'appDownload',
     ]),
   },
   mounted() {
@@ -61,19 +62,22 @@ export default {
       this.$store.dispatch('setUserInformations', event.detail);
       this.$Api.setUserType(event.detail.type);
       this.$Api.getDetails();
+      this.$Api.getContacts();
     });
 
     // set infomation of user
     this.$Api.addEventListener('session-user-details', (event) => {
       this.$store.dispatch('setSolde', event.detail.available_cash);
-      this.$store.dispatch('setTransferId', event.detail.account_id);
+      this.$store.dispatch('setAccountNumber', event.detail.account_number);
+      this.$store.dispatch('setAppDownload', true);
     });
 
-    this.$Api.addEventListener('user-registred', (event) => {
-      this.$Api.login({
-        username: event.detail.email,
-        password: event.detail.password,
-      }).then(() => this.$router.push({ name: 'Home' }));
+    this.$Api.addEventListener('user-registred', () => {
+      this.$store.dispatch(
+        'setConfirmPageMessage',
+        'Votre pré inscription a bien été validée, votre inscription sera validée par l\'Association "NOM de l\'Association" .',
+      );
+      this.$router.push({ name: 'Confirmation' });
     });
 
     this.$Api.addEventListener('session-user-transactions', (event) => {
@@ -104,22 +108,31 @@ export default {
 
     this.$Api.addEventListener('remove-contact', (event) => this.$store.dispatch('removeContact', event.detail));
     this.$Api.addEventListener('composant-gouvernanceList', (event) => this.$store.dispatch('setGouvernanceList', event.detail));
+    this.$Api.addEventListener('composant-categorysList', (event) => this.$store.dispatch('setCategorysList', event.detail));
   },
   methods: {
     leave(el, done) {
-      this.$anime.gsap.timeline({ onComplete: () => { done(); } })
-        .to('.overlayTransition', 1, { left: '0vw', ease: 'expo.out' }, 'stepOne')
-        .to('.overlayTransition .second', 1, { width: '100%', ease: 'expo.out' }, 'stepOne');
+      if (!this.appDownload) {
+        this.$anime.gsap.timeline({ onComplete: () => { done(); } })
+          .to('.overlayTransition', 1, { left: '0vw', ease: 'expo.out' }, 'stepOne')
+          .to('.overlayTransition .second', 1, { width: '100%', ease: 'expo.out' }, 'stepOne');
+      } else {
+        done();
+      }
     },
     enter(el, done) {
-      switch (this.$route.name) {
-        case 'Home':
-          this.$anime.gsap.to('.second p', 0.5, { scale: 1, opacity: 1 });
-          break;
-        default:
-          this.$anime.gsap.timeline({ onComplete: () => { done(); } }).to('.overlayTransition', 0.8, { left: '100vw', ease: 'expo.out' })
-            .set('.overlayTransition', { left: '-100vw' })
-            .set('.overlayTransition .second', { width: '90%' });
+      if (!this.appDownload) {
+        switch (this.$route.name) {
+          case 'Home':
+            this.$anime.gsap.to('.second p', 0.5, { scale: 1, opacity: 1 });
+            break;
+          default:
+            this.$anime.gsap.timeline({ onComplete: () => { done(); } }).to('.overlayTransition', 0.8, { left: '100vw', ease: 'expo.out' })
+              .set('.overlayTransition', { left: '-100vw' })
+              .set('.overlayTransition .second', { width: '90%' });
+        }
+      } else {
+        done();
       }
     },
     setAppMargin() {
@@ -127,16 +140,13 @@ export default {
     },
   },
   watch: {
-    $route(to) {
-      if (to.name === 'Langing') {
-        this.setAppMargin();
+    appDownload: (download) => {
+      if (download) {
+        gsap.timeline().to('.second p', 0.2, { opacity: 0, scale: 0.8 })
+          .to('.overlayTransition', 0.8, { left: '100vw', ease: 'expo.out' })
+          .set('.overlayTransition', { left: '-100vw' })
+          .set('.overlayTransition .second', { width: '90%' });
       }
-    },
-    userInfomations: () => {
-      gsap.timeline().to('.second p', 0.2, { opacity: 0, scale: 0.8 })
-        .to('.overlayTransition', 0.8, { left: '100vw', ease: 'expo.out' })
-        .set('.overlayTransition', { left: '-100vw' })
-        .set('.overlayTransition .second', { width: '90%' });
     },
   },
 };

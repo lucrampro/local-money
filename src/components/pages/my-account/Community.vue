@@ -1,6 +1,7 @@
 <template>
   <div class="community">
-    <l-wrapper-block v-if="compteType === 'company'">
+    <p class="title">Mon fil d'actualité</p>
+    <l-wrapper-block v-if="userInfomations.type === 'company'">
       <p>Donnez des nouvelles de votre activité<br> au près des autres adhérents </p>
       <a-button  width="100%" @click.native="$router.push({ name : 'SendPost'})" class="buttonGiveNew">Donner de vos nouvelles</a-button>
     </l-wrapper-block>
@@ -43,13 +44,19 @@ export default {
   computed: {
     ...mapGetters([
       'companyPosts',
-      'compteType',
+      'userInfomations',
     ]),
   },
 };
 </script>
 
 <style lang="scss" scoped>
+
+.title {
+  @include title;
+  padding-left: 30px;
+}
+
 .buttonGiveNew {
   margin: 0 auto;
   display: table;

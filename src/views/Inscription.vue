@@ -1,5 +1,6 @@
 <template>
   <l-regitster @formSubmit="toNextPage()">
+    <m-error-message :message="errorMessage" v-show="error"/>
     <template v-slot:header>
       <div class="header">
         <span>
@@ -32,13 +33,6 @@
         :onload="buttonOnload"
         v-if="currentNamePage !=='AccountType'"
       >Suviant</a-button>
-      <!-- <a-button
-        width="100%"
-        background="white"
-        color="#189B73"
-        v-if="!previousPath"
-        @click.native="$router.push({ name: 'Register' })"
-      >Se connecter</a-button> -->
     </template>
   </l-regitster>
 </template>
@@ -49,8 +43,9 @@ export default {
   name: 'inscription',
   data() {
     return {
-      formDatas: {
-      },
+      formDatas: {},
+      error: false,
+      errorMessage: '',
       submitted: false,
       formValid: false,
       buttonOnload: false,
@@ -79,7 +74,18 @@ export default {
       } else {
         this.buttonOnload = true;
         this.$Api.postRegister(this.formatForm(this.formDatas))
+          .then((response) => {
+            if (response.Error) {
+              this.errorMessage = response.Error;
+              this.error = true;
+              this.buttonOnload = false;
+            }
+            return false;
+          })
           .catch((error) => {
+            this.errorMessage = 'une erreur est survenue lors de votre inscription veillez réessayer plus tard';
+            this.error = true;
+            this.buttonOnload = false;
             console.log(error);
           });
       }
@@ -118,6 +124,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.MerrorMessage {
+  top: 30px;
+  transition: opacity 0.5s;
+}
+
 .header {
   align-items: center;
   display: flex;
