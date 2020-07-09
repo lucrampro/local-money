@@ -1,5 +1,5 @@
 <template>
-<div class="mainWrapper">
+<div :class="{mainWrapper : !isHome}">
   <div id="app">
     <div class="overlayTransition">
       <div class="second">
@@ -38,6 +38,9 @@ export default {
       'contacts',
       'appDownload',
     ]),
+    isHome() {
+      return !this.$router.currentRoute.meta.requireAuth;
+    },
   },
   mounted() {
     this.$Api.getDetails();
