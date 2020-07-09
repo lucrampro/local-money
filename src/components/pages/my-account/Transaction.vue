@@ -223,8 +223,12 @@ export default {
     },
 
     validationBuy() {
-      const { transferedMoney, beneficiaryAccountNumber } = this.formDatas;  // eslint-disable-line
-      this.$refs.messagePoppin.innerHTML = `Êtes-vous sûr de vouloir envoyer ${transferedMoney} MLC, au bénéficier ${beneficiaryAccountNumber} ?`;// eslint-disable-line
+      const { transferedMoney, beneficiaryAccountNumber, fullName } = this.formDatas;
+      if (fullName) {
+        this.$refs.messagePoppin.innerHTML = `Êtes-vous sûr de vouloir envoyer ${transferedMoney} MLC, à ${fullName} ?`;
+      } else {
+        this.$refs.messagePoppin.innerHTML = `Êtes-vous sûr de vouloir envoyer ${transferedMoney} MLC, au bénéficier ${beneficiaryAccountNumber} ?`;
+      }
       this.popinsOpen = true;
     },
 

@@ -1,6 +1,7 @@
 const initialState = () => ({
   confirmPageMessage: '',
   gouvernanceList: [],
+  appDownload: false,
 });
 
 export default {
@@ -11,6 +12,7 @@ export default {
   getters: {
     confirmPageMessage: (state) => state.confirmPageMessage,
     gouvernanceList: (state) => state.gouvernanceList,
+    appDownload: (state) => state.appDownload,
   },
 
   actions: {
@@ -19,6 +21,12 @@ export default {
     },
     setGouvernanceList(context, gouvernanceList) {
       context.commit('SET_GOUVERNANCE_LIST', gouvernanceList);
+    },
+    setAppDownload(context, appDownload) {
+      context.commit('SET_APP_DOWNLOAD', appDownload);
+    },
+    reset({ commit }) {
+      commit('RESET');
     },
   },
 
@@ -29,6 +37,14 @@ export default {
     SET_GOUVERNANCE_LIST(state, gouvernanceList) {
       state.gouvernanceList = gouvernanceList;
     },
+    SET_APP_DOWNLOAD(state, appDownload) {
+      state.appDownload = appDownload;
+    },
+    RESET(state) {
+      const newState = initialState();
+      Object.keys(newState).forEach((key) => {
+        state[key] = newState[key];
+      });
+    },
   },
-
 };
