@@ -25,7 +25,7 @@
       <div>
         <!-- <p class="provider__description">
           Dans le but de commercer avec d'autres entreprises,
-          vous pouvez avoir le statut de fournisseur, afin de gagner en visibilité au près des autre adhérents entreprise.
+          vous pouvez avoir le statut de fournisseur, afin de gagner en visibilité au près des autres adhérents entreprises.
         </p> -->
       </div>
       <section class="provider__field" >
@@ -49,11 +49,18 @@ export default {
   },
   mixins: [FormMixin],
   watch: {
+    provider(provider) {
+      this.$emit('updateForm', { provider });
+    },
+    description(newVal) {
+      this.$emit('updateForm', { description: newVal });
+    },
     siret(newVal) {
       this.$emit('updateForm', { siret: newVal });
     },
   },
 };
+
 </script>
 
 <style lang="scss" scoped>
@@ -64,8 +71,11 @@ export default {
 }
 
 .provider__field {
+  display: flex;
+  align-items: center;
   label {
     @include labelInput;
+    font-size: 19px;
   }
   input {
     margin-left: 5px;;

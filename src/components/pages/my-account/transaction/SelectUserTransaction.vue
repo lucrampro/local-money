@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>Montant à envoyer {{transfered_money || 0}} MCL</p>
+    <p>Montant à envoyer {{transferedMoney || 0}} MCL</p>
     <div>
       <ValidationProvider
         name="Identifiant du bénéficiaire"

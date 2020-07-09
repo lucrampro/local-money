@@ -183,11 +183,22 @@ export default {
       const { transferedMoney, numbers_card, cvc, date } = this.formDatas;  // eslint-disable-line
       this.$Api
         .getLocalMoney({
+<<<<<<< HEAD
           transferedMoney,
           numbers_card,
           date,
           cvc,
         }).then(() => { this.putSuccessPoppin(); }).catch(() => { this.putErroPoppin(); });
+=======
+          transferedMoney: this.formDatas.transferedMoney, transferedMoney, numbers_card, date, cvc,// eslint-disable-line
+        })
+        .then(() => {
+          this.putSuccessPoppin();
+        })
+        .catch(() => {
+          this.putErroPoppin();
+        });
+>>>>>>> feat/converToEuro
     },
 
     convertToEuro() {

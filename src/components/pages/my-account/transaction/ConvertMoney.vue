@@ -23,7 +23,11 @@
         </a-button>
       </div>
       <div v-if="transferedMoney" class="bottom">
+<<<<<<< HEAD
         <p v-if="mode === 'vers-local'">en euro {{transferedMoney}} €</p>
+=======
+        <p v-if="mode === 'local'">en euro {{transferedMoney}} €</p>
+>>>>>>> feat/converToEuro
         <p v-else>en monnaie locale {{transferedMoney}} mlc</p>
       </div>
     </div>
