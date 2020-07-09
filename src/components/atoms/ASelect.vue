@@ -1,5 +1,6 @@
 <template>
   <span class="ASelect">
+    <label>{{label}}</label>
     <select v-model="model">
       <option disabled>{{fallback}}</option>
       <option
@@ -27,6 +28,7 @@ export default {
     list: {
       default: [],
     },
+    label: {},
     errors: {
       default: '',
     },
@@ -45,6 +47,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+label {
+  @include labelInput;
+}
+
 select {
   background: #ffffff;
   height: 50px;

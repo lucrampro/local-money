@@ -66,6 +66,9 @@ export default {
       .then((gouvernanceList) => {
         this.gouvernanceList = gouvernanceList;
       });
+    this.$Api.getCategories().then((categorys) => {
+      this.$store.dispatch('setCategorysList', categorys);
+    });
   },
 };
 </script>

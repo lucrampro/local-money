@@ -2,6 +2,7 @@ const initialState = () => ({
   confirmPageMessage: '',
   gouvernanceList: [],
   appDownload: false,
+  categorysList: [],
 });
 
 export default {
@@ -12,6 +13,7 @@ export default {
   getters: {
     confirmPageMessage: (state) => state.confirmPageMessage,
     gouvernanceList: (state) => state.gouvernanceList,
+    categorysList: (state) => state.categorysList,
     appDownload: (state) => state.appDownload,
   },
 
@@ -24,6 +26,9 @@ export default {
     },
     setAppDownload(context, appDownload) {
       context.commit('SET_APP_DOWNLOAD', appDownload);
+    },
+    setCategorysList(context, categorysList) {
+      context.commit('SET_CATEGORYS_LIST', categorysList);
     },
     reset({ commit }) {
       commit('RESET');
@@ -39,6 +44,9 @@ export default {
     },
     SET_APP_DOWNLOAD(state, appDownload) {
       state.appDownload = appDownload;
+    },
+    SET_CATEGORYS_LIST(state, categorysList) {
+      state.categorysList = categorysList;
     },
     RESET(state) {
       const newState = initialState();
