@@ -3,7 +3,7 @@
   <div id="app">
     <div class="overlayTransition">
       <div class="second">
-        <p>Nous chargons vos données</p>
+        <p>Nous chargeons vos données</p>
       </div>
     </div>
     <transition @leave="leave" @enter="enter" :css='false' mode='out-in' appear>

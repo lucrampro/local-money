@@ -1,5 +1,5 @@
 <template>
-  <ValidationProvider name="solde" :rules="'required|min_value:1|max_value:'+solde" v-slot="{errors}">
+  <ValidationProvider name=" " :rules="'required|min_value:1|max_value:'+solde" v-slot="{errors}">
     <div>
         <p>Mon solde : {{solde}} MCL</p>
         <p>Je souhaite faire un envoi d’une valeur de</p>
