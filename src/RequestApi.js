@@ -62,6 +62,10 @@ class ApiRequest extends EventDispatcher {
   /**
    * methods for call endpoints
    */
+  logOut(res) {
+    this.dispatchEvent(new CustomEvent('user-logout', { detail: res }));
+  }
+
   _Api() {
     const init = {
       mode: 'cors',
@@ -85,6 +89,9 @@ class ApiRequest extends EventDispatcher {
           if (res.ok) {
             return resolve(res.json());
           }
+          if (res.status === 401) {
+            this.logOut(res);
+          }
           return res.json().then((res2) => {
             reject(res2);
           });
@@ -106,9 +113,21 @@ class ApiRequest extends EventDispatcher {
           body: JSON.stringify(payload.body),
           method: 'post',
         }).then((res) => {
-          if (res.ok) { return resolve(res.json()); }
-          return res.json().then((res2) => reject(res2));
-        }).catch((res) => reject(res));
+          if (res.ok) {
+            return resolve(res.json());
+          }
+          if (res.status === 401) {
+            this.logOut(res);
+          }
+          return res.json().then((res2) => {
+            reject(res2);
+          });
+        }).catch((res) => {
+          if (res.code === 401) {
+            this.dispatchEvent(new CustomEvent('user-logout', { detail: res }));
+          }
+          reject(res);
+        });
       }),
       ///
       delete: (path, payload) => new Promise((resolve, reject) => {
@@ -120,9 +139,21 @@ class ApiRequest extends EventDispatcher {
           body: JSON.stringify(payload.body),
           method: 'delete',
         }).then((res) => {
-          if (res.ok) { return resolve(res.json()); }
-          return res.json().then((res2) => reject(res2));
-        }).catch((res) => reject(res));
+          if (res.ok) {
+            return resolve(res.json());
+          }
+          if (res.status === 401) {
+            this.logOut(res);
+          }
+          return res.json().then((res2) => {
+            reject(res2);
+          });
+        }).catch((res) => {
+          if (res.code === 401) {
+            this.dispatchEvent(new CustomEvent('user-logout', { detail: res }));
+          }
+          reject(res);
+        });
       }),
       put: (path, payload) => new Promise((resolve, reject) => {
         payload.Headers = payload.Headers ? payload.Headers : {};
@@ -136,10 +167,18 @@ class ApiRequest extends EventDispatcher {
           if (res.ok) {
             return resolve(res.json());
           }
+          if (res.status === 401) {
+            this.logOut(res);
+          }
           return res.json().then((res2) => {
             reject(res2);
           });
-        }).catch((res) => reject(res));
+        }).catch((res) => {
+          if (res.code === 401) {
+            this.dispatchEvent(new CustomEvent('user-logout', { detail: res }));
+          }
+          reject(res);
+        });
       }),
     };
   }
@@ -268,7 +307,7 @@ class ApiRequest extends EventDispatcher {
   }
 
   getEuro(transactionInformation) {
-    return new Promise((resolve, reject) => this.post('/currency-converter/to-euro', {
+    return new Promise((resolve, reject) => this.post('/convertToEuro', {
       Headers: { Authorization: `Bearer ${this.token}` },
       body: transactionInformation,
     }).then((response) => {
