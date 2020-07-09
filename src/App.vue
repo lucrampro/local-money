@@ -105,6 +105,7 @@ export default {
 
     this.$Api.addEventListener('user-logout', () => {
       this.$store.dispatch('reset');
+      this.switchPage('Register');
     });
 
     this.$Api.addEventListener('remove-contact', (event) => this.$store.dispatch('removeContact', event.detail));

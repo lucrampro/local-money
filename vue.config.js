@@ -6,7 +6,6 @@ module.exports = {
       theme_color: '#fefefe',
       background_color: '#ffffff',
       display: 'fullscreen',
-      manifestPath: 'manifest.json',
       appleMobileWebAppCapable: 'yes',
       appleMobileWebAppStatusBarStyle: 'black',
       workboxPluginMode: 'InjectManifest',
