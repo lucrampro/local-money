@@ -2,7 +2,7 @@
   <div>
     <l-header-informations :name=" userInfomations.first_name">
       <template v-slot:mainText >{{ userInfomations.first_name }}</template>
-      <template v-slot:subText >Votre identifiant : {{userInfomations.id}}<br> <span v-if="compteType ==='company'">Compte profesionne</span></template>
+      <template v-slot:subText >Votre identifiant : {{userInfomations.account_number }}<br> <span v-if="compteType ==='company'">Compte profesionne</span></template>
     </l-header-informations>
    <a-switch-button
       name="switch__page__transaction"
