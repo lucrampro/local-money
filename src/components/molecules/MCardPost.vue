@@ -71,6 +71,7 @@ export default {
       margin-bottom: 15px;
       display: flex;
       text-transform: uppercase;
+      align-items: center;
     }
     &__footer {
       margin-top: 20px;
