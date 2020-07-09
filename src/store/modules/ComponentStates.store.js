@@ -25,6 +25,9 @@ export default {
     setAppDownload(context, appDownload) {
       context.commit('SET_APP_DOWNLOAD', appDownload);
     },
+    reset({ commit }) {
+      commit('RESET');
+    },
   },
 
   mutations: {
@@ -36,6 +39,12 @@ export default {
     },
     SET_APP_DOWNLOAD(state, appDownload) {
       state.appDownload = appDownload;
+    },
+    RESET(state) {
+      const newState = initialState();
+      Object.keys(newState).forEach((key) => {
+        state[key] = newState[key];
+      });
     },
   },
 };

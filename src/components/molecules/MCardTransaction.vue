@@ -1,21 +1,17 @@
 <template>
   <div  class="transaction">
     <a-picto  class="transactionElement--picto" :type="this.$props.categorie"/>
-    <p class="transactionElement--name" >  {{$props.name}}</p>
+    <p class="transactionElement--name" >  {{transactionName}}</p>
     <p class="transactionElement--date">  {{$props.date}}</p>
     <p class="transactionElement--sum" :class="statusTransactionUser">  {{ fullTransactionValue }} </p>
   </div>
 </template>
 
-statusTransactionUser
-
 <script>
 
 export default {
   name: 'MCardTransaction',
-  mounted() {
-    console.log('je susi categorie', this.$props.categorie);
-  },
+  mounted() {},
   props: {
     name: {
       type: String,
@@ -29,6 +25,8 @@ export default {
       type: String,
       default: '',
     },
+    beneficiaryName: {},
+    emiterName: {},
     statusTransactionUser: {
       type: String,
       default: '',
@@ -41,6 +39,9 @@ export default {
   computed: {
     fullTransactionValue() {
       return this.statusTransactionUser === 'emiter' ? `- ${this.sum}` : `+ ${this.sum}`;
+    },
+    transactionName() {
+      return this.statusTransactionUser === 'beneficiary' ? this.emiterName : this.beneficiaryName;
     },
   },
 };

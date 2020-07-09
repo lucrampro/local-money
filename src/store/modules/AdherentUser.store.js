@@ -4,7 +4,7 @@ const initialState = () => ({
   userId: null,
   compteType: '',
   solde: null,
-  transferId: null,
+  accountNumber: null,
   transactions: [],
   companiesList: [],
   companyPosts: [],
@@ -22,7 +22,7 @@ export default {
     userId: (state) => state.userId,
     compteType: (state) => state.compteType,
     solde: (state) => state.solde,
-    transferId: (state) => state.transferId,
+    accountNumber: (state) => state.accountNumber,
     transactions: (state) => state.transactions,
     companiesList: (state) => state.companiesList,
     companyPosts: (state) => state.companyPosts,
@@ -37,7 +37,7 @@ export default {
       context.commit('SET_TOKEN', token);
     },
     setUserInformations(context, informations) {
-      const informationAutorised = ['id', 'type', 'first_name', 'last_name', 'address', 'number_phone', 'description', 'name'];
+      const informationAutorised = ['id', 'type', 'first_name', 'account_number', 'last_name', 'address', 'number_phone', 'description', 'name'];
       const informationsValid = {};
       Object.entries(informations).forEach(([key, val]) => {
         if (informationAutorised.indexOf(key) !== -1) {
@@ -52,8 +52,8 @@ export default {
     setSolde(context, solde) {
       context.commit('SET_SOLDE', solde);
     },
-    setTransferId(context, transferId) {
-      context.commit('SET_TRANSFERID', transferId);
+    setAccountNumber(context, accountNumber) {
+      context.commit('SET_AccountNumber', accountNumber);
     },
     setTransactions(context, transactions) {
       context.commit('SET_TRANSACTIONS', transactions);
@@ -94,8 +94,8 @@ export default {
     SET_SOLDE(state, solde) {
       state.solde = solde;
     },
-    SET_TRANSFERID(state, transferId) {
-      state.transferId = transferId;
+    SET_AccountNumber(state, accountNumber) {
+      state.accountNumber = accountNumber;
     },
     SET_TRANSACTIONS(state, transactions) {
       state.transactions = transactions;

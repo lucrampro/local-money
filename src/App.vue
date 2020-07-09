@@ -68,7 +68,7 @@ export default {
     // set infomation of user
     this.$Api.addEventListener('session-user-details', (event) => {
       this.$store.dispatch('setSolde', event.detail.available_cash);
-      this.$store.dispatch('setTransferId', event.detail.account_id);
+      this.$store.dispatch('setAccountNumber', event.detail.account_number);
       this.$store.dispatch('setAppDownload', true);
     });
 

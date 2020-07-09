@@ -15,7 +15,8 @@
       <m-card-transaction
         v-for="(transaction, index) in lastTrasacton"
         :key="index"
-        :name="transaction.beneficiary_name"
+        :beneficiaryName="transaction.beneficiary_name"
+        :emiterName="transaction.emiter_name"
         :date="transaction.date"
         :sum="transaction.transfered_money"
         :statusTransactionUser="transaction.status_transaction_user"
