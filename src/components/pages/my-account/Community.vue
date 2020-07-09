@@ -1,6 +1,6 @@
 <template>
   <div class="community">
-    <p class="title">Les entreprises du réseaux </p>
+    <p class="title">Mon fil d'actualité</p>
     <l-wrapper-block v-if="userInfomations.type === 'company'">
       <p>Donnez des nouvelles de votre activité<br> au près des autres adhérents </p>
       <a-button  width="100%" @click.native="$router.push({ name : 'SendPost'})" class="buttonGiveNew">Donner de vos nouvelles</a-button>

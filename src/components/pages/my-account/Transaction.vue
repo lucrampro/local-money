@@ -164,7 +164,7 @@ export default {
         } else if (this.mode === 'ConvertMoney') {
           if (this.transactionTo === 'vers-euro') {
             this.convertToEuro();
-          } else if (this.transactionTo === 'vers-local') {
+          } else {
             this.convertToLocal();
           }
         }
@@ -197,10 +197,10 @@ export default {
     },
 
     validationsConvertions() {
-      if (this.transactionTo === 'vers-local') {
-        this.validationConvertionToLocal();
-      } else if (this.transactionTo === 'vers-euro') {
+      if (this.transactionTo === 'vers-euro') {
         this.validationConvertionToEuro();
+      } else {
+        this.validationConvertionToLocal();
       }
     },
 
