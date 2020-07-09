@@ -20,7 +20,7 @@ class Anime {
 
   heartAnimation(heart, newPathVal) {
     this.gsap.timeline().to(heart, 0.3, { scale: '0.8' })
-      .to(heart, 0.6, { scale: '1.2', ease: 'elastic.out(1, 0.3)' }, 'stepOne')
+      .to(heart, 0.6, { scale: '1', ease: 'elastic.out(1, 0.3)' }, 'stepOne')
       .to(heart.querySelector('path'), 0.6, newPathVal, 'stepOne');
   }
 }
