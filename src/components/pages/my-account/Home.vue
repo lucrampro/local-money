@@ -97,6 +97,10 @@ export default {
   margin-right: 10px ;
 }
 
+.name {
+  font-weight: 300;
+}
+
 .link {
   margin: 3 auto;
   display: block;

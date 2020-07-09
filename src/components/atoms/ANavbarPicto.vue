@@ -44,6 +44,7 @@ span {
   transition: all 360.713ms ease 0ms;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 .pageName {
   &.hidden {
@@ -52,7 +53,7 @@ span {
   }
 }
 .selected {
-  background: #b8b8b8;
+  background: $secondary-color;
   padding: 6px 20px 0px 20px;
   border-radius: 10px;
 }
