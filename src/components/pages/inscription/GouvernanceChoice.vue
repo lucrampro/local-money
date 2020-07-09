@@ -1,6 +1,7 @@
 <template>
   <ValidationProvider name="gouvernance" rules="required" v-slot="{errors}">
     <a-select
+      label="Votre gouvernance"
       fallback="Votre gouvernance"
       :list="optionGouvernanceList"
       :errors="errors"

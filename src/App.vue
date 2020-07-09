@@ -72,11 +72,12 @@ export default {
       this.$store.dispatch('setAppDownload', true);
     });
 
-    this.$Api.addEventListener('user-registred', (event) => {
-      this.$Api.login({
-        username: event.detail.email,
-        password: event.detail.password,
-      }).then(() => this.$router.push({ name: 'Home' }));
+    this.$Api.addEventListener('user-registred', () => {
+      this.$store.dispatch(
+        'setConfirmPageMessage',
+        'Votre pré inscription a bien été validée, votre inscription sera validée par l\'Association "NOM de l\'Association" .',
+      );
+      this.$router.push({ name: 'Confirmation' });
     });
 
     this.$Api.addEventListener('session-user-transactions', (event) => {
@@ -107,6 +108,7 @@ export default {
 
     this.$Api.addEventListener('remove-contact', (event) => this.$store.dispatch('removeContact', event.detail));
     this.$Api.addEventListener('composant-gouvernanceList', (event) => this.$store.dispatch('setGouvernanceList', event.detail));
+    this.$Api.addEventListener('composant-categorysList', (event) => this.$store.dispatch('setCategorysList', event.detail));
   },
   methods: {
     leave(el, done) {

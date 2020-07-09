@@ -67,7 +67,7 @@ export default {
           functionBind: () => {
             this.$router.push({ name: 'ConvertMoney', params: { to: 'vers-local' } });
           },
-          pageNameBind: 'Convertire mon argent',
+          pageNameBind: 'Convertir mon argent',
         },
         {
           functionBind: () => {
