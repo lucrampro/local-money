@@ -2,10 +2,10 @@
   <div>
     <m-my-money boxShadow="none" background="#F5F5F5" :convertMoney="false"></m-my-money>
     <l-wrapper-block ref="lWrapperBlock" background="black">
-      <template class="title" v-slot:title>Mes dernières transactions :</template>
+      <template class="title" v-slot:title>Mes transactions :</template>
       <template v-slot:default>
         <div v-for="(transactionDay, index ) in userTrasactions" :key="index" class="transaction">
-          <p class="transactionDay">{{ transactionDay.date }}</p>
+          <p  v-if="index == 0" class="transactionDay">{{ transactionDay.date }}</p>
           <m-card-transaction
             v-for="(transaction, index) in transactionDay.transaction"
             :key="index"

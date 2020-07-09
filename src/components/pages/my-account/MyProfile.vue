@@ -1,8 +1,13 @@
 <template>
   <div>
+
     <l-header-informations :name=" userInfomations.first_name">
       <template v-slot:mainText >{{ userInfomations.first_name }}</template>
-      <template v-slot:subText >Votre identifiant : {{ accountNumber }}<br> <span v-if="compteType ==='company'">Compte profesionne</span></template>
+      <template v-slot:subText >
+        <div class="compteType" >
+          <span class="compteType" v-if="userInfomations.type ==='company'" >Particulier</span><span v-else>Entreprise</span>
+        </div>
+      </template>
     </l-header-informations>
    <a-switch-button
       name="switch__page__transaction"
@@ -61,3 +66,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.compteType {
+  color: #909090;
+}
+</style>

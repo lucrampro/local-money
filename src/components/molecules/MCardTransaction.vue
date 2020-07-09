@@ -68,6 +68,8 @@ export default {
     &--name {
       font-weight: bold;
       grid-area: 1 / 2 / 3 / 5;
+      overflow: hidden;
+      white-space: nowrap;
     }
 
     &--date {

@@ -79,6 +79,10 @@ export default {
   display: flex;
   justify-content: space-between;
 }
+.bottom {
+  position: relative;
+  bottom: -20px;
+}
 .convertButton {
   width: auto;
   margin-left: 30px;

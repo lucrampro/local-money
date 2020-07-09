@@ -1,5 +1,6 @@
 <template>
   <div class="confirmPage">
+    <img class="logo" src="@/assets/logo.png" alt="">
     <p class="confirmText">{{confirmPageMessage}}</p>
     <div class="wrapperButton">
       <a-button @click.native="$router.push({ name : 'Home'})" width="100%">Suivant</a-button>
@@ -21,10 +22,18 @@ export default {
 
 <style lang="scss" scoped>
 .confirmPage {
-  background-color: $gray-background;
   height: 100vh;
   display: flex;
   flex-direction: column;
+  color: $primary-color;
+
+  .logo {
+    align-self: center;
+    width: 41px;
+    top: 35px;
+    position: relative;
+  }
+
   .confirmText {
     margin: 200px auto;
     display: block;

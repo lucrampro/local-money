@@ -48,6 +48,9 @@ export default {
     };
   },
   mixins: [FormMixin],
+  mounted() {
+    this.$emit('updateForm', { provider: this.provider });
+  },
   watch: {
     provider(provider) {
       this.$emit('updateForm', { provider });
