@@ -1,8 +1,8 @@
 <template>
   <div>
-    <!-- <ActualityFilter :filters="filtersArray">
+    <a-ctuality-filter :filters="filtersArray">
       <template>  </template>
-    </ActualityFilter> -->
+    </a-ctuality-filter>
     <p class="title">Les entreprises du réseaux </p>
     <l-wrapper-block ref="lWrapperBlock">
       <m-card-post :hasFooter="false" v-for="(company, index) in companiesList" :key="index"  >
@@ -47,8 +47,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .title {
+  padding: 20px;
   padding-left: 30px;
   @include title;
+}
+
+/deep/ .wrapper-filter {
+  padding-left: 20px ;
+  overflow: scroll ;
 }
 </style>
