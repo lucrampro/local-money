@@ -3,13 +3,32 @@
     <template v-slot:main>
       <!-- <a-button>Modifier mes informations</a-button> -->
       <h2 class="title">Mes informations</h2>
-      <h3>Contact</h3>
-        <p>{{userInfomations.number_phone}}</p>
-        <p>{{userInfomations.address}}</p>
-        <div>
-          <h3>Description</h3>
-          <p>{{userInfomations.description}}</p>
+
+          <div class="wrapperInformation">
+            <h3>Identifiant de transaction</h3>
+            <p>{{accountNumber}}</p>
+          </div>
+
+          <div class="wrapperInformation">
+            <h3>Contact</h3>
+            <p>{{userInfomations.number_phone}}</p>
+            <p>{{userInfomations.mail}}</p>
+          <div>
+
+          <div class="wrapperInformation">
+            <h3>Adresse</h3>
+            <p>{{userInfomations.address}}</p>
+            <p>{{userInfomations.city}}</p>
+            <p>{{userInfomations.postal_code}}</p>
+          </div>
+
+          <div v-if="userInfomations.description" class="wrapperInformation">
+            <h3>Description</h3>
+            <p>{{userInfomations.description}}</p>
+          </div>
+
         </div>
+      </div>
     </template>
   </m-card-post>
 </template>
@@ -21,7 +40,11 @@ export default {
   name: 'myInformation',
   data() {
     return {
+
       myInformation: [
+        {
+          title: 'Contact',
+        },
       ],
     };
   },
@@ -35,6 +58,7 @@ export default {
   computed: {
     ...mapGetters([
       'userInfomations',
+      'accountNumber',
     ]),
   },
   methods: {
@@ -53,4 +77,12 @@ export default {
       font-weight: 400;
     }
   }
+
+p {
+  margin: 4px 0px;
+}
+
+.wrapperInformation {
+  padding-top: 10px;
+}
 </style>

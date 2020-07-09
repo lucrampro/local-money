@@ -140,7 +140,7 @@ export default {
         functionBind: () => {
           this.switchPage('SendPost');
         },
-        pageNameBind: 'donner de mes nouvelles',
+        pageNameBind: 'Donner de mes nouvelles',
       });
     }
   },

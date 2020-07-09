@@ -66,6 +66,7 @@ export default {
       this.$Api.setUserType(event.detail.type);
       this.$Api.getDetails();
       this.$Api.getContacts();
+      this.$Api.getCompanyList();
     });
 
     // set infomation of user
