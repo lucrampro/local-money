@@ -224,7 +224,7 @@ class ApiRequest extends EventDispatcher {
         })
         .catch((res) => reject(res)));
     }
-    return new Promise((resolve, reject) => reject());
+    return false;
   }
 
   /**
@@ -256,6 +256,17 @@ class ApiRequest extends EventDispatcher {
 
   getLocalMoney(transactionInformation) {
     return new Promise((resolve, reject) => this.put('/convert-money', {
+      Headers: { Authorization: `Bearer ${this.token}` },
+      body: transactionInformation,
+    }).then((response) => {
+      this.getMyTransaction();
+      this.getUserInfo();
+      return resolve(response);
+    }).catch((response) => reject(response)));
+  }
+
+  getEuro(transactionInformation) {
+    return new Promise((resolve, reject) => this.post('/currency-converter/to-euro', {
       Headers: { Authorization: `Bearer ${this.token}` },
       body: transactionInformation,
     }).then((response) => {

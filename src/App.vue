@@ -1,16 +1,29 @@
 <template>
 <div class="mainWrapper">
   <div id="app">
-    <router-view />
+    <div class="overlayTransition">
+      <div class="second">
+        <p>Nous chargons vos données</p>
+      </div>
+    </div>
+    <transition @leave="leave" @enter="enter" :css='false' mode='out-in' appear>
+      <router-view/>
+    </transition>
   </div>
 </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import gsap from 'gsap';
 
 export default {
   name: 'app',
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
   computed: {
     ...mapGetters([
       'transactions',
@@ -93,6 +106,22 @@ export default {
     this.$Api.addEventListener('composant-gouvernanceList', (event) => this.$store.dispatch('setGouvernanceList', event.detail));
   },
   methods: {
+    leave(el, done) {
+      this.$anime.gsap.timeline({ onComplete: () => { done(); } })
+        .to('.overlayTransition', 1, { left: '0vw', ease: 'expo.out' }, 'stepOne')
+        .to('.overlayTransition .second', 1, { width: '100%', ease: 'expo.out' }, 'stepOne');
+    },
+    enter(el, done) {
+      switch (this.$route.name) {
+        case 'Home':
+          this.$anime.gsap.to('.second p', 0.5, { scale: 1, opacity: 1 });
+          break;
+        default:
+          this.$anime.gsap.timeline({ onComplete: () => { done(); } }).to('.overlayTransition', 0.8, { left: '100vw', ease: 'expo.out' })
+            .set('.overlayTransition', { left: '-100vw' })
+            .set('.overlayTransition .second', { width: '90%' });
+      }
+    },
     setAppMargin() {
       document.querySelector('#app').style.margin = '0px';
     },
@@ -102,6 +131,12 @@ export default {
       if (to.name === 'Langing') {
         this.setAppMargin();
       }
+    },
+    userInfomations: () => {
+      gsap.timeline().to('.second p', 0.2, { opacity: 0, scale: 0.8 })
+        .to('.overlayTransition', 0.8, { left: '100vw', ease: 'expo.out' })
+        .set('.overlayTransition', { left: '-100vw' })
+        .set('.overlayTransition .second', { width: '90%' });
     },
   },
 };
@@ -114,6 +149,30 @@ export default {
   min-height: 100vh;
   max-width: 687px;
   margin: auto;
+  position: relative;
+  .overlayTransition {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: -101vw;
+    background: #8BCDB9;
+    z-index: 999;
+    .second {
+      background: $primary-color;
+      height: 100%;
+      width: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      p {
+        color: wheat;
+        font-weight: bold;
+        opacity: 0;
+        transform: scale(0.7);
+      }
+    }
+  }
 }
 
 .mainWrapper {

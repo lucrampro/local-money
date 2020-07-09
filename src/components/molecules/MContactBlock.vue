@@ -1,7 +1,7 @@
 <template>
   <div class="mContactBlock">
     <p>{{fullName || name}} <br><span class="type">{{type}}</span></p>
-    <a-icone-remove @click.native="$emit('clickRemove')"/>
+    <a-icone-remove v-if="remove" @click.native="$emit('clickRemove')"/>
   </div>
 </template>
 
@@ -16,6 +16,9 @@ export default {
     name: {},
     firstName: {},
     lastName: {},
+    remove: {
+      default: true,
+    },
   },
   components: {
     'a-icone-remove': AIconeRemove,

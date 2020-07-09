@@ -12,7 +12,7 @@ export default [
   },
 
   {
-    path: 'conversion',
+    path: 'conversion/:to',
     component: () => import('@/components/pages/my-account/transaction/ConvertMoney.vue'),
     name: 'ConvertMoney',
     meta: {
@@ -32,7 +32,7 @@ export default [
   },
 
   {
-    path: 'choisissez-votre-beneficiaire/',
+    path: 'choisissez-votre-beneficiaire',
     component: () => import('@/components/pages/my-account/transaction/SelectUserTransaction.vue'),
     name: 'SelectUserTransaction',
     meta: {

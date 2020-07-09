@@ -1,8 +1,9 @@
 <template>
   <div>
     <!-- <ActualityFilter :filters="filtersArray">
-      <template> Les entreprises du réseaux  </template>
+      <template>  </template>
     </ActualityFilter> -->
+    <p class="title">Les entreprises du réseaux </p>
     <l-wrapper-block ref="lWrapperBlock">
       <m-card-post :hasFooter="false" v-for="(company, index) in companiesList" :key="index"  >
         <template v-slot:header> {{ company.company_name }} </template>
@@ -42,3 +43,10 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.title {
+  padding-left: 30px;
+  @include title;
+}
+</style>

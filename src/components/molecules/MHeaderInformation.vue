@@ -15,6 +15,7 @@ export default {
   props: {
     name: {
       type: String,
+      default: '?',
     },
   },
 };
@@ -52,7 +53,7 @@ export default {
       h1 {
         font-size: 32px;
         .name {
-          font-weight: bold;
+          font-weight: regular;
         }
       }
     }

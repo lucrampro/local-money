@@ -6,7 +6,7 @@
       <div class="fieldConvert">
         <ValidationProvider>
           <o-transaction-input
-            v-model="transfered_money"
+            v-model="transferedMoney"
             :label="label"
             :errors="{}"
             name="sum_to_send"
@@ -22,14 +22,15 @@
           <a-icone-conver />
         </a-button>
       </div>
-      <div v-if="transfered_money" class="bottom">
-        <p v-if="mode === 'local'">en euro {{transfered_money}} €</p>
-        <p v-else>en monnaie locale {{transfered_money}} mlc</p>
+      <div v-if="transferedMoney" class="bottom">
+        <p v-if="mode === 'vers-local'">en euro {{transferedMoney}} €</p>
+        <p v-else>en monnaie locale {{transferedMoney}} mlc</p>
       </div>
     </div>
   </ValidationObserver>
 </template>
 <script>
+
 import { mapGetters } from 'vuex';
 import formMixin from '@/mixins/formMixin';
 import AiconvertArrow from '@/components/atoms/Icones/AiconeConvert.vue';
@@ -37,8 +38,8 @@ import AiconvertArrow from '@/components/atoms/Icones/AiconeConvert.vue';
 export default {
   data() {
     return {
-      mode: 'local',
-      transfered_money: '',
+      mode: 'vers-local',
+      transferedMoney: '',
     };
   },
   components: {
@@ -46,19 +47,25 @@ export default {
   },
 
   watch: {
-    transfered_money(newVal) {
-      this.$emit('updateForm', { transfered_money: newVal });
+    mode(newVal) {
+      this.$router.push({ params: { to: newVal } });
     },
+    transferedMoney(newVal) {
+      this.$emit('updateForm', { transferedMoney: newVal });
+    },
+  },
+  mounted() {
+    this.$router.push({ params: { to: this.mode } });
   },
   methods: {
     switchMode() {
-      this.mode = this.mode === 'local' ? 'euro' : 'local';
+      this.mode = this.mode === 'vers-local' ? 'vers-euro' : 'vers-local';
     },
   },
   computed: {
     ...mapGetters(['solde', 'userInfomations']),
     label() {
-      return this.mode === 'local' ? 'MLC' : '€';
+      return this.mode === 'vers-local' ? 'MLC' : '€';
     },
     compteType() {
       return this.userInfomations.type;

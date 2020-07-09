@@ -24,8 +24,6 @@ import requestApi from './RequestApi';
 import store from './store';
 import styleGuild from './handlerColorPlugin';
 
-// console.log(g);
-
 Vue.config.productionTip = false;
 
 localize('fr', fr);
@@ -56,6 +54,7 @@ extend('majority', {
     return age > 18;
   },
 });
+
 // Register it globally
 
 // Atoms
@@ -69,6 +68,7 @@ Vue.component('a-picto', Atoms.APicto);
 Vue.component('a-switch-button', Atoms.ASwitchButton);
 Vue.component('a-user-picture', Atoms.AUserPicture);
 Vue.component('a-select', Atoms.ASelect);
+Vue.component('a-select-button', Atoms.ASelectButton);
 
 // Atoms Icons
 console.warn(Icones, 'Icone Atoms');

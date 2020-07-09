@@ -6,7 +6,6 @@ import Register from '@/views/Register.vue';
 import Confirm from '@/views/ConfirmPage.vue';
 import MyAccount from '@/views/MyAccount.vue';
 import Inscription from '@/views/Inscription.vue';
-import Landing from '../components/pages/landing/Landing.vue';
 import myAccountChildrens from './children/myAccount';
 import inscriptionChildrens from './children/inscription';
 
@@ -44,18 +43,9 @@ const routes = [
       requireAuth: true,
     },
   },
-  {
-    path: '/presentation-de-l\'app',
-    name: 'Landing',
-    component: Landing,
-    meta: {
-      requireAuth: true,
-    },
-  },
 ];
 
 const router = new VueRouter({
-  mode: 'history',
   routes,
 });
 
