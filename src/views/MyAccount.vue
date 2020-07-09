@@ -65,7 +65,7 @@ export default {
         },
         {
           functionBind: () => {
-            this.switchPage('ConvertMoney');
+            this.$router.push({ name: 'ConvertMoney', params: { to: 'vers-local' } });
           },
           pageNameBind: 'Convertire mon argent',
         },
@@ -106,7 +106,6 @@ export default {
   methods: {
     switchPage(pageName) {
       if (this.currentPageName !== pageName) {
-        console.log(this.currentPageName, pageName);
         this.$router.push({ name: pageName });
         this.menuIsOpen = false;
       }
