@@ -36,7 +36,7 @@ export default {
             this.switchPage('Commerce');
           },
           pageNameBind: 'Commerce',
-          pageName: 'Mes commerçant',
+          pageName: 'Mes commerçants',
           componentId: 'a-icone-commerce',
         },
         {
@@ -52,7 +52,7 @@ export default {
             this.switchPage('MyTransaction');
           },
           pageNameBind: 'MyTransaction',
-          pageName: 'Mes transaction',
+          pageName: 'Mes transactions',
           componentId: 'a-icone-transaction',
         },
       ],
@@ -97,7 +97,7 @@ export default {
   computed: {
     ...mapGetters(['compteType', 'userToken', 'userInfomations']),
     name() {
-      return this.userInfomations.type === 'company' ? this.userInfomations.first_name : this.userInfomations.first_name;
+      return this.userInfomations.type === 'company' ? this.userInfomations.last_name : this.userInfomations.last_name;
     },
   },
   methods: {

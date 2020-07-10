@@ -3,13 +3,13 @@
     <a-ctuality-filter :filters="filtersArray">
       <template>  </template>
     </a-ctuality-filter>
-    <p class="title">Les entreprises du réseaux </p>
+    <p class="title">LES ENTREPRISES DU RÉSEAU </p>
     <l-wrapper-block ref="lWrapperBlock">
       <m-card-post :hasFooter="false" v-for="(company, index) in companiesList" :key="index"  >
         <template v-slot:header>  <APicto :type="company.category" />  {{ company.company_name }} </template>
         <template v-slot:main>
           <p><strong>Description :</strong> {{ company.description }}</p>
-          <p class="identifiant"><strong>Identifiant du commercent</strong> : {{ company.account_number }}</p>
+          <p class="identifiant"><strong>Identifiant du commerçant</strong> : {{ company.account_number }}</p>
           <p class="adresse"><strong>adresse</strong> : {{ company.address }}, {{company.city}} {{company.zip_code}}</p>
 
           </template>

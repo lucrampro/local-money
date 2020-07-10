@@ -1,7 +1,7 @@
 <template>
   <div class="confirmPage">
     <img class="logo" src="@/assets/logo.png" alt="">
-    <p class="confirmText">{{confirmPageMessage}}</p>
+    <p class="confirmText" v-html="confirmPageMessage"></p>
     <div class="wrapperButton">
       <a-button @click.native="$router.push({ name : 'Home'})" width="100%">Suivant</a-button>
     </div>

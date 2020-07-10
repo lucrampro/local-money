@@ -4,7 +4,7 @@
   <l-regitster @formSubmit="submitForm">
       <template v-slot:header>
         <p class="wellcomeMessage">Bienvenue <br class="v-min">sur NeyMo !</p>
-        <p>Connectez vous pour continuer </p>
+        <p>Connectez-vous pour continuer </p>
       </template>
       <template v-slot:default>
       <div class="mt-10">

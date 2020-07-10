@@ -79,7 +79,7 @@ export default {
     this.$Api.addEventListener('user-registred', () => {
       this.$store.dispatch(
         'setConfirmPageMessage',
-        'Votre pré inscription a bien été validée, votre inscription sera validée par l\'Association "NOM de l\'Association" .',
+        'Votre pré inscription a bien été validée,<br> votre inscription sera validée par l\'Association MLC.',
       );
       this.$router.push({ name: 'Confirmation' });
     });
