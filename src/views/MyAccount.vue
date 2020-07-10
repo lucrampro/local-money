@@ -71,12 +71,6 @@ export default {
         },
         {
           functionBind: () => {
-            this.switchPage('Commerce');
-          },
-          pageNameBind: 'Mes favoris',
-        },
-        {
-          functionBind: () => {
             this.switchPage('Community');
           },
           pageNameBind: 'Communauté',

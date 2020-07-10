@@ -8,10 +8,9 @@
       <m-card-post :hasFooter="false" v-for="(company, index) in companiesList" :key="index"  >
         <template v-slot:header>  <APicto :type="company.category" />  {{ company.company_name }} </template>
         <template v-slot:main>
-          <strong>Description :</strong> {{ company.category }} de {{ company.first_name }}
-          <br/>
+          <p><strong>Description :</strong> {{ company.description }}</p>
           <p class="identifiant"><strong>Identifiant du commercent</strong> : {{ company.account_number }}</p>
-          <span class="adresse"><strong>adresse</strong> : {{ company.address }}, {{company.city}} {{company.zip_code}}</span><br>
+          <p class="adresse"><strong>adresse</strong> : {{ company.address }}, {{company.city}} {{company.zip_code}}</p>
 
           </template>
       </m-card-post>
@@ -59,7 +58,9 @@ export default {
   padding-left: 30px;
   @include title;
 }
-
+p {
+  margin: 10px 0px;
+}
 /deep/ .wrapper-filter {
   padding-left: 20px ;
   overflow: scroll ;
