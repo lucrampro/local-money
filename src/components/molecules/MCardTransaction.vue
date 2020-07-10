@@ -3,7 +3,7 @@
     <a-picto  class="transactionElement--picto" :type="this.$props.categorie"/>
     <p class="transactionElement--name" >  {{transactionName}}</p>
     <p class="transactionElement--date">  {{$props.date}}</p>
-    <p class="transactionElement--sum" :class="statusTransactionUser">  {{ fullTransactionValue }} </p>
+    <p class="transactionElement--sum" :class="type === 'convert' ? 'emiter' : statusTransactionUser">  {{ fullTransactionValue }} </p>
   </div>
 </template>
 
@@ -27,6 +27,7 @@ export default {
     },
     beneficiaryName: {},
     emiterName: {},
+    type: {},
     statusTransactionUser: {
       type: String,
       default: '',
@@ -38,7 +39,7 @@ export default {
   },
   computed: {
     fullTransactionValue() {
-      return this.statusTransactionUser === 'emiter' ? `- ${this.sum}` : `+ ${this.sum}`;
+      return (this.statusTransactionUser === 'emiter') || (this.type === 'convert') ? `- ${this.sum}` : `+ ${this.sum}`;
     },
     transactionName() {
       return this.statusTransactionUser === 'beneficiary' ? this.emiterName : this.beneficiaryName;
@@ -68,6 +69,8 @@ export default {
     &--name {
       font-weight: bold;
       grid-area: 1 / 2 / 3 / 5;
+      overflow: hidden;
+      white-space: nowrap;
     }
 
     &--date {

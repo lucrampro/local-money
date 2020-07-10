@@ -32,7 +32,7 @@
         type="submit"
         :onload="buttonOnload"
         v-if="currentNamePage !=='AccountType'"
-      >Suviant</a-button>
+      >Suivant</a-button>
     </template>
   </l-regitster>
 </template>

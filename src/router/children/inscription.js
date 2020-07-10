@@ -7,7 +7,7 @@ export default [
     meta: {
       submit : false,
       nextPath: 'account-type',
-      title: 'Quel type de compte souhaitez vous creer ?',
+      title: 'Quel type de compte souhaitez-vous créer ?',
       subText: 'Bienvenue sur NeyMo !',
     },
   },
@@ -19,7 +19,7 @@ export default [
       submit : false,
       nextPath: 'first-information',
       previousPath: 'choisissez-votre-monnaie',
-      title: 'Quel type de compte souhaitez vous creer ?',
+      title: 'Quel type de compte souhaitez-vous créer ?',
       subText: 'Bienvenue sur NeyMo !',
     },
   },

@@ -14,14 +14,14 @@
         :id="'categorys'"
       />
   </ValidationProvider>
-    <ValidationProvider name="Ville" rules="required|min:3" v-slot="{ errors }">
+    <ValidationProvider name="ville" rules="required|min:3" v-slot="{ errors }">
       <m-input :errors="errors" name="city" v-model="city" maxlength="30" exemple="Paris">Ville</m-input>
     </ValidationProvider>
     <ValidationProvider name="code postal" rules="required|min:3" v-slot="{ errors }">
       <m-input :errors="errors" name="zipCode" type="tel" v-model="zipCode" maxlength="5" exemple="75000">Code postal</m-input>
     </ValidationProvider>
-    <ValidationProvider name="address" rules="required|min:6" v-slot="{ errors }">
-      <m-input :errors="errors" name="first_name" v-model="address" exemple="27 Bis Rue du Progrès">Address</m-input>
+    <ValidationProvider name="addresse" rules="required|min:6" v-slot="{ errors }">
+      <m-input :errors="errors" name="first_name" v-model="address" exemple="27 Bis Rue du Progrès">Addresse</m-input>
     </ValidationProvider>
   </div>
 </template>

@@ -1,8 +1,14 @@
 <template>
   <div>
-    <l-header-informations :name=" userInfomations.first_name">
-      <template v-slot:mainText >{{ userInfomations.first_name }}</template>
-      <template v-slot:subText >Votre identifiant : {{ accountNumber }}<br> <span v-if="compteType ==='company'">Compte profesionne</span></template>
+
+    <l-header-informations :name="name">
+      <template v-slot:mainText >{{ name }}</template>
+      <template v-slot:subText >
+        <div class="compteType">
+          <span class="compteType" v-if="userInfomations.type ==='company'" >Entreprise</span>
+          <span v-else>Particulier</span>
+        </div>
+      </template>
     </l-header-informations>
    <a-switch-button
       name="switch__page__transaction"
@@ -47,6 +53,7 @@ export default {
       this.mode = to.name;
     },
   },
+
   computed: {
     ...mapGetters([
       'transactions',
@@ -58,6 +65,15 @@ export default {
       'accountNumber',
       'contacts',
     ]),
+    name() {
+      return this.userInfomations.type === 'company' ? this.userInfomations.name : `${this.userInfomations.last_name} ${this.userInfomations.first_name}`;
+    },
   },
 };
 </script>
+
+<style lang="scss">
+.compteType {
+  color: #909090;
+}
+</style>

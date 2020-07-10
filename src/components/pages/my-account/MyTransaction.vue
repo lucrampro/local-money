@@ -2,7 +2,7 @@
   <div>
     <m-my-money boxShadow="none" background="#F5F5F5" :convertMoney="false"></m-my-money>
     <l-wrapper-block ref="lWrapperBlock" background="black">
-      <template class="title" v-slot:title>Mes dernières transactions :</template>
+      <template class="title" v-slot:title>Mes transactions :</template>
       <template v-slot:default>
         <div v-for="(transactionDay, index ) in userTrasactions" :key="index" class="transaction">
           <p class="transactionDay">{{ transactionDay.date }}</p>
@@ -14,8 +14,8 @@
             :date="transaction.date.date"
             :sum="transaction.transfered_money"
             :statusTransactionUser="transaction.status_transaction_user"
+            :type="transaction.type"
           ></m-card-transaction>
-
         </div>
       </template>
     </l-wrapper-block>
@@ -46,7 +46,7 @@ export default {
       return i;
     },
     transformDate(date) {
-      const d = new Date(date);
+      const d = new Date(date.replace(/-/g, '/').substring(0, 19)); // eslint-disable-line 
       const h = this.addZero(d.getHours());
       const m = this.addZero(d.getMinutes());
       return `${h}h${m}`;
@@ -64,8 +64,9 @@ export default {
     ]),
     userTrasactions() {
       const transactions = JSON.parse(JSON.stringify(this.transactions));
+
       transactions.forEach((transactionDay) => transactionDay.transaction.forEach((transaction) => {
-        const newDate = this.transformDate(transaction.date.date);
+        const newDate = this.transformDate(transaction.createdAt.date);
         transaction.date.date = newDate;
       }));
       return transactions;

@@ -45,6 +45,17 @@ span {
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  position: relative;
+  &::after {
+    display: block;
+    content: '';
+    position: absolute;
+    margin: auto;
+    top: -10px;
+    left: -18px;
+    width: 50px;
+    height: 30px;
+  }
 }
 .pageName {
   &.hidden {

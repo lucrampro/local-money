@@ -1,6 +1,6 @@
 <template>
   <div class="myAccount">
-    <l-header-myCompte :name="userInfomations.first_name" />
+    <l-header-myCompte :name="name" />
     <div class="myAccountContenu">
       <router-view />
     </div>
@@ -36,7 +36,7 @@ export default {
             this.switchPage('Commerce');
           },
           pageNameBind: 'Commerce',
-          pageName: 'Mes commerçant',
+          pageName: 'Mes commerçants',
           componentId: 'a-icone-commerce',
         },
         {
@@ -52,7 +52,7 @@ export default {
             this.switchPage('MyTransaction');
           },
           pageNameBind: 'MyTransaction',
-          pageName: 'Mes transaction',
+          pageName: 'Mes transactions',
           componentId: 'a-icone-transaction',
         },
       ],
@@ -68,12 +68,6 @@ export default {
             this.$router.push({ name: 'ConvertMoney', params: { to: 'vers-local' } });
           },
           pageNameBind: 'Convertir mon argent',
-        },
-        {
-          functionBind: () => {
-            this.switchPage('Commerce');
-          },
-          pageNameBind: 'Mes favoris',
         },
         {
           functionBind: () => {
@@ -102,6 +96,9 @@ export default {
   },
   computed: {
     ...mapGetters(['compteType', 'userToken', 'userInfomations']),
+    name() {
+      return this.userInfomations.type === 'company' ? this.userInfomations.last_name : this.userInfomations.last_name;
+    },
   },
   methods: {
     switchPage(pageName) {
@@ -140,7 +137,7 @@ export default {
         functionBind: () => {
           this.switchPage('SendPost');
         },
-        pageNameBind: 'donner de mes nouvelles',
+        pageNameBind: 'Donner de mes nouvelles',
       });
     }
   },

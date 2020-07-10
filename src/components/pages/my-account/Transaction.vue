@@ -130,14 +130,14 @@ export default {
       }
     },
     putErroPoppin() {
-      this.$refs.messagePoppin.innerHTML = 'une erreure ses produite veuillez réessayer plus tard 😔';
+      this.$refs.messagePoppin.innerHTML = 'Une erreur s\'est produite, veuillez réessayer plus tard ';
       this.trasactionError = true;
       this.transactionOnload = false;
     },
     putSuccessPoppin() {
       this.$store.dispatch(
         'setConfirmPageMessage',
-        'Votre transaction à bien été faite',
+        'Votre transaction a bien été faite',
       );
       this.$router.push({ name: 'Confirmation' });
       this.transactionOnload = false;
