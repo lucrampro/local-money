@@ -40,7 +40,8 @@ const routes = [
     name: 'Confirmation',
     component: Confirm,
     meta: {
-      requireAuth: true,
+      requireAuth: 'true',
+      globalPage: true,
     },
   },
 ];
@@ -50,6 +51,9 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  if (to.meta.globalPage) {
+    return next();
+  }
   if (to.meta.requireAuth) {
     return store.getters.userToken ? next() : next({ name: 'Register' });
   }

@@ -5,7 +5,7 @@
       <template class="title" v-slot:title>Mes transactions :</template>
       <template v-slot:default>
         <div v-for="(transactionDay, index ) in userTrasactions" :key="index" class="transaction">
-          <p  v-if="index == 0" class="transactionDay">{{ transactionDay.date }}</p>
+          <p class="transactionDay">{{ transactionDay.date }}</p>
           <m-card-transaction
             v-for="(transaction, index) in transactionDay.transaction"
             :key="index"
@@ -14,8 +14,8 @@
             :date="transaction.date.date"
             :sum="transaction.transfered_money"
             :statusTransactionUser="transaction.status_transaction_user"
+            :type="transaction.type"
           ></m-card-transaction>
-
         </div>
       </template>
     </l-wrapper-block>
@@ -64,8 +64,9 @@ export default {
     ]),
     userTrasactions() {
       const transactions = JSON.parse(JSON.stringify(this.transactions));
+
       transactions.forEach((transactionDay) => transactionDay.transaction.forEach((transaction) => {
-        const newDate = this.transformDate(transaction.date.date);
+        const newDate = this.transformDate(transaction.createdAt.date);
         transaction.date.date = newDate;
       }));
       return transactions;

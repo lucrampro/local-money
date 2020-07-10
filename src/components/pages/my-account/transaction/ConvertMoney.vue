@@ -4,11 +4,11 @@
       <p>Mon solde : {{solde}} MCL</p>
       <p>Je souhaite acquérir :</p>
       <div class="fieldConvert">
-        <ValidationProvider>
+        <ValidationProvider v-slot="{errors}" name=" " :rules="'required|min_value:1|max_value:'+solde">
           <o-transaction-input
             v-model="transferedMoney"
             :label="label"
-            :errors="{}"
+            :errors="errors"
             name="sum_to_send"
           />
         </ValidationProvider>

@@ -3,7 +3,7 @@
   <div id="app">
     <div class="overlayTransition">
       <div class="second">
-        <p>Nous chargons vos données</p>
+        <p>Nous chargeons vos données</p>
       </div>
     </div>
     <transition @leave="leave" @enter="enter" :css='false' mode='out-in' appear>
@@ -103,11 +103,9 @@ export default {
       return this.$store.dispatch('setContacts', event.detail);
     });
 
-    this.$Api.addEventListener('', (event) => {
-      if (event.detail.Information) {
-        return this.$store.dispatch('setContacts', []);
-      }
-      return this.$store.dispatch('setContacts', event.detail);
+    this.$Api.addEventListener('user-logout', () => {
+      this.$store.dispatch('reset');
+      this.switchPage('Register');
     });
 
     this.$Api.addEventListener('remove-contact', (event) => this.$store.dispatch('removeContact', event.detail));

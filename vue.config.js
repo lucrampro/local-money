@@ -6,11 +6,10 @@ module.exports = {
       theme_color: '#fefefe',
       background_color: '#ffffff',
       display: 'fullscreen',
-      manifestPath: 'manifest.json',
       appleMobileWebAppCapable: 'yes',
-      appleMobileWebAppStatusBarStyle: 'black',
+      appleMobileWebAppStatusBarStyle: 'white',
       workboxPluginMode: 'InjectManifest',
-      start_url: '/index.html',
+      start_url: '/',
       workboxOptions: {
         swSrc: 'src/sw.js',
       },
@@ -30,6 +29,9 @@ module.exports = {
       localeDir: 'local',
       enableInSFC: true,
     },
+  },
+  configureWebpack: {
+    devtool: 'source-map',
   },
   css: {
     loaderOptions: {
