@@ -4,7 +4,7 @@
       <div class="wrapperButton">
         <a-button @click.native="$router.push({ name : 'AddModifyContact', params: { type: 'ajouter' } })" width="100%" >Ajouter nouveau un contact</a-button>
       </div>
-      <m-contact-block v-for="(contact, key) in contacts" :type="contact.type" :name="contact.name" :lastName="contact.lastName" :firstName="contact.firstName" @clickRemove="nextPage(contact)" :key="'contact_'+key" />
+      <m-contact-block v-for="(contact, key) in contacts" :type="contact.type" :name="contact.name" :lastName="contact.lastName" :id="contact.account_number" :firstName="contact.firstName" @clickRemove="nextPage(contact)" :key="'contact_'+key" />
     </l-wrapper-block>
   </div>
 </template>

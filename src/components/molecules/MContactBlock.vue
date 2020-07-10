@@ -1,6 +1,9 @@
 <template>
   <div class="mContactBlock">
-    <p>{{fullName || name}} <br><span class="type">{{type}}</span></p>
+    <div>
+      <p>{{fullName || name}} <br><span class="type">{{type}}</span></p>
+      <p>ID: {{ $props.id }} </p>
+    </div>
     <a-icone-remove v-if="remove" @click.native="$emit('clickRemove')"/>
   </div>
 </template>
@@ -19,6 +22,7 @@ export default {
     remove: {
       default: true,
     },
+    id: {},
   },
   components: {
     'a-icone-remove': AIconeRemove,
@@ -40,6 +44,11 @@ export default {
   background-color: white;
   border-radius: 10px;
   margin: 10px 0px;
+  line-height: 25px;
+  div {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .type {
