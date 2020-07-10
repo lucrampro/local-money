@@ -4,7 +4,7 @@
       <p>Mon solde : {{solde}} MCL</p>
       <p>Je souhaite acquérir :</p>
       <div class="fieldConvert">
-        <ValidationProvider v-slot="{errors}" name=" " :rules="'required|min_value:1|max_value:'+solde">
+        <ValidationProvider v-slot="{errors}" name=" " :rules="rules">
           <o-transaction-input
             v-model="transferedMoney"
             :label="label"
@@ -66,6 +66,9 @@ export default {
     ...mapGetters(['solde', 'userInfomations']),
     label() {
       return this.mode === 'vers-local' ? 'MLC' : '€';
+    },
+    rules() {
+      return `required|min_value:1${this.mode === 'vers-euro' ? `|max_value:${this.solde}` : ''}`;
     },
     compteType() {
       return this.userInfomations.type;
