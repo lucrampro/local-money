@@ -1,8 +1,8 @@
 <template>
   <div class="mContactBlock">
     <div>
-      <p>{{fullName || name}} <br><span class="type">{{type}}</span></p>
-      <p>ID: {{ $props.id }} </p>
+      <p>{{fullName || name}} <br><span class="type">{{type === 'company' ? 'Entreprise' : 'Particulier'}}</span></p>
+      <p class="id">Identifiant: {{ $props.id }} </p>
     </div>
     <a-icone-remove v-if="remove" @click.native="$emit('clickRemove')"/>
   </div>
@@ -54,5 +54,13 @@ export default {
 .type {
   font-size: 14px;
   color: $secondary-color;
+}
+
+.id {
+  font-size: 14px;
+  color: $primary-color;
+}
+svg {
+  margin: auto 0;
 }
 </style>
