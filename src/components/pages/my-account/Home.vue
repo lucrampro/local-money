@@ -16,6 +16,7 @@
         v-for="(transaction, index) in lastTrasacton"
         :key="index"
         :beneficiaryName="transaction.beneficiary_name"
+        :type="transaction.type"
         :emiterName="transaction.emiter_name"
         :date="transaction.date"
         :sum="transaction.transfered_money"

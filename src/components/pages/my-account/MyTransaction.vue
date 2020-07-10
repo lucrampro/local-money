@@ -14,6 +14,7 @@
             :date="transaction.date.date"
             :sum="transaction.transfered_money"
             :statusTransactionUser="transaction.status_transaction_user"
+            :type="transaction.type"
           ></m-card-transaction>
         </div>
       </template>

@@ -10,7 +10,7 @@ module.exports = {
       appleMobileWebAppCapable: 'yes',
       appleMobileWebAppStatusBarStyle: 'black',
       workboxPluginMode: 'InjectManifest',
-      start_url: '/index.html',
+      start_url: '/',
       workboxOptions: {
         swSrc: 'src/sw.js',
       },
