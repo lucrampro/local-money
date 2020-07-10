@@ -66,7 +66,7 @@ export default {
       const transactions = JSON.parse(JSON.stringify(this.transactions));
 
       transactions.forEach((transactionDay) => transactionDay.transaction.forEach((transaction) => {
-        const newDate = this.transformDate(transaction.date.date);
+        const newDate = this.transformDate(transaction.createdAt.date);
         transaction.date.date = newDate;
       }));
       return transactions;
