@@ -7,7 +7,12 @@
     <l-wrapper-block ref="lWrapperBlock">
       <m-card-post :hasFooter="false" v-for="(company, index) in companiesList" :key="index"  >
         <template v-slot:header>  <APicto :type="company.category" />  {{ company.company_name }} </template>
-        <template v-slot:main> Deescription: {{ company.category }} de {{ company.first_name }}</template>
+        <template v-slot:main>
+          Description: {{ company.category }} de {{ company.first_name }}
+          <br/>
+          ID du commercent: {{ company.account_number }}
+          <br/> Localisation: {{ company.address }}
+          </template>
       </m-card-post>
     </l-wrapper-block>
   </div>

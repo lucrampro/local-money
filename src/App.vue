@@ -105,7 +105,6 @@ export default {
 
     this.$Api.addEventListener('user-logout', () => {
       this.$store.dispatch('reset');
-      this.$store.dispatch('setAppDownload', true);
       this.$router.push({ name: 'Register' });
     });
 
