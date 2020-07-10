@@ -66,6 +66,7 @@ export default {
     border-radius: 45px;
     margin-top: 10px;
     padding: 25px 25px;
+    line-height: 25px;
     &__header {
       font-weight: bold;
       margin-bottom: 15px;
