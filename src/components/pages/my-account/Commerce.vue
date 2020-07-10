@@ -8,10 +8,11 @@
       <m-card-post :hasFooter="false" v-for="(company, index) in companiesList" :key="index"  >
         <template v-slot:header>  <APicto :type="company.category" />  {{ company.company_name }} </template>
         <template v-slot:main>
-          Description: {{ company.category }} de {{ company.first_name }}
+          <strong>Description :</strong> {{ company.category }} de {{ company.first_name }}
           <br/>
-          ID du commercent: {{ company.account_number }}
-          <br/> Localisation: {{ company.address }}
+          <p class="identifiant"><strong>Identifiant du commercent</strong> : {{ company.account_number }}</p>
+          <span class="adresse"><strong>adresse</strong> : {{ company.address }}, {{company.city}} {{company.zip_code}}</span><br>
+
           </template>
       </m-card-post>
     </l-wrapper-block>
