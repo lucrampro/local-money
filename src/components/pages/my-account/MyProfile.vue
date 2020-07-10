@@ -5,7 +5,7 @@
       <template v-slot:mainText >{{ userInfomations.first_name }}</template>
       <template v-slot:subText >
         <div class="compteType" >
-          <span class="compteType" v-if="userInfomations.type ==='company'" >Particulier</span><span v-else>Entreprise</span>
+          <span class="compteType" v-if="userInfomations.type ==='company'" >Entreprise</span><span v-else>Particulier</span>
         </div>
       </template>
     </l-header-informations>

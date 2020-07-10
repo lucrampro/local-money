@@ -46,7 +46,7 @@ export default {
       return i;
     },
     transformDate(date) {
-      const d = new Date(date);
+      const d = new Date(date.replace(/-/g, '/').substring(0, 19)); // eslint-disable-line 
       const h = this.addZero(d.getHours());
       const m = this.addZero(d.getMinutes());
       return `${h}h${m}`;
